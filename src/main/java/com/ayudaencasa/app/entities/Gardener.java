@@ -1,0 +1,49 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.ayudaencasa.app.entities;
+
+import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@SQLDelete(sql = "UPDATE categories SET deleted_at = current_timestamp() WHERE id = ?")
+@Where(clause = "deleted_at is null")
+public class Gardener extends Job {
+    
+    private Double surface;
+    
+    private Boolean tools;
+    
+    private Boolean poolCleaning;
+    
+    private Boolean gardenFence;
+    
+    private Boolean plantDisinfection;
+
+    @Override
+    public String getType() {
+        return "Gardener";
+    }
+    
+    public List<String> hasTools(List<String> toolsList){
+        return toolsList;
+    }
+    
+    
+    
+    
+    
+    
+}
