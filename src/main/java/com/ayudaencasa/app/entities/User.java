@@ -1,7 +1,70 @@
 package com.ayudaencasa.app.entities;
 
-public class User {
+import java.io.Serializable;
+import java.util.Date;
+import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.Where;
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@SQLDelete(sql = "UPDATE categories SET deleted_at = current_timestamp() WHERE id = ?")
+@Where(clause = "deleted_at is null")
+public class User implements Serializable {
     
-    private String name ; 
+    @Id
+    private String id;
     
+    @NonNull
+    private String name; 
+    
+    @NonNull
+    private String password;
+    
+    @NonNull
+    private String firstName;
+    
+    @NonNull
+    private String lastName;
+    
+    @NonNull
+    private Date dob;
+    
+    @NonNull
+    private Integer dni;
+    
+    private String address;
+    private Integer phone;
+    // private Photo photo;
+    // private Cv cv;
+    private Set<Job> jobs;
+    
+    @Temporal(value = TemporalType.TIMESTAMP)
+    @CreationTimestamp
+    @Column(name = "created_at")
+    private Date createdAt;
+
+    @Temporal(value = TemporalType.TIMESTAMP)
+    @UpdateTimestamp
+    @Column(name = "updated_at", insertable = false)
+    private Date updatedAt;
+
+    @Temporal(value = TemporalType.TIMESTAMP)
+    @Column(name = "deleted_at")
+    private Date deletedAt;
 }

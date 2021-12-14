@@ -1,14 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.ayudaencasa.app.services;
 
-/**
- *
- * @author lopez
- */
-public class UserService {
+import com.ayudaencasa.app.entities.User;
+import java.util.List;
+
+public interface UserService {
+    
+    public User create();
+    public void update();
+    public void delete();
+    public User findById();
+    public List<User> findAll();
     
 }
