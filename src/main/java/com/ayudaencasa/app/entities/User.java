@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -35,6 +36,7 @@ public class User implements Serializable {
     private String name; 
     
     @NonNull
+    @Email
     private String email;
     
     @NonNull
