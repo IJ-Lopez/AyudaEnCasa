@@ -2,6 +2,7 @@ package com.ayudaencasa.app.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -34,6 +35,9 @@ public class User implements Serializable {
     private String name; 
     
     @NonNull
+    private String email;
+    
+    @NonNull
     private String password;
     
     @NonNull
@@ -52,7 +56,7 @@ public class User implements Serializable {
     private Integer phone;
     // private Photo photo;
     // private Cv cv;
-    private Set<Job> jobs;
+    private HashSet<Job> jobs;
     
     @Temporal(value = TemporalType.TIMESTAMP)
     @CreationTimestamp
