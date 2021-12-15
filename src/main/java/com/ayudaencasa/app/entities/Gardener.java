@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Entity;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
@@ -20,6 +21,7 @@ import org.hibernate.annotations.Where;
 @Setter
 @SQLDelete(sql = "UPDATE categories SET deleted_at = current_timestamp() WHERE id = ?")
 @Where(clause = "deleted_at is null")
+@Entity
 public class Gardener extends Job {
     
     private Double surface;
@@ -37,9 +39,11 @@ public class Gardener extends Job {
         return "Gardener";
     }
     
-    public List<String> hasTools(List<String> toolsList){
-        return toolsList;
+    public Boolean hasTools(){
+        return tools;
     }
+    
+    
     
     
     

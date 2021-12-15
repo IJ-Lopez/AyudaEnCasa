@@ -6,11 +6,15 @@
 package com.ayudaencasa.app.repositories;
 
 import com.ayudaencasa.app.entities.Gardener;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author Usr
  */
-public interface GardenerRepository extends JobRepository<Gardener, String>{
+@Repository
+public interface GardenerRepository extends JobRepository<Gardener>{
+    
+    
     
 }

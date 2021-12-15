@@ -7,20 +7,22 @@ package com.ayudaencasa.app.services;
 
 import com.ayudaencasa.app.entities.Gardener;
 import com.ayudaencasa.app.repositories.GardenerRepository;
+import com.ayudaencasa.app.repositories.JobRepository;
 import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Usr
  */
-public interface GardenerService {
+@Service
+public class GardenerServiceImpl {
     
-    public Gardener create();
-    public void update();
-    public void delete();
-    public Gardener findById();
-    public List<Gardener> findAll();
+    @Autowired
+    private GardenerRepository gardenerRepository;
+    
+    
     
 }
