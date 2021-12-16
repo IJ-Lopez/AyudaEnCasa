@@ -6,10 +6,12 @@
 package com.ayudaencasa.app.services;
 
 import com.ayudaencasa.app.entities.Gardener;
+import com.ayudaencasa.app.exceptions.GardenerNotFoundException;
 import com.ayudaencasa.app.repositories.GardenerRepository;
-import com.ayudaencasa.app.repositories.JobRepository;
 import java.util.List;
+import java.util.Optional;
 import javax.transaction.Transactional;
+import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,10 +20,56 @@ import org.springframework.stereotype.Service;
  * @author Usr
  */
 @Service
-public class GardenerServiceImpl {
+public class GardenerServiceImpl implements GardenerService {
     
     @Autowired
     private GardenerRepository gardenerRepository;
+    
+    
+    @Override
+    @Transactional
+    public Gardener create(@NonNull Gardener gardener) {
+        return gardenerRepository.save(gardener);
+    }
+
+    @Override
+    @Transactional
+    public void update(@NonNull String id, @NonNull Gardener newGardener) throws GardenerNotFoundException {
+        Optional<Gardener> opt = gardenerRepository.findById(id);
+        if(opt.isPresent()){
+            Gardener gardener = opt.get();
+            modelMapper.map(newGardener, gardener);
+            gardenerRepository.save(gardener);
+        } else {
+            throw new GardenerNotFoundException();
+        }
+    }
+
+    @Override
+    @Transactional
+    public void delete(@NonNull String id) {
+        Optional<Gardener> opt = gardenerRepository.findById(id);
+        if(opt.isPresent()){
+            gardenerRepository.delete(opt.get());
+        } else {
+            throw new GardenerNotFoundException();
+        }
+    }
+
+    @Override
+    public Gardener findById(@NonNull String id) {
+        Optional<Gardener> opt = gardenerRepository.findById(id);
+        if(opt.isPresent()){
+            return opt.get();
+        } else {
+            throw new GardenerNotFoundException();
+        }
+    }
+
+    @Override
+    public List<Gardener> findAll() {
+        return gardenerRepository.findAll();
+    }
     
     
     
