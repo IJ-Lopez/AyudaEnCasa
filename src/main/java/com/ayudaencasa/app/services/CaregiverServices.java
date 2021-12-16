@@ -35,8 +35,8 @@ CaregiverRepository caregiverReposotory;
     }
     
     @Transactional
-    public void update(@NonNull Caregiver newCaregiver) throws Exception {
-        Optional<Caregiver> opt = caregiverReposotory.findAll(newCaregiver); 
+    public void update(String id, @NonNull Caregiver newCaregiver) throws Exception {
+        Optional<Caregiver> opt = caregiverReposotory.findById(id); 
         if(opt.isPresent()){
             Caregiver caregiver = opt.get();
             modelMapper.map(newCaregiver, caregiver);
@@ -47,8 +47,8 @@ CaregiverRepository caregiverReposotory;
     }
 
 @Transactional
-    public void delete(@NonNull Caregiver caregiver) throws Exception {
-        Optional<Caregiver> opt = caregiverReposotory.findAll(caregiver);
+    public void delete(String id, @NonNull Caregiver caregiver) throws Exception {
+        Optional<Caregiver> opt = caregiverReposotory.findById(id);
         if(opt.isPresent()){
             caregiverReposotory.delete(opt.get());
         } else {

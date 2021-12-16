@@ -2,13 +2,10 @@ package com.ayudaencasa.app.repositories;
 
 import com.ayudaencasa.app.entities.Caregiver;
 import java.util.Optional;
+import org.springframework.stereotype.Repository;
 
-public abstract class CaregiverRepository implements JobRepository {
+@Repository
+public interface CaregiverRepository extends JobRepository<Caregiver> {
 
-    public Optional<Caregiver> findAll(Caregiver newCaregiver) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-
-
+  
 }
