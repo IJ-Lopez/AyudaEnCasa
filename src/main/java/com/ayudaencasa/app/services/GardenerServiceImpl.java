@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package com.ayudaencasa.app.services;
-
 import com.ayudaencasa.app.entities.Gardener;
 import com.ayudaencasa.app.exceptions.GardenerNotFoundException;
 import com.ayudaencasa.app.repositories.GardenerRepository;
@@ -12,6 +11,7 @@ import java.util.List;
 import java.util.Optional;
 import javax.transaction.Transactional;
 import lombok.NonNull;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +24,9 @@ public class GardenerServiceImpl implements GardenerService {
     
     @Autowired
     private GardenerRepository gardenerRepository;
+    
+    @Autowired
+    private ModelMapper modelMapper;
     
     
     @Override
