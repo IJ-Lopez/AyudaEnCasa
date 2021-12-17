@@ -1,41 +1,34 @@
 package com.ayudaencasa.app.services;
 
 import com.ayudaencasa.app.entities.Caregiver;
+import com.ayudaencasa.app.entities.User;
+import com.ayudaencasa.app.exceptions.UserNotFoundException;
+import com.ayudaencasa.app.interfaz.CaregiverService;
 import com.ayudaencasa.app.repositories.CaregiverRepository;
 import java.util.List;
 import java.util.Optional;
 import javax.transaction.Transactional;
 import lombok.NonNull;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class CaregiverServices {
+public class CaregiverServiceImpl implements CaregiverService {
 
 @Autowired
-CaregiverRepository caregiverReposotory;
-
-//@Transactional
-//public void SaveCaregiver (String name){
-//    Caregiver caregiver = new Caregiver();
-//    caregiverReposotory.save(caregiver);
-//}
-
-//public void Buscar (String name, String id) {
-    
-  //   Optional<Caregiver> respuesta = caregiverReposotory.findById(id);
-  //  if(respuesta.isPresent()) {
-//Caregiver caregiver = respuesta.get();
-//} 
-    
-//}
+private CaregiverRepository caregiverReposotory;
+@Autowired
+private ModelMapper modelMapper;
 
 
+  @Override
     @Transactional
     public Caregiver create(@NonNull Caregiver caregiver) {
         return (Caregiver) caregiverReposotory.save(caregiver);
     }
     
+      @Override
     @Transactional
-    public void update(String id, @NonNull Caregiver newCaregiver) throws Exception {
+    public void update(@NonNull String id, @NonNull Caregiver newCaregiver) throws Exception {
         Optional<Caregiver> opt = caregiverReposotory.findById(id); 
         if(opt.isPresent()){
             Caregiver caregiver = opt.get();
@@ -46,8 +39,9 @@ CaregiverRepository caregiverReposotory;
         }
     }
 
-@Transactional
-    public void delete(String id, @NonNull Caregiver caregiver) throws Exception {
+    @Override
+    @Transactional
+    public void delete(@NonNull String id) throws Exception {
         Optional<Caregiver> opt = caregiverReposotory.findById(id);
         if(opt.isPresent()){
             caregiverReposotory.delete(opt.get());
@@ -56,8 +50,20 @@ CaregiverRepository caregiverReposotory;
         }
     }
     
+    @Override
+    public Caregiver findById(@NonNull String id) {
+        Optional<Caregiver> opt = caregiverReposotory.findById(id);
+        if(opt.isPresent()){
+            return opt.get();
+        } else {
+            throw new UserNotFoundException();
+        }
+    }
+    
      public List<Caregiver> findAll() {
         return caregiverReposotory.findAll();
     }
+
     
+
 }
