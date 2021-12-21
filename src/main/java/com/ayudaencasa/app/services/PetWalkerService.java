@@ -2,8 +2,9 @@ package com.ayudaencasa.app.services;
 
 import com.ayudaencasa.app.entities.PetWalker;
 import com.ayudaencasa.app.exceptions.PetWalkerNotFoundException;
+import java.util.List;
 
-public class PetWalkerService {
+public interface PetWalkerService {
 
     public PetWalker create(PetWalker petWalker);
 
@@ -13,6 +14,6 @@ public class PetWalkerService {
 
     public PetWalker findById(String id) throws PetWalkerNotFoundException;
     
-    pubic List <PetWalker> findAll();
+    public List <PetWalker> findAll();
 
 }
