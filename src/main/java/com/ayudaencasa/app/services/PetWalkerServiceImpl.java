@@ -8,9 +8,14 @@ import java.util.List;
 import java.util.Optional;
 import javax.transaction.Transactional;
 import lombok.NonNull;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ *
+ * @author martina
+ */
 @Service
 public class PetWalkerServiceImpl implements PetWalkerService{
     
@@ -35,7 +40,7 @@ public class PetWalkerServiceImpl implements PetWalkerService{
             modelMapper.map (newPetWalker, petWalker);
             petWalkerRepo.save(petWalker);
         } else{
-            throw new PetWalkerNotFoundException;
+            throw new PetWalkerNotFoundException();
         }
    }
     
@@ -51,8 +56,7 @@ public class PetWalkerServiceImpl implements PetWalkerService{
     }
     
     @Override
-    @Transactional
-    public void findById (@NonNull String id){
+    public PetWalker findById (@NonNull String id){
         Optional <PetWalker> opt = petWalkerRepo.findById(id);
         if (opt.isPresent()){
             return opt.get();

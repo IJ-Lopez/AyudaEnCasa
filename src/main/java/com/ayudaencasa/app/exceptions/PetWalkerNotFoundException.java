@@ -2,7 +2,7 @@
 package com.ayudaencasa.app.exceptions;
 
 
-public class PetWalkerNotFoundException extends RunTimeException {
+public class PetWalkerNotFoundException extends RuntimeException {
     
     public PetWalkerNotFoundException(){
         super ("Pet Walker was not found");
