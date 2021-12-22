@@ -1,35 +1,83 @@
 <!DOCTYPE html>
+
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ayuda en casa</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Layered Card Hover</title>
+  </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    
-</head>
-
-<body>
-    <div>
+  <body>
+    <header>
         <h1>AYUDA EN CASA</h1>
-        <button>Ofrece tu servicio</button>
-        <button>Ingresar</button>
-    </div>
-    <div>
-        <h3>¡Busque el servicio que necesita!</h3>
-        <button>BUSCAR</button>
-        <button>OFRECER</button>
-        <br>
-        <input type="search" placeholder="Pruebe con 'Jardinería'">
-    </div>
-    <div>
-        <h3>Sugerencias</h3>
-        <button>Jardinería</button>
-        <button>Paseo de perros</button>
-        <button>Cuidado de personas</button>
-        <button>Limpieza doméstica</button>
-        <button>Paseador</button>
-    </div>
-</body>
+        <nav>
+            <a target="_blank" href="#">Crear anuncio</a>
+            <a target="_blank" href="#">Ingresar</a>
+        </nav>
+    </header>
 
+    <main>
+      <div>
+        <h3>¡Busque el servicio que necesita!</h3>
+        <button>BUSCO PERSONAL</button>
+        <button>QUIERO TRABAJAR</button>
+        <br />
+        <input type="search" placeholder="Pruebe con 'Jardinería'" />
+      </div>
+
+      <div>
+        <h3>Sugerencias</h3>
+        <a href="#">Paseador</a>
+        <a href="#">Limpieza doméstica</a>
+        <a href="#">Cuidado de personas</a>
+        <a href="#">Jardinería</a>
+      </div>
+    
+
+    <h3>Populares...</h3>
+    <div class="box">
+      <div class="card">
+        <div class="imgBx">
+          <img
+            src="https://images.unsplash.com/photo-1532123675048-773bd75df1b4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
+            alt="images"
+          />
+        </div>
+        <div class="details">
+          <h2>SomeOne Famous<br /><span>Director</span></h2>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="imgBx">
+          <img
+            src="https://images.unsplash.com/photo-1549417229-aa67d3263c09?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
+            alt="images"
+          />
+        </div>
+        <div class="details">
+          <h2>SomeOne Famous<br /><span>Producer</span></h2>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="imgBx">
+          <img
+            src="https://images.unsplash.com/photo-1548094878-84ced0f6896d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
+            alt="images"
+          />
+        </div>
+        <div class="details">
+          <h2>SomeOne Famous<br /><span>Actor</span></h2>
+        </div>
+      </div>
+    </main>
+    </div>
+  </body>
 </html>
