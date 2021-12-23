@@ -6,6 +6,9 @@
 package com.ayudaencasa.app.repositories;
 
 import com.ayudaencasa.app.entities.Gardener;
+import java.util.List;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -14,6 +17,9 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface GardenerRepository extends JobRepository<Gardener>{
+
+    @Query("SELECT g FROM Gardener g WHERE ")
+    public List<Gardener> findByQuery(@Param("q")String q);
        
     
     

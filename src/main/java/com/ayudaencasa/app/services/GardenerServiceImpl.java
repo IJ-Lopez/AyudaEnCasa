@@ -74,6 +74,10 @@ public class GardenerServiceImpl implements GardenerService {
         return gardenerRepository.findAll();
     }
     
+//    @Override
+//    public List<Gardener> findByQuery(@NonNull String q) {
+//        return gardenerRepository.findByQuery();
+//    }
     
     
 }

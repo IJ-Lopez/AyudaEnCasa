@@ -6,6 +6,7 @@
 package com.ayudaencasa.app.controllers;
 
 
+import com.ayudaencasa.app.dtos.CreateGardenerDTO;
 import com.ayudaencasa.app.entities.Gardener;
 import com.ayudaencasa.app.services.GardenerService;
 import java.util.List;
@@ -37,7 +38,7 @@ public class GardenerController {
     
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
-    public Gardener create(@Valid @RequestBody createGardenerDTO inputGardener) {
+    public Gardener create(@Valid @RequestBody CreateGardenerDTO inputGardener) {
         Gardener gardener = new Gardener();
         BeanUtils.copyProperties(inputGardener, gardener);
         return gardenerService.create(gardener);
@@ -52,6 +53,11 @@ public class GardenerController {
     public Gardener findById(String id) {
         return gardenerService.findById(id);
     }
+    
+//    @GetMapping
+//    public List<Gardener> findByQuery(String q) {
+//        return gardenerService.findByQuery(q);
+//    }
     
     
     @GetMapping

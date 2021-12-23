@@ -20,5 +20,6 @@ public interface GardenerService {
     public void delete(String id) throws GardenerNotFoundException;
     public Gardener findById(String id) throws GardenerNotFoundException;
     public List<Gardener> findAll();
+//    public List<Gardener> findByQuery(String q);
     
 }
