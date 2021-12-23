@@ -7,10 +7,7 @@ package com.ayudaencasa.app.services;
 
 import com.ayudaencasa.app.entities.Gardener;
 import com.ayudaencasa.app.exceptions.GardenerNotFoundException;
-import com.ayudaencasa.app.repositories.GardenerRepository;
 import java.util.List;
-import javax.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *

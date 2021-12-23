@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface GardenerRepository extends JobRepository<Gardener>{
-    
+       
     
     
 }
