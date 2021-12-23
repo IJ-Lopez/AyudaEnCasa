@@ -3,7 +3,9 @@ package com.ayudaencasa.app.entities;
 import java.util.Date;
 import java.util.Objects;
 import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import lombok.AllArgsConstructor;
@@ -15,6 +17,7 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.annotations.Where;
@@ -25,36 +28,41 @@ import org.hibernate.annotations.Where;
 @Setter
 @SQLDelete(sql = "UPDATE categories SET deleted_at = current_timestamp() WHERE id = ?")
 @Where(clause = "deleted_at is null")
+@MappedSuperclass
 public abstract class Job {
     
     @Id
-    private String id;
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    protected String id;
     
-    private Integer salary;
+    protected Integer salary;
     
-    private String workingZone;
+    protected String workingZone;
     
-    private String description;
+    protected String description;
     
-    private Date dateFrom;
+    @Temporal(TemporalType.TIMESTAMP)
+    protected Date dateFrom;
     
-    private Date dateTo;
+    @Temporal(TemporalType.TIMESTAMP)
+    protected Date dateTo;
     
-    private Boolean status;
+    protected Boolean status;
     
     @Temporal(value = TemporalType.TIMESTAMP)
     @CreationTimestamp
     @Column(name = "created_at")
-    private Date createdAt;
+    protected Date createdAt;
 
     @Temporal(value = TemporalType.TIMESTAMP)
     @UpdateTimestamp
     @Column(name = "updated_at", insertable = false)
-    private Date updatedAt;
+    protected Date updatedAt;
 
     @Temporal(value = TemporalType.TIMESTAMP)
     @Column(name = "deleted_at")
-    private Date deletedAt;
+    protected Date deletedAt;
     
     public abstract String getType();
 
