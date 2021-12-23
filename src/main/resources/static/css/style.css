@@ -9,8 +9,29 @@ body {
 }
 
 header {
+  background-color: rgb(255, 153, 0);
+  padding: 10px 0;
   display: flex;
   justify-content: space-between;
+}
+
+header h1 {
+  padding-left: 25px;
+  margin: 0;
+}
+
+header nav{
+  display: flex;
+  justify-content: space-around;
+}
+
+header nav li{
+  padding: 0 10px;
+  list-style: none;
+}
+
+.profilepic{
+  width: 20px;
 }
 
 .box {
