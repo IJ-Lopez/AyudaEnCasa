@@ -17,6 +17,10 @@ public interface CleaningService {
     public Cleaning findById(String id) throws Exception;
     public List<Cleaning> findAll();
     
+    
+    
+    
+    
 //    public Cleaning create(@NonNull Integer rooms, Boolean exteriors, Boolean cooking, Boolean laundry, Boolean ironing, Integer salary, String workingZone, Date dateFrom, Date dateTo, Boolean status) {
 //
 //        Cleaning cleaning = new Cleaning();
