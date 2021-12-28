@@ -5,12 +5,13 @@
  */
 package com.ayudaencasa.app.entities;
 
+import java.io.Serializable;
 import java.util.List;
+import javax.persistence.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.Entity;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
@@ -22,7 +23,7 @@ import org.hibernate.annotations.Where;
 @SQLDelete(sql = "UPDATE categories SET deleted_at = current_timestamp() WHERE id = ?")
 @Where(clause = "deleted_at is null")
 @Entity
-public class Gardener extends Job {
+public class Gardener extends Job implements Serializable{
     
     private Double surface;
     
