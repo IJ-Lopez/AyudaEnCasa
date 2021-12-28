@@ -15,6 +15,7 @@ public interface CleaningService {
     public void delete(String id) throws Exception;
     
     public Cleaning findById(String id) throws Exception;
+    
     public List<Cleaning> findAll();
     
     
