@@ -38,18 +38,17 @@ public class GardenerServiceImpl extends QueryService<Gardener> implements Garde
                 specification = specification.and(buildRangeSpecification(gardenerCriteria.getSurface(), Gardener_.surface));
             }
             if(gardenerCriteria.getTools() != null){
-                specification = specification.and(buildSpecification(gardenerCriteria.getTools(), Gardener_.surface));
+                specification = specification.and(buildSpecification(gardenerCriteria.getTools(), Gardener_.tools));
             }
             if(gardenerCriteria.getPoolCleaning()!= null){
-                specification = specification.and(buildSpecification(gardenerCriteria.getPoolCleaning(), Gardener_.surface));
+                specification = specification.and(buildSpecification(gardenerCriteria.getPoolCleaning(), Gardener_.poolCleaning));
             }
             if(gardenerCriteria.getGardenFence()!= null){
-                specification = specification.and(buildSpecification(gardenerCriteria.getGardenFence(), Gardener_.surface));
+                specification = specification.and(buildSpecification(gardenerCriteria.getGardenFence(), Gardener_.gardenFence));
             }
             if(gardenerCriteria.getPlantDisinfection()!= null){
-                specification = specification.and(buildSpecification(gardenerCriteria.getPlantDisinfection(), Gardener_.surface));
-            }
-           
+                specification = specification.and(buildSpecification(gardenerCriteria.getPlantDisinfection(), Gardener_.plantDisinfection));
+            }     
         }
         return specification;
     }
