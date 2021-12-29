@@ -6,6 +6,7 @@
 package com.ayudaencasa.app.services;
 import com.ayudaencasa.app.criteria.GardenerCriteria;
 import com.ayudaencasa.app.entities.Gardener;
+import com.ayudaencasa.app.entities.Gardener_;
 import com.ayudaencasa.app.exceptions.GardenerNotFoundException;
 import com.ayudaencasa.app.repositories.GardenerRepository;
 import io.github.jhipster.service.QueryService;
