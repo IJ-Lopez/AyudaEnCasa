@@ -4,15 +4,18 @@
  * and open the template in the editor.
  */
 package com.ayudaencasa.app.services;
+import com.ayudaencasa.app.criteria.GardenerCriteria;
 import com.ayudaencasa.app.entities.Gardener;
 import com.ayudaencasa.app.exceptions.GardenerNotFoundException;
 import com.ayudaencasa.app.repositories.GardenerRepository;
+import io.github.jhipster.service.QueryService;
 import java.util.List;
 import java.util.Optional;
 import javax.transaction.Transactional;
 import lombok.NonNull;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 /**
@@ -20,13 +23,43 @@ import org.springframework.stereotype.Service;
  * @author Usr
  */
 @Service
-public class GardenerServiceImpl implements GardenerService {
+public class GardenerServiceImpl extends QueryService<Gardener> implements GardenerService {
     
     @Autowired
     private GardenerRepository gardenerRepository;
     
     @Autowired
     private ModelMapper modelMapper;
+    
+    private Specification<Gardener> createSpecification(GardenerCriteria gardenerCriteria){
+        Specification<Gardener> specification = Specification.where(null);
+        if(gardenerCriteria != null){
+            if(gardenerCriteria.getSurface() != null){
+                specification = specification.and(buildRangeSpecification(gardenerCriteria.getSurface(), Gardener_.surface));
+            }
+            if(gardenerCriteria.getTools() != null){
+                specification = specification.and(buildSpecification(gardenerCriteria.getTools(), Gardener_.surface));
+            }
+            if(gardenerCriteria.getPoolCleaning()!= null){
+                specification = specification.and(buildSpecification(gardenerCriteria.getPoolCleaning(), Gardener_.surface));
+            }
+            if(gardenerCriteria.getGardenFence()!= null){
+                specification = specification.and(buildSpecification(gardenerCriteria.getGardenFence(), Gardener_.surface));
+            }
+            if(gardenerCriteria.getPlantDisinfection()!= null){
+                specification = specification.and(buildSpecification(gardenerCriteria.getPlantDisinfection(), Gardener_.surface));
+            }
+           
+        }
+        return specification;
+    }
+    
+    @Override
+    public List<Gardener> findByCriteria(GardenerCriteria gardenerCriteria) {
+        final Specification<Gardener> specification = createSpecification(gardenerCriteria);
+        List<Gardener> gardeners = gardenerRepository.findAll(specification);
+        return gardeners;
+    } 
     
     
     @Override

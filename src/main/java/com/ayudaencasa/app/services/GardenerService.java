@@ -5,6 +5,7 @@
  */
 package com.ayudaencasa.app.services;
 
+import com.ayudaencasa.app.criteria.GardenerCriteria;
 import com.ayudaencasa.app.entities.Gardener;
 import com.ayudaencasa.app.exceptions.GardenerNotFoundException;
 import java.util.List;
@@ -20,6 +21,7 @@ public interface GardenerService {
     public void delete(String id) throws GardenerNotFoundException;
     public Gardener findById(String id) throws GardenerNotFoundException;
     public List<Gardener> findAll();
+    public List<Gardener> findByCriteria(GardenerCriteria gardenerCriteria);
 //    public List<Gardener> findByQuery(String q);
     
 }

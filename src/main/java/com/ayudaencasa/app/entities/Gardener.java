@@ -6,6 +6,7 @@
 package com.ayudaencasa.app.entities;
 
 import java.util.List;
+import javax.validation.constraints.Min;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,7 +24,7 @@ import org.hibernate.annotations.Where;
 @Where(clause = "deleted_at is null")
 @Entity
 public class Gardener extends Job {
-    
+    @Min(0)
     private Double surface;
     
     private Boolean tools;
