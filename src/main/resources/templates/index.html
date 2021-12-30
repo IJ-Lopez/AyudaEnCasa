@@ -1,28 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ayuda en casa</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="../static/css/style.css" />
-    <title>Layered Card Hover</title>
-  </head>
 
-  <body>
-    <header>
-        <h1>AYUDA EN CASA</h1>
-        <nav>
-            <li><a target="_blank" href="#">Crear anuncio</a></li>
-            <li><a target="_blank" href="#">Ingresar</a></li>
-            <li><img class="profilepic" src="../static/img/user.png" alt=""></li>
-        </nav>
-    </header>
+<head>
+  <title>Ayuda en casa</title>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../static/css/style.css" />
+  <script src="https://kit.fontawesome.com/83a37f8406.js" crossorigin="anonymous"></script>
+</head>
 
-    <main>
+<body>
+  <main>
+    <nav class="nav">
+      <header class="header">Ayuda en casa</header>
+      <ul class="nav__ul">
+        <li class="nav__li">
+          <i class="fas fa-home"></i><a href="#Inicio">Inicio</a>
+        </li>
+        <li class="nav__li">
+          <i class="fas fa-user-friends"></i><a href="#AboutUs">Sobre nosotros</a>
+        </li>
+        <li class="nav__li">
+          <i class="fas fa-bullhorn"></i><a href="#CrearAnuncio">Crear anuncio</a>
+        </li>
+        <li class="nav__li">
+          <i class="far fa-user-circle"></i><a href="Ingresar">Ingresar</a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="cuerpo">
       <div>
         <h3>¡Busque el servicio que necesita!</h3>
         <button>BUSCO PERSONAL</button>
@@ -30,54 +38,49 @@
         <br />
         <input type="search" placeholder="Pruebe con 'Jardinería'" />
       </div>
+    </div>
 
+    <div class="sugerencias">
       <div>
         <h3>Sugerencias</h3>
-        <a href="#">Paseador</a>
-        <a href="#">Limpieza doméstica</a>
-        <a href="#">Cuidado de personas</a>
-        <a href="#">Jardinería</a>
       </div>
+      <div>
+        <a href="Paseador.html">Paseador</a>
+        <a href="Limpieza Doméstica.html">Limpieza doméstica</a>
+        <a href="Cuidado de personas.html">Cuidado de personas</a>
+        <a href="Jardinería.html">Jardinería</a>
+      </div>
+    </div>
     
 
     <h3>Populares...</h3>
     <div class="box">
       <div class="card">
         <div class="imgBx">
-          <img
-            src="../static/img/jardin.jpg"
-            alt="images"
-          />
+          <img src="../static/img/jardin.jpg" alt="images" > 
         </div>
         <div class="details">
-          <h2>Jardinería</h2>
+          <a href="Jardinería.html">Jardinería</a>
         </div>
       </div>
-
       <div class="card">
         <div class="imgBx">
-          <img
-            src="../static/img/perro.jpg"
-            alt="images"
-          />
+          <img src="../static/img/perro.jpg" alt="images">
         </div>
         <div class="details">
-          <h2>Paseador</h2>
+          <a href="Paseador.html">Paseador</a>
         </div>
       </div>
-
       <div class="card">
-        <div class="imgBx">
-          <img
-            src="../static/img/limpieza.jpg"
-            alt="images"
-          />
-        </div>
-        <div class="details">
-          <h2>Limpieza Doméstica</h2>
-        </div>
+      <div class="imgBx">
+        <img src="../static/img/limpieza.jpg" alt="images" />
       </div>
-    </main>
+      <div class="details">
+        <a href="Limpieza Doméstica.html">Limpieza doméstica</a>
+      </div>
     </div>
-  </body>
+  </main>
+  </div>
+</body>
+
 </html>
