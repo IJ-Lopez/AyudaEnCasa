@@ -2,10 +2,16 @@ package com.ayudaencasa.app.dtos;
 
 import java.util.Date;
 import javax.validation.constraints.NotNull;
+import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.Setter;
 
 @NoArgsConstructor
+@Data
+@Getter
+@Setter
 public class CreateCleaningDTO {
 
     @NonNull

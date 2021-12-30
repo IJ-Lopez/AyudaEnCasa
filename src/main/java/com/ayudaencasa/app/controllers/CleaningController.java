@@ -2,6 +2,7 @@ package com.ayudaencasa.app.controllers;
 
 import com.ayudaencasa.app.dtos.CreateCleaningDTO;
 import com.ayudaencasa.app.entities.Cleaning;
+import com.ayudaencasa.app.exceptions.CleaningNotFoundException;
 import com.ayudaencasa.app.repositories.CleaningRepository;
 import com.ayudaencasa.app.services.CleaningService;
 import java.util.Date;
@@ -24,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @Validated
-@RequestMapping("/")
+@RequestMapping("/Cleaning")
 public class CleaningController {
  
     @Autowired
@@ -32,7 +33,7 @@ public class CleaningController {
 
     @PostMapping("/form")
     @ResponseStatus(HttpStatus.OK)
-    public Cleaning create(@Valid @RequestBody CreateJobDTO inputCleaning) {
+    public Cleaning create(@Valid @RequestBody CreateCleaningDTO inputCleaning) {
         Cleaning cleaning = new Cleaning();
         BeanUtils.copyProperties(inputCleaning, cleaning);
 
@@ -40,13 +41,13 @@ public class CleaningController {
     }
 
     @PostMapping("/")
-    public void update(String id, Cleaning newCleaning) throws Exception {
+    public void update(String id, Cleaning newCleaning) {
 
         cleaningService.update(id, newCleaning);
     }
 
-    @GetMapping
-    public void delete(String id) throws Exception {
+    @PostMapping
+    public void delete(String id) throws CleaningNotFoundException {
         cleaningService.delete(id);
     }
 
@@ -56,8 +57,10 @@ public class CleaningController {
 
     }
 
-    @GetMapping("/")
-    public Cleaning findById(String id) throws Exception {
+    @GetMapping("/{id}")
+    public Cleaning findById(String id) throws CleaningNotFoundException {
+        
+        
         return cleaningService.findById(id);
     }
 

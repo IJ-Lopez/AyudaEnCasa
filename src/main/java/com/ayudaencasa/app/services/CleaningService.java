@@ -1,6 +1,7 @@
 package com.ayudaencasa.app.services;
 
 import com.ayudaencasa.app.entities.Cleaning;
+import com.ayudaencasa.app.exceptions.CleaningNotFoundException;
 import java.util.List;
 import org.springframework.stereotype.Service;
 
@@ -12,9 +13,9 @@ public interface CleaningService {
            
     public void update(String id, Cleaning cleaning);
     
-    public void delete(String id) throws Exception;
+    public void delete(String id) throws CleaningNotFoundException;
     
-    public Cleaning findById(String id) throws Exception;
+    public Cleaning findById(String id) throws CleaningNotFoundException;
     
     public List<Cleaning> findAll();
     
