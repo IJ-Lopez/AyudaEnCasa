@@ -123,10 +123,6 @@ public class GardenerServiceImpl extends QueryService<Gardener> implements Garde
         return gardenerRepository.findAll();
     }
     
-//    @Override
-//    public List<Gardener> findByQuery(@NonNull String q) {
-//        return gardenerRepository.findByQuery();
-//    }
     
     
 }
