@@ -1,5 +1,6 @@
 package com.ayudaencasa.app.entities;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
 import javax.persistence.Column;
@@ -42,11 +43,11 @@ public abstract class Job {
     
     protected String description;
     
-    @Temporal(TemporalType.TIMESTAMP)
-    protected Date dateFrom;
+//    @Temporal(TemporalType.TIMESTAMP)
+    protected LocalDate dateFrom;
     
-    @Temporal(TemporalType.TIMESTAMP)
-    protected Date dateTo;
+//    @Temporal(TemporalType.TIMESTAMP)
+    protected LocalDate dateTo;
     
     protected Boolean status;
     

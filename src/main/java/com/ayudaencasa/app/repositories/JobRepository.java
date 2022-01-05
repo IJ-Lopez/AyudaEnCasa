@@ -10,7 +10,7 @@ import org.springframework.data.repository.NoRepositoryBean;
 @NoRepositoryBean
 public interface JobRepository<T extends Job> extends JpaRepository<T, String>, JpaSpecificationExecutor<T> {
     
-    List<T> findAllWhereStatusEqualsTrue();
+//    List<T> findAllWhereStatusEqualsTrue();
     
     List<T> findBySalary(String salary);
     

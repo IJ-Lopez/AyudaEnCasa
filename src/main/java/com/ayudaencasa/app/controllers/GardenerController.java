@@ -13,6 +13,9 @@ import com.ayudaencasa.app.entities.Gardener;
 import com.ayudaencasa.app.services.GardenerService;
 import io.github.jhipster.service.filter.BooleanFilter;
 import io.github.jhipster.service.filter.DoubleFilter;
+import io.github.jhipster.service.filter.IntegerFilter;
+import io.github.jhipster.service.filter.LocalDateFilter;
+import io.github.jhipster.service.filter.StringFilter;
 import java.util.List;
 import javax.validation.Valid;
 import org.apache.commons.lang3.StringUtils;
@@ -42,20 +45,20 @@ public class GardenerController {
     private GardenerService gardenerService;
     
     
-    @PostMapping
+    @PostMapping("/create")
     @ResponseStatus(HttpStatus.OK)
-    public Gardener create(@Valid @RequestBody CreateGardenerDTO inputGardener) {
+    public Gardener create(@RequestBody CreateGardenerDTO inputGardener) {
         Gardener gardener = new Gardener();
         BeanUtils.copyProperties(inputGardener, gardener);
         return gardenerService.create(gardener);
     }
     
-    @GetMapping
+    @GetMapping("/list")
     public List<Gardener> findAll(@RequestParam(required = false) String q) {
         return gardenerService.findAll();
     }
     
-    @PostMapping
+    @PostMapping("/filter")
     public ResponseEntity<List<Gardener>> findByFilter(@RequestBody SearchGardenerDTO searchGardener) {
         GardenerCriteria gardenerCriteria = createCriteria(searchGardener);
         List<Gardener> gardeners = gardenerService.findByCriteria(gardenerCriteria);
@@ -132,28 +135,53 @@ public class GardenerController {
                 }
                 gardenerCriteria.setPlantDisinfection(filter);
             }
+            if(searchGardener.getSalaryFrom()!= null || searchGardener.getSalaryTo()!= null){
+                IntegerFilter filter = new IntegerFilter();
+                if(searchGardener.getSalaryFrom() != null){
+                    filter.setGreaterThanOrEqual(searchGardener.getSalaryFrom());
+                    gardenerCriteria.setSalary(filter);
+                }
+                if(searchGardener.getSalaryTo() != null){
+                    filter.setLessThanOrEqual(searchGardener.getSalaryTo());
+                    gardenerCriteria.setSalary(filter);
+                }
+            }
+            if(!StringUtils.isBlank(searchGardener.getWorkingZone())){
+                StringFilter filter = new StringFilter();
+                filter.setContains(searchGardener.getWorkingZone());
+                gardenerCriteria.setWorkingZone(filter);
+            }
+            if(!StringUtils.isBlank(searchGardener.getDescription())){
+                StringFilter filter = new StringFilter();
+                filter.setContains(searchGardener.getDescription());
+                gardenerCriteria.setDescription(filter);
+            }
+            if(searchGardener.getDateFrom() != null) {
+                LocalDateFilter filter = new LocalDateFilter();
+                filter.setGreaterThanOrEqual(searchGardener.getDateFrom());
+                gardenerCriteria.setDateFrom(filter);
+            }
+            if(searchGardener.getDateTo() != null){
+                LocalDateFilter filter = new LocalDateFilter();
+                filter.setLessThanOrEqual(searchGardener.getDateTo());
+                gardenerCriteria.setDateTo(filter);
+            }
         }
         return gardenerCriteria;
     }
     
-    @GetMapping
-    public Gardener findById(String id) {
+    @GetMapping("")
+    public Gardener findById(@RequestParam String id) {
         return gardenerService.findById(id);
-    }
+    }    
     
-//    @GetMapping
-//    public List<Gardener> findByQuery(String q) {
-//        return gardenerService.findByQuery(q);
-//    }
-    
-    
-    @GetMapping
-    public void delete(String id) {
+    @PostMapping("/delete")
+    public void delete(@RequestParam String id) {
         gardenerService.delete(id);
     }
     
-    @PostMapping
-    public void update(String id, Gardener newGardener) {
+    @PostMapping("/update")
+    public void update(@RequestParam String id, Gardener newGardener) {
         gardenerService.update(id, newGardener);
     }
     

@@ -23,23 +23,23 @@ public class CleaningController {
 //    public String Cleaning(){
 //       return "" 
 //    }
-    @Autowired
-    private CleaningService cleaningService;
-    
-    @PostMapping("/form")
-    public String create(@NonNull @RequestParam Cleaning cleaning){ 
-        try {
-            cleaningService.create(cleaning);
-        } catch (Exception ex){
-            System.out.println("Error en nombre o alta");
-            return "cleaning";
-        }
-        return "cleaning.HTML";
-        
-    }
-    @GetMapping("/viewCleaning")
-    public String findAll(Model model){
-        model.addAttribute("cleaning", cleaningService.findAll());
-        return "find.HTML";
-    }
+//    @Autowired
+//    private CleaningService cleaningService;
+//    
+//    @PostMapping("/form")
+//    public String create(@NonNull @RequestParam Cleaning cleaning){ 
+////        try {
+////            cleaningService.create(cleaning);
+////        } catch (Exception ex){
+////            System.out.println("Error en nombre o alta");
+////            return "cleaning";
+////        }
+//        return "cleaning.HTML";
+//        
+//    }
+//    @GetMapping("/viewCleaning")
+//    public String findAll(Model model){
+//        model.addAttribute("cleaning", cleaningService.findAll());
+//        return "find.HTML";
+//    }
 }

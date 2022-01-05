@@ -8,14 +8,14 @@ import org.springframework.stereotype.Service;
 public interface CleaningService {
 
         
-    public Cleaning create(Cleaning cleaning);
-           
-    public void update(String id, Cleaning cleaning);
-    
-    public void delete(String id) throws Exception;
-    
-    public Cleaning findById(String id) throws Exception;
-    public List<Cleaning> findAll();
+//    public Cleaning create(Cleaning cleaning);
+//           
+//    public void update(String id, Cleaning cleaning);
+//    
+//    public void delete(String id) throws Exception;
+//    
+//    public Cleaning findById(String id) throws Exception;
+//    public List<Cleaning> findAll();
     
 //    public Cleaning create(@NonNull Integer rooms, Boolean exteriors, Boolean cooking, Boolean laundry, Boolean ironing, Integer salary, String workingZone, Date dateFrom, Date dateTo, Boolean status) {
 //
