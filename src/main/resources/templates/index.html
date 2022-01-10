@@ -1,99 +1,202 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <title>Ayuda en casa</title>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="../static/css/style.css" />
-  <!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>-->
-  <script src="https://kit.fontawesome.com/83a37f8406.js" crossorigin="anonymous"></script>
-</head>
-
-<body>
-  <main>
-    <nav class="nav">
-      <h1 class="tit">Ayuda en casa</h1>
-      <ul class="nav__ul">
-        <li class="nav__li">
-          <i class="fas fa-home"></i><a href="#Inicio">Inicio</a>
-        </li>
-        <li class="nav__li">
-          <i class="fas fa-user-friends"></i><a href="#AboutUs">Sobre nosotros</a>
-        </li>
-        <li class="nav__li">
-          <i class="fas fa-bullhorn"></i><a href="#CrearAnuncio">Crear anuncio</a>
-        </li>
-        <li class="nav__li">
-          <i class="far fa-user-circle"></i><a href="Ingresar">Ingresar</a>
-        </li>
-      </ul>
-    </nav>
-    <!--<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="/src/main/resources/static/img/limpieza.jpg" class="d-block w-100" alt="...">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ayuda en casa</title>
+    <!--Css-->
+    <link rel="stylesheet" href="css/style.css" />
+    <!--Google fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Licorice&family=Pushster&family=Quicksand:wght@300&family=Spline+Sans:wght@300&display=swap"
+    />
+    <!--Font Awesome-->
+    <script
+      src="https://kit.fontawesome.com/83a37f8406.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <main>
+      <div class="container">
+        <nav class="nav-main">
+          <h1>Ayuda en casa</h1>
+          <ul class="nav-menu">
+            <li>
+              <a href="#main">Inicio <i class="fas fa-home"></i></a>
+            </li>
+            <li>
+              <a href="#aboutus">Sobre nosotros <i class="fas fa-users"></i></a>
+            </li>
+            <li>
+              <a href="#contact">Contacto <i class="far fa-address-card"></i></a>
+            </li>
+            <li>
+              <!--deberia llevar a un form-->
+              <a href="#form">Quiero trabajar <i class="fas fa-briefcase"></i></a>
+            </li>
+            <li>
+              <a href="#">Iniciar sesion <i class="fas fa-home"></i></a>
+            </li>
+          </ul>
+        </nav>
+        <!--Busqueda-->
+        <header id="main"class="busqueda">
+          <div class="cuadrobusqueda">
+            <h2 class="h2b">¿Que desea buscar?</h2>
+            <a class="etiqueta" href="#">Necesito personal</a>
+            <a class="etiqueta" href="#">Ofrecer mis servicios</a>
+            <form action="POST">
+              <input
+                class="form"
+                type="text"
+                name="trabajo"
+                id="trabajo"
+                placeholder="Ingrese su busqueda"
+              />
+            </form>
           </div>
-          <div class="carousel-item">
-            <img src="/src/main/resources/static/img/Paseador/p3.jpg" class="d-block w-100" alt="...">
+        </header>
+        <h3>Sugerencias</h3>
+        <div class="sugerencias">
+          <div class="hola">
+            <img src="img/aec.png" alt="imagen" />
+            <h4>Sugerencia 1</h4>
+            <p>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero
+              soluta repudiandae inventore quidem at aliquid earum dolor unde
+              iure eaque.
+            </p>
+            <a href="#">Ver más</a>
           </div>
-          <div class="carousel-item">
-            <img src="/src/main/resources/static/img/Jardìn/j3.jpg" class="d-block w-100" alt="...">
+          <div class="hola">
+            <img src="img/aec.png" alt="imagen" />
+            <h4>Sugerencia 2</h4>
+            <p>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero
+              soluta repudiandae inventore quidem at aliquid earum dolor unde
+              iure eaque.
+            </p>
+            <a href="#">Ver más</a>
+          </div class="hola">
+          <div>
+            <img src="img/aec.png" alt="imagen" />
+            <h4>Sugerencia 3</h4>
+            <p>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero
+              soluta repudiandae inventore quidem at aliquid earum dolor unde
+              iure eaque.
+            </p>
+            <a href="#">Ver más</a>
           </div>
-        </div>-->
-    <div class="cuerpo">
-      <div class="cuerpo__img">
-        <img src="/src/main/resources/static/img/sillonliving.jpg" alt="">
+          <div class="hola">
+            <img src="img/aec.png" alt="imagen" />
+            <h4>Sugerencia 4</h4>
+            <p>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero
+              soluta repudiandae inventore quidem at aliquid earum dolor unde
+              iure eaque.
+            </p>
+            <a href="#">Ver más</a>
+          </div>
+        </div>
+        <!--corregir enlaces-->
+        <h3>Populares...</h3>
+        <div class="box">
+          <div class="card">
+            <div class="imgBx">
+              <a href="Jardinería.html"><img src="/img/jardin.jpg" /></a>
+            </div>
+            <div class="details">
+              <a href="Jardinería.html">Jardinería</a>
+            </div>
+          </div>
+          <div class="card">
+            <div class="imgBx">
+              <a href="Paseador.html"><img src="/img/perro.jpg" /></a>
+            </div>
+            <div class="details">
+              <a href="Paseador.html">Paseador</a>
+            </div>
+          </div>
+          <div class="card">
+            <div class="imgBx">
+              <a href="limpieza.html"><img src="/img/limpieza.jpg" /></a>
+            </div>
+            <div class="details">
+              <a href="Paseador.html">Limpieza domestica</a>
+            </div>
+          </div>
+          <div class="card">
+            <div class="imgBx">
+              <a href="caregiver.html"><img src="/img/Cuidador/c3.jpg" /></a>
+            </div>
+            <div class="details">
+              <a href="caregiver.html">Cuidado de personas</a>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="search">
-        <h3>¡Busque el servicio que necesita!</h3>
-        <button>BUSCO PERSONAL</button>
-        <button>QUIERO TRABAJAR</button>
-        <br />
-        <input type="search" placeholder="Pruebe con 'Jardinería'" />
+    </main>
+
+    <div class="piedepag">
+      <div class="fot1">
+        <h3 class="h3bis">Seguinos en nuestras redes</h3>
+        <div class="social">
+          <a href=""><i class="fab fa-facebook-f"></i></a>
+          <a href=""><i class="fab fa-twitter"></i></a>
+          <a href=""><i class="fab fa-linkedin"></i></a>
+          <a href=""><i class="fab fa-instagram"></i></a>
+        </div>
+          <div id="aboutus">
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum perspiciatis similique voluptatem expedita, fugit doloremque? Neque expedita commodi necessitatibus vel minus dolore corrupti temporibus accusamus earum. Laudantium, distinctio. At velit blanditiis esse et laboriosam sequi eligendi quasi voluptatum quam animi, natus reiciendis numquam harum unde officiis illum ab eum porro.</p>
+        </div>
+        <div id="contact" class="fot2">
+          <h3 class="h3bis">Contactanos</h3>
+          <form action="/formulario" method="GET">
+            <label for="Nombre">Nombre</label><br />
+            <input
+              type="text"
+              id="Nombre"
+              name="Nombre"
+              placeholder="Ingrese su nombre"
+            />
+            <br />
+            <label for="Apellido">Apellido</label><br />
+            <input
+              type="text"
+              id="Apellido"
+              name="Apellido"
+              placeholder="Ingrese su apellido"
+            />
+            <br />
+            <label for="Email">Email</label><br />
+            <input
+              type="email"
+              id="Email"
+              name="Email"
+              placeholder="Ingrese su email"
+            />
+            <br />
+            <label for="Comentario">Comentario</label><br />
+            <input
+              id="Comentario"
+              placeholder="Ingrese comentario"
+              name="Comentario"
+            ></in>
+            <br />
+          </form>
+        </div>
       </div>
     </div>
-
-    <div class="sugerencias">
-      <div class="sugerencias__tit"">
-        <h3>Sugerencias:</h3>
-        <a href=" Paseador.html">Paseador</a>
-        <a href="Limpieza Doméstica.html">Limpieza doméstica</a>
-        <a href="Cuidado de personas.html">Cuidado de personas</a>
-        <a href="Jardinería.html">Jardinería</a>
-      </div>
-    </div>
-
-    <h3>Populares...</h3>
-    <div class="box">
-      <div class="card">
-        <div class="imgBx">
-          <a href="Jardinería.html"><img src="../static/img/jardin.jpg"></a>
-        </div>
-        <div class="details">
-          <a href="Jardinería.html">Jardinería</a>
-        </div>
-      </div>
-      <div class="card">
-        <div class="imgBx">
-          <a href="Paseador.html"><img src="../static/img/perro.jpg"></a>
-        </div>
-        <div class="details">
-          <a href="Paseador.html">Paseador</a>
-        </div>
-      </div>
-      <div class="card">
-        <div class="imgBx">
-          <a href="Limpieza Doméstica.html"><img src="../static/img/limpieza.jpg"></a>
-        </div>
-        <div class="details">
-          <a href="Limpieza Doméstica.html">Limpieza doméstica</a>
-        </div>
-      </div>
-  </main>
-  </div>
-</body>
-
+    <footer class="footer">
+      <h3 class="h3bis">Ayuda en casa&copy;</h3>
+      <p>Todos los derechos reservados</p>
+    </footer>
+    <script src="https://unpkg.com/scrollreveal"></script>
+  </body>
 </html>
