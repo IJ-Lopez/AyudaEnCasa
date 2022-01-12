@@ -11,4 +11,42 @@ package com.ayudaencasa.app.dtos;
  */
 public class SearchPetWalkerDTO {
     
+    private Integer petQuantityFrom;
+    private Integer petQuantityTo;
+    private String petType;
+    private String petRace;        
+    
+
+    public Integer getPetQuantityFrom() {
+        return petQuantityFrom;
+    }
+
+    public void setPetQuantityFrom(Integer petQuantityFrom) {
+        this.petQuantityFrom = petQuantityFrom;
+    }
+
+    public Integer getPetQuantityTo() {
+        return petQuantityTo;
+    }
+
+    public void setPetQuantityTo(Integer petQuantityTo) {
+        this.petQuantityTo = petQuantityTo;
+    }
+
+    public String getPetType() {
+        return petType;
+    }
+
+    public void setPetType(String petType) {
+        this.petType = petType;
+    }
+
+    public String getPetRace() {
+        return petRace;
+    }
+
+    public void setPetRace(String petRace) {
+        this.petRace = petRace;
+    }
+
 }
