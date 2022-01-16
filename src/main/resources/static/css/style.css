@@ -377,7 +377,7 @@ h3 {
 
 div .principal {
   height: 600px;
-  background-color:  yellow;
+  background-color: yellow;
 }
 
 p {
@@ -385,15 +385,6 @@ p {
   justify-content: right;
   visibility: visible;
   display: flow-root;
-}
-
-section {
-  float: left;
-  width: 60%;
-  margin-left: 500px;
-  border: 2px solid salmon;
-  height: auto;
-  margin-top: 100px;
 }
 
 aside {
@@ -405,14 +396,48 @@ aside {
   background-color: #043104;
 }
 
-.btn-group{
-padding: 0;
-background-color: #043104;
-text-align: left;
-justify-content: flex-start;
-
+.btn-group {
+  padding: 0;
+  background-color: #043104;
+  text-align: left;
+  justify-content: flex-start;
 }
 
-.btn-group ul{
+.tarjeta {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  margin-left: 40px;
+  width: 70%;
+  border: 2px solid salmon;
+  height: auto;
+  margin-top: 100px;
+  height: 250px;
+}
 
-  }
+.sec-izq img {
+  max-width: 150px;
+  width: 30%;
+}
+.sec-der {
+  border: 1px solid #043104;
+  float: left;
+  width: 60%;
+}
+
+.card-tit {
+  border: 1px solid #043104;
+  align-items: flex-start;
+}
+.card-pre {
+  border: 1px solid #043104;
+  align-items: flex-start;
+}
+.card-ubi {
+  border: 1px solid #043104;
+  align-items: flex-start;
+}
+.card-desc {
+  border: 1px solid #043104;
+  align-items: flex-start;
+}
