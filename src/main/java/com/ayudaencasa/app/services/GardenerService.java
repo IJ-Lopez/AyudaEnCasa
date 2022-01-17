@@ -9,6 +9,7 @@ import com.ayudaencasa.app.criteria.GardenerCriteria;
 import com.ayudaencasa.app.entities.Gardener;
 import com.ayudaencasa.app.exceptions.GardenerNotFoundException;
 import java.util.List;
+import org.springframework.data.jpa.repository.Query;
 
 /**
  *
@@ -22,6 +23,7 @@ public interface GardenerService {
     public Gardener findById(String id) throws GardenerNotFoundException;
     public List<Gardener> findAll();
     public List<Gardener> findByCriteria(GardenerCriteria gardenerCriteria);
-//    public List<Gardener> findByQuery(String q);
+//    @Query("SELECT g FROM :gardeners WHERE :day IN g.days")
+//    public List<Gardener> findByDay(String day, List<Gardener> gardeners);
     
 }

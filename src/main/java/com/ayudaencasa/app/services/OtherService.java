@@ -15,10 +15,10 @@ import java.util.List;
  */
 public interface OtherService {
     
-    public Other create(Other other);
-    public void update(String id, Other other) throws OtherNotFoundException;
-    public void delete(String id) throws OtherNotFoundException;
-    public Other findById(String id) throws OtherNotFoundException;
-    public List<Other> findAll();
+//    public Other create(Other other);
+//    public void update(String id, Other other) throws OtherNotFoundException;
+//    public void delete(String id) throws OtherNotFoundException;
+//    public Other findById(String id) throws OtherNotFoundException;
+//    public List<Other> findAll();
     
 }

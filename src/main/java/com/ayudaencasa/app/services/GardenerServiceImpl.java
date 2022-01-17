@@ -7,16 +7,29 @@ package com.ayudaencasa.app.services;
 import com.ayudaencasa.app.criteria.GardenerCriteria;
 import com.ayudaencasa.app.entities.Gardener;
 import com.ayudaencasa.app.entities.Gardener_;
+import com.ayudaencasa.app.entities.Job;
+import com.ayudaencasa.app.enums.Day;
 import com.ayudaencasa.app.exceptions.GardenerNotFoundException;
 import com.ayudaencasa.app.repositories.GardenerRepository;
 import io.github.jhipster.service.QueryService;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import static javafx.scene.input.KeyCode.T;
+import javax.management.AttributeList;
+import javax.persistence.EntityManager;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Expression;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+import javax.persistence.criteria.SetJoin;
 import javax.transaction.Transactional;
 import lombok.NonNull;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 /**
@@ -25,6 +38,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class GardenerServiceImpl extends QueryService<Gardener> implements GardenerService {
+    
     
     @Autowired
     private GardenerRepository gardenerRepository;
@@ -59,12 +73,18 @@ public class GardenerServiceImpl extends QueryService<Gardener> implements Garde
             if(gardenerCriteria.getDescription() != null){
                 specification = specification.and(buildStringSpecification(gardenerCriteria.getDescription(), Gardener_.description));
             }
-            if(gardenerCriteria.getDateFrom() != null){
-                specification = specification.and(buildRangeSpecification(gardenerCriteria.getDateFrom(), Gardener_.dateFrom));
-            }
-            if(gardenerCriteria.getDateTo() != null){
-                specification = specification.and(buildRangeSpecification(gardenerCriteria.getDateTo(), Gardener_.dateTo));
-            }
+//            if(gardenerCriteria.getDay()!= null){
+//                List lista = gardenerCriteria.getDay();
+//                
+//                specification = specification.and(buildSpecification(gardenerCriteria.getDay(), Gardener_.days));  
+//            }
+//            if(gardenerCriteria.getWorkingHoursFrom()!= null){
+//                
+//                specification = specification.and(buildSpecification(gardenerCriteria.getWorkingHoursFrom(), Gardener_.hoursFrom));
+//            }
+//            if(gardenerCriteria.getWorkingHoursTo()!= null){
+//                specification = specification.and(buildSpecification(gardenerCriteria.getWorkingHoursTo(), Gardener_.hoursTo));
+//            }
             
         }
         return specification;
@@ -75,7 +95,14 @@ public class GardenerServiceImpl extends QueryService<Gardener> implements Garde
         final Specification<Gardener> specification = createSpecification(gardenerCriteria);
         List<Gardener> gardeners = gardenerRepository.findAll(specification);
         return gardeners;
-    } 
+    }
+    
+//    @Override
+//    public List<Gardener>  {
+//        @Query("SELECT j FROM Job j WHERE :day IN j.days")
+//        List<T> findByDay(@Param("day")String day);
+//        
+//    }
     
     
     @Override
@@ -122,6 +149,11 @@ public class GardenerServiceImpl extends QueryService<Gardener> implements Garde
     public List<Gardener> findAll() {
         return gardenerRepository.findAll();
     }
+    
+//    @Override
+//    public List<Gardener> findByDay(String day, List<Gardener> gardeners) {
+//        return gardenerRepository.findAll();
+//    }
     
     
     

@@ -21,56 +21,56 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public class OtherServiceImpl implements OtherService {
     
-    @Autowired
-    private OtherRepository otherRepository;
-    
-    @Autowired
-    private ModelMapper modelMapper;
-    
-    @Override
-    @Transactional
-    public Other create(@NonNull Other other) {
-        return otherRepository.save(other);
-    }
-
-    @Override
-    @Transactional
-    public void update(@NonNull String id, @NonNull Other newOther) throws OtherNotFoundException {
-        Optional<Other> opt = otherRepository.findById(id);
-        if(opt.isPresent()){
-            Other other = opt.get();
-            modelMapper.map(newOther, other);
-            otherRepository.save(other);
-        } else {
-            throw new OtherNotFoundException();
-        }
-    }
-
-    @Override
-    @Transactional
-    public void delete(@NonNull String id) {
-        Optional<Other> opt = otherRepository.findById(id);
-        if(opt.isPresent()){
-            otherRepository.delete(opt.get());
-        } else {
-            throw new OtherNotFoundException();
-        }
-    }
-
-    @Override
-    public Other findById(@NonNull String id) {
-        Optional<Other> opt = otherRepository.findById(id);
-        if(opt.isPresent()){
-            return opt.get();
-        } else {
-            throw new OtherNotFoundException();
-        }
-    }
-
-    @Override
-    public List<Other> findAll() {
-        return otherRepository.findAll();
-    }
-    
+//    @Autowired
+//    private OtherRepository otherRepository;
+//    
+//    @Autowired
+//    private ModelMapper modelMapper;
+//    
+//    @Override
+//    @Transactional
+//    public Other create(@NonNull Other other) {
+//        return otherRepository.save(other);
+//    }
+//
+//    @Override
+//    @Transactional
+//    public void update(@NonNull String id, @NonNull Other newOther) throws OtherNotFoundException {
+//        Optional<Other> opt = otherRepository.findById(id);
+//        if(opt.isPresent()){
+//            Other other = opt.get();
+//            modelMapper.map(newOther, other);
+//            otherRepository.save(other);
+//        } else {
+//            throw new OtherNotFoundException();
+//        }
+//    }
+//
+//    @Override
+//    @Transactional
+//    public void delete(@NonNull String id) {
+//        Optional<Other> opt = otherRepository.findById(id);
+//        if(opt.isPresent()){
+//            otherRepository.delete(opt.get());
+//        } else {
+//            throw new OtherNotFoundException();
+//        }
+//    }
+//
+//    @Override
+//    public Other findById(@NonNull String id) {
+//        Optional<Other> opt = otherRepository.findById(id);
+//        if(opt.isPresent()){
+//            return opt.get();
+//        } else {
+//            throw new OtherNotFoundException();
+//        }
+//    }
+//
+//    @Override
+//    public List<Other> findAll() {
+//        return otherRepository.findAll();
+//    }
+//    
     
 }

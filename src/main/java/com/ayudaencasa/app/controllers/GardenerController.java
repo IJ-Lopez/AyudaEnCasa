@@ -7,15 +7,22 @@ package com.ayudaencasa.app.controllers;
 
 
 import com.ayudaencasa.app.criteria.GardenerCriteria;
+import com.ayudaencasa.app.criteria.GardenerCriteria.LocalTimeFilter;
+
 import com.ayudaencasa.app.dtos.CreateGardenerDTO;
 import com.ayudaencasa.app.dtos.SearchGardenerDTO;
 import com.ayudaencasa.app.entities.Gardener;
+import com.ayudaencasa.app.enums.Day;
 import com.ayudaencasa.app.services.GardenerService;
 import io.github.jhipster.service.filter.BooleanFilter;
 import io.github.jhipster.service.filter.DoubleFilter;
 import io.github.jhipster.service.filter.IntegerFilter;
 import io.github.jhipster.service.filter.LocalDateFilter;
+import io.github.jhipster.service.filter.LongFilter;
 import io.github.jhipster.service.filter.StringFilter;
+import io.github.jhipster.service.filter.ZonedDateTimeFilter;
+import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import javax.validation.Valid;
 import org.apache.commons.lang3.StringUtils;
@@ -62,6 +69,36 @@ public class GardenerController {
     public ResponseEntity<List<Gardener>> findByFilter(@RequestBody SearchGardenerDTO searchGardener) {
         GardenerCriteria gardenerCriteria = createCriteria(searchGardener);
         List<Gardener> gardeners = gardenerService.findByCriteria(gardenerCriteria);
+        
+        if(searchGardener.getDay() != null) {
+            List<Gardener> gar = new ArrayList<>();
+            for (Gardener gardener : gardeners){
+                for (String day : gardener.getDays()) {
+                    if(day.equalsIgnoreCase(searchGardener.getDay())) {
+                        gar.add(gardener);
+                    }
+                } 
+            }
+            gardeners = gar;
+        }
+        if(searchGardener.getWorkingHoursFrom() != null) {
+            List<Gardener> gar = new ArrayList<>();
+            for (Gardener gardener : gardeners){
+                if(gardener.getWorkingHoursFrom().isBefore(searchGardener.getWorkingHoursFrom()) || gardener.getWorkingHoursFrom().equals(searchGardener.getWorkingHoursFrom())) {
+                    gar.add(gardener);    
+                } 
+            }
+            gardeners = gar;
+        }
+        if(searchGardener.getWorkingHoursTo() != null) {
+            List<Gardener> gar = new ArrayList<>();
+            for (Gardener gardener : gardeners){
+                if(gardener.getWorkingHoursTo().isAfter(searchGardener.getWorkingHoursTo()) || gardener.getWorkingHoursTo().equals(searchGardener.getWorkingHoursTo())) {
+                    gar.add(gardener);    
+                } 
+            }
+            gardeners = gar;
+        }    
         return new ResponseEntity<>(gardeners, HttpStatus.OK);
     }
     
@@ -156,16 +193,20 @@ public class GardenerController {
                 filter.setContains(searchGardener.getDescription());
                 gardenerCriteria.setDescription(filter);
             }
-            if(searchGardener.getDateFrom() != null) {
-                LocalDateFilter filter = new LocalDateFilter();
-                filter.setGreaterThanOrEqual(searchGardener.getDateFrom());
-                gardenerCriteria.setDateFrom(filter);
-            }
-            if(searchGardener.getDateTo() != null){
-                LocalDateFilter filter = new LocalDateFilter();
-                filter.setLessThanOrEqual(searchGardener.getDateTo());
-                gardenerCriteria.setDateTo(filter);
-            }
+//            if(searchGardener.getWorkingHoursFrom() != null) {
+//                IntegerFilter filter = new IntegerFilter();
+//                int seconds = searchGardener.getWorkingHoursFrom().toSecondOfDay();
+////                long hour = searchGardener.getWorkingHoursFrom().
+//                filter.setLessThanOrEqual(seconds);
+//                gardenerCriteria.setWorkingHoursFrom(filter);
+//            }
+//            if(searchGardener.getWorkingHoursTo()!= null){
+//                IntegerFilter filter = new IntegerFilter();
+//                int seconds = searchGardener.getWorkingHoursTo().toSecondOfDay();
+////                long hour = searchGardener.getWorkingHoursFrom().getTime(); 
+//                filter.setGreaterThanOrEqual(seconds);
+//                gardenerCriteria.setWorkingHoursTo(filter);
+//            }
         }
         return gardenerCriteria;
     }
