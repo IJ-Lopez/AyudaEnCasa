@@ -1,0 +1,31 @@
+*{
+    font-weight: 100;
+}
+
+.flex-container{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap; /*para que cdo sea responsive se pueda deslizar*/
+    justify-content: center;
+    background-color: #555;
+    margin: 50px 30px;
+}
+
+.form{
+    min-width: 400px;
+flex: 2;
+}
+.form-img img{
+    width: 300px;
+}
+.form-section{
+    width: 100%;
+}
+
+form input{
+    width: 300px;
+}
+
+form textarea{
+    width: 302px;
+}
