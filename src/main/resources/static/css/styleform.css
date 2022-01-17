@@ -13,10 +13,12 @@
 
 .form{
     min-width: 400px;
-flex: 2;
+    flex: 2;
+    text-align: center;
 }
 .form-img img{
-    width: 300px;
+    width: 200px;
+    flex: 2;
 }
 .form-section{
     width: 100%;
