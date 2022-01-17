@@ -3,17 +3,12 @@ package com.ayudaencasa.app.dtos;
 
 
 import java.time.LocalTime;
-import java.time.ZonedDateTime;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.joda.time.LocalDate;
+
 
 import org.springframework.format.annotation.DateTimeFormat;
 

@@ -5,27 +5,18 @@
  */
 package com.ayudaencasa.app.dtos;
 
-import com.ayudaencasa.app.enums.Day;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalTimeDeserializer;
+
 import java.time.LocalTime;
 
 
 
 
-import java.time.ZonedDateTime;
-import java.util.Date;
-import java.util.HashSet;
+
 import java.util.List;
-import java.util.Set;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import org.hibernate.annotations.Type;
-import org.joda.time.LocalDate;
+
 
 
 @Data
