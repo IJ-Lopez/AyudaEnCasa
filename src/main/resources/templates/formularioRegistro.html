@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fomulario de Registro</title>
+</head>
+<body>
+    <form class="form-register" action="" method="post" enctype="multipart/form-data">
+
+     <div>
+            <label for= "email"> Email </label>
+            <input class="controls" type="text" name= "email" id="email" placeholder="Email" required>
+        </div>
+        
+        <br>
+        <div>
+            <label for="contraseña"> Contraseña</label>
+            <input class="controls"type="password" name= "password" id="contraseña" placeholder="Contraseña" required>
+        </div>
+        
+        <br>
+        <div>
+            <label for="nombre"> Nombre</label>
+            <input class="controls"type="text" name= "firstName" id="nombre" placeholder="Nombre" required>
+        </div>
+        
+        <br>
+        <div>
+            <label for="apellido"> Apellido</label>
+            <input class="controls"type="text" name= "lastName" id="apellido" placeholder="Apellido" required>
+        </div>
+
+        <br>
+        <div>
+            <label for="fechaNacimiento"> Fecha de Nacimiento</label>
+            <input class="controls"type="date" name= "dob" id="fechaNacimiento" placeholder="Fecha de Nacimiento" required>
+        </div>
+        
+        <br>
+        <div>
+            <label for="DNI"> DNI</label>
+            <input class="controls"type="text" name= "dni" id="DNI" placeholder="DNI" required>
+        </div>
+        
+        <br>
+        <div>
+            <label for="foto">Foto de Perfil</label>
+            <form name="subida-imagenes" type="POST" enctype="multipart/formdata" >
+                <input type="file" name="photo" id="foto"/>
+                <input type="submit" name="photo" value="Enviar imagen" />
+            </form>
+        </div>
+    
+        <br>
+        <div>
+            <label for="dirección">Dirección</label>
+            <input class="controls"type="text" name= "adress" id="dirección" placeholder="Dirección" required>
+        </div>
+        
+       <br>
+       <div>
+           <label for="teléfono"> Teléfono</label>
+           <input class="controls"type="tel" name= "phone" id="teléfono" placeholder="(Código de área)Número" required>
+       </div>
+        <br>
+        <div>
+            <label for="cv"> Curriculum Vitae</label>
+            <input type="file" name="cv" id="cv">
+            <input type="submit" name="cv" value="Enviar Curriculum" />
+        </div>
+        <p> Estoy de acuerdo con <a href="#"> Terminos y Condiciones</a></p>
+        <input class="botons" type="submit" value="Registrar">
+        <p><a href="#"> Ya tengo Cuenta?</a></p>
+
+
+
+    </form>
+    
+   
+
+</body>
+</html>
