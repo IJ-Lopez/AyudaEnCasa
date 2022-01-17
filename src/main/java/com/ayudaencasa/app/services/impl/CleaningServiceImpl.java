@@ -2,6 +2,7 @@
 package com.ayudaencasa.app.services.impl;
 
 import com.ayudaencasa.app.entities.Cleaning;
+import com.ayudaencasa.app.exceptions.CleaningNotFoundException;
 import com.ayudaencasa.app.repositories.CleaningRepository;
 import com.ayudaencasa.app.services.CleaningService;
 import java.util.List;
@@ -40,7 +41,7 @@ public class CleaningServiceImpl implements CleaningService {
     }
 
     @Override
-    public void delete(@NonNull String id) throws Exception {
+    public void delete(@NonNull String id) throws CleaningNotFoundException{
         Optional<Cleaning> opt= cleaningRepository.findById(id);
         if(opt.isPresent()){
             cleaningRepository.delete(opt.get());
@@ -50,7 +51,7 @@ public class CleaningServiceImpl implements CleaningService {
     }
 
     @Override
-    public Cleaning findById(@NonNull String id) throws Exception {
+    public Cleaning findById(@NonNull String id) throws CleaningNotFoundException {
         Optional<Cleaning> opt= cleaningRepository.findById(id);
         if(opt.isPresent()){
             return opt.get();
