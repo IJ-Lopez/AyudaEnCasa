@@ -22,7 +22,7 @@ public class SearchGardenerDTO {
     private Double surfaceTo; 
     private String tools;
     private String poolCleaning;
-    private String gardenFence; 
+    private String gardenFence;
     private String plantDisinfection;
     private Integer salaryFrom;
     private Integer salaryTo;

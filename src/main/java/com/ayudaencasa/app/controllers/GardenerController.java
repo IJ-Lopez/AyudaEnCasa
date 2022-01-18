@@ -56,6 +56,12 @@ public class GardenerController {
     @ResponseStatus(HttpStatus.OK)
     public Gardener create(@RequestBody CreateGardenerDTO inputGardener) {
         Gardener gardener = new Gardener();
+        if(inputGardener.getWorkingHoursTo() != null){
+            gardener.setHoursTo(inputGardener.getWorkingHoursTo());    
+        }
+        if(inputGardener.getWorkingHoursFrom() != null){
+            gardener.setHoursFrom(inputGardener.getWorkingHoursFrom());
+        }
         BeanUtils.copyProperties(inputGardener, gardener);
         return gardenerService.create(gardener);
     }
@@ -65,42 +71,42 @@ public class GardenerController {
         return gardenerService.findAll();
     }
     
-    @PostMapping("/filter")
-    public ResponseEntity<List<Gardener>> findByFilter(@RequestBody SearchGardenerDTO searchGardener) {
-        GardenerCriteria gardenerCriteria = createCriteria(searchGardener);
-        List<Gardener> gardeners = gardenerService.findByCriteria(gardenerCriteria);
-        
-        if(searchGardener.getDay() != null) {
-            List<Gardener> gar = new ArrayList<>();
-            for (Gardener gardener : gardeners){
-                for (String day : gardener.getDays()) {
-                    if(day.equalsIgnoreCase(searchGardener.getDay())) {
-                        gar.add(gardener);
-                    }
-                } 
-            }
-            gardeners = gar;
-        }
-        if(searchGardener.getWorkingHoursFrom() != null) {
-            List<Gardener> gar = new ArrayList<>();
-            for (Gardener gardener : gardeners){
-                if(gardener.getWorkingHoursFrom().isBefore(searchGardener.getWorkingHoursFrom()) || gardener.getWorkingHoursFrom().equals(searchGardener.getWorkingHoursFrom())) {
-                    gar.add(gardener);    
-                } 
-            }
-            gardeners = gar;
-        }
-        if(searchGardener.getWorkingHoursTo() != null) {
-            List<Gardener> gar = new ArrayList<>();
-            for (Gardener gardener : gardeners){
-                if(gardener.getWorkingHoursTo().isAfter(searchGardener.getWorkingHoursTo()) || gardener.getWorkingHoursTo().equals(searchGardener.getWorkingHoursTo())) {
-                    gar.add(gardener);    
-                } 
-            }
-            gardeners = gar;
-        }    
-        return new ResponseEntity<>(gardeners, HttpStatus.OK);
-    }
+//    @PostMapping("/filter")
+//    public ResponseEntity<List<Gardener>> findByFilter(@RequestBody SearchGardenerDTO searchGardener) {
+//        GardenerCriteria gardenerCriteria = createCriteria(searchGardener);
+//        List<Gardener> gardeners = gardenerService.findByCriteria(gardenerCriteria);
+//        
+//        if(searchGardener.getDay() != null) {
+//            List<Gardener> gar = new ArrayList<>();
+//            for (Gardener gardener : gardeners){
+//                for (String day : gardener.getDays()) {
+//                    if(day.equalsIgnoreCase(searchGardener.getDay())) {
+//                        gar.add(gardener);
+//                    }
+//                } 
+//            }
+//            gardeners = gar;
+//        }
+//        if(searchGardener.getWorkingHoursFrom() != null) {
+//            List<Gardener> gar = new ArrayList<>();
+//            for (Gardener gardener : gardeners){
+//                if(gardener.getWorkingHoursFrom().isBefore(searchGardener.getWorkingHoursFrom()) || gardener.getWorkingHoursFrom().equals(searchGardener.getWorkingHoursFrom())) {
+//                    gar.add(gardener);    
+//                } 
+//            }
+//            gardeners = gar;
+//        }
+//        if(searchGardener.getWorkingHoursTo() != null) {
+//            List<Gardener> gar = new ArrayList<>();
+//            for (Gardener gardener : gardeners){
+//                if(gardener.getWorkingHoursTo().isAfter(searchGardener.getWorkingHoursTo()) || gardener.getWorkingHoursTo().equals(searchGardener.getWorkingHoursTo())) {
+//                    gar.add(gardener);    
+//                } 
+//            }
+//            gardeners = gar;
+//        }    
+//        return new ResponseEntity<>(gardeners, HttpStatus.OK);
+//    }
     
     private GardenerCriteria createCriteria(SearchGardenerDTO searchGardener){
         GardenerCriteria gardenerCriteria = new GardenerCriteria();

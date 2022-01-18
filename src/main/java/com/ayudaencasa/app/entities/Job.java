@@ -26,6 +26,7 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -73,16 +74,16 @@ public abstract class Job {
 //    @Column
 //    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalTime")
 //    @JsonDeserialize(using = LocalTimeDeserializer.class)
-    protected LocalTime workingHoursFrom;
+//    protected LocalTime workingHoursFrom;
     
-    
+//    @Setter(AccessLevel.NONE)
     protected Integer hoursFrom;
     
 //    @Temporal(value = TemporalType.TIME)
 //    @Column
 //    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalTime")
 //    @JsonDeserialize(using = LocalTimeDeserializer.class)
-    protected LocalTime workingHoursTo;
+//    protected LocalTime workingHoursTo;
     
     protected Integer hoursTo;
    
@@ -111,6 +112,14 @@ public abstract class Job {
     
     public abstract String getType();
 
+    public void setHoursFrom(LocalTime lt){
+        hoursFrom = lt.toSecondOfDay();
+    }
+
+    public void setHoursTo(LocalTime lt){
+        hoursTo = lt.toSecondOfDay();
+    }
+    
     @Override
     public int hashCode() {
         int hash = 7;
