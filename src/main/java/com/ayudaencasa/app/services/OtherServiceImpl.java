@@ -5,27 +5,66 @@
  */
 package com.ayudaencasa.app.services;
 
+import com.ayudaencasa.app.criteria.OtherCriteria;
 import com.ayudaencasa.app.entities.Other;
+import com.ayudaencasa.app.entities.Other_;
 import com.ayudaencasa.app.exceptions.OtherNotFoundException;
 import com.ayudaencasa.app.repositories.OtherRepository;
+import io.github.jhipster.service.QueryService;
 import java.util.List;
 import java.util.Optional;
 import javax.transaction.Transactional;
 import lombok.NonNull;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Usr
  */
-public class OtherServiceImpl implements OtherService {
+@Service
+public class OtherServiceImpl extends QueryService<Other> implements OtherService {
     
     @Autowired
     private OtherRepository otherRepository;
     
     @Autowired
     private ModelMapper modelMapper;
+    
+    private Specification<Other> createSpecification(OtherCriteria otherCriteria) {
+        Specification<Other> specification = Specification.where(null);
+        if (otherCriteria != null) {
+            if (otherCriteria.getType() != null) {
+                specification = specification.and(buildStringSpecification(otherCriteria.getType(), Other_.type));
+            }
+            if (otherCriteria.getSalary() != null) {
+                specification = specification.and(buildRangeSpecification(otherCriteria.getSalary(), Other_.salary));
+            }
+            if (otherCriteria.getWorkingZone() != null) {
+                specification = specification.and(buildStringSpecification(otherCriteria.getWorkingZone(), Other_.workingZone));
+            }
+            if (otherCriteria.getDescription() != null) {
+                specification = specification.and(buildStringSpecification(otherCriteria.getDescription(), Other_.description));
+            }
+            if(otherCriteria.getHoursFrom() != null){
+                
+                specification = specification.and(buildRangeSpecification(otherCriteria.getHoursFrom(), Other_.hoursFrom));
+            }
+            if(otherCriteria.getHoursTo() != null){
+                specification = specification.and(buildRangeSpecification(otherCriteria.getHoursTo(), Other_.hoursTo));
+            }
+        }
+        return specification;
+    }
+
+    @Override
+    public List<Other> findByCriteria(OtherCriteria gardenerCriteria) {
+        final Specification<Other> specification = createSpecification(gardenerCriteria);
+        List<Other> others = otherRepository.findAll(specification);
+        return others;
+    }
     
     @Override
     @Transactional

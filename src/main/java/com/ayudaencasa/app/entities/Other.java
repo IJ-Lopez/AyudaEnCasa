@@ -1,6 +1,7 @@
 
 package com.ayudaencasa.app.entities;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,7 +17,7 @@ import org.hibernate.annotations.Where;
 @SQLDelete(sql = "UPDATE categories SET deleted_at = current_timestamp() WHERE id = ?")
 @Where(clause = "deleted_at is null")
 @Entity
-public class Other extends Job {
+public class Other extends Job implements Serializable {
 
     public String type;
     
