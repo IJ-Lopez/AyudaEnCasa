@@ -78,14 +78,14 @@ public class CleaningServiceImpl extends QueryService<Cleaning> implements Clean
     }
 
     @Override
-    public void update(@NonNull String id, @NonNull Cleaning newCleaning) {
+    public void update(@NonNull String id, @NonNull Cleaning newCleaning) throws CleaningNotFoundException{
         Optional<Cleaning> opt= cleaningRepository.findById(id);
         if(opt.isPresent()){
             Cleaning cleaning = opt.get();
             modelMapper.map(newCleaning, cleaning);
             cleaningRepository.save(cleaning);
         }else {
-            System.out.println("error");
+            throw new CleaningNotFoundException("Cleaner not found");
         }
         
     }
@@ -96,7 +96,7 @@ public class CleaningServiceImpl extends QueryService<Cleaning> implements Clean
         if(opt.isPresent()){
             cleaningRepository.delete(opt.get());
         }else {
-            System.out.println("error");
+            throw new CleaningNotFoundException("Cleaner not found");
         }
     }
 
@@ -106,9 +106,8 @@ public class CleaningServiceImpl extends QueryService<Cleaning> implements Clean
         if(opt.isPresent()){
             return opt.get();
         }else {
-            System.out.println("error");
+            throw new CleaningNotFoundException("Cleaner not found");
         }
-        return cleaningRepository.getById(id);
     }
 
     @Override
