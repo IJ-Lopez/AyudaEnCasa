@@ -21,13 +21,9 @@ public class Other extends Job implements Serializable {
 
     public String type;
     
-    
-    
     @Override
     public String getType() {
         return "Other";
     }
-    
-    
     
 }

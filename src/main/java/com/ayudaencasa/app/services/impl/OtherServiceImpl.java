@@ -1,15 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package com.ayudaencasa.app.services;
+package com.ayudaencasa.app.services.impl;
 
 import com.ayudaencasa.app.criteria.OtherCriteria;
 import com.ayudaencasa.app.entities.Other;
 import com.ayudaencasa.app.entities.Other_;
 import com.ayudaencasa.app.exceptions.OtherNotFoundException;
 import com.ayudaencasa.app.repositories.OtherRepository;
+import com.ayudaencasa.app.services.OtherService;
 import io.github.jhipster.service.QueryService;
 import java.util.List;
 import java.util.Optional;
@@ -20,10 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-/**
- *
- * @author Usr
- */
 @Service
 public class OtherServiceImpl extends QueryService<Other> implements OtherService {
     
