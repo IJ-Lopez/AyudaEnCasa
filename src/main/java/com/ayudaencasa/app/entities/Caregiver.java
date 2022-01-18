@@ -1,7 +1,7 @@
 
 package com.ayudaencasa.app.entities;
 
-import javafx.util.Pair;
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -20,16 +20,13 @@ import org.hibernate.annotations.Where;
 @SQLDelete(sql = "UPDATE categories SET deleted_at = current_timestamp() WHERE id = ?")
 @Where(clause = "deleted_at is null")
 @Entity
-public class Caregiver extends Job {
-
-    @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
-    private String id;
+public class Caregiver extends Job implements Serializable {
     
     private Integer quantity;
     
-    private Pair<Integer, Integer> ageRange;
+    private Integer ageFrom;
+    
+    private Integer ageTo;
     
     private Boolean cooking;
     
