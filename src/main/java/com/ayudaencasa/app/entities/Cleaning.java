@@ -26,30 +26,7 @@ public class Cleaning extends Job implements Serializable{
     private Boolean laundry;
     private Boolean ironing;
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 17 * hash + Objects.hashCode(this.getType());
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Cleaning other = (Cleaning) obj;
-        if (!Objects.equals(this.getType(), other.getType())) {
-            return false;
-        }
-        return true;
-    }
+    
     @Override
     public String getType() {
         return "Cleaning";

@@ -1,21 +1,15 @@
 package com.ayudaencasa.app.dtos;
 
-import java.util.Date;
-import javax.validation.constraints.NotNull;
+import java.time.LocalTime;
+import java.util.List;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.Setter;
+
 
 @NoArgsConstructor
 @Data
-@Getter
-@Setter
 public class CreateCleaningDTO {
 
-    @NonNull
-    @NotNull
     private Integer rooms;
     
     private Boolean exteriors;
@@ -26,23 +20,14 @@ public class CreateCleaningDTO {
     
     private Boolean ironing;
     
-    @NonNull
-    @NotNull
     private Integer salary;
-    
-    @NonNull
-    @NotNull
     private String workingZone;
-    
     private String description;
-    
-    @NonNull
-    @NotNull
-    private Date dateFrom;
-    
-    @NonNull
-    @NotNull
-    private Date dateTo;
-    
+    private List<String> days;
+    private LocalTime workingHoursFrom;
+    private LocalTime workingHoursTo;
+    private Integer hoursFrom;
+    private Integer hoursTo;
     private Boolean status;
+    
 }
