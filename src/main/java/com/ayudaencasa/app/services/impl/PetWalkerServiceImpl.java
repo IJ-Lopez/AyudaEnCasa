@@ -1,11 +1,12 @@
 
-package com.ayudaencasa.app.services;
+package com.ayudaencasa.app.services.impl;
 
 import com.ayudaencasa.app.criteria.PetWalkerCriteria;
 import com.ayudaencasa.app.entities.PetWalker;
 import com.ayudaencasa.app.entities.PetWalker_;
 import com.ayudaencasa.app.exceptions.PetWalkerNotFoundException;
 import com.ayudaencasa.app.repositories.PetWalkerRepository;
+import com.ayudaencasa.app.services.PetWalkerService;
 import io.github.jhipster.service.QueryService;
 import java.util.List;
 import java.util.Optional;

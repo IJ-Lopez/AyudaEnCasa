@@ -1,6 +1,4 @@
-
 package com.ayudaencasa.app.controllers;
-
 
 import com.ayudaencasa.app.criteria.PetWalkerCriteria;
 import com.ayudaencasa.app.dtos.CreatePetWalkerDTO;
@@ -26,10 +24,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- *
- * @author martina
- */
 @RestController
 @Validated
 @RequestMapping ("/petWalker")

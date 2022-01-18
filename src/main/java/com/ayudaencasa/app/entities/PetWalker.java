@@ -24,7 +24,6 @@ public class PetWalker extends Job implements Serializable{
     private String petType;
     
     private String petRace;
-    
 
     @Override
     public String getType() {
