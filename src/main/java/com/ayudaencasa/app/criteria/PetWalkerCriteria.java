@@ -1,37 +1,27 @@
 
 package com.ayudaencasa.app.criteria;
 
-/**
- *
- * @author martina
- */
-//filtros de busqueda
+import io.github.jhipster.service.filter.IntegerFilter;
+import io.github.jhipster.service.filter.StringFilter;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class PetWalkerCriteria {
-private IntegerFilter petQuantity;
-private StringFilter petType;
-private StringFilter petRace;
+    
+    private IntegerFilter petQuantity;
+    private StringFilter petType;
+    private StringFilter petRace;
+    private IntegerFilter salary;
+    private StringFilter workingZone;
+    private StringFilter description;
+    private IntegerFilter hoursFrom;
+    private IntegerFilter hoursTo;
 
-    public PetWalkerCriteria() {
-    }
 
-public IntegerFilter getPetQuantity(){
-    return petQuantity;
-}
-public void setPetQuantity (IntegerFilter petQuantity){
-     this.petQuantity = petQuantity;
-}
-
-public StringFilter getpetRace(){
-    return petRace;
-}
-public void setPetQuantity (StringFilter petRace){
-     this.petRace = petRace;
-}
-
-public StringFilter getpetType(){
-    return petType;
-}
-public void setpetType (StringFilter petType){
-     this.petType = petType;
-}
 }

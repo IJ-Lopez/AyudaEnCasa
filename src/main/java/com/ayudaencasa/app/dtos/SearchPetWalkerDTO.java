@@ -5,48 +5,41 @@
  */
 package com.ayudaencasa.app.dtos;
 
-/**
- *
- * @author martina
- */
+import java.time.LocalTime;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class SearchPetWalkerDTO {
     
     private Integer petQuantityFrom;
     private Integer petQuantityTo;
     private String petType;
-    private String petRace;        
+    private String petRace;   
+    private Integer salaryFrom;
+    private Integer salaryTo;
+    private String workingZone;
+    private String description;  
+    private String day;
+    private LocalTime workingHoursFrom;
+    private LocalTime workingHoursTo;
+    private Integer hoursFrom;
+    private Integer hoursTo;
+    
+    public void setHoursFrom(LocalTime workingHoursFrom){
+        hoursFrom = workingHoursFrom.toSecondOfDay();
+    }
+    
+     public void setHoursTo(LocalTime workingHoursTo){
+        hoursTo = workingHoursTo.toSecondOfDay();
+    }
     
 
-    public Integer getPetQuantityFrom() {
-        return petQuantityFrom;
-    }
-
-    public void setPetQuantityFrom(Integer petQuantityFrom) {
-        this.petQuantityFrom = petQuantityFrom;
-    }
-
-    public Integer getPetQuantityTo() {
-        return petQuantityTo;
-    }
-
-    public void setPetQuantityTo(Integer petQuantityTo) {
-        this.petQuantityTo = petQuantityTo;
-    }
-
-    public String getPetType() {
-        return petType;
-    }
-
-    public void setPetType(String petType) {
-        this.petType = petType;
-    }
-
-    public String getPetRace() {
-        return petRace;
-    }
-
-    public void setPetRace(String petRace) {
-        this.petRace = petRace;
-    }
+   
 
 }

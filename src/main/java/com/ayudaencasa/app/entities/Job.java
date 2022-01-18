@@ -1,8 +1,11 @@
 package com.ayudaencasa.app.entities;
 
+import java.time.LocalTime;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
@@ -42,11 +45,15 @@ public abstract class Job {
     
     protected String description;
     
-    @Temporal(TemporalType.TIMESTAMP)
-    protected Date dateFrom;
+//    @Enumerated(EnumType.STRING)
+
+    @Column
+    @ElementCollection(targetClass=String.class)
+    protected List<String> days;
     
-    @Temporal(TemporalType.TIMESTAMP)
-    protected Date dateTo;
+    protected Integer hoursFrom;
+    
+    protected Integer hoursTo;
     
     protected Boolean status;
     
@@ -66,6 +73,14 @@ public abstract class Job {
     
     public abstract String getType();
 
+    public void setHoursFrom(LocalTime lt){
+        hoursFrom = lt.toSecondOfDay();
+    }
+
+    public void setHoursTo(LocalTime lt){
+        hoursTo = lt.toSecondOfDay();
+    }
+    
     @Override
     public int hashCode() {
         int hash = 7;
