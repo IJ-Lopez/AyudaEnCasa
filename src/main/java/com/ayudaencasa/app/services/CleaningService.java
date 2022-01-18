@@ -1,5 +1,6 @@
 package com.ayudaencasa.app.services;
 
+import com.ayudaencasa.app.criteria.CleaningCriteria;
 import com.ayudaencasa.app.entities.Cleaning;
 import com.ayudaencasa.app.exceptions.CleaningNotFoundException;
 import java.util.List;
@@ -18,6 +19,8 @@ public interface CleaningService {
     public Cleaning findById(String id) throws CleaningNotFoundException;
     
     public List<Cleaning> findAll();
+    
+    public List<Cleaning> findByCriteria(CleaningCriteria cleaningCriteria);
     
     
     
