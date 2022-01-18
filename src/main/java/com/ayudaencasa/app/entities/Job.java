@@ -21,6 +21,7 @@ import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.annotations.Where;
 
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -46,7 +47,7 @@ public abstract class Job {
     protected List<String> days;
     
     protected Integer hoursFrom;
-    
+
     protected Integer hoursTo;
     
     protected Boolean status;
