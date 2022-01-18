@@ -1,44 +1,24 @@
 package com.ayudaencasa.app.entities;
 
 
-import com.ayudaencasa.app.enums.Day;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-
-import java.sql.Time;
-import java.time.LocalDate;
 import java.time.LocalTime;
-
-
-import java.time.ZonedDateTime;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
-import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.SQLDelete;
-import org.hibernate.annotations.Type;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.annotations.Where;
 
@@ -69,30 +49,9 @@ public abstract class Job {
     @ElementCollection(targetClass=String.class)
     protected List<String> days;
     
-    
-//    @Temporal(value = TemporalType.TIME)
-//    @Column
-//    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalTime")
-//    @JsonDeserialize(using = LocalTimeDeserializer.class)
-//    protected LocalTime workingHoursFrom;
-    
-//    @Setter(AccessLevel.NONE)
     protected Integer hoursFrom;
     
-//    @Temporal(value = TemporalType.TIME)
-//    @Column
-//    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalTime")
-//    @JsonDeserialize(using = LocalTimeDeserializer.class)
-//    protected LocalTime workingHoursTo;
-    
     protected Integer hoursTo;
-   
-    
-//    @Temporal(TemporalType.TIMESTAMP)
-//    protected LocalDate dateFrom;
-    
-//    @Temporal(TemporalType.TIMESTAMP)
-//    protected LocalDate dateTo;
     
     protected Boolean status;
     

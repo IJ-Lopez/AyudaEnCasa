@@ -3,14 +3,12 @@ package com.ayudaencasa.app.dtos;
 
 
 import java.time.LocalTime;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
-import org.springframework.format.annotation.DateTimeFormat;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -35,8 +33,19 @@ public class SearchGardenerDTO {
 
     private LocalTime workingHoursTo;
     
+//    @Setter(AccessLevel.NONE)
     private Integer hoursFrom;
+    
+//    @Setter(AccessLevel.NONE)
     private Integer hoursTo;
+    
+    public void setHoursFrom(LocalTime workingHoursFrom){
+        hoursFrom = workingHoursFrom.toSecondOfDay();
+    }
+    
+     public void setHoursTo(LocalTime workingHoursTo){
+        hoursTo = workingHoursTo.toSecondOfDay();
+    }
     
  
 }
