@@ -47,7 +47,7 @@ public abstract class Job {
     protected List<String> days;
     
     protected Integer hoursFrom;
-
+    
     protected Integer hoursTo;
     
     protected Boolean status;

@@ -26,6 +26,4 @@ public class Other extends Job implements Serializable {
         return "Other";
     }
     
-    
-    
 }
