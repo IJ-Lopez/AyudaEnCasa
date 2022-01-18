@@ -1,4 +1,4 @@
-package com.ayudaencasa.app.services;
+package com.ayudaencasa.app.services.impl;
 
 import com.ayudaencasa.app.criteria.CaregiverCriteria;
 import com.ayudaencasa.app.entities.Caregiver;
@@ -6,6 +6,7 @@ import com.ayudaencasa.app.entities.Caregiver_;
 import com.ayudaencasa.app.entities.User;
 import com.ayudaencasa.app.exceptions.UserNotFoundException;
 import com.ayudaencasa.app.repositories.CaregiverRepository;
+import com.ayudaencasa.app.services.CaregiverService;
 import io.github.jhipster.service.QueryService;
 import java.util.List;
 import java.util.Optional;
