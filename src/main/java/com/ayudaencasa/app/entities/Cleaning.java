@@ -2,6 +2,7 @@
 package com.ayudaencasa.app.entities;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,13 +18,22 @@ import org.hibernate.annotations.Where;
 @SQLDelete(sql = "UPDATE categories SET deleted_at = current_timestamp() WHERE id = ?")
 @Where(clause = "deleted_at is null")
 @Entity
-public class Other extends Job implements Serializable {
+public class Cleaning extends Job implements Serializable{
+    
+    private Integer rooms;
+    private Boolean exteriors;
+    private Boolean cooking;
+    private Boolean laundry;
+    private Boolean ironing;
 
-    private String type;
     
     @Override
     public String getType() {
-        return "Other";
+        return "Cleaning";
     }
+
+    
+    
+    
     
 }
