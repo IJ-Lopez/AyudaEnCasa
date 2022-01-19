@@ -1,0 +1,472 @@
+/*estilo global*/
+* {
+  margin: 0%;
+  padding: 0%;
+  font-family: "Quicksand", sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #dadada;
+  font-size: 17px;
+  color: rgb(122, 115, 115);
+  color: #044e64;
+  height: auto;
+  width: 100%;
+}
+
+a {
+  color: #fafafa;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+.container {
+  margin: auto;
+}
+
+.containercito {
+  margin: auto;
+  margin-top: 100px;
+}
+
+/*NAVIGATION*/
+.nav-main {
+  top: 0px;
+  background-color: #f0a331;
+  /*background-image: url("data:image/svg+x ml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='12' viewBox='0 0 20 12'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='charlie-brown' fill='%23b6b59f' fill-opacity='0.33'%3E%3Cpath d='M9.8 12L0 2.2V.8l10 10 10-10v1.4L10.2 12h-.4zm-4 0L0 6.2V4.8L7.2 12H5.8zm8.4 0L20 6.2V4.8L12.8 12h1.4zM9.8 0l.2.2.2-.2h-.4zm-4 0L10 4.2 14.2 0h-1.4L10 2.8 7.2 0H5.8z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");*/
+  font-size: 15px;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  padding: 20px 10px;
+  margin-bottom: 100px;
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+}
+
+h1 {
+  font-family: "Licorice", cursive;
+  font-size: 60px;
+  margin: 30px;
+  color: #fff;
+  display: block;
+  position: static;
+  user-select: none;
+  font-weight: 550;
+}
+
+/*NAV LEFT*/
+.nav-main ul {
+  display: flex;
+}
+
+.nav-main ul li {
+  padding: 15px;
+}
+
+.nav-main ul li a {
+  padding: 5px;
+}
+
+.nav-main ul li a:hover {
+  border-bottom: 2px solid #fafafa;
+  padding: 15px;
+  transition: 0.5s;
+}
+
+.nav-main ul.nav-menu {
+  align-items: center;
+}
+
+/*Busqueda*/
+
+.otrocontainer {
+  width: 100%;
+}
+
+.busqueda {
+  width: auto;
+  height: 600px;
+  background-image: url("/src/main/resources/static/img/sillonliving.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-attachment: fixed;
+}
+
+.cuadrobusqueda {
+  border-radius: 10%;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 30px;
+  margin: 20px;
+}
+
+.cuadrobusqueda:hover {
+  border: 2px solid #b0e7da;
+  border-radius: 10%;
+  opacity: 1;
+  text-align: center;
+  padding: 20px;
+  cursor: cell;
+}
+
+.h2b {
+  font-family: "Licorice", cursive;
+  font-size: 70px;
+  margin-bottom: 25px;
+  color: #fbfbfb;
+  font-weight: 300;
+}
+
+.etiqueta {
+  border: 1px solid #fbfbfb;
+  font-weight: 700;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 20px;
+  color: #fbfbfb;
+}
+
+.form {
+  background: transparent;
+  margin-top: 25px;
+  height: 40px;
+  text-align: center;
+  font-size: 20px;
+  text-decoration: double;
+  border-radius: 45px;
+  color: #fbfbfb;
+}
+
+/*Sugerencias*/
+
+h3 {
+  font-family: "Licorice", cursive;
+  font-size: 40px;
+  margin: 15px 10px;
+  text-shadow: 1px 2px 3px white;
+  font-weight: 500;
+}
+
+.sugerencias {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 1fr;
+  gap: 20px;
+  padding: 0px 20px;
+  justify-content: space-between;
+}
+
+.sugerencias img {
+  width: 300px;
+  height: 250px;
+  border-radius: 10px;
+}
+
+.sugerencias h4 {
+  margin-top: 10px;
+  text-align: center;
+}
+.sugerencias p {
+  margin: 10px;
+}
+
+.sugerencias .hola a {
+  color: #043104;
+}
+
+.sugerencias .hola a:hover {
+  color: #043104;
+  border: 2px solid #043104;
+  transition: 0.5s;
+}
+
+.hola {
+  border-radius: 10px;
+  text-align: center;
+  justify-content: center;
+  padding: 10px;
+  background-color: #f0a33130;
+}
+
+/*Populares*/
+
+.box {
+  margin-top: 5px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 15px;
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
+
+.card {
+  position: relative;
+  width: 300px;
+  height: 350px;
+  background: #fff;
+  margin: 0 auto;
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.card:hover {
+  position: relative;
+  width: 300px;
+  height: 350px;
+  background: #044e64;
+  margin: 0 auto;
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.card:before,
+.card:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  background: #044e64; /*definir color*/
+  transition: 0.5s;
+  z-index: -1;
+}
+.card:hover:before {
+  transform: rotate(20deg);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+}
+.card:hover:after {
+  transform: rotate(10deg);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+}
+.card .imgBx {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  bottom: 10px;
+  right: 10px;
+  background: #222;
+  transition: 0.5s;
+  z-index: 1;
+}
+
+.card:hover .imgBx {
+  bottom: 70px;
+}
+
+.card .imgBx img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card .details {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  height: 60px;
+  text-align: center;
+}
+
+.card .details a {
+  padding: 20px;
+  font-size: 20px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 20px;
+  color: #f38695;
+  display: flex;
+  text-justify: distribute-all-lines;
+  text-align: center;
+  justify-content: center;
+}
+
+.h3bis {
+  font-family: "Quicksand", sans-serif;
+}
+
+.piedepag {
+  margin-top: 20px;
+  font-family: "Quicksand", sans-serif !important;
+  width: 100%;
+  height: max-content;
+  display: grid;
+  grid-template-columns: repeat(3 1fr);
+  display: flex;
+  /*background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='12' viewBox='0 0 20 12'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='charlie-brown' fill='%23b6b59f' fill-opacity='0.33'%3E%3Cpath d='M9.8 12L0 2.2V.8l10 10 10-10v1.4L10.2 12h-.4zm-4 0L0 6.2V4.8L7.2 12H5.8zm8.4 0L20 6.2V4.8L12.8 12h1.4zM9.8 0l.2.2.2-.2h-.4zm-4 0L10 4.2 14.2 0h-1.4L10 2.8 7.2 0H5.8z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");*/
+}
+
+/*SOCIAL*/
+.fot1 {
+  display: flex;
+  float: left;
+  width: 50%;
+  padding: 20px;
+  display: grid;
+  text-align: center;
+}
+
+.fot2 {
+  align-items: center;
+  flex-wrap: wrap;
+  display: flex;
+  float: left;
+  width: 50%;
+  padding: 10px;
+  display: grid;
+}
+
+.fot2 input {
+  width: 200px;
+  height: 30px;
+  font-size: 20px;
+  text-emphasis-color: #dadada;
+}
+
+
+form textarea {
+  width: 200px;
+}
+/* .fot2 img {
+  width: 200px;
+} */
+
+.social {
+  text-align: center;
+  font-size: 30px;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  margin: 0px 20px;
+  padding: 20px;
+}
+
+.social a {
+  width: 100%;
+  padding-right: 20px;
+}
+
+.footer {
+  padding: 20px;
+  width: 100%;
+  display: flow-root;
+  background-color: #6c9465;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  bottom: 0;
+}
+
+@media (max-width: 700px) {
+  body {
+    background-color: #9129;
+    width: 100%;
+  }
+
+  .sugerencias {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .box {
+    margin-top: 5px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 15px;
+    justify-content: space-between;
+  }
+}
+
+/*hojadeprueba*/
+
+div .principal {
+  height: 600px;
+  background-color: yellow;
+}
+
+p {
+  text-align: center;
+  justify-content: right;
+  visibility: visible;
+  display: flow-root;
+}
+
+aside {
+  float: left;
+  width: 20%;
+  margin-left: 20px;
+  border: 2px solid yellow;
+  position: absolute;
+  background-color: #043104;
+}
+
+.btn-group {
+  padding: 0;
+  background-color: #043104;
+  text-align: left;
+  justify-content: flex-start;
+}
+
+.tarjeta {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  margin-left: 40px;
+  width: 70%;
+  border: 2px solid salmon;
+  height: auto;
+  margin-top: 100px;
+  height: 250px;
+}
+
+.sec-izq img {
+  max-width: 150px;
+  width: 30%;
+}
+.sec-der {
+  border: 1px solid #043104;
+  float: left;
+  width: 60%;
+}
+
+.card-tit {
+  border: 1px solid #043104;
+  align-items: flex-start;
+}
+.card-pre {
+  border: 1px solid #043104;
+  align-items: flex-start;
+}
+.card-ubi {
+  border: 1px solid #043104;
+  align-items: flex-start;
+}
+.card-desc {
+  border: 1px solid #043104;
+  align-items: flex-start;
+}
