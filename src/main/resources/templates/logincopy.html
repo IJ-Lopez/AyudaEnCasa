@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Formulario Login</title>
-  <link rel="stylesheet" href="/src/main/resources/static/css/login.css" />
+  <link rel="stylesheet" href="/src/main/resources/static/css/logincopy.css" />
   <!--Google fonts-->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -17,15 +17,16 @@
 </head>
 
 <body>
-  <div class="menu" id="menu">
-    <ul>
-      <li><a class="iniciaSesion" href="">Inicia sesión</a></li>
-      <li><a class="registrate" href="">Regístrate!</a></li>
-    </ul>
-  </div>
 
-  <div class="container formulariologin active" id="formulariologin">
-    <div class="form-register">
+  <div class="container">
+    <div class="menu" id="menu">
+      <ul>
+        <li><a class="iniciaSesion" href="">Inicia sesión</a></li>
+        <li><a class="registrate" href="">Regístrate!</a></li>
+      </ul>
+    </div>
+
+    <div class="form-login">
       <form class="formClass" action="" method="POST" enctype="multipart/form-data">
         <div class="titulo">
           <h5>Login</h5>
@@ -39,17 +40,16 @@
         <div>
           <label for="clave"> </label>
           <input class="controls" type="password" name="clave" id="clave" placeholder="Password" required />
-          <span id="verclave" class="verclave"><i id="icono" class="fas fa-eye"></i></span>
         </div>
-
+          <span id="verclave" class="verclave"><i id="icono" class="fas fa-eye"></i></span>
+        <div>
         <input class="buttons" type="submit" name="" value="Ingresar" />
-
+        </div>
+        <div>
         <a href="#" class="pass"> Olvidaste tu Contraseña</a>
+        </div>
       </form>
     </div>
-  </div>
-
-  <div class="container formularioregistro" id="formularioregistro">
     <div class="form-register">
       <form class="formClass" action="" method="POST" enctype="multipart/form-data">
         <div class="titulo">
@@ -147,7 +147,7 @@
             onfocus="(this.type='file')" />
         </div>
         <div class="textarea">
-          <textarea name="descripcion" id="" cols="70" rows="5" placeholder="Descripción"></textarea>
+          <textarea name="descripcion" id="" cols="20" rows="5" placeholder="Descripción"></textarea>
         </div>
         <br />
         <div class="terms">
@@ -159,20 +159,35 @@
         <p>
           <a href="/src/main/resources/templates/login.html">¡Ya tengo Cuenta!</a>
         </p>
-        
-          <input class="buttons" type="submit" name="" value="Ingresar" />
-        
+
+        <input class="buttons" type="submit" name="" value="Ingresar" />
+
       </form>
+
     </div>
   </div>
 
-  <script src="/src/main/resources/static/js/main.js"></script>
+
+      <script src="/src/main/resources/static/js/main.js"></script>
 
 
 </body>
 
 
 </html>
+
+
+
+
+<!-- <div class="container formulariologin active" id="formulariologin">
+  <div class="form-register">
+
+
+    <div class="container formularioregistro" id="formularioregistro">
+      <div class="form-register">
+
+      </div>
+    </div> -->
 
 <!-- <section class="form-login">
     <h5>Login</h5>

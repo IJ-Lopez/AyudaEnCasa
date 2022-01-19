@@ -1,0 +1,94 @@
+* {
+  margin: 0%;
+  padding: 0%;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #017bab;
+  margin-top: 50px;
+  font-family: "Quicksand", sans-serif;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.menu {
+  margin: 0 auto;
+  width: 500px;
+}
+
+.menu ul {
+  list-style: none;
+  display: inline-block;
+  background-color: #4e4d4d;
+  border-radius: 20px 20px 0px 0px;
+}
+
+.menu ul li {
+  display: inline-block;
+}
+
+.menu ul li a {
+  color: #fefefe;
+  display: inline-block;
+  padding: 25.7px;
+  text-decoration: none;
+  font-family: "Licorice", cursive;
+  font-size: 45px;
+}
+
+.menu ul li a:hover {
+  background-color: #017bab;
+  color: #4e4d4d;
+}
+
+.menu li a:hover {
+  box-shadow: -0px -13px 40px #4e4d4d;
+}
+
+.form-login {
+  margin: 0 auto;
+  width: 400px;
+  display: block;
+  background-color: #4e4d4d;
+  display: inline-block;
+  box-shadow: 0px 13px 40px #4e4d4d;
+}
+
+.form-register {
+  margin: 0 auto;
+  width: 400px;
+  display: block;
+  background-color: #4e4d4d;
+  display: inline-block;
+  box-shadow: 0px 13px 40px #4e4d4d;
+}
+
+.formClass {
+  color: #fefefe;
+  justify-content: center;
+  width: auto;
+}
+
+.titulo h5{
+  font-size: 50px;
+  font-family: "Licorice", cursive;
+  text-decoration: none;
+}
+
+.formClass input {
+  width: 80%;
+}
+
+.formClass [type="password"] {
+  width: calc(80%-20px);
+}
+
+.form-register{
+  display: none;
+}
