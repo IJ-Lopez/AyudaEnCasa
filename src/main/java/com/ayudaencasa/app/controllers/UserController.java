@@ -26,19 +26,16 @@ public class UserController {
     @Autowired
     private UserService userService;
     
-    
     @PostMapping("/form")
     @ResponseStatus(HttpStatus.OK)
     public User create(@Valid @RequestBody User inputUser) {
         User user = new User();
         BeanUtils.copyProperties(inputUser, user);
-
         return userService.create(user);
     }
     
     @PostMapping("/")
     public void update(String id, User newUser) {
-
         userService.update(id, newUser);
     }
     
@@ -50,13 +47,10 @@ public class UserController {
     @GetMapping("/viewUser")
     public List<User> findAll() {
         return userService.findAll();
-
     }
     
     @GetMapping("/{id}")
     public User findById(String id) throws UserNotFoundException {
-        
-        
         return userService.findById(id);
     }
     
