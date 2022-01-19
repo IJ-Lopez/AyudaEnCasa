@@ -12,18 +12,15 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.annotations.Where;
+
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -44,9 +41,7 @@ public abstract class Job {
     protected String workingZone;
     
     protected String description;
-    
-//    @Enumerated(EnumType.STRING)
-
+  
     @Column
     @ElementCollection(targetClass=String.class)
     protected List<String> days;

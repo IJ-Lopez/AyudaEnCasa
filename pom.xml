@@ -53,7 +53,7 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<version>1.16.18</version>
-                        <scope>provided</scope>
+      <scope>provided</scope>
 			<optional>true</optional>
 		</dependency>
 		<dependency>
@@ -92,11 +92,6 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>3.8.1</version>
                 </dependency>
-                <dependency>
-                    <groupId>org.mapstruct</groupId>
-                    <artifactId>mapstruct-jdk8</artifactId>
-                    <version>${org.mapstruct.version}</version>
-                </dependency>              
 	</dependencies>
 
 	<build>
