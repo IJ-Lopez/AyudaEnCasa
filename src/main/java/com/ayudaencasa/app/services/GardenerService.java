@@ -5,12 +5,11 @@
  */
 package com.ayudaencasa.app.services;
 
+import com.ayudaencasa.app.criteria.GardenerCriteria;
 import com.ayudaencasa.app.entities.Gardener;
 import com.ayudaencasa.app.exceptions.GardenerNotFoundException;
-import com.ayudaencasa.app.repositories.GardenerRepository;
 import java.util.List;
-import javax.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 
 /**
  *
@@ -23,5 +22,8 @@ public interface GardenerService {
     public void delete(String id) throws GardenerNotFoundException;
     public Gardener findById(String id) throws GardenerNotFoundException;
     public List<Gardener> findAll();
+    public List<Gardener> findByCriteria(GardenerCriteria gardenerCriteria);
+//    @Query("SELECT g FROM :gardeners WHERE :day IN g.days")
+//    public List<Gardener> findByDay(String day, List<Gardener> gardeners);
     
 }

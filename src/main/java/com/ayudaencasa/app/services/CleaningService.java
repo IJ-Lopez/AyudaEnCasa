@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 @Service
 public interface CleaningService {
 
-        
     public Cleaning create(Cleaning cleaning);
            
     public void update(String id, Cleaning cleaning);

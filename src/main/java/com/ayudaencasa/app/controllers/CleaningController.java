@@ -197,5 +197,4 @@ public class CleaningController {
     public Cleaning findById(String id) throws CleaningNotFoundException {       
         return cleaningService.findById(id);
     }
-
 }

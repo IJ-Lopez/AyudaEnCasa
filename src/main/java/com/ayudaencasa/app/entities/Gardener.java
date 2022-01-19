@@ -1,12 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.ayudaencasa.app.entities;
 
 import java.io.Serializable;
-import java.util.List;
+import javax.validation.constraints.Min;
 import javax.persistence.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,6 +20,7 @@ import org.hibernate.annotations.Where;
 @Entity
 public class Gardener extends Job implements Serializable{
     
+    @Min(0)
     private Double surface;
     
     private Boolean tools;
