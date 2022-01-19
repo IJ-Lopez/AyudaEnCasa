@@ -1,15 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package com.ayudaencasa.app.services;
+package com.ayudaencasa.app.services.impl;
 
 import com.ayudaencasa.app.criteria.GardenerCriteria;
 import com.ayudaencasa.app.entities.Gardener;
 import com.ayudaencasa.app.entities.Gardener_;
 import com.ayudaencasa.app.exceptions.GardenerNotFoundException;
 import com.ayudaencasa.app.repositories.GardenerRepository;
+import com.ayudaencasa.app.services.GardenerService;
 import io.github.jhipster.service.QueryService;
 import java.util.List;
 import java.util.Optional;
@@ -20,10 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-/**
- *
- * @author Usr
- */
 @Service
 public class GardenerServiceImpl extends QueryService<Gardener> implements GardenerService {
 

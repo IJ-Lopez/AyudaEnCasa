@@ -1,10 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.ayudaencasa.app.controllers;
-
 
 import com.ayudaencasa.app.criteria.GardenerCriteria;
 import com.ayudaencasa.app.dtos.CreateGardenerDTO;
@@ -31,10 +25,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- *
- * @author Usr
- */
 @RestController
 @Validated
 @RequestMapping("/gardener")
