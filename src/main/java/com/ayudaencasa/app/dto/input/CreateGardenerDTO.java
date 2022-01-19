@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ayudaencasa.app.dtos;
+package com.ayudaencasa.app.dto.input;
 
 import java.time.LocalTime;
 import java.util.List;

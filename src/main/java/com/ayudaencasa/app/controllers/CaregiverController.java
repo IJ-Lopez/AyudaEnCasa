@@ -1,8 +1,8 @@
 package com.ayudaencasa.app.controllers;
 
 import com.ayudaencasa.app.criteria.CaregiverCriteria;
-import com.ayudaencasa.app.dtos.CreateCaregiverDTO;
-import com.ayudaencasa.app.dtos.SearchCaregiverDTO;
+import com.ayudaencasa.app.dto.input.CreateCaregiverDTO;
+import com.ayudaencasa.app.dto.input.SearchCaregiverDTO;
 import com.ayudaencasa.app.entities.Caregiver;
 import com.ayudaencasa.app.services.CaregiverService;
 import io.github.jhipster.service.filter.BooleanFilter;

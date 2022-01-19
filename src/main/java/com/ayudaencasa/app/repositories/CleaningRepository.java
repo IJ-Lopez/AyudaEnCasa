@@ -1,4 +1,3 @@
-
 package com.ayudaencasa.app.repositories;
 
 import com.ayudaencasa.app.entities.Cleaning;
@@ -12,13 +11,5 @@ public interface CleaningRepository extends JobRepository<Cleaning> {
   
     @Query("SELECT c FROM Cleaning c WHERE c.rooms = :rooms")
     List <Cleaning> findRooms(@Param("rooms")Integer rooms);
-    
-   
-    
-    
-    
-    
-    
-    
    
 }

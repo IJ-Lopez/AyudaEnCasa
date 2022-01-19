@@ -1,8 +1,8 @@
 package com.ayudaencasa.app.controllers;
 
 import com.ayudaencasa.app.criteria.PetWalkerCriteria;
-import com.ayudaencasa.app.dtos.CreatePetWalkerDTO;
-import com.ayudaencasa.app.dtos.SearchPetWalkerDTO;
+import com.ayudaencasa.app.dto.input.CreatePetWalkerDTO;
+import com.ayudaencasa.app.dto.input.SearchPetWalkerDTO;
 import com.ayudaencasa.app.entities.PetWalker;
 import com.ayudaencasa.app.services.PetWalkerService;
 import io.github.jhipster.service.filter.IntegerFilter;

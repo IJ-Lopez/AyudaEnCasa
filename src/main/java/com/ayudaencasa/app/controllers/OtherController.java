@@ -1,8 +1,8 @@
 package com.ayudaencasa.app.controllers;
 
 import com.ayudaencasa.app.criteria.OtherCriteria;
-import com.ayudaencasa.app.dtos.CreateOtherDTO;
-import com.ayudaencasa.app.dtos.SearchOtherDTO;
+import com.ayudaencasa.app.dto.input.CreateOtherDTO;
+import com.ayudaencasa.app.dto.input.SearchOtherDTO;
 import com.ayudaencasa.app.entities.Other;
 import com.ayudaencasa.app.services.OtherService;
 import io.github.jhipster.service.filter.IntegerFilter;

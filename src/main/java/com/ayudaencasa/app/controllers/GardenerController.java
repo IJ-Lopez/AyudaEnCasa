@@ -1,8 +1,8 @@
 package com.ayudaencasa.app.controllers;
 
 import com.ayudaencasa.app.criteria.GardenerCriteria;
-import com.ayudaencasa.app.dtos.CreateGardenerDTO;
-import com.ayudaencasa.app.dtos.SearchGardenerDTO;
+import com.ayudaencasa.app.dto.input.CreateGardenerDTO;
+import com.ayudaencasa.app.dto.input.SearchGardenerDTO;
 import com.ayudaencasa.app.entities.Gardener;
 import com.ayudaencasa.app.services.GardenerService;
 import io.github.jhipster.service.filter.BooleanFilter;

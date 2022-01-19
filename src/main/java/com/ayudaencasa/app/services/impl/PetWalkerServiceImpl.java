@@ -1,4 +1,3 @@
-
 package com.ayudaencasa.app.services.impl;
 
 import com.ayudaencasa.app.criteria.PetWalkerCriteria;
@@ -17,10 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-/**
- *
- * @author martina
- */
 @Service
 public class PetWalkerServiceImpl extends QueryService<PetWalker> implements PetWalkerService{
     

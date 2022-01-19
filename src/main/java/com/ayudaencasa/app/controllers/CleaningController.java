@@ -1,8 +1,8 @@
 package com.ayudaencasa.app.controllers;
 
 import com.ayudaencasa.app.criteria.CleaningCriteria;
-import com.ayudaencasa.app.dtos.CreateCleaningDTO;
-import com.ayudaencasa.app.dtos.SearchCleaningDTO;
+import com.ayudaencasa.app.dto.input.CreateCleaningDTO;
+import com.ayudaencasa.app.dto.input.SearchCleaningDTO;
 import com.ayudaencasa.app.entities.Cleaning;
 import com.ayudaencasa.app.exceptions.CleaningNotFoundException;
 import com.ayudaencasa.app.services.CleaningService;

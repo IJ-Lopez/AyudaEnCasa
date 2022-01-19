@@ -1,8 +1,6 @@
-
 package com.ayudaencasa.app.entities;
 
 import java.io.Serializable;
-import java.util.Objects;
 import javax.persistence.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

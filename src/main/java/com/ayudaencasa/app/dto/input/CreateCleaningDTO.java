@@ -1,5 +1,4 @@
-
-package com.ayudaencasa.app.dtos;
+package com.ayudaencasa.app.dto.input;
 
 import java.time.LocalTime;
 import java.util.List;
@@ -7,9 +6,19 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
-@Data
 @NoArgsConstructor
-public class CreateCaregiverDTO {
+@Data
+public class CreateCleaningDTO {
+
+    private Integer rooms;
+    
+    private Boolean exteriors;
+    
+    private Boolean cooking;
+    
+    private Boolean laundry;
+    
+    private Boolean ironing;
     
     private Integer salary;
     private String workingZone;
@@ -20,11 +29,5 @@ public class CreateCaregiverDTO {
     private Integer hoursFrom;
     private Integer hoursTo;
     private Boolean status;
-    private Integer quantity;    
-    private Integer ageFrom;   
-    private Integer ageTo;  
-    private Boolean cooking; 
-    private Boolean cleaningPeople;   
-    private Boolean tranfering;
     
 }

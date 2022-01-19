@@ -1,5 +1,5 @@
 
-package com.ayudaencasa.app.dtos;
+package com.ayudaencasa.app.dto.input;
 
 import java.time.LocalTime;
 import lombok.AllArgsConstructor;

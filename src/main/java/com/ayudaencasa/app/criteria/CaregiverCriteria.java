@@ -1,4 +1,3 @@
-
 package com.ayudaencasa.app.criteria;
 
 import io.github.jhipster.service.filter.BooleanFilter;

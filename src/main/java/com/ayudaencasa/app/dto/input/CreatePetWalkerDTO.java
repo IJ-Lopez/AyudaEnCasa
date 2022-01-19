@@ -1,25 +1,18 @@
-package com.ayudaencasa.app.dtos;
+
+package com.ayudaencasa.app.dto.input;
 
 import java.time.LocalTime;
 import java.util.List;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
-@NoArgsConstructor
 @Data
-public class CreateCleaningDTO {
-
-    private Integer rooms;
+@NoArgsConstructor
+public class CreatePetWalkerDTO {
     
-    private Boolean exteriors;
-    
-    private Boolean cooking;
-    
-    private Boolean laundry;
-    
-    private Boolean ironing;
-    
+    private Integer petQuantity;
+    private String petType;
+    private String petRace;
     private Integer salary;
     private String workingZone;
     private String description;
@@ -29,5 +22,11 @@ public class CreateCleaningDTO {
     private Integer hoursFrom;
     private Integer hoursTo;
     private Boolean status;
+
+    
+    
+    
+    
+    
     
 }
