@@ -1,21 +1,29 @@
 package com.ayudaencasa.app.services;
 
+import com.ayudaencasa.app.criteria.CleaningCriteria;
 import com.ayudaencasa.app.entities.Cleaning;
+import com.ayudaencasa.app.exceptions.CleaningNotFoundException;
 import java.util.List;
 import org.springframework.stereotype.Service;
 
 @Service
 public interface CleaningService {
 
-        
-//    public Cleaning create(Cleaning cleaning);
-//           
-//    public void update(String id, Cleaning cleaning);
-//    
-//    public void delete(String id) throws Exception;
-//    
-//    public Cleaning findById(String id) throws Exception;
-//    public List<Cleaning> findAll();
+    public Cleaning create(Cleaning cleaning);
+           
+    public void update(String id, Cleaning cleaning);
+    
+    public void delete(String id) throws CleaningNotFoundException;
+    
+    public Cleaning findById(String id) throws CleaningNotFoundException;
+    
+    public List<Cleaning> findAll();
+    
+    public List<Cleaning> findByCriteria(CleaningCriteria cleaningCriteria);
+    
+    
+    
+    
     
 //    public Cleaning create(@NonNull Integer rooms, Boolean exteriors, Boolean cooking, Boolean laundry, Boolean ironing, Integer salary, String workingZone, Date dateFrom, Date dateTo, Boolean status) {
 //

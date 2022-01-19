@@ -1,6 +1,5 @@
 package com.ayudaencasa.app.entities;
 
-
 import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
@@ -42,9 +41,7 @@ public abstract class Job {
     protected String workingZone;
     
     protected String description;
-    
-//    @Enumerated(EnumType.STRING)
-
+  
     @Column
     @ElementCollection(targetClass=String.class)
     protected List<String> days;
