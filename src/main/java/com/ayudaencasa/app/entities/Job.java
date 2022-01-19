@@ -41,7 +41,7 @@ public abstract class Job {
     protected String workingZone;
     
     protected String description;
-    
+  
     @Column
     @ElementCollection(targetClass=String.class)
     protected List<String> days;
