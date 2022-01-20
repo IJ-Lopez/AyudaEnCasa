@@ -1,12 +1,17 @@
 package com.ayudaencasa.app.entities;
 
+import RolesSeguridad.Role;
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
@@ -74,4 +79,14 @@ public class User implements Serializable {
     @Temporal(value = TemporalType.TIMESTAMP)
     @Column(name = "deleted_at")
     private Date deletedAt;
+    
+    @ManyToMany 
+    @JoinTable( 
+        name = "users_roles", 
+        joinColumns = @JoinColumn(
+          name = "user_id", referencedColumnName = "id"), 
+        inverseJoinColumns = @JoinColumn(
+          name = "role_id", referencedColumnName = "id")) 
+    private Collection<Role> roles;
+    private boolean enabled;
 }
