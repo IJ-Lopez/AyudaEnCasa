@@ -46,9 +46,11 @@ public class SetupDataLoader implements
  
         List<Privilege> adminPrivileges = Arrays.asList(
           readPrivilege, writePrivilege);
-        Role role= roleRepository.findByName("ROLE_ADMIN");
         
+        Role role= roleRepository.findByName("ROLE_ADMIN");
+        if(role==null){
         createRoleIfNotFound("ROLE_ADMIN", adminPrivileges);
+        }
         createRoleIfNotFound("ROLE_USER", Arrays.asList(readPrivilege));
 
         Role adminRole = roleRepository.findByName("ROLE_ADMIN");
@@ -64,6 +66,7 @@ public class SetupDataLoader implements
         alreadySetup = true; 
 
     }
+    
 
     @Transactional
     Privilege createPrivilegeIfNotFound(String name) {
