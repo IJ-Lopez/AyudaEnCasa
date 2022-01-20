@@ -39,6 +39,7 @@ public class SetupDataLoader implements
        
         if (alreadySetup)
             return;
+        
         Privilege readPrivilege
           = createPrivilegeIfNotFound("USER_PRIVILEGE");
         Privilege writePrivilege
@@ -47,10 +48,9 @@ public class SetupDataLoader implements
         List<Privilege> adminPrivileges = Arrays.asList(
           readPrivilege, writePrivilege);
         
-        Role role= roleRepository.findByName("ROLE_ADMIN");
-        if(role==null){
+        
         createRoleIfNotFound("ROLE_ADMIN", adminPrivileges);
-        }
+                
         createRoleIfNotFound("ROLE_USER", Arrays.asList(readPrivilege));
 
         Role adminRole = roleRepository.findByName("ROLE_ADMIN");

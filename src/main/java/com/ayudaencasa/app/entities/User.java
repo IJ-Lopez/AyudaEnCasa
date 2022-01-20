@@ -80,6 +80,7 @@ public class User implements Serializable {
     @Column(name = "deleted_at")
     private Date deletedAt;
     
+    // Corresponde a la parte de roles
     @ManyToMany 
     @JoinTable( 
         name = "users_roles", 
