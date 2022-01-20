@@ -17,32 +17,16 @@
 </head>
 
 <body>
-  <div class="menu">
+  <div class="menu" id="menu">
     <ul>
-      <li><a href="">Inicia sesión</a></li>
-      <li><a href="">Regístrate!</a></li>
+      <li><a class="iniciaSesion" href="">Inicia sesión</a></li>
+      <li><a class="registrate" href="">Regístrate!</a></li>
     </ul>
   </div>
 
-  <!-- <section class="form-login">
-    <h5>Login</h5>
-    <form action="POST">
-      <input class="controls" type="text" name="usuario" value="" placeholder="Usuario" required />
-      <div class="pass-container">
-        <input id="clave" class="controls" type="password" name="password" value="" placeholder="Contraseña" required />
-        <span id="verclave" class="verclave"><i id="icono" class="fas fa-eye"></i></span>
-      </div>
-      <input class="buttons" type="submit" name="" value="Ingresar" />
-      <div>
-        <a href="#" class="pass"> Olvidaste tu Contraseña</a>
-        <a href="/src/main/resources/templates/formularioRegistro.html">Registrate!</a>
-      </div>
-    </form>
-  </section> -->
-
-  <div class="container">
+  <div class="container formulariologin active" id="formulariologin">
     <div class="form-register">
-      <form action="" method="POST" enctype="multipart/form-data">
+      <form class="formClass" action="" method="POST" enctype="multipart/form-data">
         <div class="titulo">
           <h5>Login</h5>
         </div>
@@ -65,9 +49,9 @@
     </div>
   </div>
 
-  <div class="container">
+  <div class="container formularioregistro" id="formularioregistro">
     <div class="form-register">
-      <form action="" method="POST" enctype="multipart/form-data">
+      <form class="formClass" action="" method="POST" enctype="multipart/form-data">
         <div class="titulo">
           <h5>Regístrate!</h5>
         </div>
@@ -104,8 +88,8 @@
         <br />
         <div>
           <label for="fechaNacimiento"></label>
-          <input class="controls" type="text" name="dob" id="fechaNacimiento" placeholder="Toca para poner tu fecha de nacimiento"
-            onfocus="(this.type='date')" />
+          <input class="controls" type="text" name="dob" id="fechaNacimiento"
+            placeholder="Toca para poner tu fecha de nacimiento" onfocus="(this.type='date')" />
         </div>
 
         <br />
@@ -166,16 +150,42 @@
           <textarea name="descripcion" id="" cols="70" rows="5" placeholder="Descripción"></textarea>
         </div>
         <br />
+        <div class="terms">
+          <p>
+            Estoy de acuerdo con los <a href="#"> Terminos y Condiciones</a>
+            <input type="checkbox" name="" id="" />
+          </p>
+        </div>
         <p>
-          Estoy de acuerdo con los <a href="#"> Terminos y Condiciones</a>
           <a href="/src/main/resources/templates/login.html">¡Ya tengo Cuenta!</a>
         </p>
-        <input class="buttons" type="submit" name="" value="Ingresar" />
+        
+          <input class="buttons" type="submit" name="" value="Ingresar" />
+        
       </form>
     </div>
   </div>
 
   <script src="/src/main/resources/static/js/main.js"></script>
+
+
 </body>
 
+
 </html>
+
+<!-- <section class="form-login">
+    <h5>Login</h5>
+    <form action="POST">
+      <input class="controls" type="text" name="usuario" value="" placeholder="Usuario" required />
+      <div class="pass-container">
+        <input id="clave" class="controls" type="password" name="password" value="" placeholder="Contraseña" required />
+        <span id="verclave" class="verclave"><i id="icono" class="fas fa-eye"></i></span>
+      </div>
+      <input class="buttons" type="submit" name="" value="Ingresar" />
+      <div>
+        <a href="#" class="pass"> Olvidaste tu Contraseña</a>
+        <a href="/src/main/resources/templates/formularioRegistro.html">Registrate!</a>
+      </div>
+    </form>
+  </section> -->
