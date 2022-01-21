@@ -139,6 +139,17 @@ h1 {
   color: #fbfbfb;
 }
 
+.buscar {
+  background: transparent;
+  margin-top: 25px;
+  height: 40px;
+  text-align: center;
+  font-size: 20px;
+  text-decoration: double;
+  border-radius: 45px;
+  color: #fbfbfb;
+}
+
 .form {
   background: transparent;
   margin-top: 25px;
@@ -328,13 +339,19 @@ h3 {
 }
 
 .fot2 {
+  display: flow-root;
   align-items: center;
-  flex-wrap: wrap;
-  display: flex;
   float: left;
   width: 50%;
   padding: 10px;
-  display: grid;
+}
+
+.form-container{
+  display: flex;
+}
+
+.fot2 img{
+  float: left;
 }
 
 .fot2 input {
@@ -344,13 +361,17 @@ h3 {
   text-emphasis-color: #dadada;
 }
 
-
-form textarea {
+.form-container textarea{
   width: 200px;
+  resize: none;
+  height: 100px;
 }
-/* .fot2 img {
-  width: 200px;
-} */
+
+.form-container img {
+  justify-content: center;
+  width: 320px;
+
+}
 
 .social {
   text-align: center;

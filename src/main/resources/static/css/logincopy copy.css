@@ -99,7 +99,7 @@ background-image: url(../img/sillonliving.jpg);
 }
 
 .formClass [type="password"] {
-  width: 300px;
+  width: calc(80%-20px);
 }
 
 .form-login {
@@ -107,7 +107,7 @@ background-image: url(../img/sillonliving.jpg);
 }
 
 .form-register {
-  display: ;
+  display: none;
 }
 
 .controls {
@@ -163,8 +163,6 @@ background-image: url(../img/sillonliving.jpg);
 
 .terms {
   font-size: 13px;
-  justify-content: left;
-
 }
 
 .terms-link {
