@@ -50,6 +50,25 @@ ul {
   z-index: 100;
 }
 
+.work-menu li a {
+  display: block;
+}
+
+.work-menu > li {
+  float: inline-end;
+}
+
+.work-menu li ul {
+  display: none;
+  position: absolute;
+}
+
+.work-menu li:hover > ul {
+  display: block;
+  background-color: #f0a331;
+  border-radius: 20px;
+}
+
 h1 {
   font-family: "Licorice", cursive;
   font-size: 60px;
@@ -346,11 +365,11 @@ h3 {
   padding: 10px;
 }
 
-.form-container{
+.form-container {
   display: flex;
 }
 
-.fot2 img{
+.fot2 img {
   float: left;
 }
 
@@ -361,7 +380,7 @@ h3 {
   text-emphasis-color: #dadada;
 }
 
-.form-container textarea{
+.form-container textarea {
   width: 200px;
   resize: none;
   height: 100px;
@@ -370,7 +389,6 @@ h3 {
 .form-container img {
   justify-content: center;
   width: 320px;
-
 }
 
 .social {

@@ -31,12 +31,27 @@
         <li>
           <a href="#contact">Contacto <i class="far fa-address-card"></i></a>
         </li>
+        <div class="work-menu">
+          <li>
+            <!--deberia llevar a un form lista desplegable con los registros-->
+            <a href="#form">Quiero trabajar <i class="fas fa-briefcase"></i></a>
+            <ul class="work-menu">
+              <li><a href="">Jardinero</a></li>
+              <li><a href="">Servicio doméstico</a></li>
+              <li><a href="">Cuidado de personas</a></li>
+              <li><a href="">Paseador de perros</a></li>
+            </ul>
+          </li>
+        </div>
         <li>
-          <!--deberia llevar a un form-->
-          <a href="#form">Quiero trabajar <i class="fas fa-briefcase"></i></a>
-        </li>
-        <li>
-          <a href="../templates/login.html">Iniciar sesion <i class="fas fa-home"></i></a>
+          <ul>
+            <li>
+              <a href="../templates/login.html">Iniciar sesion <i class="fas fa-home"></i></a>
+            </li>
+            <li>
+              <a href="../templates/registry.html">Regístrate <i class="fas fa-home"></i></a>
+            </li>
+          </ul>
         </li>
       </ul>
     </nav>
@@ -46,12 +61,12 @@
         <header id="main" class="busqueda">
           <div class="cuadrobusqueda">
             <h2 class="h2b">¿Que desea buscar?</h2>
-            <form class=" formbusqueda"action="POST">
-             <!-- <label for="pedirtrabajador">Necesito personal</a> </label> -->
-            <!-- <input type="radio" name="pedirtrabajador" id="pedir"> -->
-            <!-- <label for="ofrecer">Ofrecer mis servicios</label> -->
-            <!-- <input type="radio" name="ofrecerservicio" id="ofrecer"> -->
-             <input class="buscar" type="text" name="trabajo" id="trabajo" placeholder="Ingrese su busqueda" />
+            <form class=" formbusqueda" action="POST">
+              <!-- <label for="pedirtrabajador">Necesito personal</a> </label> -->
+              <!-- <input type="radio" name="pedirtrabajador" id="pedir"> -->
+              <!-- <label for="ofrecer">Ofrecer mis servicios</label> -->
+              <!-- <input type="radio" name="ofrecerservicio" id="ofrecer"> -->
+              <input class="buscar" type="text" name="trabajo" id="trabajo" placeholder="Ingrese su busqueda" />
             </form>
           </div>
         </header>
@@ -116,8 +131,7 @@
         </div>
         <div class="card">
           <div class="imgBx">
-            <a href="caregiver.html"><img src="../static/img/Cuidador/c10.jpg"
-                alt="cuidado de personas" /></a>
+            <a href="caregiver.html"><img src="../static/img/Cuidador/c10.jpg" alt="cuidado de personas" /></a>
           </div>
           <div class="details">
             <a href="caregiver.html">Cuidado de personas</a>
@@ -144,34 +158,33 @@
     </div>
     <div class="fot2">
       <h3 class="h3bis">Contactanos</h3>
-<<<<<<< HEAD
-      <div class="form-container">
+      <<<<<<< HEAD <div class="form-container">
         <div class="form">
           <form action="POST">
             <input type="text" placeholder="nombre"><br>
             <input type="text" placeholder="apellido"><br>
             <input type="email" placeholder="mail"><br>
-            <textarea name="comentario" placeholder="comentario" id="comentario" ></textarea><br>
+            <textarea name="comentario" placeholder="comentario" id="comentario"></textarea><br>
             <input type="submit">
           </form>
         </div>
         <div class="img">
           <img src="/src/main/resources/static/img/mail.png" alt="">
         </div>
-=======
-      <div class="form">
-        <form action="POST">
-          <input type="text" placeholder="nombre"><br>
-          <input type="text" placeholder="apellido"><br>
-          <input type="email" placeholder="mail"><br>
-          <textarea name="comentario" placeholder="comentario" id="comentario" cols="20" rows="5"></textarea><br>
-          <input type="submit">
-        </form>
-      </div>
-      <div class="img">
-        <img src="../static/img/mail.png" alt="">
->>>>>>> 75933b05d1a0e93c61a85ce44c8589646f80f072
-      </div>
+        =======
+        <div class="form">
+          <form action="POST">
+            <input type="text" placeholder="nombre"><br>
+            <input type="text" placeholder="apellido"><br>
+            <input type="email" placeholder="mail"><br>
+            <textarea name="comentario" placeholder="comentario" id="comentario" cols="20" rows="5"></textarea><br>
+            <input type="submit">
+          </form>
+        </div>
+        <div class="img">
+          <img src="../static/img/mail.png" alt="">
+          >>>>>>> 75933b05d1a0e93c61a85ce44c8589646f80f072
+        </div>
     </div>
   </div>
   <footer class="footer">
