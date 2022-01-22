@@ -1,5 +1,6 @@
 package com.ayudaencasa.app.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
@@ -9,7 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.Email;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,6 +21,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.annotations.Where;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Data
 @Builder
@@ -35,27 +37,38 @@ public class User implements Serializable {
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
     
+//    @JsonProperty("email")
     @NonNull
-    @Email
+
     @Column(unique = true)
     private String email;
     
+//    @JsonProperty("password")
     @NonNull
     private String password;
     
+//    @JsonProperty("firstName")
     @NonNull
     private String firstName;
     
+//    @JsonProperty("lastName")
     @NonNull
     private String lastName;
     
-    @NonNull
+//    @JsonProperty("dob")
+//    @NonNull
+   
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dob;
     
-    @NonNull
+////    @JsonProperty("dni")
+//    @NonNull
     private Integer dni;
     
+//    @JsonProperty("address")
     private String address;
+    
+//    @JsonProperty("phone")
     private Integer phone;
     // private Photo photo;
     // private Cv cv;

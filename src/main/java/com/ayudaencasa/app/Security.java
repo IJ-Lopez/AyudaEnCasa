@@ -30,20 +30,20 @@ public class Security extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http.headers().frameOptions().sameOrigin().and().csrf().disable().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .authorizeRequests()
-                    .antMatchers("/CSS/", "/js/")
-                    .permitAll()
-                .and().formLogin()
-                    .loginPage("/login")
-                        .loginProcessingUrl("/logincheck")
-                        .usernameParameter("email")
-                        .passwordParameter("password")
-                        .defaultSuccessUrl("/index")
-                        .permitAll()
-                .and().logout()
-                        .logoutUrl("/logout")
-                        .logoutSuccessUrl("/")
-                        .permitAll();
+                .authorizeRequests().antMatchers("/**").permitAll();
+//                    .antMatchers("/CSS/", "/js/")
+//                    .permitAll()
+//                .and().formLogin()
+//                    .loginPage("/login")
+//                        .loginProcessingUrl("/logincheck")
+//                        .usernameParameter("email")
+//                        .passwordParameter("password")
+//                        .defaultSuccessUrl("/index")
+//                        .permitAll()
+//                .and().logout()
+//                        .logoutUrl("/logout")
+//                        .logoutSuccessUrl("/")
+//                        .permitAll();
                         
     }
     
