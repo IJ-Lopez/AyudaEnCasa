@@ -3,6 +3,7 @@
   padding: 0%;
   font-family: "Quicksand", sans-serif;
   box-sizing: border-box;
+  border: none;
 }
 
 body {
@@ -44,7 +45,7 @@ body {
 table {
   justify-content: center;
   box-sizing: border-box;
-  background-color: rgb(171, 171, 171);
+  /* background-color: rgb(171, 171, 171); */
   width: 90%;
   text-align: left;
   margin-left: auto;
@@ -52,13 +53,51 @@ table {
   margin-top: 120px;
   text-align: center;
   border-radius: 5px;
+  border-collapse: collapse;/*esta propiedad saca las líneas*/
+
 }
 
-.table thead tr th:hover  {
+thead {
+    font-size: 20px;
+}
+
+td {
+  padding: 10px;
+  list-style: none;
+  border-style: none;
+  padding: 10px;
+}
+
+table th {
+  border: none;
+  padding: 10px;
+  background-color: #cb997c;
+color: #044e64 !important;
+}
+
+table tr:nth-child(odd) {/*filas pares*/
+  background-color: #044e6482;
+  color: #fefefe;
+}
+
+table tr:nth-child(odd):hover {
+  background-color: #044e64;
+}
+
+table tr:nth-child(even) {/*filas impares*/
+  background-color: #044e64;
+  color: #fefefe;
+}
+
+table tr:nth-child(even):hover {
+  background-color: #cb997e;
+}
+
+/* .table thead tr th  :hover  {
   color: white;
   font-size: 20px;
   border-bottom: 3px solid wheat;
-}
+} */
 
 /* .table:hover tr{
    background-color: #b0a5a5; ver en tabla
