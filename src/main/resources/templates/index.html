@@ -43,16 +43,16 @@
             </ul>
           </li>
         </div>
-        <li>
-          <ul>
-            <li>
-              <a href="../templates/login.html">Iniciar sesion <i class="fas fa-home"></i></a>
-            </li>
-            <li>
-              <a href="../templates/registry.html">Regístrate <i class="fas fa-home"></i></a>
-            </li>
-          </ul>
-        </li>
+        <div class="work-menu">
+          <li>
+            <!--deberia llevar a un form lista desplegable con los registros-->
+            <a href="#form">Sección usuarios <i class="far fa-user"></i></a>
+            <ul class="work-menu">
+              <li><a href="../templates/login.html">Iniciar sesion <i class="fas fa-sign-in-alt"></i></a></li>
+              <li><a href="../templates/registry.html">Regístrate <i class="fas fa-bars"></i></a></li>
+            </ul>
+          </li>
+        </div>
       </ul>
     </nav>
     <main>
@@ -123,7 +123,7 @@
         </div>
         <div class="card">
           <div class="imgBx">
-            <a href="gardener.html"><img src="../static/img/Jardìn/j14.jpg" /></a>
+            <a href="gardener.html"><img src="../static/img/Jardìn/j15.jpg" /></a>
           </div>
           <div class="details">
             <a href="gardener.html">Jardinería</a>
@@ -140,39 +140,28 @@
       </div>
   </div>
   </main>
-  <div class="piedepag">
-    <div class="fot1">
-      <h3 class="h3bis">Seguinos en nuestras redes</h3>
-      <div class="social">
-        <a href=""><i class="fab fa-facebook-f"></i></a>
-        <a href=""><i class="fab fa-twitter"></i></a>
-        <a href=""><i class="fab fa-linkedin"></i></a>
-        <a href=""><i class="fab fa-instagram"></i></a>
-      </div>
-      <div id="aboutus">
+
+  <div class="bloque-inf">
+    <div class="subbloque-izq">
+      <div class="redes">
+        <h3 class="h3bis">Seguinos en nuestras redes</h3>
+        <div class="social">
+          <a href=""><i class="fab fa-facebook-f"></i></a>
+          <a href=""><i class="fab fa-twitter"></i></a>
+          <a href=""><i class="fab fa-linkedin"></i></a>
+          <a href=""><i class="fab fa-instagram"></i></a>
+        </div>
         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum perspiciatis similique voluptatem expedita,
           fugit doloremque? Neque expedita commodi necessitatibus vel minus dolore corrupti temporibus accusamus earum.
           Laudantium, distinctio. At velit blanditiis esse et laboriosam sequi eligendi quasi voluptatum quam animi,
-          natus reiciendis numquam harum unde officiis illum ab eum porro.</p>
+          natus reiciendis numquam harum unde officiis illum ab eum porro.
+        </p>
       </div>
-    </div>
-    <div class="fot2">
+    </div>    
+    <div class="contactanos">
       <h3 class="h3bis">Contactanos</h3>
-      <<<<<<< HEAD <div class="form-container">
-        <div class="form">
-          <form action="POST">
-            <input type="text" placeholder="nombre"><br>
-            <input type="text" placeholder="apellido"><br>
-            <input type="email" placeholder="mail"><br>
-            <textarea name="comentario" placeholder="comentario" id="comentario"></textarea><br>
-            <input type="submit">
-          </form>
-        </div>
-        <div class="img">
-          <img src="/src/main/resources/static/img/mail.png" alt="">
-        </div>
-        =======
-        <div class="form">
+      <div class="contact-form">
+        <div class="formulario">
           <form action="POST">
             <input type="text" placeholder="nombre"><br>
             <input type="text" placeholder="apellido"><br>
@@ -181,10 +170,12 @@
             <input type="submit">
           </form>
         </div>
-        <div class="img">
-          <img src="../static/img/mail.png" alt="">
-          >>>>>>> 75933b05d1a0e93c61a85ce44c8589646f80f072
+        <div class="mail">
+          <div class="contenedor-mail">
+            <img src="../static/img/mail.png" alt="">
+          </div>
         </div>
+      </div>
     </div>
   </div>
   <footer class="footer">
