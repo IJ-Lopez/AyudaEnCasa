@@ -6,10 +6,128 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Limpieza Doméstica</title>
+    <link rel="stylesheet" href="../static/css/list.css" />
+    <!--Google fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Licorice&family=Pushster&family=Quicksand:wght@300&family=Spline+Sans:wght@300&display=swap" />
+    <!--Font Awesome-->
+    <script src="https://kit.fontawesome.com/83a37f8406.js" crossorigin="anonymous"></script>
+    <!--Thymeleaf-->
+    <link rel="stylesheet" type="text/css" media="all" href="../../css/gtvg.css" data-th-href="@{..}" />
 </head>
 
 <body>
-    <div class="postingCardInfo">
+    <main>
+        <nav class="nav-main">
+            <h1>Limpieza Doméstica</h1>
+        </nav>
+        <div class="container">
+
+            <div class="table-container">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Foto</th>
+                            <th>Nombre y apellido</th>
+                            <th>Telefono</th>
+                            <th>Salario</th>
+                            <th>Zona Laboral</th>
+                            <th>Cantidad de habitaciones</th>
+                            <th>Limpieza de exteriores?</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Foto</td>
+                            <td>Juan Peréz</td>
+                            <td>261728392</td>
+                            <td>$3000</td>
+                            <td>Malargüe</td>
+                            <td>4</td>
+                            <td>si</td>
+                        </tr>
+                        <tr>
+                            <td>Foto</td>
+                            <td>Juan Peréz</td>
+                            <td>261728392</td>
+                            <td>$3000</td>
+                            <td>Guaymallen</td>
+                            <td>10</td>
+                            <td>no</td>
+                        </tr>
+                        <tr>
+                            <td>Foto</td>
+                            <td>Juan Peréz</td>
+                            <td>261728392</td>
+                            <td>$3000</td>
+                            <td>capital</td>
+                            <td>1</td>
+                            <td>no</td>
+                        </tr>
+                        <tr>
+                            <td>Foto</td>
+                            <td>Juan Peréz</td>
+                            <td>261728392</td>
+                            <td>$3000</td>
+                            <td>capital</td>
+                            <td>80</td>
+                            <td>si</td>
+                        </tr>
+                        <tr>
+                            <td>Foto</td>
+                            <td>Juan Peréz</td>
+                            <td>261728392</td>
+                            <td>$3000</td>
+                            <td>Godoy Cruz</td>
+                            <td>10</td>
+                            <td>si</td>
+                        </tr>
+                        <tr>
+                            <td>Foto</td>
+                            <td>Juan Peréz</td>
+                            <td>261728392</td>
+                            <td>$3000</td>
+                            <td>Godoy Cruz</td>
+                            <td>60</td>
+                            <td>no</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+    </main>
+    <!-- <table style="margin-top: 100px;">
+                    <thead>
+                        <tr>
+                            <th>Foto</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Telefono</th>
+                            <th>Alta</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <p th:if="${autor.isEmpty}">No hay autores para mostrar</p>
+                        <tr th:each="u,iterator : ${user}">
+                            <td th:text="${iterator.index+1"></td>
+                            <td th:text="${u.photo}"></td>
+                            <td th:text="${u.firstName} + ${u.lastName}"></td>
+                            <td th:text="${u.phone}"></td>
+                            <td th:text="${u.jobs.salary}"></td>
+                            <td th:text="${u.jobs.workingZone}"></td>
+                            <td th:text="${u.jobs.rooms}"></td>
+                             <td th:text="${u.jobs.exteriors}"></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table> -->
+
+
+
+
+    <!-- <div class="postingCardInfo">
         <div class="postingCardTop">
             <div class="postingPillsPosting">
             </div>
@@ -205,7 +323,7 @@
                     </div>
                 </div>
                 <br>
-
+ -->
 </body>
 
 </html>

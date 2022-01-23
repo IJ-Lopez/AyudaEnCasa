@@ -76,22 +76,34 @@ color: #044e64 !important;
 }
 
 table tr:nth-child(odd) {/*filas pares*/
+  
   background-color: #044e6482;
   color: #fefefe;
 }
 
 table tr:nth-child(odd):hover {
+  
   background-color: #044e64;
 }
 
 table tr:nth-child(even) {/*filas impares*/
+  /*background-color: #618d9b;*/
   background-color: #044e64;
   color: #fefefe;
 }
 
 table tr:nth-child(even):hover {
+  /* background-color: red; */
   background-color: #cb997e;
 }
+
+
+
+
+
+
+
+
 
 /* .table thead tr th  :hover  {
   color: white;
