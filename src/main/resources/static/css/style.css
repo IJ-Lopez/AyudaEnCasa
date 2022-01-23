@@ -448,8 +448,6 @@ h3 {
   float: left;
 } */
 
-
-
 .footer {
   padding: 10px;
   width: 100%;
@@ -483,4 +481,26 @@ h3 {
     grid-gap: 15px;
     justify-content: space-between;
   }
+}
+
+.tarjetas {
+  border: 1px solid red;
+  margin-top: 90px;
+  margin-left:  40px;;
+  display: grid;
+  width: 80%;
+  grid-template-columns: repeat(2, .50fr);
+  width: .5fr;
+  gap: 20px;
+  padding: 0px 20px;
+}
+.tarjetas img {
+  width: 150px;
+  height: 100px;
+  border-radius: 10px;
+}
+
+.table{
+margin-left: 30px;
+margin-top: 80px;
 }
