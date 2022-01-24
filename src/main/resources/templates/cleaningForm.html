@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,75 +7,105 @@
     <title>Limpieza Doméstica</title>
     <!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
-    <link rel="stylesheet" href="/src/main/resources/static/css/style.css">
+    <link rel="stylesheet" href="/css/cleaningForm.css">
+    <!--Google fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Licorice&family=Pushster&family=Quicksand:wght@300&family=Spline+Sans:wght@300&display=swap" />
+    <!--Font Awesome-->
+    <script src="https://kit.fontawesome.com/83a37f8406.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <header>    
-        <h1>Complete el siguiente Formulario </h1>
-        </header> 
-        <hr>
-        <h2> Limpieza Doméstica <h2>
+     <div class="container">
+        <div class="card">
+            <h1>Limpieza Doméstica</h1>
         <img src="../static/img/Limpieza/limp17.jpg" alt="images" width="300"/>
-        <form action="/cleaningForm" method="POST">
-            <div>   
-                <label for= "salario"> Remuneración Pretendida </label>
-                <input type="text" name "salary" id= "salario">
+        <form class="formato" th:action="@{/cleaning/create}" method="POST">
+            <div>
+                <label class="titulo" for="salary"></label>
+                 <input class="input font" type="number" size="50px" th:value="${salary}" name="salary" id="salario"
+                     placeholder="Remuneración Pretendida">
             </div>
             <br>
-            <div>   
-                <label for= "zona"> Zona Laboral </label>
-                <select name= "workingZone" id="zona">
-                    <option value= "Capital">Capital </option>
-                    <option value= "General Alvear">General Alvear </option>
-                    <option value= "San Martín">San Martín </option>
-                    <option value= "Godoy Cruz">Godoy Cruz </option>
-                    <option value= "Guaymallén">Guaymallén </option>
-                    <option value= "Junín">Junín </option>
-                    <option value= "La Paz">La Paz </option>
-                    <option value= "Las Heras">Las Heras </option>
-                    <option value= "Lavalle">Lavalle</option>
-                    <option value= "Luján de Cuyo">Luján de Cuyo</option>
-                    <option value= "Maipú">Maipú</option>
-                    <option value= "Malargüe">Malargüe </option>
-                    <option value= "Rivadavia">Rivadavia </option>
-                    <option value= "San Carlos">San Carlos </option>
-                    <option value= "San Rafael">San Rafael </option>
-                    <option value= "Santa Rosa">Santa Rosa </option>
-                    <option value= "Tunuyán">Tunuyán </option>
-                    <option value= "Tupungato">Tupungato </option>
+            <br>
+            <div>
+                <label class="titulo" for="workingZone"> </label>
+                <select class="input" th:value="${workingZone}" name="workingZone" id="zona">
+                        <option value="Zona Laboral">Zona Laboral </option>
+                        <option value="Capital">Capital </option>
+                        <option value="General Alvear">General Alvear </option>
+                        <option value="San Martín">San Martín </option>
+                        <option value="Godoy Cruz">Godoy Cruz </option>
+                        <option value="Guaymallén">Guaymallén </option>
+                        <option value="Junín">Junín </option>
+                        <option value="La Paz">La Paz </option>
+                        <option value="Las Heras">Las Heras </option>
+                        <option value="Lavalle">Lavalle</option>
+                        <option value="Luján de Cuyo">Luján de Cuyo</option>
+                        <option value="Maipú">Maipú</option>
+                        <option value="Malargüe">Malargüe </option>
+                        <option value="Rivadavia">Rivadavia </option>
+                        <option value="San Carlos">San Carlos </option>
+                        <option value="San Rafael">San Rafael </option>
+                        <option value="Santa Rosa">Santa Rosa </option>
+                        <option value="Tunuyán">Tunuyán </option>
+                        <option value="Tupungato">Tupungato </option>
                 </select>
             </div>
             <br>
-            <div class="btn-group">
-                <label for="dias">Días Laborales</label>
-                <ul class="dropdown-menu" style="padding: 10px" id="myDiv">
-                    <li><input type="checkbox" value="Lunes" > Lunes</li>
-                    <li><p><input type="checkbox" value="Martes" >Martes</p></li>
-                    <li><p><input type="checkbox" value="Miércoles" > Miércoles</p></li>
-                    <li><p><input type="checkbox" value="Jueves" >Jueves</p></li>
-                    <li><p><input type="checkbox" value="Viernes" >Viernes</p></li>
-                    <li><p><input type="checkbox" value="Sábado" >Sábado</p></li>
-                    <li><p><input type="checkbox" value="Domingo" >Domingo</p></li>
-                </ul>
-            </div>
-            <div>   
-                <label for="hora"> Hora de inicio</label>
-                <input type="time" name="dateFrom" id="hora">
-            </div>
+            <br>
+            <div>
+                <label class="input" for="days"></label>
+                <p class="parrafo"> Días Laborales </p>
+                <ul class="dropdown-menu" th:value="${days}" name="days" id="myDiv">
+                    <li>
+                        <input type="checkbox" value="Lunes"> Lunes
+                    </li>
+                    <li>
+                        <input type="checkbox" value="Martes"> Martes
+                    </li>
+                    <li>
+                        <input type="checkbox" value="Miércoles"> Miércoles
+                    </li>
+                    <li>
+                        <input type="checkbox" value="Jueves"> Jueves
+                    </li>
+                    <li>
+                        <input type="checkbox" value="Viernes"> Viernes
+                    </li>
+                    <li>
+                        <input type="checkbox" value="Sábado"> Sábado
+                    </li>
+                    <li>
+                       <input type="checkbox" value="Domingo"> Domingo
+                    </li>
+                    </ul>
+                </div>
+                <br>
+                <br>
+                <div>
+                    <label class="titulo" for="timeFrom"></label>
+                    <input class="input font" type="time" th:value="${timeFrom}" name="timeFrom" id="hora" placeholder="Hora de incio"
+                        onfocus="(this.type='time')">
+                </div>
+                <br>
+                <br>
+                <div>
+                    <label class="titulo" for="timeTo"></label>
+                    <input class="input font" type="time" th:value="${timeTo}" id="hora" name="timeTo" placeholder="Hora de finalización"
+                        onfocus="(this.type='time')">
+                </div>
+                <br>
             <br>
             <div>   
-                <label for="hora"> Hora de finalización</label>
-                <input type="time" name="dateTo" id="hora">
-            </div>
-            <br>
-            <div>   
-                <label for="cantidad de habitaciones"> Cantidad de habitaciones</label>
-                <input type="number" name="rooms" id="cantidad de habitaciones">
+                <label for="rooms"> Cantidad de habitaciones</label>
+                <input type="number" th:value="${rooms}" name="rooms" id="cantidad de habitaciones">
             </div>
             <br>
             <div> 
-                <label for="Sectores"> Sectores de la vivienda</label>
-                <select name= "exteriors" id="Sectores">
+                <label for="exteriors"> Sectores de la vivienda</label>
+                <select th:value="${exteriors}" name= "exteriors" id="Sectores">
                     <option value= "adentro">Adentro </option>
                     <option value= "afuera">Afuera </option>
                     <option value= "ambas">Ambas </option>
@@ -83,26 +113,26 @@
             </div>
             <br>
             <div> 
-                <label for="cocina"> Servicio de Cocina?</label>
-                <ul id="cocina">
-                    <li><p><input type="checkbox" value="Si" > Si</p></li>
-                    <li><p><input type="checkbox" value="No" > No</p></li>
+                <label for="cooking"> Servicio de Cocina?</label>
+                <ul th:value="${cooking}" name="cooking" id="cocina">
+                    <li><p><input type="checkbox" value="true" > Si</p></li>
+                    <li><p><input type="checkbox" value="false" > No</p></li>
                 </ul>
                 </div>
                 <br>
                 <div> 
-                    <label for="lavado"> Servicio de Lavado de Ropa?</label>
-                    <ul id="lavado">
-                        <li><p><input type="checkbox" value="Si" > Si</p></li>
-                        <li><p><input type="checkbox" value="No" > No</p></li>
+                    <label for="laundry"> Servicio de Lavado de Ropa?</label>
+                    <ul th:value="${laundry}" name="laundry" id="lavado">
+                        <li><p><input type="checkbox" value="true" > Si</p></li>
+                        <li><p><input type="checkbox" value="false" > No</p></li>
                     </ul>
                     </div>
                     <br>
                     <div> 
-                        <label for="planchado"> Servicio de Planchado?</label>
-                        <ul id="planchado">
-                            <li><p><input type="checkbox" value="Si" > Si</p></li>
-                            <li><p><input type="checkbox" value="No" > No</p></li>
+                        <label for="ironing"> Servicio de Planchado?</label>
+                        <ul th:value="${ironing}" name="ironing" id="planchado">
+                            <li><p><input type="checkbox" value="true" > Si</p></li>
+                            <li><p><input type="checkbox" value="false" > No</p></li>
                         </ul>
                         </div>
                         <br>
@@ -112,6 +142,11 @@
             <br>
             <button type="submit"> Enviar </button> 
         </form>
+        <a class="volver" href="">Volver</a>
+        </div>
+        <div class="relleno">
+
+        </div>
 
 
         <!-- <form action="/action_page.php" class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-margin">

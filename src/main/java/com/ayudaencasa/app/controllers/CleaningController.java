@@ -9,6 +9,7 @@ import com.ayudaencasa.app.services.CleaningService;
 import io.github.jhipster.service.filter.BooleanFilter;
 import io.github.jhipster.service.filter.IntegerFilter;
 import io.github.jhipster.service.filter.StringFilter;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import javax.validation.Valid;
@@ -17,6 +18,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,30 +27,42 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-@RestController
+@Controller
 @Validated
-@RequestMapping("/Cleaning")
+@RequestMapping("/cleaning")
 public class CleaningController {
  
     @Autowired
     private CleaningService cleaningService;
-
-    @PostMapping("/create")
-    @ResponseStatus(HttpStatus.OK)
-    public Cleaning create(@Valid @RequestBody CreateCleaningDTO inputCleaning) {
-        Cleaning cleaning = new Cleaning();
-        if(inputCleaning.getWorkingHoursTo() != null){
-            cleaning.setHoursTo(inputCleaning.getWorkingHoursTo());    
-        }
-        if(inputCleaning.getWorkingHoursFrom() != null){
-            cleaning.setHoursFrom(inputCleaning.getWorkingHoursFrom());
-        }
-        BeanUtils.copyProperties(inputCleaning, cleaning);
-        return cleaningService.create(cleaning);
+    
+    @GetMapping("/create")
+    public String registry(){
+        return "cleaningForm";
     }
     
-     @PostMapping("/filter")
+    @PostMapping("/create")
+    @ResponseStatus(HttpStatus.OK)
+    public String create(RedirectAttributes redirectAttributes, CreateCleaningDTO inputCleaning, @RequestParam LocalTime timeFrom, @RequestParam LocalTime timeTo) {
+        try{
+            Cleaning cleaning = new Cleaning();
+            if(timeFrom != null){
+                cleaning.setHoursTo(timeFrom);    
+            }
+            if(timeTo != null){
+                cleaning.setHoursFrom(timeTo);
+            }
+            BeanUtils.copyProperties(inputCleaning, cleaning);
+            cleaningService.create(cleaning);
+            return "index";
+        }catch (CleaningNotFoundException e) {
+            redirectAttributes.addFlashAttribute("error", e.getMessage());
+            return "cleaningForm";
+        }    
+    }
+    
+    @PostMapping("/filter")
     public ResponseEntity<List<Cleaning>> findByFilter(@RequestBody SearchCleaningDTO searchCleaning) {    
         if(searchCleaning.getWorkingHoursTo() != null){
             searchCleaning.setHoursTo(searchCleaning.getWorkingHoursTo());    

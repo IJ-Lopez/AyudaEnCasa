@@ -19,7 +19,7 @@ import org.hibernate.annotations.Where;
 public class Cleaning extends Job implements Serializable{
     
     private Integer rooms;
-    private Boolean exteriors;
+    private String exteriors;
     private Boolean cooking;
     private Boolean laundry;
     private Boolean ironing;

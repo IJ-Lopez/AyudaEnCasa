@@ -4,10 +4,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -36,43 +41,30 @@ public class User implements Serializable {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
-    
-//    @JsonProperty("email")
-    @NonNull
 
     @Column(unique = true)
     private String email;
     
-//    @JsonProperty("password")
-    @NonNull
     private String password;
     
-//    @JsonProperty("firstName")
-    @NonNull
     private String firstName;
-    
-//    @JsonProperty("lastName")
-    @NonNull
+ 
     private String lastName;
-    
-//    @JsonProperty("dob")
-//    @NonNull
    
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dob;
     
-////    @JsonProperty("dni")
-//    @NonNull
     private Integer dni;
     
-//    @JsonProperty("address")
     private String address;
     
-//    @JsonProperty("phone")
-    private Integer phone;
+    private Long phone;
     // private Photo photo;
     // private Cv cv;
-    private HashSet<Job> jobs;
+    
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="user_id")
+    private Set<Job> jobs = new HashSet<>();
     
     @Temporal(value = TemporalType.TIMESTAMP)
     @CreationTimestamp

@@ -20,8 +20,7 @@ import org.hibernate.annotations.Where;
 @Entity
 public class Gardener extends Job implements Serializable{
     
-    @Min(0)
-    private Double surface;
+    private String surface;
     
     private Boolean tools;
     

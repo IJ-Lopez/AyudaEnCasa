@@ -33,7 +33,7 @@ public class CleaningServiceImpl extends QueryService<Cleaning> implements Clean
                 specification = specification.and(buildRangeSpecification(cleaningCriteria.getRooms(), Cleaning_.rooms));
             }
             if (cleaningCriteria.getExteriors() != null) {
-                specification = specification.and(buildSpecification(cleaningCriteria.getExteriors(), Cleaning_.exteriors));
+//                specification = specification.and(buildSpecification(cleaningCriteria.getExteriors(), Cleaning_.exteriors));
             }
             if (cleaningCriteria.getCooking() != null) {
                 specification = specification.and(buildSpecification(cleaningCriteria.getCooking(), Cleaning_.cooking));

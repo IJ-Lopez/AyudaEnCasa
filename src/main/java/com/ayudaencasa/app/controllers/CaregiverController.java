@@ -8,14 +8,15 @@ import com.ayudaencasa.app.services.CaregiverService;
 import io.github.jhipster.service.filter.BooleanFilter;
 import io.github.jhipster.service.filter.IntegerFilter;
 import io.github.jhipster.service.filter.StringFilter;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
-import javax.validation.Valid;
 import net.logstash.logback.encoder.org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,29 +24,40 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
-@RestController
+@Controller
 @Validated
 @RequestMapping("/caregiver")
 public class CaregiverController {
 
     @Autowired
     private CaregiverService caregiverService;
-
+    
+    @GetMapping("/create")
+    public String registry(){
+        return "caregiverForm";
+    }
+    
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.OK)
-    public Caregiver create(@RequestBody CreateCaregiverDTO inputCaregiver) {
-        Caregiver caregiver = new Caregiver();
-        if(inputCaregiver.getWorkingHoursTo() != null){
-            caregiver.setHoursTo(inputCaregiver.getWorkingHoursTo());    
-        }
-        if(inputCaregiver.getWorkingHoursFrom() != null){
-            caregiver.setHoursFrom(inputCaregiver.getWorkingHoursFrom());
-        }
-        BeanUtils.copyProperties(inputCaregiver, caregiver);
-        return caregiverService.create(caregiver);
+    public String create(RedirectAttributes redirectAttributes, CreateCaregiverDTO inputCaregiver, @RequestParam LocalTime timeFrom, @RequestParam LocalTime timeTo) {
+        try{
+            Caregiver caregiver = new Caregiver();
+            if(timeFrom != null){
+                caregiver.setHoursTo(timeFrom);    
+            }
+            if(timeTo != null){
+                caregiver.setHoursFrom(timeTo);
+            }
+            BeanUtils.copyProperties(inputCaregiver, caregiver);
+            caregiverService.create(caregiver);
+            return "index";
+        }catch (Exception e) {
+            redirectAttributes.addFlashAttribute("error", e.getMessage());
+            return "caregiverForm";
+        }    
     }
     
     @GetMapping("/list")

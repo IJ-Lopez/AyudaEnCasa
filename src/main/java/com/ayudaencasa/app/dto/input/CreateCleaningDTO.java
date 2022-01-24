@@ -12,7 +12,7 @@ public class CreateCleaningDTO {
 
     private Integer rooms;
     
-    private Boolean exteriors;
+    private String exteriors;
     
     private Boolean cooking;
     

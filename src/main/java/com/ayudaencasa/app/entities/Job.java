@@ -6,8 +6,11 @@ import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -28,7 +31,8 @@ import org.hibernate.annotations.Where;
 @Setter
 @SQLDelete(sql = "UPDATE categories SET deleted_at = current_timestamp() WHERE id = ?")
 @Where(clause = "deleted_at is null")
-@MappedSuperclass
+
+@Entity
 public abstract class Job {
     
     @Id
@@ -42,7 +46,8 @@ public abstract class Job {
     
     protected String description;
   
-    @Column
+
+//    @Column(name="user_id")
     @ElementCollection(targetClass=String.class)
     protected List<String> days;
     
@@ -51,6 +56,7 @@ public abstract class Job {
     protected Integer hoursTo;
     
     protected Boolean status;
+    
     
     @Temporal(value = TemporalType.TIMESTAMP)
     @CreationTimestamp

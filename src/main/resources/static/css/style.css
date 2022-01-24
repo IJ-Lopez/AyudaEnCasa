@@ -50,6 +50,25 @@ ul {
   z-index: 100;
 }
 
+.work-menu li a {
+  display: block;
+}
+
+.work-menu > li {
+  float: inline-end;
+}
+
+.work-menu li ul {
+  display: none;
+  position: absolute;
+}
+
+.work-menu li:hover > ul {
+  display: block;
+  background-color: #f0a331;
+  border-radius: 20px;
+}
+
 h1 {
   font-family: "Licorice", cursive;
   font-size: 60px;
@@ -93,7 +112,7 @@ h1 {
 .busqueda {
   width: auto;
   height: 600px;
-  background-image: url("../img/sillonliving.jpg");
+  background-image: url("/src/main/resources/static/img/sillonliving.jpg");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -136,6 +155,17 @@ h1 {
   border-radius: 10px;
   padding: 10px;
   font-size: 20px;
+  color: #fbfbfb;
+}
+
+.buscar {
+  background: transparent;
+  margin-top: 25px;
+  height: 40px;
+  text-align: center;
+  font-size: 20px;
+  text-decoration: double;
+  border-radius: 45px;
   color: #fbfbfb;
 }
 
@@ -328,13 +358,19 @@ h3 {
 }
 
 .fot2 {
+  display: flow-root;
   align-items: center;
-  flex-wrap: wrap;
-  display: flex;
   float: left;
   width: 50%;
   padding: 10px;
-  display: grid;
+}
+
+.form-container {
+  display: flex;
+}
+
+.fot2 img {
+  float: left;
 }
 
 .fot2 input {
@@ -344,13 +380,16 @@ h3 {
   text-emphasis-color: #dadada;
 }
 
-
-form textarea {
+.form-container textarea {
   width: 200px;
+  resize: none;
+  height: 100px;
 }
-/* .fot2 img {
-  width: 200px;
-} */
+
+.form-container img {
+  justify-content: center;
+  width: 320px;
+}
 
 .social {
   text-align: center;

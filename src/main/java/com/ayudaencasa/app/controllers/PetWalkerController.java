@@ -4,17 +4,19 @@ import com.ayudaencasa.app.criteria.PetWalkerCriteria;
 import com.ayudaencasa.app.dto.input.CreatePetWalkerDTO;
 import com.ayudaencasa.app.dto.input.SearchPetWalkerDTO;
 import com.ayudaencasa.app.entities.PetWalker;
+import com.ayudaencasa.app.exceptions.PetWalkerNotFoundException;
 import com.ayudaencasa.app.services.PetWalkerService;
 import io.github.jhipster.service.filter.IntegerFilter;
 import io.github.jhipster.service.filter.StringFilter;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
-import javax.validation.Valid;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,28 +24,39 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-@RestController
+@Controller
 @Validated
-@RequestMapping ("/petWalker")
+@RequestMapping("/petwalker")
 public class PetWalkerController {
     
     @Autowired
     private PetWalkerService petWalkerService;
     
+    @GetMapping("/create")
+    public String registry(){
+        return "petwalkerForm";
+    }
+    
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.OK)
-    public PetWalker create (@Valid @RequestBody CreatePetWalkerDTO inputPetWalker){
-        PetWalker petWalker = new PetWalker();
-        if(inputPetWalker.getWorkingHoursTo() != null){
-            petWalker.setHoursTo(inputPetWalker.getWorkingHoursTo());    
-        }
-        if(inputPetWalker.getWorkingHoursFrom() != null){
-            petWalker.setHoursFrom(inputPetWalker.getWorkingHoursFrom());
-        }
-        BeanUtils.copyProperties(inputPetWalker,petWalker );
-        return petWalkerService.create(petWalker);
+    public String create(RedirectAttributes redirectAttributes, CreatePetWalkerDTO inputPetWalker, @RequestParam LocalTime timeFrom, @RequestParam LocalTime timeTo) {
+        try{
+            PetWalker petWalker = new PetWalker();
+            if(timeFrom != null){
+                petWalker.setHoursTo(timeFrom);    
+            }
+            if(timeTo != null){
+                petWalker.setHoursFrom(timeTo);
+            }
+            BeanUtils.copyProperties(inputPetWalker, petWalker);
+            petWalkerService.create(petWalker);
+            return "index";
+        }catch (PetWalkerNotFoundException e) {
+            redirectAttributes.addFlashAttribute("error", e.getMessage());
+            return "petwalkerForm";
+        }    
     }
     
     @GetMapping("/list")

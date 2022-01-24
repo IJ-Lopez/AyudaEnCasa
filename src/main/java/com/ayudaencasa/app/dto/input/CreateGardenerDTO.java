@@ -14,14 +14,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CreateGardenerDTO {
 
-    private Double surface;
+    private String surface;
     private Boolean tools;
     private Boolean poolCleaning;
     private Boolean gardenFence;
     private Boolean plantDisinfection;
-
-//    @NotNull
-//    @NonNull
     private Integer salary;
     private String workingZone;
     private String description;
