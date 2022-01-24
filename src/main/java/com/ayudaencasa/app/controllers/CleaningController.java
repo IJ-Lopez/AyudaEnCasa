@@ -44,7 +44,8 @@ public class CleaningController {
     
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.OK)
-    public String create(RedirectAttributes redirectAttributes, CreateCleaningDTO inputCleaning, @RequestParam LocalTime timeFrom, @RequestParam LocalTime timeTo) {
+    public String create(RedirectAttributes redirectAttributes, CreateCleaningDTO inputCleaning, @RequestParam(required = false) LocalTime timeFrom, @RequestParam(required = false) LocalTime timeTo) {
+        System.out.println(inputCleaning.toString());
         try{
             Cleaning cleaning = new Cleaning();
             if(timeFrom != null){

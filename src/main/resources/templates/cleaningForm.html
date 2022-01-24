@@ -60,25 +60,25 @@
                 <p class="parrafo"> Días Laborales </p>
                 <ul class="dropdown-menu" th:value="${days}" name="days" id="myDiv">
                     <li>
-                        <input type="checkbox" value="Lunes"> Lunes
+                        <input type="checkbox" th:value="Lunes" name="days"> Lunes
                     </li>
                     <li>
-                        <input type="checkbox" value="Martes"> Martes
+                        <input type="checkbox" value="Martes" name="days"> Martes
                     </li>
                     <li>
-                        <input type="checkbox" value="Miércoles"> Miércoles
+                        <input type="checkbox" value="Miércoles" name="days"> Miércoles
                     </li>
                     <li>
-                        <input type="checkbox" value="Jueves"> Jueves
+                        <input type="checkbox" value="Jueves" name="days"> Jueves
                     </li>
                     <li>
-                        <input type="checkbox" value="Viernes"> Viernes
+                        <input type="checkbox" value="Viernes" name="days"> Viernes
                     </li>
                     <li>
-                        <input type="checkbox" value="Sábado"> Sábado
+                        <input type="checkbox" value="Sábado" name="days"> Sábado
                     </li>
                     <li>
-                       <input type="checkbox" value="Domingo"> Domingo
+                       <input type="checkbox" value="Domingo" name="days"> Domingo
                     </li>
                     </ul>
                 </div>
@@ -113,21 +113,17 @@
             </div>
             <br>
             <div> 
-                <label for="cooking"> Servicio de Cocina?</label>
-                <ul th:value="${cooking}" name="cooking" id="cocina">
-                    <li><p><input type="checkbox" value="true" > Si</p></li>
-                    <li><p><input type="checkbox" value="false" > No</p></li>
-                </ul>
-                </div>
+                <label for="cooking"> Servicio de Cocina</label> <input type="checkbox" name="cooking" th:checked="${cooking}">    
+            </div>
+
+            <br>
+
+            <div> 
+                <label for="laundry"> Servicio de Lavado de Ropa</label>
+                <input type="checkbox" name="laundry" th:checked="${laundry}" >
+            </div>
+
                 <br>
-                <div> 
-                    <label for="laundry"> Servicio de Lavado de Ropa?</label>
-                    <ul th:value="${laundry}" name="laundry" id="lavado">
-                        <li><p><input type="checkbox" value="true" > Si</p></li>
-                        <li><p><input type="checkbox" value="false" > No</p></li>
-                    </ul>
-                    </div>
-                    <br>
                     <div> 
                         <label for="ironing"> Servicio de Planchado?</label>
                         <ul th:value="${ironing}" name="ironing" id="planchado">

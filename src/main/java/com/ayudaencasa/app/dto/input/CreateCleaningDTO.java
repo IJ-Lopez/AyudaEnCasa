@@ -14,7 +14,9 @@ public class CreateCleaningDTO {
     
     private String exteriors;
     
-    private Boolean cooking;
+    private boolean cooking;
+    
+    private String cookingnt;
     
     private Boolean laundry;
     
