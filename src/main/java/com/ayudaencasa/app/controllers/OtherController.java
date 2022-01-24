@@ -60,8 +60,14 @@ public class OtherController {
     }
     
     @GetMapping("/list")
-    public List<Other> findAll(@RequestParam(required = false) String q) {
-        return otherService.findAll();
+    public String findAll(@RequestParam String type) {
+        List<Other> others;
+        if(type == null){
+            others = otherService.findAll();
+        } else {
+            others = otherService.findByType(type);
+        }
+        return "testpage.html";
     }
     
     @PostMapping("/filter")

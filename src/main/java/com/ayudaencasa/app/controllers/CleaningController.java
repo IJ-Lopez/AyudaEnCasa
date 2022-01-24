@@ -31,7 +31,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @Validated
-@RequestMapping("/cleaning")
+@RequestMapping("/limpiador")
 public class CleaningController {
  
     @Autowired
@@ -204,8 +204,9 @@ public class CleaningController {
     }
 
     @GetMapping("/list")
-    public List<Cleaning> findAll(@RequestParam(required = false) String q) {
-        return cleaningService.findAll();
+    public String findAll(@RequestParam(required = false) String q) {
+        List<Cleaning> cleaners = cleaningService.findAll();
+        return "cleaning.html";
     }
 
     @GetMapping("")

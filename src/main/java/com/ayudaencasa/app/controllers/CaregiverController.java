@@ -26,10 +26,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-
 @Controller
 @Validated
-@RequestMapping("/caregiver")
+@RequestMapping("/cuidador")
 public class CaregiverController {
 
     @Autowired
@@ -61,8 +60,9 @@ public class CaregiverController {
     }
     
     @GetMapping("/list")
-    public List<Caregiver> findAll(@RequestParam(required = false) String q) {
-        return caregiverService.findAll();
+    public String findAll(@RequestParam(required = false) String q) {
+        List<Caregiver> caregivers = caregiverService.findAll();
+        return "caregiver.html";
     }
     
     @PostMapping("/filter")

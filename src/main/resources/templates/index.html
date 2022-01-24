@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ayuda en casa</title>
   <!--Css-->
-  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="css/style.css" />
   <!--Google fonts-->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -61,12 +61,14 @@
         <header id="main" class="busqueda">
           <div class="cuadrobusqueda">
             <h2 class="h2b">¿Que desea buscar?</h2>
-            <form class=" formbusqueda" action="POST">
-              <!-- <label for="pedirtrabajador">Necesito personal</a> </label> -->
-              <!-- <input type="radio" name="pedirtrabajador" id="pedir"> -->
-              <!-- <label for="ofrecer">Ofrecer mis servicios</label> -->
-              <!-- <input type="radio" name="ofrecerservicio" id="ofrecer"> -->
-              <input class="buscar" type="text" name="trabajo" id="trabajo" placeholder="Ingrese su busqueda" />
+            <form action="/home/buscar" method="POST">
+              <input class="form" type="text" name="trabajo" id="trabajo" placeholder="Ingrese su busqueda" list="jobs-list"/>
+              <datalist id ="jobs-list">
+                  <option value="Jardinero"/>
+                  <option value="Paseador"/>
+                  <option value="Cuidador"/>
+                  <option value="Limpiador"/>
+              </datalist>
             </form>
           </div>
         </header>
@@ -74,28 +76,27 @@
       <h3>Sugerencias</h3>
       <div class="sugerencias">
         <div class="hola">
-          <img src="../static/img/jardin.jpg" alt="imagen" />
+          <img src="img/jardin.jpg" alt="imagen" />
           <h4>Servicios de jardineria</h4>
-          <p>
-          </p>
-          <a href="gardener.html">Ver más</a>
+          <br>
+          <a href="/jardinero/list">Ver más</a>
         </div>
         <div class="hola">
-          <img src="../static/img/Cuidador/c1.jpg" alt="imagen" />
+          <img src="img/Cuidador/c1.jpg" alt="imagen" />
           <h4>Cuidado de personas</h4>
           <p>
           </p>
           <a href="caregiver.html">Ver más</a>
         </div>
         <div class="hola">
-          <img src="../static/img/Limpieza/limp5(2).jpg" alt="imagen" />
+          <img src="img/Limpieza/limp5(2).jpg" alt="imagen" />
           <h4>Limpieza de hogares</h4>
           <p>
           </p>
           <a href="cleaning.html">Ver más</a>
         </div>
         <div class="hola">
-          <img src="../static/img/Paseador/p10.jpg" alt="imagen" />
+          <img src="img/Paseador/p10.jpg" alt="imagen" />
           <h4>Paseador de mascotas</h4>
           <p>
           </p>
@@ -106,36 +107,45 @@
       <h3>Populares...</h3>
       <div class="box">
         <div class="card">
-          <div class="imgBx">
-            <a href="petwalker.html"><img src="../static/img/Paseador/p5.jpg" /></a>
-          </div>
-          <div class="details">
-            <a href="petwalker.html">Paseador</a>
-          </div>
+          <a href="/paseador/list">
+            <div class="imgBx">
+              <img src="img/Paseador/p5.jpg" />
+            </div>
+            <div class="details">
+              <p>Paseador</p>
+            </div>
+          </a>
         </div>
         <div class="card">
-          <div class="imgBx">
-            <a href="cleaning.html"><img src="../static/img/Limpieza/limp17.jpg" /></a>
-          </div>
-          <div class="details">
-            <a href="cleaning.html">Limpieza domestica</a>
-          </div>
+          <a href="/limpiador/list">
+            <div class="imgBx">
+              <img src="img/Limpieza/limp17.jpg" />
+            </div>
+            <div class="details">
+              <p>Limpieza domestica</p>
+            </div>
+          </a>
         </div>
         <div class="card">
-          <div class="imgBx">
-            <a href="gardener.html"><img src="../static/img/Jardìn/j15.jpg" /></a>
-          </div>
-          <div class="details">
-            <a href="gardener.html">Jardinería</a>
-          </div>
+          <a href="/jardinero/list">
+            <div class="imgBx">
+              <img src="img/Jardìn/j14.jpg" />
+            </div>
+            <div class="details">
+              <p>Jardinería</p>
+            </div>
+          </a>
         </div>
         <div class="card">
-          <div class="imgBx">
-            <a href="caregiver.html"><img src="../static/img/Cuidador/c10.jpg" alt="cuidado de personas" /></a>
-          </div>
-          <div class="details">
-            <a href="caregiver.html">Cuidado de personas</a>
-          </div>
+          <a href="/cuidador/list">
+            <div class="imgBx">
+              <img src="img/Cuidador/c10.jpg"
+                  alt="cuidado de personas" />
+            </div>
+            <div class="details">
+              <p>Cuidado de personas</p>
+            </div>
+          </a>
         </div>
       </div>
   </div>
@@ -160,21 +170,17 @@
     </div>    
     <div class="contactanos">
       <h3 class="h3bis">Contactanos</h3>
-      <div class="contact-form">
-        <div class="formulario">
-          <form action="POST">
-            <input type="text" placeholder="nombre"><br>
-            <input type="text" placeholder="apellido"><br>
-            <input type="email" placeholder="mail"><br>
-            <textarea name="comentario" placeholder="comentario" id="comentario" cols="20" rows="5"></textarea><br>
-            <input type="submit">
-          </form>
-        </div>
-        <div class="mail">
-          <div class="contenedor-mail">
-            <img src="../static/img/mail.png" alt="">
-          </div>
-        </div>
+      <div class="form">
+        <form action="POST">
+          <input type="text" placeholder="nombre"><br>
+          <input type="text" placeholder="apellido"><br>
+          <input type="email" placeholder="mail"><br>
+          <textarea name="comentario" placeholder="comentario" id="comentario" cols="20" rows="5"></textarea><br>
+          <input type="submit">
+        </form>
+      </div>
+      <div class="img">
+        <img src="img/mail.png" alt="">
       </div>
     </div>
   </div>

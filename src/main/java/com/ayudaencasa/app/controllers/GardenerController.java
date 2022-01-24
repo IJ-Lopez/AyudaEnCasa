@@ -30,7 +30,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @Validated
-@RequestMapping("/gardener")
+@RequestMapping("/jardinero")
 public class GardenerController {
     
     @Autowired
@@ -62,8 +62,9 @@ public class GardenerController {
     }
     
     @GetMapping("/list")
-    public List<Gardener> findAll(@RequestParam(required = false) String q) {
-        return gardenerService.findAll();
+    public String findAll(@RequestParam(required = false) String q) {
+        List<Gardener> gardeners = gardenerService.findAll();
+        return "gardener.html";
     }
     
     @PostMapping("/filter")

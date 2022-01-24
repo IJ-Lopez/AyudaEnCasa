@@ -28,7 +28,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @Validated
-@RequestMapping("/petwalker")
+@RequestMapping ("/paseador")
 public class PetWalkerController {
     
     @Autowired
@@ -60,8 +60,9 @@ public class PetWalkerController {
     }
     
     @GetMapping("/list")
-    public List <PetWalker> findAll (@RequestParam (required = false) String q){
-        return petWalkerService.findAll();
+    public String findAll (@RequestParam (required = false) String q){
+        List<PetWalker> petwalkers = petWalkerService.findAll();
+        return "petwalker.html";
     }
     
     @PostMapping("/filter")
