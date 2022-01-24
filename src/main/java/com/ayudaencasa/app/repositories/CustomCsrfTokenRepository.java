@@ -14,13 +14,13 @@ public class CustomCsrfTokenRepository implements CsrfTokenRepository {
 
     @Override
     public CsrfToken generateToken(HttpServletRequest request) {
-        CsrfToken t = new DefaultCsrfToken(headerName:"X-TOKEN", parameterName:"_csrf" , token:"123456789");
+       // CsrfToken t = new DefaultCsrfToken(headerName:"X-TOKEN", parameterName:"_csrf" , token:"123456789");
         //CsrfToken t = new DefaultCsrfToken(headerName:"X-CSRF-TOKEN", parameterName:"_csrf", token:"123456789");
        
                
                
         
-        return t;  
+        return null;  
     }
 
     @Override
