@@ -1,6 +1,7 @@
 
 package com.ayudaencasa.app;
 
+import com.ayudaencasa.app.repositories.CustomCsrfTokenRepository;
 import com.ayudaencasa.app.services.impl.UserIndexService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -29,7 +30,7 @@ public class Security extends WebSecurityConfigurerAdapter{
     }
     @Override
     protected void configure(HttpSecurity http) throws Exception{
-        http.headers().frameOptions().sameOrigin().and().csrf().disable().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+        http.headers().frameOptions().sameOrigin().and().csrf().and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests()
                     .antMatchers("/CSS/", "/js/")
                     .permitAll()
@@ -44,6 +45,10 @@ public class Security extends WebSecurityConfigurerAdapter{
                         .logoutUrl("/logout")
                         .logoutSuccessUrl("/")
                         .permitAll();
+        http.csrf(c ->{
+            //c.ignoringAntMatchers("/csrfDisabled/**");
+            c.csrfTokenRepository(new CustomCsrfTokenRepository());
+        });
                         
     }
     

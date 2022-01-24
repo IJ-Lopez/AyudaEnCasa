@@ -60,7 +60,6 @@ public class SetupDataLoader implements
         user.setPassword(passwordEncoder.encode("test"));
         user.setEmail("test@test.com");
         user.setRoles(Arrays.asList(adminRole));
-        user.setEnabled(true);
         userRepository.save(user);
 
         alreadySetup = true; 

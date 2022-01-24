@@ -42,7 +42,7 @@ public class UserIndexService implements UserDetailsService {
         User user = opt.get();
 
         return new org.springframework.security.core.userdetails.User(
-                user.getEmail(), user.getPassword(), user.isEnabled(), true, true,
+                user.getEmail(), user.getPassword(), user.getDeletedAt()==null, true, true,
                 true, getAuthorities(user.getRoles()));
     }
 
