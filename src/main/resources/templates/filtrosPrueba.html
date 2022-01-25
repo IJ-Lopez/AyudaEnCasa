@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Paseador</title>
+    <link rel="stylesheet" href="/src/main/resources/static/css/style2.css">
+    <link rel="stylesheet" href="../static/css/list.css" />
+    <!--buscador-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    
+
+    <!--Google fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Licorice&family=Pushster&family=Quicksand:wght@300&family=Spline+Sans:wght@300&display=swap" />
+    <!--Font Awesome-->
+    <script src="https://kit.fontawesome.com/83a37f8406.js" crossorigin="anonymous"></script>
+    <!--Thymeleaf-->
+    <link rel="stylesheet" type="text/css" media="all" href="../../css/gtvg.css" data-th-href="@{..}" />
+
+</head>
+
+<body>
+    <main>
+        <nav class="nav-main">
+            <h1>Cuidador de Perros</h1>
+        </nav>
+        <div class="container">
+
+            <h2>Filtro</h2>
+            <p>Type something in the input field to search the table:</p>
+            <input class="form-control" id="myInput" type="text" placeholder="Buscar..">
+            <br>
+            <div class="table-container">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Foto</th>
+                            <th>Nombre y apellido</th>
+                            <th>Telefono</th>
+                            <th>Salario</th>
+                            <th>Zona Laboral</th>
+                            <th>Cantidad de perros</th>
+                        </tr>
+                    </thead>
+                    <tbody class="menu" data animation="center" id="myTable">
+                        <tr>
+                            <td>Foto</td>
+                            <td>Emi el mejor</td>
+                            <td>261728392</td>
+                            <td>$3000</td>
+                            <td>capital</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td>Foto</td>
+                            <td>Juan Peréz</td>
+                            <td>261728392</td>
+                            <td>$3000</td>
+                            <td>Lujan de Cuyo</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>Foto</td>
+                            <td>Juan Peréz</td>
+                            <td>261728392</td>
+                            <td>$3000</td>
+                            <td>Tupungato</td>
+                            <td>5</td>
+                        </tr>
+                        <tr>
+                            <td>Foto</td>
+                            <td>Juan Peréz</td>
+                            <td>261728392</td>
+                            <td>$3000</td>
+                            <td>Maipú</td>
+                            <td>3</td>
+                        </tr>
+                        <tr>
+                            <td>Foto</td>
+                            <td>Juan Peréz</td>
+                            <td>261728392</td>
+                            <td>$3000</td>
+                            <td>capital</td>
+                            <td>3</td>
+                        </tr>
+                        <tr>
+                            <td>Foto</td>
+                            <td>Martina</td>
+                            <td>2616317674</td>
+                            <td>$9000</td>
+                            <td>Godoy Cruz</td>
+                            <td>2</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+        <script>
+            $(document).ready(function () {
+                $("#myInput").on("keyup", function () {
+                    var value = $(this).val().toLowerCase();
+                    $("#myTable tr").filter(function () {
+                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                    });
+                });
+            });
+        </script>
+
+    </main>
+</body>
+
+</html>
