@@ -23,8 +23,7 @@ public class UserIndexService implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepo;
-    @Autowired
-    private UserServiceImpl service;
+    
     @Autowired
     private RoleRepository roleRepository;
 

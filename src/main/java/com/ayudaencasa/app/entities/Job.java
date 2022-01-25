@@ -55,10 +55,10 @@ public abstract class Job implements Serializable {
 
     @ElementCollection(targetClass=String.class)
     protected List<String> days;
+
+    protected Integer hoursFrom;
     
-    protected Date dateFrom;
-    
-    protected Date dateTo;
+    protected Integer hoursTo;
     
     protected Boolean status;
     
@@ -79,6 +79,15 @@ public abstract class Job implements Serializable {
     
     public abstract String getType();
 
+    
+    public void setHoursFrom(LocalTime lt){
+        hoursFrom = lt.toSecondOfDay();
+    }
+
+    public void setHoursTo(LocalTime lt){
+        hoursTo = lt.toSecondOfDay();
+    }
+    
     @Override
     public int hashCode() {
         int hash = 7;
