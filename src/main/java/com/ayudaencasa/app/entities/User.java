@@ -5,16 +5,20 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.Email;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,6 +29,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.annotations.Where;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Data
 @Builder
@@ -39,32 +44,30 @@ public class User implements Serializable {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
-    
-    @NonNull
-    @Email
+
     @Column(unique = true)
     private String email;
     
-    @NonNull
     private String password;
     
-    @NonNull
     private String firstName;
-    
-    @NonNull
+ 
     private String lastName;
-    
-    @NonNull
+   
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dob;
     
-    @NonNull
     private Integer dni;
     
     private String address;
-    private Integer phone;
+    
+    private Long phone;
     // private Photo photo;
     // private Cv cv;
-    private HashSet<Job> jobs;
+    
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="user_id")
+    private Set<Job> jobs = new HashSet<>();
     
     @Temporal(value = TemporalType.TIMESTAMP)
     @CreationTimestamp

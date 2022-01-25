@@ -1,9 +1,20 @@
 package com.ayudaencasa.app.entities;
 
+import java.io.Serializable;
+import java.time.LocalTime;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import lombok.AllArgsConstructor;
@@ -25,36 +36,46 @@ import org.hibernate.annotations.Where;
 @Setter
 @SQLDelete(sql = "UPDATE categories SET deleted_at = current_timestamp() WHERE id = ?")
 @Where(clause = "deleted_at is null")
-public abstract class Job {
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public abstract class Job implements Serializable {
     
     @Id
-    private String id;
+    protected String id;
     
-    private Integer salary;
+    protected Integer salary;
     
-    private String workingZone;
+    protected String workingZone;
     
-    private String description;
+    protected String description;
     
-    private Date dateFrom;
+    @Column(name="user_id")
+    protected String user_id;
+  
+
+    @ElementCollection(targetClass=String.class)
+    protected List<String> days;
     
-    private Date dateTo;
+    protected Date dateFrom;
     
-    private Boolean status;
+    protected Date dateTo;
+    
+    protected Boolean status;
+    
     
     @Temporal(value = TemporalType.TIMESTAMP)
     @CreationTimestamp
     @Column(name = "created_at")
-    private Date createdAt;
+    protected Date createdAt;
 
     @Temporal(value = TemporalType.TIMESTAMP)
     @UpdateTimestamp
     @Column(name = "updated_at", insertable = false)
-    private Date updatedAt;
+    protected Date updatedAt;
 
     @Temporal(value = TemporalType.TIMESTAMP)
     @Column(name = "deleted_at")
-    private Date deletedAt;
+    protected Date deletedAt;
     
     public abstract String getType();
 
