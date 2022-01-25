@@ -1,5 +1,6 @@
 package com.ayudaencasa.app.entities;
 
+import java.io.Serializable;
 import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
@@ -9,6 +10,8 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
@@ -31,9 +34,9 @@ import org.hibernate.annotations.Where;
 @Setter
 @SQLDelete(sql = "UPDATE categories SET deleted_at = current_timestamp() WHERE id = ?")
 @Where(clause = "deleted_at is null")
-
 @Entity
-public abstract class Job {
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public abstract class Job implements Serializable {
     
     @Id
     @GeneratedValue(generator = "uuid")
@@ -45,9 +48,11 @@ public abstract class Job {
     protected String workingZone;
     
     protected String description;
+    
+    @Column(name="user_id")
+    protected String user_id;
   
 
-//    @Column(name="user_id")
     @ElementCollection(targetClass=String.class)
     protected List<String> days;
     
