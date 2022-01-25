@@ -1,7 +1,7 @@
 
 package com.ayudaencasa.app.repositories;
 
-import RolesSeguridad.Privilege;
+import com.ayudaencasa.app.entities.Privilege;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

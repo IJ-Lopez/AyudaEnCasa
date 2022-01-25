@@ -1,4 +1,4 @@
-package RolesSeguridad;
+package com.ayudaencasa.app.entities;
 
 import com.ayudaencasa.app.entities.User;
 import java.io.Serializable;

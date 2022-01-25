@@ -1,6 +1,8 @@
 
-package RolesSeguridad;
+package com.ayudaencasa.app.config;
 
+import com.ayudaencasa.app.entities.Role;
+import com.ayudaencasa.app.entities.Privilege;
 import com.ayudaencasa.app.entities.User;
 import com.ayudaencasa.app.repositories.PrivilegeRepository;
 import com.ayudaencasa.app.repositories.RoleRepository;

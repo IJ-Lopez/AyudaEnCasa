@@ -1,7 +1,7 @@
 package com.ayudaencasa.app.services.impl;
 
-import RolesSeguridad.Privilege;
-import RolesSeguridad.Role;
+import com.ayudaencasa.app.entities.Privilege;
+import com.ayudaencasa.app.entities.Role;
 import com.ayudaencasa.app.entities.User;
 import com.ayudaencasa.app.repositories.RoleRepository;
 import com.ayudaencasa.app.repositories.UserRepository;

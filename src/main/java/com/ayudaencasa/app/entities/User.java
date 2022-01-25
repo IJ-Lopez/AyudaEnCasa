@@ -1,6 +1,5 @@
 package com.ayudaencasa.app.entities;
 
-import RolesSeguridad.Role;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
