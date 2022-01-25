@@ -1,48 +1,5 @@
-* {
-  margin: 0%;
-  padding: 0%;
-  font-family: "Quicksand", sans-serif;
-  box-sizing: border-box;
-  border: none;
-}
 
-body {
-  /* background-color: #b0a5a5; ver en tabla */
-  background-color: #ffe8d6;
-  /* background-color: #ddbea9; */
-  /* background-color: #cb997e; definir color */
-  font-size: 17px;
-  color: #044e64;
-  height: auto;
-  width: 100%;
-  margin-top: 80px;
-}
-
-.nav-main h1 {
-  top: 0px;
-  background-color: #cb997e;
-  display: inline-flex;
-  height: 80px;
-  padding: 20px 20px;
-  position: fixed;
-  width: 100%;
-  z-index: 100;
-  font-family: "Licorice", cursive;
-  font-size: 50px;
-  font-weight: 300;
-  text-align: center;
-  justify-content: center;
-}
-
-/* .container {
-  background-color: red;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 120px;
-  width: 100%;
-} */
-
-table {
+.table {
   justify-content: center;
   box-sizing: border-box;
   /* background-color: rgb(171, 171, 171); */
@@ -53,12 +10,11 @@ table {
   margin-top: 120px;
   text-align: center;
   border-radius: 5px;
-  border-collapse: collapse;/*esta propiedad saca las líneas*/
-
+  border-collapse: collapse; /*esta propiedad saca las líneas*/
 }
 
 thead {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 td {
@@ -72,21 +28,22 @@ table th {
   border: none;
   padding: 10px;
   background-color: #cb997c;
-color: #044e64 !important;
+  color: #044e64 !important;
 }
 
-table tr:nth-child(odd) {/*filas pares*/
-  
+table tr:nth-child(odd) {
+  /*filas pares*/
+
   background-color: #044e6482;
   color: #fefefe;
 }
 
 table tr:nth-child(odd):hover {
-  
   background-color: #044e64;
 }
 
-table tr:nth-child(even) {/*filas impares*/
+table tr:nth-child(even) {
+  /*filas impares*/
   /*background-color: #618d9b;*/
   background-color: #044e64;
   color: #fefefe;
@@ -98,12 +55,10 @@ table tr:nth-child(even):hover {
 }
 
 
-
-
-
-
-
-
+.nav-main .button-back{
+  float: left;
+  text-align: center;
+}
 
 /* .table thead tr th  :hover  {
   color: white;

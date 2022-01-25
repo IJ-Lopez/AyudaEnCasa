@@ -52,4 +52,10 @@ function hideshow(){
     if(frm.style.display=="none"){
         frm.style.display="block"}
     }
-    
+
+
+
+$(document).ready(function() {
+    $('#example').DataTable();
+} );
+      

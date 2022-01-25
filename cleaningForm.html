@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cuidado de Personas</title>
-    <link rel="stylesheet" href="../static/css/style.css">
+    <title>Limpieza Doméstica</title>
+    <link rel="stylesheet" href="../static/css/cleaningForm.css">
     <!--Google fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -18,13 +18,13 @@
 
 <body>
     <div class="container">
-        <div class="card-form">
-            <h1>Cuidado de Personas</h1>
-            <!--  <img src="../static/img/Cuidador/c12.jpg" alt="images" width="300" />  -->
-            <form class="formato" action="/caregiverForm" method="POST">
+        <div class="card">
+            <h1>Limpieza Doméstica </h1>
+            <!-- <img src="../static/img/Limpieza/limp17.jpg" alt="images" width="300" />-->
+            <form class="formato" action="/cleaningForm" method="POST">
                 <div>
                     <label class="titulo" for="salario"></label>
-                    <input class="input font" type="text" name="salary" id="salario"
+                    <input class="input font" type="text" size="50px" name="salary" id="salario"
                         placeholder="Remuneración Pretendida">
                 </div>
                 <br>
@@ -61,7 +61,6 @@
                     <ul class="dropdown-menu" id="myDiv">
                         <li>
                             <input type="checkbox" value="Lunes"> Lunes
-                        </li>
                         <li>
                             <input type="checkbox" value="Martes"> Martes
                         </li>
@@ -99,30 +98,24 @@
                 <br>
                 <br>
                 <div>
-                    <label class="input" for="edad"></label>
-                    <p class="parrafo"> Rango de edad</p>
-                    <ul class="dropdown-menu" id="edad">
-                        <li>
-                            <input type="checkbox" value="a"> 0 a 5 años
-                        </li>
-                        <li>
-                            <input type="checkbox" value="b"> 6 a 10 años
-                        </li>
-                        <li>
-                        <input type="checkbox" value="c"> 11 a 18 años
-                        </li>
-                        <li>
-                            <input type="checkbox" value="d"> Adultos Mayores
-                        </li>
-                        <li>
-                            <input type="checkbox" value="e"> Todos
-                        </li>
-                    </ul>
+                    <label for="cantidad de habitaciones"></label>
+                    <input class="input font" type="number" name="rooms" id="cantidad de habitaciones" placeholder="Cantidad de habitaciones">
                 </div>
                 <br>
                 <br>
                 <div>
-                    <label class="input" for="cocina"></label>
+                    <label class="input" for="Sectores"></label>
+                    <select class="input" name="exteriors" id="Sectores">
+                        <option value="sectores">Sectores de la vivienda </option>
+                        <option value="adentro">Adentro </option>
+                        <option value="afuera">Afuera </option>
+                        <option value="ambas">Ambas </option>
+                    </select>
+                </div>
+                <br>
+                <br>
+                <div>
+                    <label class="input" for="cocina"> </label>
                     <p class="parrafo"> Servicio de cocina?</p>
                     <ul class="dropdown-menu" id="cocina">
                         <li>
@@ -136,9 +129,9 @@
                 <br>
                 <br>
                 <div>
-                    <label class="input" for="limpieza"></label>
-                    <p class="parrafo"> Limpieza de persona? </p>
-                    <ul class="dropdown-menu" id="limpieza">
+                    <label class="input" for="lavado"></label>
+                    <p class="parrafo"> Servicio de lavado de ropa? </p>
+                    <ul class="dropdown-menu" id="lavado">
                         <li>
                             <input type="checkbox" value="Si"> Si
                         </li>
@@ -150,9 +143,9 @@
                 <br>
                 <br>
                 <div>
-                    <label class="input" for="transporte"></label>
-                    <p class="parrafo"> Servicio de transporte? </p>
-                    <ul class="dropdown-menu" id="transporte">
+                    <label class="input" for="planchado"></label>
+                    <p class="parrafo"> Servicio de planchado? </p>
+                    <ul class="dropdown-menu" id="planchado">
                         <li>
                             <input type="checkbox" value="Si"> Si
                         </li>
@@ -169,7 +162,6 @@
         <div class="relleno">
 
         </div>
-
 </body>
 
 </html>
