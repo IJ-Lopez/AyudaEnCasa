@@ -23,8 +23,8 @@ public class CreateCaregiverDTO {
     private Integer quantity;    
     private Integer ageFrom;   
     private Integer ageTo;  
-    private Boolean cooking; 
-    private Boolean cleaningPeople;   
-    private Boolean tranfering;
+    private boolean cooking; 
+    private boolean cleaningPeople;   
+    private boolean tranfering;
     
 }

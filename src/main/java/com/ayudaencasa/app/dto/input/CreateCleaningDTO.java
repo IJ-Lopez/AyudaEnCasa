@@ -16,11 +16,10 @@ public class CreateCleaningDTO {
     
     private boolean cooking;
     
-    private String cookingnt;
     
-    private Boolean laundry;
+    private boolean laundry;
     
-    private Boolean ironing;
+    private boolean ironing;
     
     private Integer salary;
     private String workingZone;

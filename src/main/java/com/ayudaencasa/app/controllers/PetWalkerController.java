@@ -8,7 +8,6 @@ import com.ayudaencasa.app.exceptions.PetWalkerNotFoundException;
 import com.ayudaencasa.app.services.PetWalkerService;
 import io.github.jhipster.service.filter.IntegerFilter;
 import io.github.jhipster.service.filter.StringFilter;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.lang3.StringUtils;
@@ -41,14 +40,14 @@ public class PetWalkerController {
     
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.OK)
-    public String create(RedirectAttributes redirectAttributes, CreatePetWalkerDTO inputPetWalker, @RequestParam LocalTime timeFrom, @RequestParam LocalTime timeTo) {
+    public String create(RedirectAttributes redirectAttributes, CreatePetWalkerDTO inputPetWalker) {
         try{
             PetWalker petWalker = new PetWalker();
-            if(timeFrom != null){
-                petWalker.setHoursTo(timeFrom);    
+            if(inputPetWalker.getWorkingHoursTo() != null){
+                petWalker.setHoursTo(inputPetWalker.getWorkingHoursTo());    
             }
-            if(timeTo != null){
-                petWalker.setHoursFrom(timeTo);
+            if(inputPetWalker.getWorkingHoursFrom() != null){
+                petWalker.setHoursFrom(inputPetWalker.getWorkingHoursFrom());
             }
             BeanUtils.copyProperties(inputPetWalker, petWalker);
             petWalkerService.create(petWalker);

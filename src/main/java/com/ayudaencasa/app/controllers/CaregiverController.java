@@ -41,16 +41,37 @@ public class CaregiverController {
     
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.OK)
-    public String create(RedirectAttributes redirectAttributes, CreateCaregiverDTO inputCaregiver, @RequestParam LocalTime timeFrom, @RequestParam LocalTime timeTo) {
+    public String create(RedirectAttributes redirectAttributes, CreateCaregiverDTO inputCaregiver, @RequestParam(required = false) String ageRange) {
         try{
             Caregiver caregiver = new Caregiver();
-            if(timeFrom != null){
-                caregiver.setHoursTo(timeFrom);    
+            if(inputCaregiver.getWorkingHoursTo() != null){
+                caregiver.setHoursTo(inputCaregiver.getWorkingHoursTo());   
             }
-            if(timeTo != null){
-                caregiver.setHoursFrom(timeTo);
+            if(inputCaregiver.getWorkingHoursFrom() != null){
+                caregiver.setHoursFrom(inputCaregiver.getWorkingHoursFrom());
             }
             BeanUtils.copyProperties(inputCaregiver, caregiver);
+            switch (ageRange) {
+                case "a":
+                    caregiver.setAgeFrom(0);
+                    caregiver.setAgeTo(5);
+                    break;
+                case "b":
+                    caregiver.setAgeFrom(6);
+                    caregiver.setAgeTo(10);
+                    break;
+                case "c":
+                    caregiver.setAgeFrom(11);
+                    caregiver.setAgeTo(18);
+                    break;
+                case "d":
+                    caregiver.setAgeFrom(60);
+                    caregiver.setAgeTo(100);
+                    break;
+                case "e":
+                    caregiver.setAgeFrom(0);
+                    caregiver.setAgeTo(100);
+            }
             caregiverService.create(caregiver);
             return "index";
         }catch (Exception e) {

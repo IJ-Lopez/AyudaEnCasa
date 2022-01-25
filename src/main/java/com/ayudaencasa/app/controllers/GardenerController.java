@@ -43,14 +43,14 @@ public class GardenerController {
     
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.OK)
-    public String create(RedirectAttributes redirectAttributes, CreateGardenerDTO inputGardener, @RequestParam LocalTime timeFrom, @RequestParam LocalTime timeTo) {
+    public String create(RedirectAttributes redirectAttributes, CreateGardenerDTO inputGardener) {
         try{
             Gardener gardener = new Gardener();
-            if(timeFrom != null){
-                gardener.setHoursTo(timeFrom);    
+            if(inputGardener.getWorkingHoursTo() != null){
+                gardener.setHoursTo(inputGardener.getWorkingHoursTo());    
             }
-            if(timeTo != null){
-                gardener.setHoursFrom(timeTo);
+            if(inputGardener.getWorkingHoursFrom() != null){
+                gardener.setHoursFrom(inputGardener.getWorkingHoursFrom());
             }
             BeanUtils.copyProperties(inputGardener, gardener);
             gardenerService.create(gardener);

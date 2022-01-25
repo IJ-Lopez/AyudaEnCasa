@@ -12,9 +12,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import lombok.AllArgsConstructor;
@@ -52,7 +49,6 @@ public abstract class Job implements Serializable {
     @Column(name="user_id")
     protected String user_id;
   
-
     @ElementCollection(targetClass=String.class)
     protected List<String> days;
     
@@ -60,8 +56,7 @@ public abstract class Job implements Serializable {
     
     protected Integer hoursTo;
     
-    protected Boolean status;
-    
+    protected Boolean status;  
     
     @Temporal(value = TemporalType.TIMESTAMP)
     @CreationTimestamp
@@ -111,6 +106,5 @@ public abstract class Job implements Serializable {
         }
         return true;
     }
-    
-    
+   
 }
