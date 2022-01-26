@@ -55,7 +55,7 @@ public class User implements Serializable {
     private String address;
     
     private Long phone;
-    // private Photo photo;
+    private String photo;
     // private Cv cv;
     
     @OneToMany(cascade = CascadeType.ALL)

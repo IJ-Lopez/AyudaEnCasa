@@ -3,6 +3,7 @@ package com.ayudaencasa.app.controllers;
 
 import com.ayudaencasa.app.entities.User;
 import com.ayudaencasa.app.exceptions.UserNotFoundException;
+import com.ayudaencasa.app.repositories.AwsRepository;
 import com.ayudaencasa.app.services.UserService;
 import java.util.List;
 import javax.validation.Valid;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @Validated
@@ -58,8 +60,9 @@ public class UserController {
     
     @PostMapping("/registry")
     @ResponseStatus(HttpStatus.OK)
-    public String create(Model model, @Valid User inputUser, @RequestParam String departament) {
+    public String create(Model model, @Valid User inputUser, @RequestParam String departament, @RequestParam String photo) {
         try{
+            inputUser.setPhoto(photo);
             User user = new User();
             BeanUtils.copyProperties(inputUser, user);
             user.setAddress(inputUser.getAddress() + " - " + departament);
