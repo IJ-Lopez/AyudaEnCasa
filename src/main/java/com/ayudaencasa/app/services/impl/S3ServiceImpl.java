@@ -33,6 +33,7 @@ public class S3ServiceImpl implements S3Service{
     @Value("${AWS_BUCKET}")
     private String s3BucketName;
  
+    @Override
     public File convertMultiPartFileToFile(final MultipartFile multipartFile) {
         final File file = new File(multipartFile.getOriginalFilename());
         try (final FileOutputStream outputStream = new FileOutputStream(file)) {
