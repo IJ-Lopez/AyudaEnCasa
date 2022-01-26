@@ -28,7 +28,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @Validated
-@RequestMapping("/other")
+@RequestMapping("/otro")
 public class OtherController {
     
     @Autowired
