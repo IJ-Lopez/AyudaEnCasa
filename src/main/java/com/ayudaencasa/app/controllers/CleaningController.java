@@ -29,6 +29,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 @Validated
 @RequestMapping("/limpiador")
+
 public class CleaningController {
  
     @Autowired
@@ -60,6 +61,7 @@ public class CleaningController {
     }
     
     @PostMapping("/filter")
+
     public ResponseEntity<List<Cleaning>> findByFilter(@RequestBody SearchCleaningDTO searchCleaning) {    
         if(searchCleaning.getWorkingHoursTo() != null){
             searchCleaning.setHoursTo(searchCleaning.getWorkingHoursTo());    
@@ -200,6 +202,7 @@ public class CleaningController {
     }
 
     @GetMapping("/list")
+
     public String findAll(@RequestParam(required = false) String q) {
         List<Cleaning> cleaners = cleaningService.findAll();
         return "cleaning.html";

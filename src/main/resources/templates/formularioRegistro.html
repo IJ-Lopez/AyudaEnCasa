@@ -6,10 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fomulario de Registro</title>
-    <link rel="stylesheet" href="/src/main/resources/static/css/registry.css" />
+    <link rel="stylesheet" href="css/registry.css" />
     <!--Google fonts-->
-    <!--link rel="preconnect" href="https://fonts.googleapis.com" /-->
-    <!--link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Licorice&family=Pushster&family=Quicksand:wght@300&family=Spline+Sans:wght@300&display=swap" />
     <!--Font Awesome-->
@@ -19,65 +19,64 @@
 <body>
     <div class="container">
         <div class="form-register">
-            <!--onsubmit="this.source.value=this.outerHTML" enctype="application/x-www-form-urlencoded"/-->
-            <form action="/user/form" method="POST" enctype="application/x-www-form-urlencoded">
+                <form  action="" method="POST" enctype="multipart/form-data">
                     <div class="titulo">
                         <h5>Regístrate!</h5>
                     </div>
                     <br />
                     <div>
-                        <label> Email </label>
-                        <input class="controls" type="email" name="email"/>
+                        <label for="email"> Email </label>
+                        <input class="controls" type="text" name="email" id="email" required />
                     </div>
 
                     <br />
                     <div>
-                        <label> Contraseña</label>
-                        <input class="controls" type="password" name="password" />
-                        
+                        <label for="clave"> Contraseña</label>
+                        <input class="controls" type="password" name="clave" id="clave" required />
+                        <span id="verclave" class="verclave"><i id="icono" class="fas fa-eye"></i></span>
                     </div>
                     <div>
-                        <label> Confirmar contraseña</label>
-                        <input class="controls" type="password" name="password2"/>
-                        
+                        <label for="clave"> Confirmar contraseña</label>
+                        <input class="controls" type="password" name="clave" id="clave" required />
+                        <span id="verclave" class="verclave"><i id="icono" class="fas fa-eye"></i></span>
                     </div>
 
                     <br />
                     <div>
-                        <label> Nombre</label>
-                        <input class="controls" type="text" name="firstName" />
+                        <label for="nombre"> Nombre</label>
+                        <input class="controls" type="text" name="firstName" id="nombre" required />
                     </div>
 
                     <br />
                     <div>
-                        <label> Apellido</label>
-                        <input class="controls" type="text" name="lastName"/>
+                        <label for="apellido"> Apellido</label>
+                        <input class="controls" type="text" name="lastName" id="apellido" required />
                     </div>
 
                     <br />
                     <div>
-                        <label> Fecha de Nacimiento</label>
-                        <input class="controls" type="date" name="dob" pattern="yyyy-MM-dd"/>
+                        <label for="fechaNacimiento"> Fecha de Nacimiento</label>
+                        <input class="controls" type="date" name="dob" id="fechaNacimiento" required />
                     </div>
 
                     <br />
                     <div>
-                        <label> DNI</label>
-                        <input class="controls" type="number" name="dni"/>
+                        <label for="DNI"> DNI</label>
+                        <input class="controls" type="text" name="dni" id="DNI" required />
                     </div>
 
                     <br />
-                    <!--div>
+                    <div>
                         <label for="foto">Foto de Perfil</label>
                         <input type="file" name="photo" id="foto" />
-                        <!-- <input type="submit" name="photo" value="Enviar imagen" /> >
-                    </div-->
+                        <!-- <input type="submit" name="photo" value="Enviar imagen" /> -->
+                    </div>
                     <br />
                     <div>
-                        <label>Dirección</label>
-                        <input class="controls" type="text" name="address" />
+                        <label for="dirección">Dirección</label>
+                        <input class="controls" type="text" name="adress" id="dirección" required />
                     </div>
-                        <!--div class="departamento">
+                        <div class="departamento">
                             <label for="departamento"> Departamento </label>
                             <select name="departamentos" id="deptartamento">
                                 <option value="Capital">Capital</option>
@@ -99,34 +98,29 @@
                                 <option value="Tunuyán">Tunuyán</option>
                                 <option value="Tupungato">Tupungato</option>
                             </select>
-                        </div-->
-                    <br/>
+                        </div>
+                    <br />
                     <div>
-                        <label> Teléfono</label>
-                        <input class="controls" type="number" name="phone" placeholder="(Código de área)Número"
-                            />
+                        <label for="teléfono"> Teléfono</label>
+                        <input class="controls" type="tel" name="phone" id="teléfono" placeholder="(Código de área)Número"
+                            required />
                     </div>
                     <br />
-                    <!--div>
+                    <div>
                         <label for="cv"> Curriculum Vitae</label>
                         <input type="file" name="cv" id="cv" />
-                        <!-- <input type="submit" name="cv" value="Enviar Curriculum" /> >
-                    </div-->
-                        <div class="textarea">
-                            <!--textarea name="descripcion" id="" cols="70" rows="5" placeholder="Descripción"></textarea-->
-                        </div>
+                        <!-- <input type="submit" name="cv" value="Enviar Curriculum" /> -->
+                    </div>
                     <br>
                     <p>Estoy de acuerdo con los <a href="#"> Terminos y Condiciones</a></p>
-                    <!--input type="hidden" name="source" /-->
-                    <!--input class="botons" type="submit" value="Registrar" /-->
-                    <button type="submit">Submit</button>
+                    <input class="botons" type="submit" value="Registrar" />
                     <p>
-                        <a href="/src/main/resources/templates/login.html">¡Ya tengo Cuenta!</a>
+                        <a href="login.html">¡Ya tengo Cuenta!</a>
                     </p>
-            </form>
-       
+                </form>
         </div>
     </div>
+<script src="js/main.js"></script>
 </body>
 
 </html>

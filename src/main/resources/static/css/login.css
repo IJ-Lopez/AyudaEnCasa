@@ -12,9 +12,7 @@ background-image: url(../img/sillonliving.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-
-
-}
+ }
 
 .container {
   display: flex;
@@ -102,8 +100,6 @@ background-image: url(../img/sillonliving.jpg);
   width: 300px;
 }
 
-
-
 .controls {
   width: 100%;
   /* border: 1px solid #017bab; */
@@ -188,3 +184,4 @@ background-image: url(../img/sillonliving.jpg);
 .form-register textarea {
   resize: none;
 }
+

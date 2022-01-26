@@ -11,16 +11,10 @@ import lombok.NoArgsConstructor;
 public class CreateCleaningDTO {
 
     private Integer rooms;
-    
     private String exteriors;
-    
     private boolean cooking;
-    
-    
     private boolean laundry;
-    
-    private boolean ironing;
-    
+    private boolean ironing;    
     private Integer salary;
     private String workingZone;
     private String description;

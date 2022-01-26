@@ -73,6 +73,7 @@ public class UserServiceImpl implements UserService{
 //        
 //    }
 
+
     @Override
     @Transactional
     public void update(@NonNull String id, @NonNull User newUser) throws UserNotFoundException {
@@ -110,10 +111,6 @@ public class UserServiceImpl implements UserService{
     @Override
     public List<User> findAll() {
         return userRepo.findAll();
-    }
-
-    
-
-        
+    }        
     
 }

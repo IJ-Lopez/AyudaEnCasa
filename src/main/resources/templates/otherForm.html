@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Limpieza Doméstica</title>
-    <link rel="stylesheet" href="css/cleaningForm.css">
+    <title>Otros empleos</title>
+    <link rel="stylesheet" href="../static/css/cleaningForm.css">
     <!--Google fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -19,15 +19,20 @@
 <body>
     <div class="container">
         <div class="card">
-            <h1>Limpieza Doméstica </h1>
+            <h1>Otros servicios</h1>
             <!-- <img src="../static/img/Limpieza/limp17.jpg" alt="images" width="300" />-->
             <form class="formato" action="/cleaningForm" method="POST">
+                <div>
+                    <label class="titulo" for="tipoTrabajo"></label>
+                    <input class="input font" type="text" size="50px" name="type" id="tipoTrabajo"
+                        placeholder="Tipo de trabajo">
+                </div>
+                <br>
                 <div>
                     <label class="titulo" for="salario"></label>
                     <input class="input font" type="text" size="50px" name="salary" id="salario"
                         placeholder="Remuneración Pretendida">
                 </div>
-                <br>
                 <br>
                 <div>
                     <label class="titulo" for="zona"> </label>
@@ -53,7 +58,6 @@
                         <option value="Tupungato">Tupungato </option>
                     </select>
                 </div>
-                <br>
                 <br>
                 <div class="btn-group">
                     <label class="input" for="dias"></label>
@@ -94,65 +98,6 @@
                     <label class="titulo" for="hora"></label>
                     <input class="input font" type="text" id="hora" name="timeTo" placeholder="Hora de finalización"
                         onfocus="(this.type='time')">
-                </div>
-                <br>
-                <br>
-                <div>
-                    <label for="cantidad de habitaciones"></label>
-                    <input class="input font" type="number" name="rooms" id="cantidad de habitaciones" placeholder="Cantidad de habitaciones">
-                </div>
-                <br>
-                <br>
-                <div>
-                    <label class="input" for="Sectores"></label>
-                    <select class="input" name="exteriors" id="Sectores">
-                        <option value="sectores">Sectores de la vivienda </option>
-                        <option value="adentro">Adentro </option>
-                        <option value="afuera">Afuera </option>
-                        <option value="ambas">Ambas </option>
-                    </select>
-                </div>
-                <br>
-                <br>
-                <div>
-                    <label class="input" for="cocina"> </label>
-                    <p class="parrafo"> Servicio de cocina?</p>
-                    <ul class="dropdown-menu" id="cocina">
-                        <li>
-                            <input type="checkbox" value="Si"> Si
-                        </li>
-                        <li>
-                            <input type="checkbox" value="No"> No
-                        </li>
-                    </ul>
-                </div>
-                <br>
-                <br>
-                <div>
-                    <label class="input" for="lavado"></label>
-                    <p class="parrafo"> Servicio de lavado de ropa? </p>
-                    <ul class="dropdown-menu" id="lavado">
-                        <li>
-                            <input type="checkbox" value="Si"> Si
-                        </li>
-                        <li>
-                            <input type="checkbox" value="No"> No
-                        </li>
-                    </ul>
-                </div>
-                <br>
-                <br>
-                <div>
-                    <label class="input" for="planchado"></label>
-                    <p class="parrafo"> Servicio de planchado? </p>
-                    <ul class="dropdown-menu" id="planchado">
-                        <li>
-                            <input type="checkbox" value="Si"> Si
-                        </li>
-                        <li>
-                            <input type="checkbox" value="No"> No
-                        </li>
-                    </ul>
                 </div>
                 <br>
                 <button class="buttons"> Enviar </button>

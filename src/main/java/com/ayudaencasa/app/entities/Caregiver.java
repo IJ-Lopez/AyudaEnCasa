@@ -1,6 +1,7 @@
 package com.ayudaencasa.app.entities;
 
 import java.io.Serializable;
+import java.time.LocalTime;
 import javax.persistence.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -35,5 +36,6 @@ public class Caregiver extends Job implements Serializable {
     public String getType() {
         return "Caregiver";
     }
+
     
 }

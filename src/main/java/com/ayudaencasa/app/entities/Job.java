@@ -39,11 +39,8 @@ public abstract class Job implements Serializable {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     protected String id;
-    
     protected Integer salary;
-    
-    protected String workingZone;
-    
+    protected String workingZone;  
     protected String description;
     
     @Column(name="user_id")
@@ -51,11 +48,8 @@ public abstract class Job implements Serializable {
   
     @ElementCollection(targetClass=String.class)
     protected List<String> days;
-    
     protected Integer hoursFrom;
-    
     protected Integer hoursTo;
-    
     protected Boolean status;  
     
     @Temporal(value = TemporalType.TIMESTAMP)
@@ -106,5 +100,5 @@ public abstract class Job implements Serializable {
         }
         return true;
     }
-   
+
 }

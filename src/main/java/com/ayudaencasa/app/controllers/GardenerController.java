@@ -26,89 +26,91 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
+
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @Validated
 @RequestMapping("/jardinero")
+
 public class GardenerController {
-    
+
     @Autowired
     private GardenerService gardenerService;
-    
+
     @GetMapping("/create")
-    public String registry(){
+    public String registry() {
         return "gardenerForm";
     }
-    
+
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.OK)
     public String create(RedirectAttributes redirectAttributes, CreateGardenerDTO inputGardener) {
-        try{
+        try {
             Gardener gardener = new Gardener();
-            if(inputGardener.getWorkingHoursTo() != null){
-                gardener.setHoursTo(inputGardener.getWorkingHoursTo());    
+            if (inputGardener.getWorkingHoursTo() != null) {
+                gardener.setHoursTo(inputGardener.getWorkingHoursTo());
             }
-            if(inputGardener.getWorkingHoursFrom() != null){
+            if (inputGardener.getWorkingHoursFrom() != null) {
                 gardener.setHoursFrom(inputGardener.getWorkingHoursFrom());
             }
             BeanUtils.copyProperties(inputGardener, gardener);
             gardenerService.create(gardener);
             return "index";
-        }catch (GardenerNotFoundException e) {
+        } catch (GardenerNotFoundException e) {
             redirectAttributes.addFlashAttribute("error", e.getMessage());
             return "gardenerForm";
-        }    
+        }
     }
-    
+
     @GetMapping("/list")
     public String findAll(@RequestParam(required = false) String q) {
         List<Gardener> gardeners = gardenerService.findAll();
         return "gardener.html";
     }
-    
+
     @PostMapping("/filter")
-    public ResponseEntity<List<Gardener>> findByFilter(@RequestBody SearchGardenerDTO searchGardener) {    
-        if(searchGardener.getWorkingHoursTo() != null){
-            searchGardener.setHoursTo(searchGardener.getWorkingHoursTo());    
+    public ResponseEntity<List<Gardener>> findByFilter(@RequestBody SearchGardenerDTO searchGardener) {
+        if (searchGardener.getWorkingHoursTo() != null) {
+            searchGardener.setHoursTo(searchGardener.getWorkingHoursTo());
         }
-        if(searchGardener.getWorkingHoursFrom() != null){
+        if (searchGardener.getWorkingHoursFrom() != null) {
             searchGardener.setHoursFrom(searchGardener.getWorkingHoursFrom());
         }
         GardenerCriteria gardenerCriteria = createCriteria(searchGardener);
         List<Gardener> gardeners = gardenerService.findByCriteria(gardenerCriteria);
-       
-        if(searchGardener.getDay() != null) {
+
+        if (searchGardener.getDay() != null) {
             List<Gardener> gar = new ArrayList<>();
-            for (Gardener gardener : gardeners){
+            for (Gardener gardener : gardeners) {
                 for (String day : gardener.getDays()) {
-                    if(day.equalsIgnoreCase(searchGardener.getDay())) {
+                    if (day.equalsIgnoreCase(searchGardener.getDay())) {
                         gar.add(gardener);
                     }
-                } 
+                }
             }
             gardeners = gar;
-        }  
+        }
         return new ResponseEntity<>(gardeners, HttpStatus.OK);
     }
-    
-    private GardenerCriteria createCriteria(SearchGardenerDTO searchGardener){
+
+    private GardenerCriteria createCriteria(SearchGardenerDTO searchGardener) {
         GardenerCriteria gardenerCriteria = new GardenerCriteria();
-        if(searchGardener != null){
-            if(searchGardener.getSurfaceFrom() != null || searchGardener.getSurfaceTo() != null){
+        if (searchGardener != null) {
+            if (searchGardener.getSurfaceFrom() != null || searchGardener.getSurfaceTo() != null) {
                 DoubleFilter filter = new DoubleFilter();
-                if(searchGardener.getSurfaceFrom() != null){
+                if (searchGardener.getSurfaceFrom() != null) {
                     filter.setGreaterThanOrEqual(searchGardener.getSurfaceFrom());
                     gardenerCriteria.setSurface(filter);
                 }
-                if(searchGardener.getSurfaceTo() != null){
+                if (searchGardener.getSurfaceTo() != null) {
                     filter.setLessThanOrEqual(searchGardener.getSurfaceTo());
                     gardenerCriteria.setSurface(filter);
                 }
             }
-            if(!StringUtils.isBlank(searchGardener.getTools())){
+            if (!StringUtils.isBlank(searchGardener.getTools())) {
                 BooleanFilter filter = new BooleanFilter();
-                switch(searchGardener.getTools()){
+                switch (searchGardener.getTools()) {
                     case "true":
                         filter.setEquals(true);
                         break;
@@ -116,13 +118,13 @@ public class GardenerController {
                         filter.setEquals(false);
                         break;
                     default:
-                        filter.setEquals(false);        
+                        filter.setEquals(false);
                 }
                 gardenerCriteria.setTools(filter);
             }
-            if(!StringUtils.isBlank(searchGardener.getPoolCleaning())){
+            if (!StringUtils.isBlank(searchGardener.getPoolCleaning())) {
                 BooleanFilter filter = new BooleanFilter();
-                switch(searchGardener.getPoolCleaning()){
+                switch (searchGardener.getPoolCleaning()) {
                     case "true":
                         filter.setEquals(true);
                         break;
@@ -130,13 +132,13 @@ public class GardenerController {
                         filter.setEquals(false);
                         break;
                     default:
-                        filter.setEquals(false);        
+                        filter.setEquals(false);
                 }
                 gardenerCriteria.setPoolCleaning(filter);
             }
-            if(!StringUtils.isBlank(searchGardener.getGardenFence())){
+            if (!StringUtils.isBlank(searchGardener.getGardenFence())) {
                 BooleanFilter filter = new BooleanFilter();
-                switch(searchGardener.getGardenFence()){
+                switch (searchGardener.getGardenFence()) {
                     case "true":
                         filter.setEquals(true);
                         break;
@@ -144,13 +146,13 @@ public class GardenerController {
                         filter.setEquals(false);
                         break;
                     default:
-                        filter.setEquals(false);        
+                        filter.setEquals(false);
                 }
                 gardenerCriteria.setGardenFence(filter);
             }
-            if(!StringUtils.isBlank(searchGardener.getPlantDisinfection())){
+            if (!StringUtils.isBlank(searchGardener.getPlantDisinfection())) {
                 BooleanFilter filter = new BooleanFilter();
-                switch(searchGardener.getPlantDisinfection()){
+                switch (searchGardener.getPlantDisinfection()) {
                     case "true":
                         filter.setEquals(true);
                         break;
@@ -158,37 +160,37 @@ public class GardenerController {
                         filter.setEquals(false);
                         break;
                     default:
-                        filter.setEquals(false);        
+                        filter.setEquals(false);
                 }
                 gardenerCriteria.setPlantDisinfection(filter);
             }
-            if(searchGardener.getSalaryFrom()!= null || searchGardener.getSalaryTo()!= null){
+            if (searchGardener.getSalaryFrom() != null || searchGardener.getSalaryTo() != null) {
                 IntegerFilter filter = new IntegerFilter();
-                if(searchGardener.getSalaryFrom() != null){
+                if (searchGardener.getSalaryFrom() != null) {
                     filter.setGreaterThanOrEqual(searchGardener.getSalaryFrom());
                     gardenerCriteria.setSalary(filter);
                 }
-                if(searchGardener.getSalaryTo() != null){
+                if (searchGardener.getSalaryTo() != null) {
                     filter.setLessThanOrEqual(searchGardener.getSalaryTo());
                     gardenerCriteria.setSalary(filter);
                 }
             }
-            if(!StringUtils.isBlank(searchGardener.getWorkingZone())){
+            if (!StringUtils.isBlank(searchGardener.getWorkingZone())) {
                 StringFilter filter = new StringFilter();
                 filter.setContains(searchGardener.getWorkingZone());
                 gardenerCriteria.setWorkingZone(filter);
             }
-            if(!StringUtils.isBlank(searchGardener.getDescription())){
+            if (!StringUtils.isBlank(searchGardener.getDescription())) {
                 StringFilter filter = new StringFilter();
                 filter.setContains(searchGardener.getDescription());
                 gardenerCriteria.setDescription(filter);
             }
-            if(searchGardener.getWorkingHoursFrom() != null) {           
+            if (searchGardener.getWorkingHoursFrom() != null) {
                 IntegerFilter filter = new IntegerFilter();
                 filter.setLessThanOrEqual(searchGardener.getHoursFrom());
                 gardenerCriteria.setHoursFrom(filter);
             }
-            if(searchGardener.getWorkingHoursTo() != null){               
+            if (searchGardener.getWorkingHoursTo() != null) {
                 IntegerFilter filter = new IntegerFilter();
                 filter.setGreaterThanOrEqual(searchGardener.getHoursTo());
                 gardenerCriteria.setHoursTo(filter);
@@ -196,20 +198,20 @@ public class GardenerController {
         }
         return gardenerCriteria;
     }
-    
+
     @GetMapping("")
     public Gardener findById(@RequestParam String id) {
         return gardenerService.findById(id);
-    }    
-    
+    }
+
     @PostMapping("/delete")
     public void delete(@RequestParam String id) {
         gardenerService.delete(id);
     }
-    
+
     @PostMapping("/update")
     public void update(@RequestParam String id, Gardener newGardener) {
         gardenerService.update(id, newGardener);
     }
-    
+
 }

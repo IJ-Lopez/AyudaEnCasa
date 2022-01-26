@@ -68,6 +68,7 @@ public class OtherController {
             others = otherService.findByType(type);
         }
         return "testpage.html";
+
     }
     
     @PostMapping("/filter")
