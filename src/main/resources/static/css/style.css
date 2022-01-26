@@ -118,7 +118,7 @@ h1 {
     height: 600px;
     background-image: url("/img/sillonliving.jpg");
     background-repeat: no-repeat;
-    background-position: center center;
+    background-position: center;
     background-size: cover;
     display: flex;
     flex-direction: column;
@@ -199,7 +199,7 @@ h1 {
 
 .sugerencias {
     width: 100%;
-    /* margin-top: 50px; */
+    margin-top: 40px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     width: 1fr;
