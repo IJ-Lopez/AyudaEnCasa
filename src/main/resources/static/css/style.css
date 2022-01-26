@@ -116,7 +116,7 @@ h1 {
 .busqueda {
     width: auto;
     height: 600px;
-    background-image: url("/src/main/resources/static/img/sillonliving.jpg");
+    background-image: url("/img/sillonliving.jpg");
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
