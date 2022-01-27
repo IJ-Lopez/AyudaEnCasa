@@ -622,7 +622,7 @@ table tr:nth-child(even):hover {
      border-radius: 10px; */
 }
 .card h1 {
-border: 2px black solid
+border: 2px black solid;
   font-family: "Licorice", cursive;
   font-size: 100px;
   margin: 15px 10px;

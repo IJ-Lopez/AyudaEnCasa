@@ -65,13 +65,17 @@ public class GardenerController {
     }
 
     @GetMapping("/list")
-    public String findAll(Model model, @RequestParam(required = false) String q) {
+    public String findAll(Model model, @RequestParam(required = false) List<Gardener> gardeners) {
+        if(gardeners != null){
+        model.addAttribute("gardeners", gardeners);
+        } else {
         model.addAttribute("gardeners", gardenerService.findAll());
+        }
         return "gardenerList";
     }
     
     @PostMapping("/list")
-    public String findByFilter(Model model, SearchGardenerDTO searchGardener) {
+    public String findByFilter(SearchGardenerDTO searchGardener, RedirectAttributes rt) {
         if(searchGardener.getWorkingHoursTo() != null){
             searchGardener.setHoursTo(searchGardener.getWorkingHoursTo());
         }
@@ -80,7 +84,8 @@ public class GardenerController {
         }
         GardenerCriteria gardenerCriteria = createCriteria(searchGardener);
         List<Gardener> gardeners = gardenerService.findByCriteria(gardenerCriteria);
-        if(searchGardener.getDay() != null) {
+        
+        if(searchGardener.getDay() != null && !searchGardener.getDay().isEmpty()) {
             List<Gardener> gar = new ArrayList<>();
             for (Gardener gardener : gardeners) {
                 for (String day : gardener.getDays()) {
@@ -91,8 +96,8 @@ public class GardenerController {
             }
             gardeners = gar;
         }  
-        model.addAttribute("gardeners", gardeners);
-        return "gardenerList";
+        rt.addAttribute("gardeners", gardeners);
+        return "redirect:/jardinero/list";
     }
 
     private GardenerCriteria createCriteria(SearchGardenerDTO searchGardener) {
