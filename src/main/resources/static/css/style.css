@@ -80,7 +80,6 @@ h1 {
   color: #fff;
   display: block;
   position: static;
-  user-select: none;
   font-weight: 500;
 }
 
@@ -201,7 +200,7 @@ h1 {
 
 .sugerencias {
     width: 100%;
-    margin-top: 40px;
+    margin-top: 15px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     width: 1fr;
@@ -246,7 +245,7 @@ h1 {
 /*Populares*/
 
 .box {
-  margin-top: 5px;
+  margin-top: 30px;
   width: 100%;
   text-align: center;
   display: flex;
@@ -485,7 +484,7 @@ h1 {
   }
 
   .box {
-    margin-top: 5px;
+    /* margin-top: 55px; */
     width: 100%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
