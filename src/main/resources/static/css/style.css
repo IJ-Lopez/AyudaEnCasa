@@ -48,7 +48,7 @@ ul {
   margin-bottom: 100px;
   position: fixed;
   width: 100%;
-  z-index: 100;
+  z-index: 100;   
 }
 
 .work-menu li a {
@@ -137,14 +137,23 @@ h1 {
   margin: 20px;
 }
 
-.cuadrobusqueda:hover {
+/* .cuadrobusqueda:hover {
   border: 2px solid #b0e7da;
   border-radius: 10%;
   opacity: 1;
   text-align: center;
   padding: 20px;
   cursor: cell;
-}
+} */
+
+.form :hover {
+    border: 2px solid #b0e7da;
+    border-radius: 10%;
+    opacity: 1;
+    text-align: center;
+    padding: 20px;
+    cursor: cell;
+  }
 
 .h2b {
   font-family: "Licorice", cursive;
@@ -613,8 +622,9 @@ table tr:nth-child(even):hover {
      border-radius: 10px; */
 }
 .card h1 {
+border: 2px black solid
   font-family: "Licorice", cursive;
-  font-size: 80px;
+  font-size: 100px;
   margin: 15px 10px;
   font-weight: 500;
 }
