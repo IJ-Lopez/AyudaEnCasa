@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -64,14 +65,14 @@ public class GardenerController {
     }
 
     @GetMapping("/list")
-    public String findAll(@RequestParam(required = false) String q) {
-        List<Gardener> gardeners = gardenerService.findAll();
-        return "gardener.html";
+    public String findAll(Model model, @RequestParam(required = false) String q) {
+        model.addAttribute("gardeners", gardenerService.findAll());
+        return "gardenerList";
     }
-
-    @PostMapping("/filter")
-    public ResponseEntity<List<Gardener>> findByFilter(@RequestBody SearchGardenerDTO searchGardener) {
-        if (searchGardener.getWorkingHoursTo() != null) {
+    
+    @PostMapping("/list")
+    public String findByFilter(Model model, SearchGardenerDTO searchGardener) {
+        if(searchGardener.getWorkingHoursTo() != null){
             searchGardener.setHoursTo(searchGardener.getWorkingHoursTo());
         }
         if (searchGardener.getWorkingHoursFrom() != null) {
@@ -79,8 +80,7 @@ public class GardenerController {
         }
         GardenerCriteria gardenerCriteria = createCriteria(searchGardener);
         List<Gardener> gardeners = gardenerService.findByCriteria(gardenerCriteria);
-
-        if (searchGardener.getDay() != null) {
+        if(searchGardener.getDay() != null) {
             List<Gardener> gar = new ArrayList<>();
             for (Gardener gardener : gardeners) {
                 for (String day : gardener.getDays()) {
@@ -90,8 +90,9 @@ public class GardenerController {
                 }
             }
             gardeners = gar;
-        }
-        return new ResponseEntity<>(gardeners, HttpStatus.OK);
+        }  
+        model.addAttribute("gardeners", gardeners);
+        return "gardenerList";
     }
 
     private GardenerCriteria createCriteria(SearchGardenerDTO searchGardener) {
