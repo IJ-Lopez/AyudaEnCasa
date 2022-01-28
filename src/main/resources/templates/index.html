@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ayuda en casa</title>
+  <title >Ayuda en casa</title>
   <!--Css-->
   <link rel="stylesheet" href="/css/style.css" />
   <!--Google fonts-->
@@ -19,12 +19,12 @@
 
 <body>
   <div class="container">
-    <nav class="nav-main">
-      <h1>Ayuda en casa</h1>
+    <nav class="nav-main" id="top">
+       <a href="#"> <h1 id="home">Ayuda en casa</h1></a>
       <ul class="nav-menu">
-        <li>
+        <!-- <li>
           <a href="#main">Inicio <i class="fas fa-home"></i></a>
-        </li>
+        </li> -->
         <li>
           <a href="#aboutus">Sobre nosotros <i class="fas fa-users"></i></a>
         </li>
@@ -33,7 +33,7 @@
         </li>
         <div class="work-menu">
           <li>
-            <!--deberia llevar a un form lista desplegable con los registros-->
+            <!-- deberia llevar a un form lista desplegable con los registros -->
             <a href="#form">Quiero trabajar <i class="fas fa-briefcase"></i></a>
             <ul class="work-menu">
               <li><a href="../jardinero/create">Jardinero</a></li>
@@ -46,11 +46,11 @@
         </div>
         <div class="work-menu">
           <li>
-            <!--deberia llevar a un form lista desplegable con los registros-->
+            <!-- deberia llevar a un form lista desplegable con los registros -->
             <a href="#form">Sección usuarios <i class="far fa-user"></i></a>
             <ul class="work-menu">
-              <li><a href="../user/login">Iniciar sesion <i class="fas fa-sign-in-alt"></i></a></li>
-              <li><a href="../user/registry">Regístrate <i class="fas fa-bars"></i></a></li>
+              <li><a href="/login">Iniciar sesion <i class="fas fa-sign-in-alt"></i></a></li>
+              <li><a href="/user/registry">Regístrate <i class="fas fa-bars"></i></a></li>
             </ul>
           </li>
         </div>
@@ -65,10 +65,10 @@
             <form action="/home/buscar" method="POST">
               <input class="form" type="text" name="trabajo" id="trabajo" placeholder="Ingrese su busqueda" list="jobs-list"/>
               <datalist id ="jobs-list">
+                  <option value="Cuidado de personas"></option>
                   <option value="Jardinero"></option>
-                  <option value="Paseador"></option>
-                  <option value="Cuidador"></option>
-                  <option value="Limpiador"></option>
+                  <option value="Paseador de perros"></option>
+                  <option value="Servicio de limpieza"></option>
                   <option value="Otro"></option>
               </datalist>
             </form>
@@ -106,7 +106,7 @@
         </div>
       </div>
       <!--corregir enlaces-->
-      <h3>Populares...</h3>
+      <h3 class="h3-sug">Populares</h3>
       <div class="box">
         <div class="card">
           <a href="/paseador/list">

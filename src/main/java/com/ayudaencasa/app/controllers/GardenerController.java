@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -45,7 +46,7 @@ public class GardenerController {
 
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.OK)
-    public String create(RedirectAttributes redirectAttributes, CreateGardenerDTO inputGardener) {
+    public String create(Model model, CreateGardenerDTO inputGardener) {
         try {
             Gardener gardener = new Gardener();
             if (inputGardener.getWorkingHoursTo() != null) {
@@ -57,21 +58,25 @@ public class GardenerController {
             BeanUtils.copyProperties(inputGardener, gardener);
             gardenerService.create(gardener);
             return "index";
-        } catch (GardenerNotFoundException e) {
-            redirectAttributes.addFlashAttribute("error", e.getMessage());
+        } catch (GardenerNotFoundException ex) {
+            model.addAttribute("error", ex.getMessage());
             return "gardenerForm";
         }
     }
 
     @GetMapping("/list")
-    public String findAll(@RequestParam(required = false) String q) {
-        List<Gardener> gardeners = gardenerService.findAll();
-        return "gardener.html";
+    public String findAll(Model model, @RequestParam(required = false) List<Gardener> gardeners) {
+        if(gardeners != null){
+        model.addAttribute("gardeners", gardeners);
+        } else {
+        model.addAttribute("gardeners", gardenerService.findAll());
+        }
+        return "gardenerList";
     }
-
-    @PostMapping("/filter")
-    public ResponseEntity<List<Gardener>> findByFilter(@RequestBody SearchGardenerDTO searchGardener) {
-        if (searchGardener.getWorkingHoursTo() != null) {
+    
+    @PostMapping("/list")
+    public String findByFilter(SearchGardenerDTO searchGardener, RedirectAttributes rt) {
+        if(searchGardener.getWorkingHoursTo() != null){
             searchGardener.setHoursTo(searchGardener.getWorkingHoursTo());
         }
         if (searchGardener.getWorkingHoursFrom() != null) {
@@ -79,8 +84,8 @@ public class GardenerController {
         }
         GardenerCriteria gardenerCriteria = createCriteria(searchGardener);
         List<Gardener> gardeners = gardenerService.findByCriteria(gardenerCriteria);
-
-        if (searchGardener.getDay() != null) {
+        
+        if(searchGardener.getDay() != null && !searchGardener.getDay().isEmpty()) {
             List<Gardener> gar = new ArrayList<>();
             for (Gardener gardener : gardeners) {
                 for (String day : gardener.getDays()) {
@@ -90,8 +95,9 @@ public class GardenerController {
                 }
             }
             gardeners = gar;
-        }
-        return new ResponseEntity<>(gardeners, HttpStatus.OK);
+        }  
+        rt.addAttribute("gardeners", gardeners);
+        return "redirect:/jardinero/list";
     }
 
     private GardenerCriteria createCriteria(SearchGardenerDTO searchGardener) {
