@@ -15,7 +15,6 @@
 	<description>Proyecto Ayuda en Casa</description>
 	<properties>
 		<java.version>1.8</java.version>
-                <org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -31,6 +30,7 @@
                         <artifactId>spring-security-test</artifactId>
                         <scope>test</scope>
                 </dependency>
+                
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jdbc</artifactId>
@@ -62,8 +62,6 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-                        <version>1.16.18</version>
-                        <scope>provided</scope>
 			<optional>true</optional>
 		</dependency>
 		<dependency>
@@ -101,6 +99,12 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>3.8.1</version>
                 </dependency>
+                <dependency>
+                 <groupId>org.springframework.security</groupId>
+                 <artifactId>spring-security-web</artifactId>
+                 <version>5.6.0</version>
+                 <type>jar</type>
+                </dependency>
 	</dependencies>
 
 	<build>
@@ -117,11 +121,6 @@
 					</excludes>
 				</configuration>
 			</plugin>
-                        <plugin>
-                                <groupId>org.apache.maven.plugins</groupId>
-                                <artifactId>maven-compiler-plugin</artifactId>
-                                <version>3.8.1</version>
-                        </plugin>
 		</plugins>
 	</build>
 
