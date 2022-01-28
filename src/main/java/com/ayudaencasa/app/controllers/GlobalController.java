@@ -10,4 +10,9 @@ public class GlobalController {
     public String index(){
         return "redirect:/home";
     }
+    
+    @GetMapping("/login")
+    public String login(){
+        return "login.html";
+    }
 }

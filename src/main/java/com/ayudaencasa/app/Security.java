@@ -25,29 +25,36 @@ public class Security extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 
-        auth
-                .userDetailsService(userService)
+        auth.userDetailsService(userService)
                 .passwordEncoder(new BCryptPasswordEncoder());
 
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.headers().frameOptions().sameOrigin().and().csrf().disable().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .authorizeRequests()
-                .antMatchers("/CSS/", "/js/")
-                .permitAll()
+        http.headers().frameOptions().sameOrigin()
+                .and().csrf()
+                    .disable()
+                    .sessionManagement()
+                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                    .authorizeRequests()
+                    .antMatchers("/jardinero/**")
+                    .hasRole("ADMIN")
+//                    .authorizeRequests()
+//                    .antMatchers("/css/*", "/js/*", "/img/*", "/**")
+//                    .hasAnyAuthority("USER_PRIVILEGE")
                 .and().formLogin()
-                .loginPage("/login")
-                .loginProcessingUrl("/logincheck")
-                .usernameParameter("email")
-                .passwordParameter("password")
-                .defaultSuccessUrl("/index")
-                .permitAll()
+                    .loginPage("/login")
+//                    .loginProcessingUrl("/logincheck")
+                    .usernameParameter("email")
+                    .passwordParameter("password")
+                    .defaultSuccessUrl("/limpiador/create")
+                    .permitAll()
                 .and().logout()
-                .logoutUrl("/logout")
-                .logoutSuccessUrl("/")
-                .permitAll();
+                    .logoutUrl("/logout")
+                    .logoutSuccessUrl("/home")
+                    .permitAll();
 //        http.csrf(c ->{
 //            c.ignoringAntMatchers("/csrfDisabled/**");
 //            c.csrfTokenRepository(new CustomCsrfTokenRepository());

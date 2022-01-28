@@ -51,7 +51,6 @@ public abstract class Job implements Serializable {
     
     @Column(name="user_id")
     protected String user_id;
-  
 
     @ElementCollection(targetClass=String.class)
     protected List<String> days;
@@ -62,6 +61,7 @@ public abstract class Job implements Serializable {
     
     protected Boolean status;
     
+    protected Boolean showContactInfo;
     
     @Temporal(value = TemporalType.TIMESTAMP)
     @CreationTimestamp

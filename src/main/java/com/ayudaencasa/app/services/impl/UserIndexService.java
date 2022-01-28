@@ -32,17 +32,18 @@ public class UserIndexService implements UserDetailsService {
 
         Optional<User> opt = userRepo.findByEmail(email);
 
-        if (opt == null) {
-            return new org.springframework.security.core.userdetails.User(
-                    " ", " ", true, true, true, true,
-                    getAuthorities(Arrays.asList(roleRepository.findByName("ROLE_USER"))));
+        if (!opt.isPresent()) {
+            throw new UsernameNotFoundException("User not found");
         }
 
         User user = opt.get();
 
-        return new org.springframework.security.core.userdetails.User(
-                user.getEmail(), user.getPassword(), user.getDeletedAt()==null, true, true,
-                true, getAuthorities(user.getRoles()));
+        org.springframework.security.core.userdetails.User springUser = new org.springframework.security.core.userdetails.User(
+                user.getEmail(), user.getPassword(), getAuthorities(user.getRoles()));
+        
+        System.out.println(springUser.toString());
+        
+        return springUser;
     }
 
     private Collection<? extends GrantedAuthority> getAuthorities(

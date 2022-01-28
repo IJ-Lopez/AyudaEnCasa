@@ -9,6 +9,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -61,8 +62,7 @@ public class User implements Serializable {
     private String address;
     
     private Long phone;
-    // private Photo photo;
-    // private Cv cv;
+    // private String photo;
     
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="user_id")
@@ -83,13 +83,13 @@ public class User implements Serializable {
     private Date deletedAt;
     
     // Corresponde a la parte de roles
-    @ManyToMany 
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable( 
         name = "users_roles", 
         joinColumns = @JoinColumn(
           name = "user_id", referencedColumnName = "id"), 
         inverseJoinColumns = @JoinColumn(
-          name = "role_id", referencedColumnName = "id")) 
+          name = "role_id", referencedColumnName = "id"))
     private Collection<Role> roles;
     
 }
