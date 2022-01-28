@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -80,15 +81,13 @@ public class CaregiverController {
     }
 
     @GetMapping("/list")
-    public String findAll(@RequestParam(required = false) String q
-    ) {
-        List<Caregiver> caregivers = caregiverService.findAll();
+    public String findAll(Model model, @RequestParam(required = false) List<Caregiver> caregivers) {
+////        List<Caregiver> caregivers = caregiverService.findAll();
         return "caregiver.html";
     }
 
-    @PostMapping("/filter")
-    public ResponseEntity<List<Caregiver>> findByFilter(@RequestBody SearchCaregiverDTO searchCaregiver
-    ) {
+    @PostMapping("/list")
+    public String findByFilter(SearchCaregiverDTO searchCaregiver, RedirectAttributes rt) {
         if (searchCaregiver.getWorkingHoursTo() != null) {
             searchCaregiver.setHoursTo(searchCaregiver.getWorkingHoursTo());
         }
@@ -98,7 +97,7 @@ public class CaregiverController {
         CaregiverCriteria caregiverCriteria = createCriteria(searchCaregiver);
         List<Caregiver> caregivers = caregiverService.findByCriteria(caregiverCriteria);
 
-        if (searchCaregiver.getDay() != null) {
+        if (searchCaregiver.getDay() != null && !searchCaregiver.getDay().isEmpty()) {
             List<Caregiver> car = new ArrayList<>();
             for (Caregiver caregiver : caregivers) {
                 for (String day : caregiver.getDays()) {
@@ -109,7 +108,8 @@ public class CaregiverController {
             }
             caregivers = car;
         }
-        return new ResponseEntity<>(caregivers, HttpStatus.OK);
+        rt.addAttribute("caregivers", caregivers);
+        return "redirect:/cuidador/list";
     }
 
     private CaregiverCriteria createCriteria(SearchCaregiverDTO searchCaregiver) {
