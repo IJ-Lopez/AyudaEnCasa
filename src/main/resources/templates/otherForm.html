@@ -1,112 +1,117 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Otros empleos</title>
+        <link rel="stylesheet" href="/css/petWalkerForm.css">
+        <!--Google fonts-->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="stylesheet"
+              href="https://fonts.googleapis.com/css2?family=Licorice&family=Pushster&family=Quicksand:wght@300&family=Spline+Sans:wght@300&display=swap" />
+        <!--Font Awesome-->
+        <script src="https://kit.fontawesome.com/83a37f8406.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="card">
+                <h1>Otros empleos</h1>
+                <!--<img src="../static/img/Paseador/p10.jpg" alt="images" width="300"/>-->
+                <form class="formato" th:action="@{/otro/create}" method="POST">
+                    <br>
+                    <div>
+                        <label class="titulo" for="salary"></label>
+                        <input class="input font" type="number" size="50px" th:value="${salary}" name="salary" id="salario"
+                               placeholder="Remuneración Pretendida">
+                    </div>
+                    <br>
+                    <br>
+                    <div>
+                        <label class="titulo" for="workingZone"></label>
+                        <select class="input" th:value="${workingZone}" name="workingZone" id="zona">
+                            <option disabled selected>Zona Laboral </option>
+                            <option value="Capital">Capital </option>
+                            <option value="General Alvear">General Alvear </option>
+                            <option value="Godoy Cruz">Godoy Cruz </option>
+                            <option value="Guaymallén">Guaymallén </option>
+                            <option value="Junín">Junín </option>
+                            <option value="La Paz">La Paz </option>
+                            <option value="Las Heras">Las Heras </option>
+                            <option value="Lavalle">Lavalle</option>
+                            <option value="Luján de Cuyo">Luján de Cuyo</option>
+                            <option value="Maipú">Maipú</option>
+                            <option value="Malargüe">Malargüe </option>
+                            <option value="Rivadavia">Rivadavia </option>
+                            <option value="San Carlos">San Carlos </option>
+                            <option value="San Martín">San Martín </option>
+                            <option value="San Rafael">San Rafael </option>
+                            <option value="Santa Rosa">Santa Rosa </option>
+                            <option value="Tunuyán">Tunuyán </option>
+                            <option value="Tupungato">Tupungato </option>
+                        </select>
+                    </div>
+                    <br>
+                    <br>
+                    <div>
+                        <label class="input" for="days"></label>
+                        <p class="parrafo"> Días Laborales </p>
+                        <ul class="dropdown-menu" th:value="${days}" name="days" id="myDiv">
+                            <li>
+                                <input type="checkbox" value="Lunes" name="days"> Lunes
+                            </li>
+                            <li>
+                                <input type="checkbox" value="Martes" name="days"> Martes
+                            </li>
+                            <li>
+                                <input type="checkbox" value="Miércoles" name="days"> Miércoles
+                            </li>
+                            <li>
+                                <input type="checkbox" value="Jueves" name="days"> Jueves
+                            </li>
+                            <li>
+                                <input type="checkbox" value="Viernes" name="days"> Viernes
+                            </li>
+                            <li>
+                                <input type="checkbox" value="Sábado" name="days"> Sábado
+                            </li>
+                            <li>
+                                <input type="checkbox" value="Domingo" name="days"> Domingo
+                            </li>
+                        </ul>
+                    </div>
+                    <br>
+                    <br>
+                    <div>
+                        <label class="titulo" for="workingHoursFrom"></label>
+                        <input class="input font" type="text" th:value="${workingHoursFrom}" name="workingHoursFrom" id="hora" placeholder="Hora de incio"
+                               onfocus="(this.type='time')">
+                    </div>
+                    <br>
+                    <br>
+                    <div>
+                        <label class="titulo" for="workingHoursTo"></label>
+                        <input class="input font" type="text" th:value="${workingHoursTo}" id="hora" name="workingHoursTo" placeholder="Hora de finalización"
+                               onfocus="(this.type='time')">
+                    </div>
+                    <br>
+                    <div>
+                        <label class="titulo" for="jobName"></label>
+                        <input class="input font" type="text" th:value="${type}" id="tipo" name="type" placeholder="Tipo de trabajo">
+                    </div>
+                    <br>
+                    <label for="comentario">Comentario </label>
+                    <br>
+                    <textarea cols="50" rows= "10" id="comentario" placeholder="Ingrese un comentario" name= "comentario"></textarea> 
+                    <br>
+                    <button class="buttons"> Enviar </button>
+                </form>
+                <a class="volver" th:href="@{/}">Volver</a>
+            </div>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Otros empleos</title>
-    <link rel="stylesheet" href="/css/cleaningForm.css">
-    <!--Google fonts-->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Licorice&family=Pushster&family=Quicksand:wght@300&family=Spline+Sans:wght@300&display=swap" />
-    <!--Font Awesome-->
-    <script src="https://kit.fontawesome.com/83a37f8406.js" crossorigin="anonymous"></script>
-</head>
-
-<body>
-    <div class="container">
-        <div class="card">
-            <h1>Otros servicios</h1>
-            <!-- <img src="../static/img/Limpieza/limp17.jpg" alt="images" width="300" />-->
-            <form class="formato" action="/cleaningForm" method="POST">
-                <div>
-                    <label class="titulo" for="tipoTrabajo"></label>
-                    <input class="input font" type="text" size="50px" name="type" id="tipoTrabajo"
-                        placeholder="Tipo de trabajo">
-                </div>
-                <br>
-                <div>
-                    <label class="titulo" for="salario"></label>
-                    <input class="input font" type="text" size="50px" name="salary" id="salario"
-                        placeholder="Remuneración Pretendida">
-                </div>
-                <br>
-                <div>
-                    <label class="titulo" for="zona"> </label>
-                    <select class="input" name="workingZone" id="zona">
-                        <option value="Zona Laboral">Zona Laboral </option>
-                        <option value="Capital">Capital </option>
-                        <option value="General Alvear">General Alvear </option>
-                        <option value="San Martín">San Martín </option>
-                        <option value="Godoy Cruz">Godoy Cruz </option>
-                        <option value="Guaymallén">Guaymallén </option>
-                        <option value="Junín">Junín </option>
-                        <option value="La Paz">La Paz </option>
-                        <option value="Las Heras">Las Heras </option>
-                        <option value="Lavalle">Lavalle</option>
-                        <option value="Luján de Cuyo">Luján de Cuyo</option>
-                        <option value="Maipú">Maipú</option>
-                        <option value="Malargüe">Malargüe </option>
-                        <option value="Rivadavia">Rivadavia </option>
-                        <option value="San Carlos">San Carlos </option>
-                        <option value="San Rafael">San Rafael </option>
-                        <option value="Santa Rosa">Santa Rosa </option>
-                        <option value="Tunuyán">Tunuyán </option>
-                        <option value="Tupungato">Tupungato </option>
-                    </select>
-                </div>
-                <br>
-                <div class="btn-group">
-                    <label class="input" for="dias"></label>
-                    <p class="parrafo"> Días Laborales </p>
-                    <ul class="dropdown-menu" id="myDiv">
-                        <li>
-                            <input type="checkbox" value="Lunes"> Lunes
-                        <li>
-                            <input type="checkbox" value="Martes"> Martes
-                        </li>
-                        <li>
-                            <input type="checkbox" value="Miércoles"> Miércoles
-                        </li>
-                        <li>
-                            <input type="checkbox" value="Jueves"> Jueves
-                        </li>
-                        <li>
-                            <input type="checkbox" value="Viernes"> Viernes
-                        </li>
-                        <li>
-                            <input type="checkbox" value="Sábado"> Sábado
-                        </li>
-                        <li>
-                            <input type="checkbox" value="Domingo"> Domingo
-                        </li>
-                    </ul>
-                </div>
-                <br>
-                <br>
-                <div>
-                    <label class="titulo" for="hora"></label>
-                    <input class="input font" type="text" name="timeFrom" id="hora" placeholder="Hora de incio"
-                        onfocus="(this.type='time')">
-                </div>
-                <br>
-                <br>
-                <div>
-                    <label class="titulo" for="hora"></label>
-                    <input class="input font" type="text" id="hora" name="timeTo" placeholder="Hora de finalización"
-                        onfocus="(this.type='time')">
-                </div>
-                <br>
-                <button class="buttons"> Enviar </button>
-            </form>
-            <a class="volver" href="">volver</a>
         </div>
-        <div class="relleno">
 
-        </div>
-</body>
+    </body>
 
 </html>
