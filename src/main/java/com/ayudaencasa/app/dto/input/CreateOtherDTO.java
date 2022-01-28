@@ -18,7 +18,7 @@ import lombok.Setter;
 @Setter
 public class CreateOtherDTO {
     
-    private String type;
+    private String jobType;
     private Integer salary;
     private String workingZone;
     private String description;

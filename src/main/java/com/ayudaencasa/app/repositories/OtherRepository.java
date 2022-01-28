@@ -6,6 +6,4 @@ import java.util.List;
 
 public interface OtherRepository extends JobRepository<Other> {
     
-    List<Other> findByTypeContaining(String type);
-    
 }

@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,23 +29,21 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @Validated
-@RequestMapping ("/paseador")
+@RequestMapping("/paseador")
 
 public class PetWalkerController {
 
     @Autowired
     private PetWalkerService petWalkerService;
 
-
     @GetMapping("/create")
-
     public String registry() {
         return "petwalkerForm";
     }
 
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.OK)
-    public String create(RedirectAttributes redirectAttributes, CreatePetWalkerDTO inputPetWalker) {
+    public String create(Model model, CreatePetWalkerDTO inputPetWalker) {
         try {
             PetWalker petWalker = new PetWalker();
             if (inputPetWalker.getWorkingHoursTo() != null) {
@@ -56,20 +55,24 @@ public class PetWalkerController {
             BeanUtils.copyProperties(inputPetWalker, petWalker);
             petWalkerService.create(petWalker);
             return "index";
-        } catch (PetWalkerNotFoundException e) {
-            redirectAttributes.addFlashAttribute("error", e.getMessage());
+        } catch (PetWalkerNotFoundException ex) {
+            model.addAttribute("error", ex.getMessage());
             return "petwalkerForm";
         }
     }
-
+    
     @GetMapping("/list")
-    public String findAll(@RequestParam(required = false) String q) {
-        List<PetWalker> petwalkers = petWalkerService.findAll();
-        return "petwalker.html";
+    public String findAll(Model model, @RequestParam(required = false) List<PetWalker> petWalkers) {
+        if(petWalkers != null){
+        model.addAttribute("petwalkers", petWalkers);
+        } else {
+        model.addAttribute("petwalkers", petWalkerService.findAll());
+        }
+        return "petwalkerList";
     }
 
-    @PostMapping("/filter")
-    public ResponseEntity<List<PetWalker>> findByFilter(@RequestBody SearchPetWalkerDTO searchPetWalker) {
+    @PostMapping("/list")
+    public String findByFilter(SearchPetWalkerDTO searchPetWalker, RedirectAttributes rt) {
         if (searchPetWalker.getWorkingHoursTo() != null) {
             searchPetWalker.setHoursTo(searchPetWalker.getWorkingHoursTo());
         }
@@ -79,7 +82,7 @@ public class PetWalkerController {
         PetWalkerCriteria petWalkerCriteria = createCriteria(searchPetWalker);
         List<PetWalker> petWalkers = petWalkerService.findByCriteria(petWalkerCriteria);
 
-        if (searchPetWalker.getDay() != null) {
+        if (searchPetWalker.getDay() != null && !searchPetWalker.getDay().isEmpty()) {
             List<PetWalker> pet = new ArrayList<>();
             for (PetWalker petWalker : petWalkers) {
                 for (String day : petWalker.getDays()) {
@@ -90,7 +93,8 @@ public class PetWalkerController {
             }
             petWalkers = pet;
         }
-        return new ResponseEntity<>(petWalkers, HttpStatus.OK);
+        rt.addAttribute("petwalkers", petWalkers);
+        return "redirect:/paseador/list";
     }
 
     private PetWalkerCriteria createCriteria(SearchPetWalkerDTO searchPetWalker) {

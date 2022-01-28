@@ -17,7 +17,7 @@ import lombok.Setter;
 @Setter
 public class SearchOtherDTO {
     
-    private String type;
+    private String jobType;
     private Integer salaryFrom;
     private Integer salaryTo;
     private String workingZone;

@@ -4,11 +4,11 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Limpieza Doméstica</title>
-        <link rel="stylesheet" href="/css/style.css" />
+        <title>Otros empleos</title>
+        <link rel="stylesheet" href="/css/style.css"/>
         <!--Google fonts-->
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="preconnect" href="https://fonts.googleapis.com"/>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
         <link rel="stylesheet"
               href="https://fonts.googleapis.com/css2?family=Licorice&family=Pushster&family=Quicksand:wght@300&family=Spline+Sans:wght@300&display=swap" />
         <!--Font Awesome-->
@@ -19,15 +19,15 @@
     <body>
         <main>
             <nav class="nav-main">
-                <h1>Limpieza Doméstica</h1>
+                <h1>Otros empleos</h1>
             </nav>
             <div class="container">
                 <div class="table-container">
-                    <form class="formato" th:action="@{/limpiador/list}" method="POST">
+                    <form class="formato" th:action="@{/otro/list}" method="POST">
                         <br>
                         <div>
-                            <label class="titulo" for="salaryTo"></label>
-                            <input class="input font" type="number" th:value="${salaryTo}" name="salaryTo" id="salario"
+                            <label class="titulo" for="salaryFrom"></label>
+                            <input class="input font" type="number" th:value="${salaryFrom}" name="salaryFrom" id="salario"
                                    placeholder="Remuneración Pretendida">
                         </div>
                         <br>
@@ -83,29 +83,8 @@
                         </div>
                         <br>
                         <div>
-                            <label class="titulo" for="roomsFrom"></label>
-                            <input class="input" th:value="${roomsFrom}" name="roomsFrom" id="cuartos"
-                                   placeholder="Cantidad de habitaciones">
-                        </div>
-                        <br>
-                        <div>
-                            <label class="dropdown-menu" for="exteriors"> Limpieza de exteriores</label>
-                            <input type="checkbox" name="exteriors" th:checked="${exteriors}" value="true" id="exteriores">
-                        </div>
-                        <br>
-                        <div> 
-                            <label class="dropdown-menu" for="cooking"> Servicio de Cocina</label>
-                            <input type="checkbox" name="cooking" th:checked="${cooking}">    
-                        </div>
-                        <br>
-                        <div> 
-                            <label class="dropdown-menu" for="laundry"> Servicio de Lavado de Ropa</label>
-                            <input type="checkbox" name="laundry" th:checked="${laundry}">
-                        </div>
-                        <br>
-                        <div> 
-                            <label class="dropdown-menu"  for="ironing">Servicio de Planchado</label>
-                            <input type="checkbox" name="ironing" th:checked="${ironing}">
+                            <label class="titulo" for="jobType"></label>
+                            <input class="input font" type="text" th:value="${jobType}" id="hora" name="jobType" placeholder="Tipo de trabajo">
                         </div>
                         <br>
                         <div class="col-2">
@@ -120,21 +99,19 @@
                                 <th>Telefono</th-->
                                 <th>Salario</th>
                                 <th>Zona Laboral</th>
-                                <th>Cantidad de Habitaciones</th>
-                                <th>Limpieza de exteriores</th>
+                                <th>Tipo de Trabajo</th>
                                 <th>Dias</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr th:each="cleaning,iterator : ${cleanings}">
+                            <tr th:each=" other,iterator : ${others}">
                                 <td th:text="${iterator.index+1}"></td>
-                                <!--td th:text="${cleaning.user.firstName} + ' ' + ${cleaning.user.lastName}"></td>
-                                <td th:text="${cleaning.user.phone}"></td-->
-                                <td th:text="${cleaning.salary}"></td>
-                                <td th:text="${cleaning.workingZone}"></td>
-                                <td th:text="${cleaning.rooms}"></td>
-                                <td th:text="${cleaning.exteriors}"></td>
-                                <td th:text="${cleaning.days}"></td>
+                                <!--td th:text="${gardener.user.firstName} + ' ' + ${gardener.user.lastName}"></td>
+                                <td th:text="${gardener.user.phone}"></td-->
+                                <td th:text="${other.salary}"></td>
+                                <td th:text="${other.workingZone}"></td>
+                                <td th:text="${other.jobType}"></td>
+                                <td th:text="${other.days}"></td>
                             </tr>       
                         </tbody>
                     </table>

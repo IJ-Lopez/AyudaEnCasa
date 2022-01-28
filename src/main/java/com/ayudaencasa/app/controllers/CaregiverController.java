@@ -40,8 +40,10 @@ public class CaregiverController {
     public String registry() {
         return "caregiverForm";
     }
-
-    public String create(RedirectAttributes redirectAttributes, CreateCaregiverDTO inputCaregiver, @RequestParam(required = false) String ageRange) {
+    
+    @PostMapping("/create")
+    @ResponseStatus(HttpStatus.OK)
+    public String create(Model model, CreateCaregiverDTO inputCaregiver, @RequestParam(required = false) String ageRange) {
         try {
             Caregiver caregiver = new Caregiver();
             if (inputCaregiver.getWorkingHoursTo() != null) {
@@ -74,20 +76,24 @@ public class CaregiverController {
             }
             caregiverService.create(caregiver);
             return "index";
-        } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("error", e.getMessage());
+        } catch (Exception ex) {
+            model.addAttribute("error", ex.getMessage());
             return "caregiverForm";
         }
     }
 
     @GetMapping("/list")
     public String findAll(Model model, @RequestParam(required = false) List<Caregiver> caregivers) {
-////        List<Caregiver> caregivers = caregiverService.findAll();
-        return "caregiver.html";
+        if (caregivers != null) {
+            model.addAttribute("caregivers", caregivers);
+        } else {
+            model.addAttribute("caregivers", caregiverService.findAll());
+        }
+        return "caregiverList";
     }
 
     @PostMapping("/list")
-    public String findByFilter(SearchCaregiverDTO searchCaregiver, RedirectAttributes rt) {
+        public String findByFilter(SearchCaregiverDTO searchCaregiver, RedirectAttributes rt) {
         if (searchCaregiver.getWorkingHoursTo() != null) {
             searchCaregiver.setHoursTo(searchCaregiver.getWorkingHoursTo());
         }
@@ -214,17 +220,17 @@ public class CaregiverController {
     }
 
     @GetMapping("")
-    public Caregiver findById(@RequestParam String id) throws Exception {
+        public Caregiver findById(@RequestParam String id) throws Exception {
         return caregiverService.findById(id);
     }
 
     @PostMapping("/delete")
-    public void delete(@RequestParam String id) throws Exception {
+        public void delete(@RequestParam String id) throws Exception {
         caregiverService.delete(id);
     }
 
     @PostMapping("/update")
-    public void update(@RequestParam String id, Caregiver newCaregiver) throws Exception {
+        public void update(@RequestParam String id, Caregiver newCaregiver) throws Exception {
         caregiverService.update(id, newCaregiver);
     }
 }

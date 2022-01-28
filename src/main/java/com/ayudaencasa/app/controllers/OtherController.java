@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,38 +42,36 @@ public class OtherController {
     
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.OK)
-    public String create(RedirectAttributes redirectAttributes, CreateOtherDTO inputOther, @RequestParam LocalTime timeFrom, @RequestParam LocalTime timeTo) {
+    public String create(Model model, CreateOtherDTO inputOther) {
         try{
             Other other = new Other();
-            if(timeFrom != null){
-                other.setHoursTo(timeFrom);    
+            if(inputOther.getWorkingHoursTo() != null){
+                other.setHoursTo(inputOther.getWorkingHoursTo());    
             }
-            if(timeTo != null){
-                other.setHoursFrom(timeTo);
+            if(inputOther.getWorkingHoursFrom() != null){
+                other.setHoursFrom(inputOther.getWorkingHoursFrom());
             }
             BeanUtils.copyProperties(inputOther, other);
             otherService.create(other);
             return "index";
-        }catch (OtherNotFoundException e) {
-            redirectAttributes.addFlashAttribute("error", e.getMessage());
-            return "OtherForm";
+        }catch (OtherNotFoundException ex) {
+            model.addAttribute("error", ex.getMessage());
+            return "otherForm";
         }    
     }
     
     @GetMapping("/list")
-    public String findAll(@RequestParam String type) {
-        List<Other> others;
-        if(type == null){
-            others = otherService.findAll();
+    public String findAll(Model model, @RequestParam(required = false) List<Other> others) {
+        if(others != null){
+             model.addAttribute("others", others);
         } else {
-            others = otherService.findByType(type);
+            model.addAttribute("others", otherService.findAll());
         }
-        return "testpage.html";
-
+        return "otherList";
     }
     
-    @PostMapping("/filter")
-    public ResponseEntity<List<Other>> findByFilter(@RequestBody SearchOtherDTO searchOther) {    
+    @PostMapping("/list")
+    public String findByFilter(SearchOtherDTO searchOther, RedirectAttributes rt) {    
         if(searchOther.getWorkingHoursTo() != null){
             searchOther.setHoursTo(searchOther.getWorkingHoursTo());    
         }
@@ -82,7 +81,7 @@ public class OtherController {
         OtherCriteria otherCriteria = createCriteria(searchOther);
         List<Other> others = otherService.findByCriteria(otherCriteria);
        
-        if(searchOther.getDay() != null) {
+        if(searchOther.getDay() != null && !searchOther.getDay().isEmpty()) {
             List<Other> ot = new ArrayList<>();
             for (Other other : others){
                 for (String day : other.getDays()) {
@@ -93,15 +92,16 @@ public class OtherController {
             }
             others = ot;
         }  
-        return new ResponseEntity<>(others, HttpStatus.OK);
+         rt.addAttribute("others", others);
+        return "redirect:/otro/list";
     }
     
     private OtherCriteria createCriteria(SearchOtherDTO searchOther){
         OtherCriteria otherCriteria = new OtherCriteria();
         if(searchOther != null){
-            if(!StringUtils.isBlank(searchOther.getType())){
+            if(!StringUtils.isBlank(searchOther.getJobType())){
                 StringFilter filter = new StringFilter();
-                otherCriteria.setType(filter);
+                otherCriteria.setJobType(filter);
             }         
             if(searchOther.getSalaryFrom()!= null || searchOther.getSalaryTo()!= null){
                 IntegerFilter filter = new IntegerFilter();
