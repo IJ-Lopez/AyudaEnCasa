@@ -18,7 +18,7 @@ import org.hibernate.annotations.Where;
 @Entity
 public class Other extends Job implements Serializable {
 
-    private String jobType;
+    private String type;
     
     @Override
     public String getType() {
