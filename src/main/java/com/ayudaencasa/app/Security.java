@@ -1,6 +1,5 @@
 package com.ayudaencasa.app;
 
-import com.ayudaencasa.app.repositories.CustomCsrfTokenRepository;
 import com.ayudaencasa.app.services.impl.UserIndexService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -35,21 +34,18 @@ public class Security extends WebSecurityConfigurerAdapter {
         http.headers().frameOptions().sameOrigin()
                 .and().csrf()
                     .disable()
-                    .sessionManagement()
-                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .sessionManagement()
+                    .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
                 .and()
                     .authorizeRequests()
                     .antMatchers("/jardinero/**")
                     .hasRole("ADMIN")
-//                    .authorizeRequests()
-//                    .antMatchers("/css/*", "/js/*", "/img/*", "/**")
-//                    .hasAnyAuthority("USER_PRIVILEGE")
                 .and().formLogin()
                     .loginPage("/login")
-//                    .loginProcessingUrl("/logincheck")
+                    .loginProcessingUrl("/logincheck")
                     .usernameParameter("email")
                     .passwordParameter("password")
-                    .defaultSuccessUrl("/limpiador/create")
+                    .defaultSuccessUrl("/")
                     .permitAll()
                 .and().logout()
                     .logoutUrl("/logout")
