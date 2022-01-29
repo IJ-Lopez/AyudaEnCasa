@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Iniciar sesión</title>
+    <!-- Style -->
+    <link rel="stylesheet" href="/src/main/resources/static/css/newLogin.css" />
+    <!--Google fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Licorice&family=Pushster&family=Quicksand:wght@300&family=Spline+Sans:wght@300&display=swap" />
+    <!--Font Awesome-->
+    <script src="https://kit.fontawesome.com/83a37f8406.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="center">
+        <label for="" class="show-btn"></label>
+        <div class="container">
+            <div class="text">Iniciar sesión</div>
+            <form action="#">
+                <div class="data">
+                    <label for="email"></label>
+                    <input type="text" name="email" placeholder="Ingrese su email" id="" required />
+                </div>
+                <div class="data">
+                    <label for="password"></label>
+                    <input type="password" name="password" placeholder="Ingrese su contraseña" id="clave" required/>
+                     <span id="verclave" class="verclave"><i id="icono" class="fas fa-eye"></i></span>
+                </div>
+                <div class="forgot-pass">
+                    <a href="#">¿Olvidaste tu contraseña?</a>
+                </div>
+                <div class="btn">
+                    <div class="inner"></div>
+                    <button type="submit">ingresar</button>
+                </div>
+                <div class="signup-link">
+                ¿No tenes cuenta? <a href="#">¡Regístrate ahora!</a>                </div>
+            </form>
+        </div>
+    </div>
+    <script src="/src/main/resources/static/js/main.js"></script>
+</body>
+
+</html>

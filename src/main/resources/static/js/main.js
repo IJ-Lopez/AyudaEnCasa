@@ -5,6 +5,8 @@ let con=true
 
 let iniciaSesion = document.querySelector('.iniciaSesion')
 let registrate = document.querySelector('.registrate')
+let newLoginForm = document.querySelector('.newLoginForm')
+let newRegistryForm = document.querySelector('.newRegistryForm')
 let formulariologin = document.querySelector('.formulariologin')
 let formularioregistro = document.querySelector('.formularioregistro')
 
