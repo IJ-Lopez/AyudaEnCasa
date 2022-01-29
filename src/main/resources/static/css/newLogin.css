@@ -9,7 +9,7 @@
 body {
   height: 100vh;
   width: 100%;
-  background-image: url(/src/main/resources/static/img/sillonliving.jpg);
+  background-image: url(/img/sillonliving.jpg);
   background-position: 0%;
   background-repeat: no-repeat;
   background-size: cover;
@@ -139,7 +139,7 @@ form .btn .inner {
     #56d8e4,
     #9f01ea
   ); */
-  background: -webkit-linear-gradient(right, #004c64, #004c64, #e5e6eb);
+  background: -webkit-linear-gradient(right, #d89e53, #d89e53,  #e5e6eb);
   transition: all 0.5s;
 }
 

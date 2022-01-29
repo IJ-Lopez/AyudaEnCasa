@@ -13,6 +13,7 @@ public class GlobalController {
     
     @GetMapping("/login")
     public String login(){
-        return "login.html";
+        return "newLoginForm";
     }
+
 }

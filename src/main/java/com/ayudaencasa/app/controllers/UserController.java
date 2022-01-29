@@ -28,7 +28,7 @@ public class UserController {
     
     @GetMapping("/registry")
     public String registry(){
-        return "registry";
+        return "newRegistryForm";
     }
     
 //    @PostMapping("/form")
@@ -66,7 +66,7 @@ public class UserController {
             return "redirect:/home";
         } catch (UserNotFoundException ex) {
             model.addAttribute("error", ex.getMessage());
-            return "registry";
+            return "newRegistryForm";
         }
     }
 

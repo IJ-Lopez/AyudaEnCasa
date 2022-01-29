@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Regístrate</title>
     <!-- Style -->
-    <link rel="stylesheet" href="/src/main/resources/static/css/newRegistry.css" />
+    <link rel="stylesheet" href="/css/newRegistry.css" />
     <!--Google fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -19,7 +19,6 @@
 
 <body>
     <div class="center">
-        <label for="" class="show-btn"></label>
         <div class="container">
             <div class="text">Regístrate</div>
             <form action="#">
@@ -73,7 +72,7 @@
                     <div class="departamento">
                         <label for="departament"> </label>
                         <select th:value="${departament}" name="departament" id="deptartamento">
-                            <option class="data" value="Departamento">Elija su departamento</option>
+                            <option disabled selected>Elija su departamento</option>
                             <option value="Capital">Capital</option>
                             <option value="General Alvear">General Alvear</option>
                             <option value="Godoy Cruz">Godoy Cruz</option>
