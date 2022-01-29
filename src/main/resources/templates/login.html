@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" dir="ltr">
 
 <head>
   <meta charset="UTF-8" />
@@ -20,7 +20,7 @@
   <div class="container">
 
     <div class="form-login">
-      <form class="formClass" th:action="@{logincheck}" method="POST" enctype="multipart/form-data">
+      <form class="formClass" action="" method="POST" enctype="multipart/form-data">
         <div class="titulo">
           <h5>Login</h5>
         </div>
@@ -32,16 +32,17 @@
         <br />
         <div>
           <label for="clave"> </label>
-          <input class="controls" type="password" name="password" id="clave" placeholder="Password" required />
+          <input class="controls" type="password" name="clave" id="clave" placeholder="Password" required />
           <span id="verclave" class="verclave"><i id="icono" class="fas fa-eye"></i></span>
         </div>
 
-        <input class="buttons" type="submit" name="submit" value="Ingresar" />
+        <input class="buttons" type="submit" name="" value="Ingresar" />
 
         <a href="#" class="pass"> Olvidaste tu Contraseña</a>
       </form>
     </div>
   </div>
+
 
   <script src="/src/main/resources/static/js/main.js"></script>
 </body>

@@ -11,7 +11,7 @@ public class GlobalController {
         return "redirect:/home";
     }
     
-    @GetMapping("/login")
+    @GetMapping("login")
     public String login(){
         return "login.html";
     }

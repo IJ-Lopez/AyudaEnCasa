@@ -9,7 +9,6 @@ import com.ayudaencasa.app.services.CleaningService;
 import io.github.jhipster.service.filter.BooleanFilter;
 import io.github.jhipster.service.filter.IntegerFilter;
 import io.github.jhipster.service.filter.StringFilter;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import net.logstash.logback.encoder.org.apache.commons.lang3.StringUtils;

@@ -12,7 +12,6 @@ public interface OtherService {
     public void delete(String id) throws OtherNotFoundException;
     public Other findById(String id) throws OtherNotFoundException;
     public List<Other> findAll();
-    public List<Other> findByType(String type);
     public List<Other> findByCriteria(OtherCriteria otherCriteria);
     
 }

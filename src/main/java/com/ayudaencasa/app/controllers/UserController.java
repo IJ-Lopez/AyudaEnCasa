@@ -57,13 +57,14 @@ public class UserController {
 
     
     @PostMapping("/registry")
+    @ResponseStatus(HttpStatus.OK)
     public String create(Model model, @Valid User inputUser, @RequestParam String departament) {
         try{
             User user = new User();
             BeanUtils.copyProperties(inputUser, user);
             user.setAddress(inputUser.getAddress() + " - " + departament);
             userService.create(user);
-            return "redirect:/home";
+            return "index";
         } catch (UserNotFoundException ex) {
             model.addAttribute("error", ex.getMessage());
             return "registry";
