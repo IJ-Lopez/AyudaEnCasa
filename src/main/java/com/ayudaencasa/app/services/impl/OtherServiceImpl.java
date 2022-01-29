@@ -34,7 +34,7 @@ public class OtherServiceImpl extends QueryService<Other> implements OtherServic
         Specification<Other> specification = Specification.where(null);
         if (otherCriteria != null) {
             if (otherCriteria.getJobType() != null) {
-                specification = specification.and(buildStringSpecification(otherCriteria.getJobType(), Other_.jobType));
+                specification = specification.and(buildStringSpecification(otherCriteria.getJobType(), Other_.type));
             }
             if (otherCriteria.getSalary() != null) {
                 specification = specification.and(buildRangeSpecification(otherCriteria.getSalary(), Other_.salary));

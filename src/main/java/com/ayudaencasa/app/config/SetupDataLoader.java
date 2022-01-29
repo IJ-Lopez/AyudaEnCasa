@@ -1,8 +1,12 @@
 package com.ayudaencasa.app.config;
 
+import com.ayudaencasa.app.entities.Gardener;
+import com.ayudaencasa.app.entities.Other;
 import com.ayudaencasa.app.entities.Role;
 import com.ayudaencasa.app.entities.Privilege;
 import com.ayudaencasa.app.entities.User;
+import com.ayudaencasa.app.repositories.GardenerRepository;
+import com.ayudaencasa.app.repositories.OtherRepository;
 import com.ayudaencasa.app.repositories.PrivilegeRepository;
 import com.ayudaencasa.app.repositories.RoleRepository;
 import com.ayudaencasa.app.repositories.UserRepository;
@@ -27,7 +31,13 @@ public class SetupDataLoader implements
 
     @Autowired
     private RoleRepository roleRepository;
+    
+    @Autowired
+    private GardenerRepository gardenRepository;
 
+    @Autowired
+    private OtherRepository otherRepo;
+    
     @Autowired
     private PrivilegeRepository privilegeRepository;
 
@@ -63,6 +73,12 @@ public class SetupDataLoader implements
             user.setRoles(Arrays.asList(adminRole));
             userRepository.save(user);
         }
+        
+        if(gardenRepository.findAll().isEmpty()){
+            gardenRepository.save(new Gardener());
+            otherRepo.save(new Other("jamon"));            
+        }
+        
         alreadySetup = true;
 
     }
