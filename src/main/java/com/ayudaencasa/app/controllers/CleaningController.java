@@ -9,6 +9,7 @@ import com.ayudaencasa.app.services.CleaningService;
 import io.github.jhipster.service.filter.BooleanFilter;
 import io.github.jhipster.service.filter.IntegerFilter;
 import io.github.jhipster.service.filter.StringFilter;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import net.logstash.logback.encoder.org.apache.commons.lang3.StringUtils;
@@ -17,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,7 +31,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 @Validated
 @RequestMapping("/limpiador")
-
 public class CleaningController {
  
     @Autowired
@@ -42,7 +43,7 @@ public class CleaningController {
     
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.OK)
-    public String create(RedirectAttributes redirectAttributes, CreateCleaningDTO inputCleaning) {
+    public String create(Model model, CreateCleaningDTO inputCleaning) {
         try{
             Cleaning cleaning = new Cleaning();
             if(inputCleaning.getWorkingHoursTo() != null){
@@ -54,15 +55,24 @@ public class CleaningController {
             BeanUtils.copyProperties(inputCleaning, cleaning);
             cleaningService.create(cleaning);
             return "index";
-        }catch (CleaningNotFoundException e) {
-            redirectAttributes.addFlashAttribute("error", e.getMessage());
+        }catch (CleaningNotFoundException ex) {
+            model.addAttribute("error", ex.getMessage());
             return "cleaningForm";
         }    
     }
     
-    @PostMapping("/filter")
-
-    public ResponseEntity<List<Cleaning>> findByFilter(@RequestBody SearchCleaningDTO searchCleaning) {    
+    @GetMapping("/list")
+    public String findAll(Model model, @RequestParam(required = false) List<Cleaning> cleanings) {
+        if (cleanings != null) {
+            model.addAttribute("cleanings", cleanings);
+        } else {
+            model.addAttribute("cleanings", cleaningService.findAll());
+        }
+        return "cleaningList";
+    }
+    
+    @PostMapping("/list")
+    public String findByFilter(SearchCleaningDTO searchCleaning, RedirectAttributes rt) {    
         if(searchCleaning.getWorkingHoursTo() != null){
             searchCleaning.setHoursTo(searchCleaning.getWorkingHoursTo());    
         }
@@ -72,7 +82,7 @@ public class CleaningController {
         CleaningCriteria cleaningCriteria = createCriteria(searchCleaning);
         List<Cleaning> cleanings = cleaningService.findByCriteria(cleaningCriteria);
        
-        if(searchCleaning.getDay() != null) {
+        if(searchCleaning.getDay() != null && !searchCleaning.getDay().isEmpty()) {
             List<Cleaning> clean = new ArrayList<>();
             for (Cleaning cleaning : cleanings){
                 for (String day : cleaning.getDays()) {
@@ -83,7 +93,8 @@ public class CleaningController {
             }
             cleanings = clean;
         }  
-        return new ResponseEntity<>(cleanings, HttpStatus.OK);
+        rt.addAttribute("cleanings", cleanings);
+        return "redirect:/limpiador/list";
     }
     
     private CleaningCriteria createCriteria(SearchCleaningDTO searchCleaning){
@@ -199,13 +210,6 @@ public class CleaningController {
     @PostMapping("/delete")
     public void delete(String id) throws CleaningNotFoundException {
         cleaningService.delete(id);
-    }
-
-    @GetMapping("/list")
-
-    public String findAll(@RequestParam(required = false) String q) {
-        List<Cleaning> cleaners = cleaningService.findAll();
-        return "cleaning.html";
     }
 
     @GetMapping("")

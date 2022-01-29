@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Jardinería</title>
-        <link rel="stylesheet" href="/css/list.css"/>
+        <link rel="stylesheet" href="/css/style.css"/>
         <!--Google fonts-->
         <link rel="preconnect" href="https://fonts.googleapis.com"/>
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -33,8 +33,53 @@
                         <br>
                         <div>
                             <label class="titulo" for="workingZone"></label>
-                            <input class="input" th:value="${workingZone}" name="workingZone" id="zona"
-                                   placeholder="Zona Laboral">
+                            <select class="input" th:value="${workingZone}" name="workingZone" id="zona">
+                                <option disabled selected>Zona Laboral </option>
+                                <option value="Capital">Capital </option>
+                                <option value="General Alvear">General Alvear </option>
+                                <option value="Godoy Cruz">Godoy Cruz </option>
+                                <option value="Guaymallén">Guaymallén </option>
+                                <option value="Junín">Junín </option>
+                                <option value="La Paz">La Paz </option>
+                                <option value="Las Heras">Las Heras </option>
+                                <option value="Lavalle">Lavalle</option>
+                                <option value="Luján de Cuyo">Luján de Cuyo</option>
+                                <option value="Maipú">Maipú</option>
+                                <option value="Malargüe">Malargüe </option>
+                                <option value="Rivadavia">Rivadavia </option>
+                                <option value="San Carlos">San Carlos </option>
+                                <option value="San Martín">San Martín </option>
+                                <option value="San Rafael">San Rafael </option>
+                                <option value="Santa Rosa">Santa Rosa </option>
+                                <option value="Tunuyán">Tunuyán </option>
+                                <option value="Tupungato">Tupungato </option>
+                            </select>
+                        </div>
+                        <br>
+                        <div>
+                            <label class="titulo" for="day"></label>
+                            <select class="input" th:value="${day}" name="day" id="dia">
+                                <option disabled selected>Día Laboral </option>
+                                <option value="Lunes">Lunes </option>
+                                <option value="Martes">Martes </option>
+                                <option value="Miércoles">Miércoles </option>
+                                <option value="Jueves">Jueves </option>
+                                <option value="Viernes">Viernes </option>
+                                <option value="Sábado">Sábado </option>
+                                <option value="Domingo">Domingo </option>
+                            </select>
+                        </div>
+                        <br>
+                        <div>
+                            <label class="titulo" for="workingHoursFrom"></label>
+                            <input class="input font" type="text" th:value="${workingHoursFrom}" name="workingHoursFrom" id="hora" placeholder="Hora de incio"
+                                   onfocus="(this.type='time')">
+                        </div>
+                        <br>
+                        <div>
+                            <label class="titulo" for="workingHoursTo"></label>
+                            <input class="input font" type="text" th:value="${workingHoursTo}" id="hora" name="workingHoursTo" placeholder="Hora de finalización"
+                                   onfocus="(this.type='time')">
                         </div>
                         <br>
                         <div>
@@ -44,14 +89,25 @@
                         </div>
                         <br>
                         <div>
-                            <label class="titulo" for="day"></label>
-                            <input class="input" th:value="${day}" name="day" id="dia" placeholder="Día Laboral">
-                        </div>
-                        <br>
-                        <div>
                             <label class="dropdown-menu" for="tools"> Herramientas de jardinería</label>
                             <input type="checkbox" name="tools" th:checked="${tools}" value="true" id="herramientas">
                         </div>
+                        <br>
+                        <div>
+                            <label class="dropdown-menu" for="poolCleaning"> Limpieza de piscina</label>
+                            <input type="checkbox" name="poolCleaning" th:checked="${poolCleaning}">
+                        </div>
+                        <br>
+                        <div>
+                            <label class="dropdown-menu" for="gardenFence"> Corte de cercos</label>
+                            <input type="checkbox" name="gardenFence" th:checked="${gardenFence}">
+                        </div>
+                        <br>
+                        <div>
+                            <label class="dropdown-menu" for="plantDisinfection"> Desinfección de plantas</label>
+                            <input type="checkbox" name="plantDisinfection" th:checked="${plantDisinfection}">
+                        </div>
+                        <br>
                         <div class="col-2">
                             <button type="submit" class="btn btn-dark mb-3">Buscar</button>
                         </div>

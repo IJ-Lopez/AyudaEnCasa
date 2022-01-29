@@ -27,13 +27,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
-
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @Validated
 @RequestMapping("/jardinero")
-
 public class GardenerController {
 
     @Autowired
@@ -46,7 +44,7 @@ public class GardenerController {
 
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.OK)
-    public String create(RedirectAttributes redirectAttributes, CreateGardenerDTO inputGardener) {
+    public String create(Model model, CreateGardenerDTO inputGardener) {
         try {
             Gardener gardener = new Gardener();
             if (inputGardener.getWorkingHoursTo() != null) {
@@ -58,8 +56,8 @@ public class GardenerController {
             BeanUtils.copyProperties(inputGardener, gardener);
             gardenerService.create(gardener);
             return "index";
-        } catch (GardenerNotFoundException e) {
-            redirectAttributes.addFlashAttribute("error", e.getMessage());
+        } catch (GardenerNotFoundException ex) {
+            model.addAttribute("error", ex.getMessage());
             return "gardenerForm";
         }
     }

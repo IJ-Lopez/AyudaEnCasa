@@ -19,6 +19,8 @@ import org.hibernate.annotations.Where;
 @Entity
 public class Caregiver extends Job implements Serializable {
     
+    private final String type = "Cuidador de Personas || Caregiver";
+    
     private Integer quantity;
     
     private Integer ageFrom;
@@ -30,12 +32,5 @@ public class Caregiver extends Job implements Serializable {
     private Boolean cleaningPeople;
     
     private Boolean tranfering;
-    
-    
-    @Override
-    public String getType() {
-        return "Caregiver";
-    }
-
     
 }

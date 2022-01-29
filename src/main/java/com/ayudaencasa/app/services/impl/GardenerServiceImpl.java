@@ -29,9 +29,7 @@ public class GardenerServiceImpl extends QueryService<Gardener> implements Garde
         Specification<Gardener> specification = Specification.where(null);
         if (gardenerCriteria != null) {
             if (gardenerCriteria.getSurface() != null) {
-
 //                specification = specification.and(buildRangeSpecification(gardenerCriteria.getSurface(), Gardener_.surface));
-
             }
             if (gardenerCriteria.getTools() != null) {
                 specification = specification.and(buildSpecification(gardenerCriteria.getTools(), Gardener_.tools));

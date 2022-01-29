@@ -25,18 +25,16 @@ public class OtherServiceImpl extends QueryService<Other> implements OtherServic
     @Autowired
     private ModelMapper modelMapper;
     
-
     @Override
     public List<Other> findByType(String type) {
         return otherRepository.findByTypeContaining(type);
     }
     
-
     private Specification<Other> createSpecification(OtherCriteria otherCriteria) {
         Specification<Other> specification = Specification.where(null);
         if (otherCriteria != null) {
-            if (otherCriteria.getType() != null) {
-                specification = specification.and(buildStringSpecification(otherCriteria.getType(), Other_.type));
+            if (otherCriteria.getJobType() != null) {
+                specification = specification.and(buildStringSpecification(otherCriteria.getJobType(), Other_.type));
             }
             if (otherCriteria.getSalary() != null) {
                 specification = specification.and(buildRangeSpecification(otherCriteria.getSalary(), Other_.salary));
