@@ -1,10 +1,7 @@
 package com.ayudaencasa.app.controllers;
 
-import com.ayudaencasa.app.services.JobBeanService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,32 +10,21 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/home")
-@Validated
 public class HomeController {
 
-    @Autowired
-    private JobBeanService jobService;
-    
     @GetMapping
-    public String index(String error, ModelMap map) {
-        if(error != null){
-            map.addAttribute("error", error);
-        }
+    public String index() {
         return "index.html";
     }
 
     @PostMapping("/buscar")
-    public String search(@RequestParam(name = "trabajo") String type, RedirectAttributes ra ) {
+    public String search(@RequestParam(name = "trabajo") String type, ModelMap map, RedirectAttributes ra) {
         if (type == null) {
-            ra.addAttribute("error", "Inserte un parámetro de busqueda");
-            return "redirect:/home";
+            map.put("error", "Inserte un parámetro de busqueda");
+            return "index.html";
         }
-        if(type.length() < 4){
-            ra.addAttribute("error", "Debe ingresar al menos 4 caracteres");
-            return "redirect:/home";
-        }
+
         type = type.toLowerCase();
-        Class lookedClass = jobService.getTypeIfExist(type);
         String[] jobs = {"jardinero", "paseador", "cuidador", "limpiador"};
         for (String job : jobs) {
             if (like(job, type)) {

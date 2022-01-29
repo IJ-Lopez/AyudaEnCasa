@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8" />
@@ -56,14 +56,12 @@
         </div>
       </ul>
     </nav>
-
     <main>
       <!--Busqueda-->
       <section class="otrocontainer">
         <header id="main" class="busqueda">
           <div class="cuadrobusqueda">
             <h2 class="h2b">¿Que desea buscar?</h2>
-            <a th:if="${error != null}" th:text="${error}"></a>
             <form action="/home/buscar" method="POST">
               <input class="form" type="text" name="trabajo" id="trabajo" placeholder="Ingrese su busqueda" list="jobs-list"/>
               <datalist id ="jobs-list">

@@ -17,7 +17,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -27,7 +26,6 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.annotations.Where;
@@ -43,15 +41,10 @@ import org.hibernate.annotations.Where;
 public abstract class Job implements Serializable {
     
     @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
     protected String id;
     protected Integer salary;
     protected String workingZone;  
     protected String description;
-    
-    @Setter(AccessLevel.NONE)
-    protected String type;
     
     @Column(name="user_id")
     protected String user_id;
@@ -78,6 +71,9 @@ public abstract class Job implements Serializable {
     @Temporal(value = TemporalType.TIMESTAMP)
     @Column(name = "deleted_at")
     protected Date deletedAt;
+    
+    public abstract String getType();
+
     
     public void setHoursFrom(LocalTime lt){
         hoursFrom = lt.toSecondOfDay();
