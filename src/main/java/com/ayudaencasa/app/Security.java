@@ -38,8 +38,8 @@ public class Security extends WebSecurityConfigurerAdapter {
                 .and()
                     .authorizeRequests()
 /*nacho ver esto!!! le saque /jardinero/ para que no me lleve al login cdo lo tocaba en el home*/
-//                    .antMatchers("/jardinero/**")
-//                    .hasRole("ADMIN")
+                    .antMatchers("/jardinero/**")
+                    .hasRole("ADMIN")
                 .and().formLogin()
                     .loginPage("/login")
                     .loginProcessingUrl("/logincheck")
