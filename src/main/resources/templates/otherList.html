@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Otros empleos</title>
-        <link rel="stylesheet" href="/css/style.css"/>
+        <link rel="stylesheet" href="/css/cardPrueba.css"/>
         <!--Google fonts-->
         <link rel="preconnect" href="https://fonts.googleapis.com"/>
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -22,7 +22,6 @@
                 <h1>Otros empleos</h1>
             </nav>
             <div class="container">
-                <div class="table-container">
                     <form class="formato" th:action="@{/otro/list}" method="POST">
                         <br>
                         <div>
@@ -91,31 +90,32 @@
                             <button type="submit" class="btn btn-dark mb-3">Buscar</button>
                         </div>
                     </form>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Nº</th>
-                                <!--th>Nombre y apellido</th>
-                                <th>Telefono</th-->
-                                <th>Salario</th>
-                                <th>Zona Laboral</th>
-                                <th>Tipo de Trabajo</th>
-                                <th>Dias</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr th:each=" other,iterator : ${others}">
-                                <td th:text="${iterator.index+1}"></td>
-                                <!--td th:text="${gardener.user.firstName} + ' ' + ${gardener.user.lastName}"></td>
-                                <td th:text="${gardener.user.phone}"></td-->
-                                <td th:text="${other.salary}"></td>
-                                <td th:text="${other.workingZone}"></td>
-                                <td th:text="${other.jobType}"></td>
-                                <td th:text="${other.days}"></td>
-                            </tr>       
-                        </tbody>
-                    </table>
-                </div>
+                    <th:block th:each="other : ${others}">
+                    <div class="card">
+                        <div class="phone"></div>
+                        <div class="card-titulo">
+                            <h1> Nombre y Apellido </h1>
+                        </div>
+                        <div class= "card-body">
+                            <div class= "card-body-items">
+                                <div class= "datos-job">
+                                    <p></p>
+                                    <p th:text="${other.salary}"></p>
+                                    <p th:text="${other.workingZone}"></p>
+                                    <p th:text="${other.workingHoursFrom}"></p>
+                                    <p th:text="${other.workingHoursTo}"></p>
+                                </div>
+                            </div>                
+                            <img src="https://www.argentina.gob.ar/sites/default/files/vinetas_justicia_cerca_04_el_paseador_de_mi_perro.png" alt="">
+                        </div>
+                        <div class="card-footer">
+                            <p th:text="${other.jobType}"></p>
+                            <th:block th:each="day : ${other.days}">
+                                <label th:text="${day} + ' '"></label>
+                            </th:block>
+                        </div>
+                    </div>
+                </th:block>
             </div>
         </main>
     </body>
