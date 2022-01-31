@@ -57,10 +57,11 @@ ul {
 
 .work-menu > li {
   float: inline-start;
-  padding: 20px !important;
+  padding: 17px !important;
 }
 
 .work-menu li ul {
+  text-align: left;
   display: none;
   position: absolute;
   width: auto;
@@ -68,7 +69,6 @@ ul {
 
 .work-menu li:hover > ul {
   display: block;
-  /* background-color: #f0a331; */
   background-color: #cb997e;
   border-radius: 0px 0px 20px 20px;
 }

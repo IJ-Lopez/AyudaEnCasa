@@ -18,6 +18,44 @@
     </head>
 
     <body>
+        <nav class="nav-main" id="top">
+            <a href="index.html"> <h1 id="home">Ayuda en casa</h1></a>
+           <!-- <ul class="nav-menu">
+             <li>
+               <a href="#main">Inicio <i class="fas fa-home"></i></a>
+             </li>
+             <li>
+               <a href="#aboutus">Sobre nosotros <i class="fas fa-users"></i></a>
+             </li>
+             <li>
+               <a href="#contact">Contacto <i class="far fa-address-card"></i></a>
+             </li>
+             <div class="work-menu">
+               <li>
+                  deberia llevar a un form lista desplegable con los registros
+                 <a href="#form">Quiero trabajar <i class="fas fa-briefcase"></i></a>
+                 <ul class="work-menu">
+                   <li><a href="../jardinero/create">Jardinero</a></li>
+                   <li><a href="../limpiador/create">Servicio doméstico</a></li>
+                   <li><a href="../cuidador/create">Cuidado de personas</a></li>
+                   <li><a href="../paseador/create">Paseador de perros</a></li>
+                   <li><a href="../otro/create">Otro</a></li>
+                 </ul>
+               </li>
+             </div>
+             <div class="work-menu">
+               <li>
+                 deberia llevar a un form lista desplegable con los registros
+                 <a href="#form">Sección usuarios <i class="far fa-user"></i></a>
+                 <ul class="work-menu">
+                   <li><a href="/login">Iniciar sesion <i class="fas fa-sign-in-alt"></i></a></li>
+                   <li><a href="/user/registry">Regístrate <i class="fas fa-bars"></i></a></li>
+                 </ul>
+               </li>
+             </div>
+           </ul> -->
+         </nav>
+
         <div class="center">
             <div class="container">
                 <div class="text">Cuidado de personas</div>
@@ -125,8 +163,6 @@
                             <ul class="dropdown-menu" th:value="${cooking}" name="cooking">
                                 <li>
                                     <input type="checkbox" value="a" name="si"> Si
-                                </li>
-                                <li>
                                     <input type="checkbox" value="b" name="no"> No
                                 </li>
                             </ul>
@@ -139,8 +175,6 @@
                             <ul class="dropdown-menu" th:value="${cleaningPeople}" name="cleaningPeople">
                                 <li>
                                     <input type="checkbox" value="a" name="si"> Si
-                                </li>
-                                <li>
                                     <input type="checkbox" value="b" name="no"> No
                                 </li>
                             </ul>
@@ -153,8 +187,6 @@
                             <ul class="dropdown-menu" th:value="${tranfering}" name="tranfering">
                                 <li>
                                     <input type="checkbox" value="a" name="si"> Si
-                                </li>
-                                <li>
                                     <input type="checkbox" value="b" name="no"> No
                                 </li>
                             </ul>
