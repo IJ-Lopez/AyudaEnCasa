@@ -37,9 +37,8 @@ public class Security extends WebSecurityConfigurerAdapter {
                     .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
                 .and()
                     .authorizeRequests()
-/*nacho ver esto!!! le saque /jardinero/ para que no me lleve al login cdo lo tocaba en el home*/
-                    .antMatchers("/jardinero/**")
-                    .hasRole("ADMIN")
+                    .anyRequest()
+                    .permitAll()
                 .and().formLogin()
                     .loginPage("/login")
                     .loginProcessingUrl("/logincheck")
