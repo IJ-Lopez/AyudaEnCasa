@@ -1,3 +1,10 @@
+* {
+  margin: 0%;
+  padding: 0%;
+  font-family: "Quicksand", sans-serif;
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -5,10 +12,24 @@ body {
   font-family: Roboto, san-serif;
 }
 
-.container {
+.nav-main {
+  color: black;
+  background-color: #cc79f2;
+  height: 60px;
+  margin: auto;
+}
+
+.class{
+  background-image: url(/src/main/resources/static/img/sillonliving.jpg);
+  /* opacity: 0.4; */
+
+}
+
+.container{
   padding: 15px;
-  display: flex;
+  display: contents;
   flex-wrap: wrap;
+  background-color: #68e1b8;
 }
 .card {
   padding: 15px 15px 10px;

@@ -1,25 +1,29 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Cuidado de personas</title>
-        <link rel="stylesheet" href="/css/cardPrueba.css"/>
-        <!--Google fonts-->
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link rel="stylesheet"
-              href="https://fonts.googleapis.com/css2?family=Licorice&family=Pushster&family=Quicksand:wght@300&family=Spline+Sans:wght@300&display=swap" />
-        <!--Font Awesome-->
-        <script src="https://kit.fontawesome.com/83a37f8406.js" crossorigin="anonymous"></script>
-        <!--Thymeleaf-->
-        <link rel="stylesheet" type="text/css" media="all" href="/css/gtvg.css" data-th-href="@{..}" />
-    </head>
-    <body>
-        <main>
-            <nav class="nav-main">
-                <h1>Cuidado de personas</h1>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cuidado de personas</title>
+    <link rel="stylesheet" href="/src/main/resources/static/css/cardPrueba.css">
+    <!-- <link rel="stylesheet" href="/css/cardPrueba.css"/> -->
+    <!--Google fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Licorice&family=Pushster&family=Quicksand:wght@300&family=Spline+Sans:wght@300&display=swap" />
+    <!--Font Awesome-->
+    <script src="https://kit.fontawesome.com/83a37f8406.js" crossorigin="anonymous"></script>
+    <!--Thymeleaf-->
+    <link rel="stylesheet" type="text/css" media="all" href="/css/gtvg.css" data-th-href="@{..}" />
+</head>
+
+<body>
+    <main>
+        <div class="class">
+            <nav class="nav-main" id="top">
+                <h1 id="home">Cuidado de personas</h1>
             </nav>
             <div class="container">
                 <form class="formato" th:action="@{/cuidador/list}" method="POST">
@@ -27,7 +31,7 @@
                     <div>
                         <label class="titulo" for="salaryTo"></label>
                         <input class="input font" type="number" th:value="${salaryTo}" name="salaryTo" id="salario"
-                               placeholder="Remuneración Pretendida">
+                            placeholder="Remuneración Pretendida">
                     </div>
                     <br>
                     <div>
@@ -71,32 +75,31 @@
                     <br>
                     <div>
                         <label class="titulo" for="workingHoursFrom"></label>
-                        <input class="input font" type="text" th:value="${workingHoursFrom}" name="workingHoursFrom" id="hora" placeholder="Hora de incio"
-                               onfocus="(this.type='time')">
+                        <input class="input font" type="text" th:value="${workingHoursFrom}" name="workingHoursFrom"
+                            id="hora" placeholder="Hora de incio" onfocus="(this.type='time')">
                     </div>
                     <br>
                     <div>
                         <label class="titulo" for="workingHoursTo"></label>
-                        <input class="input font" type="text" th:value="${workingHoursTo}" id="hora" name="workingHoursTo" placeholder="Hora de finalización"
-                               onfocus="(this.type='time')">
+                        <input class="input font" type="text" th:value="${workingHoursTo}" id="hora"
+                            name="workingHoursTo" placeholder="Hora de finalización" onfocus="(this.type='time')">
                     </div>
                     <br>
                     <div>
                         <label class="titulo" for="quantityFrom"></label>
-                        <input class="input font" type="number" th:value="${quantityFrom}" name="quantityFrom" id="cantidad"
-                               placeholder="Personas a cuidar">
+                        <input class="input font" type="number" th:value="${quantityFrom}" name="quantityFrom"
+                            id="cantidad" placeholder="Personas a cuidar">
                     </div>
                     <br>
                     <div>
                         <label class="titulo" for="ageFrom"></label>
                         <input class="input" th:value="${ageFrom}" name="ageFrom" id="edadDesde"
-                               placeholder="Edad Desde">
+                            placeholder="Edad Desde">
                     </div>
                     <br>
                     <div>
                         <label class="titulo" for="ageTo"></label>
-                        <input class="input" th:value="${ageTo}" name="ageTo" id="edadHasta"
-                               placeholder="Edad Hasta">
+                        <input class="input" th:value="${ageTo}" name="ageTo" id="edadHasta" placeholder="Edad Hasta">
                     </div>
                     <br>
                     <div>
@@ -104,9 +107,9 @@
                         <input type="checkbox" name="cooking" th:checked="${cooking}" value="true" id="cocina">
                     </div>
                     <br>
-                    <div> 
+                    <div>
                         <label class="dropdown-menu" for="cleaningPeople"> Limpieza de persona</label>
-                        <input type="checkbox" name="cleaningPeople" th:checked="${cleaningPeople}">    
+                        <input type="checkbox" name="cleaningPeople" th:checked="${cleaningPeople}">
                     </div>
                     <br>
                     <br>
@@ -119,33 +122,39 @@
                         <button type="submit" class="btn btn-dark mb-3">Buscar</button>
                     </div>
                 </form>
-                <th:block th:each="caregiver : ${caregivers}">
-                    <div class="card">
-                        <div class="phone"></div>
-                        <div class="card-titulo">
-                            <h1> Nombre y Apellido </h1>
-                        </div>
-                        <div class= "card-body">
-                            <div class= "card-body-items">
-                                <div class= "datos-job">
-                                    <p></p>
-                                    <p th:text="${caregiver.salary}"></p>
-                                    <p th:text="${caregiver.workingZone}"></p>
-                                    <p th:text="${caregiver.workingHoursFrom}"></p>
-                                    <p th:text="${caregiver.workingHoursTo}"></p>
+
+                <div class="area-tarjetas">
+                    <th:block th:each="caregiver : ${caregivers}">
+                        <div class="card">
+                            <div class="phone"></div>
+                            <div class="card-titulo">
+                                <h1> Nombre y Apellido </h1>
+                            </div>
+                            <div class="card-body">
+                                <div class="card-body-items">
+                                    <div class="datos-job">
+                                        <p></p>
+                                        <p th:text="${caregiver.salary}"></p>
+                                        <p th:text="${caregiver.workingZone}"></p>
+                                        <p th:text="${caregiver.workingHoursFrom}"></p>
+                                        <p th:text="${caregiver.workingHoursTo}"></p>
+                                    </div>
                                 </div>
-                            </div>                
-                            <img src="https://www.argentina.gob.ar/sites/default/files/vinetas_justicia_cerca_04_el_paseador_de_mi_perro.png" alt="">
+                                <img src="https://www.argentina.gob.ar/sites/default/files/vinetas_justicia_cerca_04_el_paseador_de_mi_perro.png"
+                                    alt="">
+                            </div>
+                            <div class="card-footer">
+                                <p th:text="${caregiver.quantity}"></p>
+                                <th:block th:each="day : ${caregiver.days}">
+                                    <label th:text="${day} + ' '"></label>
+                                </th:block>
+                            </div>
                         </div>
-                        <div class="card-footer">
-                            <p th:text="${caregiver.quantity}"></p>
-                            <th:block th:each="day : ${caregiver.days}">
-                                <label th:text="${day} + ' '"></label>
-                            </th:block>
-                        </div>
-                    </div>
-                </th:block>
+                    </th:block>
+                </div>
             </div>
-        </main>
-    </body>
+        </div>
+    </main>
+</body>
+
 </html>
