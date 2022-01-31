@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html  lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Enviar Mail</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/css/cleaningForm.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet"
+              href="https://fonts.googleapis.com/css2?family=Licorice&family=Pushster&family=Quicksand:wght@300&family=Spline+Sans:wght@300&display=swap" />
+        <script src="https://kit.fontawesome.com/83a37f8406.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="card">
+                <h1>Contacto</h1>
+                <form class="formato" th:action="@{/send}" method="POST">
+                    <br>
+                    <div>
+                        <label class="titulo" for="addressee">Destinatario</label>
+                        <input class="input font" type="text" th:value="${addressee}" name="addressee">
+                    </div>
+                    <br>
+                    <div>
+                        <label class="titulo" for="subject">Asunto</label>
+                        <input class="input font" type="text" th:value="${subject}" name="subject">
+                    </div>
+                    <br>
+                    <div>
+                        <label class="titulo" for="message">Mensaje</label>
+                        <input class="input font" type="text" th:value="${message}" name="message">
+                    </div>
+                    <br>
+                    <button class="buttons"> Enviar </button>
+                </form>
+                <a class="volver" th:href="@{/}">Volver</a>
+            </div>
+        </div>
+    </body>
+</html>
