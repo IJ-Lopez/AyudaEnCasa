@@ -1,3 +1,4 @@
+
 package com.ayudaencasa.app.controllers;
 
 import com.ayudaencasa.app.criteria.GardenerCriteria;
@@ -39,7 +40,7 @@ public class GardenerController {
 
     @GetMapping("/create")
     public String registry() {
-        return "gardenerForm";
+        return "newGardenerForm";
     }
 
     @PostMapping("/create")

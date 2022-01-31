@@ -19,7 +19,6 @@ body {
 
 }
 
-
 .container {
   position: absolute;
   top: 50%;
@@ -70,7 +69,7 @@ form .data input {
   /* border-bottom: 1px solid  #9f01ea; */
   background-color: transparent;
   color: #fefefe;
-  cursor: text;
+  cursor: pointer !important; 
 }
 /* ver con el grupo */
 form .data input:focus {
@@ -177,6 +176,7 @@ form .signup-link {
   text-align: center;
   text-decoration: none;
   font-size: 15px;
+  margin: 20px auto;
 }
 
 form .signup-link a {
@@ -185,6 +185,24 @@ form .signup-link a {
 }
 
 form .signup-link:hover a {
+  /* color: #56d8e4; */
+  color: #d89e53;
+  text-decoration: underline;
+}
+
+form .goback-link {
+  color: #fefefe;
+  text-align: right;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+form .goback-link a {
+  color: #fefefe;
+  text-decoration: none;
+}
+
+form .goback-link:hover a {
   /* color: #56d8e4; */
   color: #d89e53;
   text-decoration: underline;

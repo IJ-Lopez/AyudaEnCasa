@@ -37,7 +37,7 @@ public class PetWalkerController {
 
     @GetMapping("/create")
     public String registry() {
-        return "petwalkerForm";
+        return "newPetwalkerForm";
     }
 
     @PostMapping("/create")

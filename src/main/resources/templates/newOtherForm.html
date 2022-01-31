@@ -1,27 +1,33 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Jardinero</title>
-        <link rel="stylesheet" href="/css/workForms.css"> 
-        <!--<link rel="stylesheet" href="../static/css/workForms.css">-->
-        <!--Google fonts-->
+        <title>Otros empleos</title>
+         <link rel="stylesheet" href="/css/workForms.css">  
+        <link rel="stylesheet" href="../static/css/workForms.css">
+        Google fonts
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link rel="stylesheet"
               href="https://fonts.googleapis.com/css2?family=Licorice&family=Pushster&family=Quicksand:wght@300&family=Spline+Sans:wght@300&display=swap" />
-        <!--Font Awesome-->
+        Font Awesome
         <script src="https://kit.fontawesome.com/83a37f8406.js" crossorigin="anonymous"></script>
     </head>
 
     <body>
         <div class="center">
             <div class="container">
-                <div class="text">Jardinero</div>
-                <form th:action="@{/jardinero/create}" method="POST">
+                <div class="text">Otros empleos</div>
+                <form th:action="@{/otro/create}" method="POST">
+
+                    <div class="data">
+                        <label for="jobType"></label>
+                        <input type="text" th:value="${jobType}" id="tipo" name="jobType" placeholder="Tipo de trabajo">
+                    </div>
+
                     <div class="data">
                         <label for="salary"></label>
                         <input type="text" size="50px" th:value="${salary}" name="salary" id="salario"
@@ -90,72 +96,7 @@
                         <input class="input font" type="text" th:value="${workingHoursTo}" id="hora" name="workingHoursTo"
                                placeholder="Hora de finalización" onfocus="(this.type='time')">
                     </div>
-                    <div class="data">
-                        <label for="surface"></label>
-                        <select class="input" th:value="${surface}" name="surface" id="tamaño">
-                            <option disabled selected>Tamaño del jardín </option>
-                            <option value="pequeño">Pequeño (Hasta 150 m2) </option>
-                            <option value="mediano">Mediano (Hasta 300 m2)</option>
-                            <option value="grande">Grande (Más de 300 m2)</option>
-                            <option value="indistinto">Indistinto </option>
-                        </select>
-                    </div>
-                    <div class="lista">
-                        <div class="titulo">
-                            Herramientas de jardinería
-                            <label for="tools"> </label>
-                            <ul class="dropdown-menu" th:value="${tools}" name="tools">
-                                <li>
-                                    <input type="checkbox" value="a" name="si"> Si
-                                </li>
-                                <li>
-                                    <input type="checkbox" value="b" name="no"> No
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="lista">
-                        <div class="titulo">
-                            Limpieza de piscina
-                            <label for="poolCleaning"> </label>
-                            <ul class="dropdown-menu" th:value="${poolCleaning}" name="poolCleaning">
-                                <li>
-                                    <input type="checkbox" value="a" name="si"> Si
-                                </li>
-                                <li>
-                                    <input type="checkbox" value="b" name="no"> No
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="lista">
-                        <div class="titulo">
-                            Corte de cercos
-                            <label for="gardenFence"> </label>
-                            <ul class="dropdown-menu" th:value="${gardenFence}" name="gardenFence">
-                                <li>
-                                    <input type="checkbox" value="a" name="si"> Si
-                                </li>
-                                <li>
-                                    <input type="checkbox" value="b" name="no"> No
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="lista">
-                        <div class="titulo">
-                            Desinfección de plantas
-                            <label for="plantDisinfection"> </label>
-                            <ul class="dropdown-menu" th:value="${plantDisinfection}" name="plantDisinfection">
-                                <li>
-                                    <input type="checkbox" value="a" name="si"> Si
-                                </li>
-                                <li>
-                                    <input type="checkbox" value="b" name="no"> No
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+
                     <div class="btn">
                         <div class="inner"></div>
                         <button type="submit">enviar</button>
@@ -169,4 +110,4 @@
         <script src="/js/main.js"></script>
     </body>
 
-</html>
+</html>-->

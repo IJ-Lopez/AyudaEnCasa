@@ -38,7 +38,7 @@ public class CleaningController {
     
     @GetMapping("/create")
     public String registry(){
-        return "cleaningForm";
+        return "newCleaningForm";
     }
     
     @PostMapping("/create")

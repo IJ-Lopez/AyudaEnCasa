@@ -9,7 +9,7 @@
 body {
   height: 100vh;
   width: 100%;
-  background-image: url(/src/main/resources/static/img/sillonliving.jpg);
+  background-image: url(/img/sillonliving.jpg);
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
