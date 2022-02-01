@@ -1,8 +1,10 @@
 
 package com.ayudaencasa.app.controllers;
 
+import com.ayudaencasa.app.dto.input.RegisterUserDTO;
 import com.ayudaencasa.app.entities.User;
 import com.ayudaencasa.app.exceptions.UserNotFoundException;
+import com.ayudaencasa.app.services.S3Service;
 import com.ayudaencasa.app.services.UserService;
 import java.util.List;
 import javax.validation.Valid;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @Validated
@@ -25,8 +28,11 @@ public class UserController {
     
     @Autowired
     private UserService userService;
-    
+    private RegisterUserDTO User;
+    private S3Service s3service;
+            
     @GetMapping("/registry")
+
     public String registry(){
         return "newRegistryForm";
     }
@@ -57,11 +63,12 @@ public class UserController {
 
     
     @PostMapping("/registry")
-    public String create(Model model, @Valid User inputUser, @RequestParam String departament) {
+    public String create(Model model, @Valid RegisterUserDTO inputUser) {
         try{
             User user = new User();
             BeanUtils.copyProperties(inputUser, user);
-            user.setAddress(inputUser.getAddress() + " - " + departament);
+            user.setAddress(inputUser.getAddress() + " - " + inputUser.getDepartament());
+            user.setPhoto(s3service.save(inputUser.getPic()));
             userService.create(user);
             return "redirect:/home";
         } catch (UserNotFoundException ex) {

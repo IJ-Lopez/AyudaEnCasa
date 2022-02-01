@@ -31,6 +31,7 @@ import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.annotations.Where;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 @Data
 @Builder
@@ -63,7 +64,7 @@ public class User implements Serializable {
     private String address;
     
     private Long phone;
-    // private Photo photo;
+    private String photo;
     // private Cv cv;
     
     @OneToMany(cascade = CascadeType.ALL)
