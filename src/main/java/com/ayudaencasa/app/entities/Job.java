@@ -58,7 +58,8 @@ public abstract class Job implements Serializable {
 
     @ElementCollection(targetClass=String.class)
     protected List<String> days;
-
+    protected LocalTime workingHoursFrom;
+    protected LocalTime workingHoursTo;
     protected Integer hoursFrom;
     protected Integer hoursTo;
     protected Boolean status;  
