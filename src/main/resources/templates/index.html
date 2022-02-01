@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ayuda en casa</title>
+  <title >Ayuda en casa</title>
   <!--Css-->
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="/css/style.css" />
   <!--Google fonts-->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -19,12 +19,12 @@
 
 <body>
   <div class="container">
-    <nav class="nav-main">
-      <h1>Ayuda en casa</h1>
+    <nav class="nav-main" id="top">
+       <a href="#"> <h1 id="home">Ayuda en casa</h1></a>
       <ul class="nav-menu">
-        <li>
+        <!-- <li>
           <a href="#main">Inicio <i class="fas fa-home"></i></a>
-        </li>
+        </li> -->
         <li>
           <a href="#aboutus">Sobre nosotros <i class="fas fa-users"></i></a>
         </li>
@@ -33,47 +33,53 @@
         </li>
         <div class="work-menu">
           <li>
-            <!--deberia llevar a un form lista desplegable con los registros-->
+            <!-- deberia llevar a un form lista desplegable con los registros -->
             <a href="#form">Quiero trabajar <i class="fas fa-briefcase"></i></a>
             <ul class="work-menu">
               <li><a href="../jardinero/create">Jardinero</a></li>
               <li><a href="../limpiador/create">Servicio doméstico</a></li>
               <li><a href="../cuidador/create">Cuidado de personas</a></li>
               <li><a href="../paseador/create">Paseador de perros</a></li>
+              <li><a href="../otro/create">Otro</a></li>
             </ul>
           </li>
         </div>
         <div class="work-menu">
           <li>
-            <!--deberia llevar a un form lista desplegable con los registros-->
+            <!-- deberia llevar a un form lista desplegable con los registros -->
             <a href="#form">Sección usuarios <i class="far fa-user"></i></a>
             <ul class="work-menu">
-              <li><a href="../templates/login.html">Iniciar sesion <i class="fas fa-sign-in-alt"></i></a></li>
-              <li><a href="../user/registry">Regístrate <i class="fas fa-bars"></i></a></li>
+              <li><a href="/login">Iniciar sesion <i class="fas fa-sign-in-alt"></i></a></li>
+              <li><a href="/user/registry">Regístrate <i class="fas fa-bars"></i></a></li>
             </ul>
           </li>
         </div>
       </ul>
     </nav>
+
     <main>
       <!--Busqueda-->
       <section class="otrocontainer">
         <header id="main" class="busqueda">
           <div class="cuadrobusqueda">
             <h2 class="h2b">¿Que desea buscar?</h2>
+            <div class="error">
+              <a th:if="${error != null}" th:text="${error}"></a>
+            </div>
             <form action="/home/buscar" method="POST">
               <input class="form" type="text" name="trabajo" id="trabajo" placeholder="Ingrese su busqueda" list="jobs-list"/>
               <datalist id ="jobs-list">
-                  <option value="Jardinero"/>
-                  <option value="Paseador"/>
-                  <option value="Cuidador"/>
-                  <option value="Limpiador"/>
+                  <option value="Cuidado de personas"></option>
+                  <option value="Jardinero"></option>
+                  <option value="Paseador de perros"></option>
+                  <option value="Servicio de limpieza"></option>
+                  <option value="Otro"></option>
               </datalist>
             </form>
           </div>
         </header>
       </section>
-      <h3>Sugerencias</h3>
+      <h3 class="h3-sug">Sugerencias</h3>
       <div class="sugerencias">
         <div class="hola">
           <img src="img/jardin.jpg" alt="imagen" />
@@ -104,7 +110,7 @@
         </div>
       </div>
       <!--corregir enlaces-->
-      <h3>Populares...</h3>
+      <h3 class="h3-sug">Populares</h3>
       <div class="box">
         <div class="card">
           <a href="/paseador/list">
@@ -161,10 +167,7 @@
           <a href=""><i class="fab fa-linkedin"></i></a>
           <a href=""><i class="fab fa-instagram"></i></a>
         </div>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum perspiciatis similique voluptatem expedita,
-          fugit doloremque? Neque expedita commodi necessitatibus vel minus dolore corrupti temporibus accusamus earum.
-          Laudantium, distinctio. At velit blanditiis esse et laboriosam sequi eligendi quasi voluptatum quam animi,
-          natus reiciendis numquam harum unde officiis illum ab eum porro.
+        <p>aca no hay nada
         </p>
       </div>
     </div>    

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Regístrate</title>
+    <!-- Style -->
+    <link rel="stylesheet" href="/css/newRegistry.css" />
+    <!--Google fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Licorice&family=Pushster&family=Quicksand:wght@300&family=Spline+Sans:wght@300&display=swap" />
+    <!--Font Awesome-->
+    <script src="https://kit.fontawesome.com/83a37f8406.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="center">
+        <div class="container">
+            <div class="text">Regístrate</div>
+            <form action="#">
+                <div class="data">
+                    <label for="email"></label>
+                    <input type="text" name="email" placeholder="Email" id="" required />
+                </div>
+                <div class="data">
+                    <label for="password"></label>
+                    <input type="password" name="password" placeholder="Contraseña" id="clave" required />
+                    <span id="verclave" class="verclave"><i id="icono" class="fas fa-eye"></i></span>
+                </div>
+                <div class="data">
+                    <label for="password"></label>
+                    <input type="password" name="password" placeholder="Repetir contraseña" id="clave" required />
+                    <span id="verclave" class="verclave"><i id="icono" class="fas fa-eye"></i></span>
+                </div>
+                <div class="data">
+                    <label for="firstName"></label>
+                    <input class="controls" type="text" th:value="${firstName}" name="firstName" id="nombre"
+                        placeholder="Nombre" required />
+                </div>
+                <div class="data">
+                    <label for="lastName"></label>
+                    <input class="controls" type="text" th:value="${lastName}" name="lastName" id="apellido"
+                        placeholder="Apellido" required />
+                </div>
+                <div class="data">
+                    <label for="dob"></label>
+                    <input class="controls" type="text" th:value="${dob}" name="dob" id="fechaNacimiento"
+                        pattern="yyyy-MM-dd" placeholder="Fecha de nacimiento" onfocus="(this.type='date')" />
+                </div>
+                <div class="data">
+                    <label for="dni"></label>
+                    <input class="controls" type="number" th:value="${dni}" name="dni" id="DNI" placeholder="Documento"
+                        required />
+                </div>
+                <div class="data">
+                    <label for="photo"></label>
+                    <title>foto</title>
+                    <input class="controls" type="text" th:value="${photo}" name="photo" id="foto"
+                        placeholder="Foto de perfil" onfocus="(this.type='file')" />
+                    <!-- <input type="submit" name="photo" value="Enviar imagen" /> -->
+                </div>
+                <div class="data">
+                    <label for="address"></label>
+                    <input class="controls" type="text" th:value="${address}" name="address" id="dirección"
+                        placeholder="Dirección" required />
+                </div>
+                <div class="data">
+                    <div class="departamento">
+                        <label for="departament"> </label>
+                        <select th:value="${departament}" name="departament" id="deptartamento">
+                            <option disabled selected>Elija su departamento</option>
+                            <option value="Capital">Capital</option>
+                            <option value="General Alvear">General Alvear</option>
+                            <option value="Godoy Cruz">Godoy Cruz</option>
+                            <option value="Guaymallén">Guaymallén</option>
+                            <option value="Junín">Junín</option>
+                            <option value="La Paz">La Paz</option>
+                            <option value="Las Heras">Las Heras</option>
+                            <option value="Lavalle">Lavalle</option>
+                            <option value="Luján de Cuyo">Luján de Cuyo</option>
+                            <option value="Maipú">Maipú</option>
+                            <option value="Malargüe">Malargüe</option>
+                            <option value="Rivadavia">Rivadavia</option>
+                            <option value="San Carlos">San Carlos</option>
+                            <option value="San Martín">San Martín</option>
+                            <option value="San Rafael">San Rafael</option>
+                            <option value="Santa Rosa">Santa Rosa</option>
+                            <option value="Tunuyán">Tunuyán</option>
+                            <option value="Tupungato">Tupungato</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="data">
+                    <label for="phone"> </label>
+                    <input class="controls" type="tel" th:value="${phone}" name="phone" id="teléfono"
+                        placeholder="(Código de área)Número" required />
+                </div>
+                <div class="data">
+                    <label for="cv"></label>
+                    <input class="controls" type="text" th:value="${cv}" name="cv" id="cv"
+                        placeholder="Adjuntá tu curriculum" onfocus="(this.type='file')" />
+                </div>
+                <div class="">
+                    <div class="terms">
+                        Estoy de acuerdo con los<a class="terms-link" href="#">Terminos y Condiciones</a>
+                        <input type="checkbox" name="terms" id="" required />
+                    </div>
+                </div>
+                <div class="btn">
+                    <div class="inner"></div>
+                    <button type="submit">ingresar</button>
+                </div>
+                <div class="goback-link">
+                    <a class="data" href="/home">Volver</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="/js/main.js"></script>
+</body>
+
+</html>

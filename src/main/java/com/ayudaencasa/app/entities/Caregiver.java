@@ -1,6 +1,7 @@
 package com.ayudaencasa.app.entities;
 
 import java.io.Serializable;
+import java.time.LocalTime;
 import javax.persistence.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,6 +19,10 @@ import org.hibernate.annotations.Where;
 @Entity
 public class Caregiver extends Job implements Serializable {
     
+    public static final String JOB_TYPE = "Cuidado de Personas || Caregiver";
+    
+    private final String type = JOB_TYPE;
+    
     private Integer quantity;
     
     private Integer ageFrom;
@@ -29,11 +34,5 @@ public class Caregiver extends Job implements Serializable {
     private Boolean cleaningPeople;
     
     private Boolean tranfering;
-    
-    
-    @Override
-    public String getType() {
-        return "Caregiver";
-    }
     
 }

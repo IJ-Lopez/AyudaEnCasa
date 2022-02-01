@@ -8,6 +8,7 @@ import com.ayudaencasa.app.exceptions.PetWalkerNotFoundException;
 import com.ayudaencasa.app.services.PetWalkerService;
 import io.github.jhipster.service.filter.IntegerFilter;
 import io.github.jhipster.service.filter.StringFilter;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.lang3.StringUtils;
@@ -16,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,138 +31,143 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Validated
 @RequestMapping ("/paseador")
 public class PetWalkerController {
-    
+
     @Autowired
     private PetWalkerService petWalkerService;
-    
+
     @GetMapping("/create")
-    public String registry(){
-        return "petwalkerForm";
+    public String registry() {
+        return "newPetwalkerForm";
     }
-    
+
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.OK)
-    public String create(RedirectAttributes redirectAttributes, CreatePetWalkerDTO inputPetWalker) {
-        try{
+    public String create(Model model, CreatePetWalkerDTO inputPetWalker) {
+        try {
             PetWalker petWalker = new PetWalker();
-            if(inputPetWalker.getWorkingHoursTo() != null){
-                petWalker.setHoursTo(inputPetWalker.getWorkingHoursTo());    
+            if (inputPetWalker.getWorkingHoursTo() != null) {
+                petWalker.setHoursTo(inputPetWalker.getWorkingHoursTo());
             }
-            if(inputPetWalker.getWorkingHoursFrom() != null){
+            if (inputPetWalker.getWorkingHoursFrom() != null) {
                 petWalker.setHoursFrom(inputPetWalker.getWorkingHoursFrom());
             }
             BeanUtils.copyProperties(inputPetWalker, petWalker);
             petWalkerService.create(petWalker);
             return "index";
-        }catch (PetWalkerNotFoundException e) {
-            redirectAttributes.addFlashAttribute("error", e.getMessage());
+        } catch (PetWalkerNotFoundException ex) {
+            model.addAttribute("error", ex.getMessage());
             return "petwalkerForm";
-        }    
+        }
     }
     
     @GetMapping("/list")
-    public String findAll (@RequestParam (required = false) String q){
-        List<PetWalker> petwalkers = petWalkerService.findAll();
-        return "petwalker.html";
-    }
-    
-    @PostMapping("/filter")
-    public ResponseEntity<List<PetWalker>> findByFilter (@RequestBody SearchPetWalkerDTO searchPetWalker){
-        if(searchPetWalker.getWorkingHoursTo() != null){
-            searchPetWalker.setHoursTo(searchPetWalker.getWorkingHoursTo());    
+    public String findAll(Model model, @RequestParam(required = false) List<PetWalker> petWalkers) {
+        if(petWalkers != null){
+        model.addAttribute("petwalkers", petWalkers);
+        } else {
+        model.addAttribute("petwalkers", petWalkerService.findAll());
         }
-        if(searchPetWalker.getWorkingHoursFrom() != null){
+        return "petwalkerList";
+    }
+
+    @PostMapping("/list")
+    public String findByFilter(SearchPetWalkerDTO searchPetWalker, RedirectAttributes rt) {
+        if (searchPetWalker.getWorkingHoursTo() != null) {
+            searchPetWalker.setHoursTo(searchPetWalker.getWorkingHoursTo());
+        }
+        if (searchPetWalker.getWorkingHoursFrom() != null) {
             searchPetWalker.setHoursFrom(searchPetWalker.getWorkingHoursFrom());
         }
-        PetWalkerCriteria petWalkerCriteria = createCriteria (searchPetWalker);
-        List <PetWalker> petWalkers = petWalkerService.findByCriteria(petWalkerCriteria);
-        
-        if(searchPetWalker.getDay() != null) {
+        PetWalkerCriteria petWalkerCriteria = createCriteria(searchPetWalker);
+        List<PetWalker> petWalkers = petWalkerService.findByCriteria(petWalkerCriteria);
+
+        if (searchPetWalker.getDay() != null && !searchPetWalker.getDay().isEmpty()) {
             List<PetWalker> pet = new ArrayList<>();
-            for (PetWalker petWalker : petWalkers){
+            for (PetWalker petWalker : petWalkers) {
                 for (String day : petWalker.getDays()) {
-                    if(day.equalsIgnoreCase(searchPetWalker.getDay())) {
+                    if (day.equalsIgnoreCase(searchPetWalker.getDay())) {
                         pet.add(petWalker);
                     }
-                } 
+                }
             }
             petWalkers = pet;
         }
-        return new ResponseEntity<>(petWalkers, HttpStatus.OK);      
+        rt.addAttribute("petwalkers", petWalkers);
+        return "redirect:/paseador/list";
     }
-    
-    private PetWalkerCriteria createCriteria (SearchPetWalkerDTO searchPetWalker){
+
+    private PetWalkerCriteria createCriteria(SearchPetWalkerDTO searchPetWalker) {
         PetWalkerCriteria petWalkerCriteria = new PetWalkerCriteria();
-        if (searchPetWalker != null){
-            if (searchPetWalker.getPetQuantityFrom()!= null || searchPetWalker.getPetQuantityTo()!= null) {
-                IntegerFilter filter = new IntegerFilter ();
-                if (searchPetWalker.getPetQuantityFrom()!= null ) {
-                    filter.setGreaterThanOrEqual (searchPetWalker.getPetQuantityFrom());
+        if (searchPetWalker != null) {
+            if (searchPetWalker.getPetQuantityFrom() != null || searchPetWalker.getPetQuantityTo() != null) {
+                IntegerFilter filter = new IntegerFilter();
+                if (searchPetWalker.getPetQuantityFrom() != null) {
+                    filter.setGreaterThanOrEqual(searchPetWalker.getPetQuantityFrom());
                     petWalkerCriteria.setPetQuantity(filter);
-                    }
-                if (searchPetWalker.getPetQuantityTo()!= null ) {
-                    filter.setLessThanOrEqual (searchPetWalker.getPetQuantityTo());
+                }
+                if (searchPetWalker.getPetQuantityTo() != null) {
+                    filter.setLessThanOrEqual(searchPetWalker.getPetQuantityTo());
                     petWalkerCriteria.setPetQuantity(filter);
                 }
             }
             if (!StringUtils.isBlank(searchPetWalker.getPetRace())) {
                 StringFilter filter = new StringFilter();
-                filter.setContains (searchPetWalker.getPetRace());
-                petWalkerCriteria.setPetRace (filter);
+                filter.setContains(searchPetWalker.getPetRace());
+                petWalkerCriteria.setPetRace(filter);
             }
-            if (!StringUtils.isBlank (searchPetWalker.getPetType())) {
+            if (!StringUtils.isBlank(searchPetWalker.getPetType())) {
                 StringFilter filter = new StringFilter();
-                filter.setContains (searchPetWalker.getPetType());
-                petWalkerCriteria.setPetType (filter);
+                filter.setContains(searchPetWalker.getPetType());
+                petWalkerCriteria.setPetType(filter);
             }
-            if(searchPetWalker.getSalaryFrom()!= null || searchPetWalker.getSalaryTo()!= null){
+            if (searchPetWalker.getSalaryFrom() != null || searchPetWalker.getSalaryTo() != null) {
                 IntegerFilter filter = new IntegerFilter();
-                if(searchPetWalker.getSalaryFrom() != null){
+                if (searchPetWalker.getSalaryFrom() != null) {
                     filter.setGreaterThanOrEqual(searchPetWalker.getSalaryFrom());
                     petWalkerCriteria.setSalary(filter);
                 }
-                if(searchPetWalker.getSalaryTo() != null){
+                if (searchPetWalker.getSalaryTo() != null) {
                     filter.setLessThanOrEqual(searchPetWalker.getSalaryTo());
                     petWalkerCriteria.setSalary(filter);
                 }
             }
-            if(!StringUtils.isBlank(searchPetWalker.getWorkingZone())){
+            if (!StringUtils.isBlank(searchPetWalker.getWorkingZone())) {
                 StringFilter filter = new StringFilter();
                 filter.setContains(searchPetWalker.getWorkingZone());
                 petWalkerCriteria.setWorkingZone(filter);
             }
-            if(!StringUtils.isBlank(searchPetWalker.getDescription())){
+            if (!StringUtils.isBlank(searchPetWalker.getDescription())) {
                 StringFilter filter = new StringFilter();
                 filter.setContains(searchPetWalker.getDescription());
                 petWalkerCriteria.setDescription(filter);
             }
-            if(searchPetWalker.getWorkingHoursFrom() != null) {           
+            if (searchPetWalker.getWorkingHoursFrom() != null) {
                 IntegerFilter filter = new IntegerFilter();
                 filter.setLessThanOrEqual(searchPetWalker.getHoursFrom());
                 petWalkerCriteria.setHoursFrom(filter);
             }
-            if(searchPetWalker.getWorkingHoursTo() != null){               
+            if (searchPetWalker.getWorkingHoursTo() != null) {
                 IntegerFilter filter = new IntegerFilter();
                 filter.setGreaterThanOrEqual(searchPetWalker.getHoursTo());
                 petWalkerCriteria.setHoursTo(filter);
-            }    
+            }
         }
         return petWalkerCriteria;
     }
-    
+
     @GetMapping("")
-    public PetWalker findById (@RequestParam String id){
+    public PetWalker findById(@RequestParam String id) {
         return petWalkerService.findById(id);
     }
-    
-    @GetMapping ("/delete")
-    public void delete (String id){
+
+    @GetMapping("/delete")
+    public void delete(String id) {
         petWalkerService.delete(id);
     }
-    
+
     @PostMapping("/update")
-    public void update (String id, PetWalker newPetWalker){
+    public void update(String id, PetWalker newPetWalker) {
         petWalkerService.update(id, newPetWalker);
-        
+
     }
 }

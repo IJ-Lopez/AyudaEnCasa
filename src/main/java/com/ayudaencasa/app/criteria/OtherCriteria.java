@@ -13,7 +13,7 @@ import lombok.Setter;
 @Setter
 public class OtherCriteria {
     
-    private StringFilter type;
+    private StringFilter jobType;
     private IntegerFilter salary;
     private StringFilter workingZone;
     private StringFilter description;

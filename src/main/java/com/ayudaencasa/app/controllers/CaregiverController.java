@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,21 +34,21 @@ public class CaregiverController {
 
     @Autowired
     private CaregiverService caregiverService;
-    
+
     @GetMapping("/create")
-    public String registry(){
-        return "caregiverForm";
+    public String registry() {
+        return "newCaregiverForm";
     }
     
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.OK)
-    public String create(RedirectAttributes redirectAttributes, CreateCaregiverDTO inputCaregiver, @RequestParam(required = false) String ageRange) {
-        try{
+    public String create(Model model, CreateCaregiverDTO inputCaregiver, @RequestParam(required = false) String ageRange) {
+        try {
             Caregiver caregiver = new Caregiver();
-            if(inputCaregiver.getWorkingHoursTo() != null){
-                caregiver.setHoursTo(inputCaregiver.getWorkingHoursTo());   
+            if (inputCaregiver.getWorkingHoursTo() != null) {
+                caregiver.setHoursTo(inputCaregiver.getWorkingHoursTo());
             }
-            if(inputCaregiver.getWorkingHoursFrom() != null){
+            if (inputCaregiver.getWorkingHoursFrom() != null) {
                 caregiver.setHoursFrom(inputCaregiver.getWorkingHoursFrom());
             }
             BeanUtils.copyProperties(inputCaregiver, caregiver);
@@ -74,70 +75,75 @@ public class CaregiverController {
             }
             caregiverService.create(caregiver);
             return "index";
-        }catch (Exception e) {
-            redirectAttributes.addFlashAttribute("error", e.getMessage());
+        } catch (Exception ex) {
+            model.addAttribute("error", ex.getMessage());
             return "caregiverForm";
-        }    
-    }
-    
-    @GetMapping("/list")
-    public String findAll(@RequestParam(required = false) String q) {
-        List<Caregiver> caregivers = caregiverService.findAll();
-        return "caregiver.html";
-    }
-    
-    @PostMapping("/filter")
-    public ResponseEntity<List<Caregiver>> findByFilter(@RequestBody SearchCaregiverDTO searchCaregiver) {    
-        if(searchCaregiver.getWorkingHoursTo() != null){
-            searchCaregiver.setHoursTo(searchCaregiver.getWorkingHoursTo());    
         }
-        if(searchCaregiver.getWorkingHoursFrom() != null){
+    }
+
+    @GetMapping("/list")
+    public String findAll(Model model, @RequestParam(required = false) List<Caregiver> caregivers) {
+        if (caregivers != null) {
+            model.addAttribute("caregivers", caregivers);
+        } else {
+            model.addAttribute("caregivers", caregiverService.findAll());
+        }
+        return "caregiverList";
+    }
+
+    @PostMapping("/list")
+        public String findByFilter(SearchCaregiverDTO searchCaregiver, RedirectAttributes rt) {
+        if (searchCaregiver.getWorkingHoursTo() != null) {
+            searchCaregiver.setHoursTo(searchCaregiver.getWorkingHoursTo());
+        }
+        if (searchCaregiver.getWorkingHoursFrom() != null) {
             searchCaregiver.setHoursFrom(searchCaregiver.getWorkingHoursFrom());
         }
         CaregiverCriteria caregiverCriteria = createCriteria(searchCaregiver);
         List<Caregiver> caregivers = caregiverService.findByCriteria(caregiverCriteria);
-       
-        if(searchCaregiver.getDay() != null) {
+
+        if (searchCaregiver.getDay() != null && !searchCaregiver.getDay().isEmpty()) {
             List<Caregiver> car = new ArrayList<>();
-            for (Caregiver caregiver : caregivers){
+            for (Caregiver caregiver : caregivers) {
                 for (String day : caregiver.getDays()) {
-                    if(day.equalsIgnoreCase(searchCaregiver.getDay())) {
+                    if (day.equalsIgnoreCase(searchCaregiver.getDay())) {
                         car.add(caregiver);
                     }
-                } 
+                }
             }
             caregivers = car;
-        }  
-        return new ResponseEntity<>(caregivers, HttpStatus.OK);
+        }
+        rt.addAttribute("caregivers", caregivers);
+        return "redirect:/cuidador/list";
     }
-    
-    private CaregiverCriteria createCriteria(SearchCaregiverDTO searchCaregiver){
+
+    private CaregiverCriteria createCriteria(SearchCaregiverDTO searchCaregiver) {
         CaregiverCriteria caregiverCriteria = new CaregiverCriteria();
-        if(searchCaregiver != null){
-            if(searchCaregiver.getQuantityFrom() != null || searchCaregiver.getQuantityTo() != null){
+        if (searchCaregiver != null) {
+            if (searchCaregiver.getQuantityFrom() != null || searchCaregiver.getQuantityTo() != null) {
                 IntegerFilter filter = new IntegerFilter();
-                if(searchCaregiver.getQuantityFrom() != null){
+                if (searchCaregiver.getQuantityFrom() != null) {
                     filter.setGreaterThanOrEqual(searchCaregiver.getQuantityFrom());
                     caregiverCriteria.setQuantity(filter);
                 }
-                if(searchCaregiver.getQuantityTo() != null){
+                if (searchCaregiver.getQuantityTo() != null) {
                     filter.setLessThanOrEqual(searchCaregiver.getQuantityTo());
                     caregiverCriteria.setQuantity(filter);
                 }
             }
-            if(searchCaregiver.getAgeFrom() != null){
+            if (searchCaregiver.getAgeFrom() != null) {
                 IntegerFilter filter = new IntegerFilter();
                 filter.setGreaterThanOrEqual(searchCaregiver.getAgeFrom());
-                caregiverCriteria.setAgeFrom(filter);       
+                caregiverCriteria.setAgeFrom(filter);
             }
-            if(searchCaregiver.getAgeTo() != null){
+            if (searchCaregiver.getAgeTo() != null) {
                 IntegerFilter filter = new IntegerFilter();
                 filter.setLessThanOrEqual(searchCaregiver.getAgeTo());
-                caregiverCriteria.setAgeTo(filter);       
+                caregiverCriteria.setAgeTo(filter);
             }
-            if(!StringUtils.isBlank(searchCaregiver.getCooking())){
+            if (!StringUtils.isBlank(searchCaregiver.getCooking())) {
                 BooleanFilter filter = new BooleanFilter();
-                switch(searchCaregiver.getCooking()){
+                switch (searchCaregiver.getCooking()) {
                     case "true":
                         filter.setEquals(true);
                         break;
@@ -145,13 +151,13 @@ public class CaregiverController {
                         filter.setEquals(false);
                         break;
                     default:
-                        filter.setEquals(false);        
+                        filter.setEquals(false);
                 }
                 caregiverCriteria.setCooking(filter);
             }
-            if(!StringUtils.isBlank(searchCaregiver.getCleaningPeople())){
+            if (!StringUtils.isBlank(searchCaregiver.getCleaningPeople())) {
                 BooleanFilter filter = new BooleanFilter();
-                switch(searchCaregiver.getCleaningPeople()){
+                switch (searchCaregiver.getCleaningPeople()) {
                     case "true":
                         filter.setEquals(true);
                         break;
@@ -159,13 +165,13 @@ public class CaregiverController {
                         filter.setEquals(false);
                         break;
                     default:
-                        filter.setEquals(false);        
+                        filter.setEquals(false);
                 }
                 caregiverCriteria.setCleaningPeople(filter);
             }
-            if(!StringUtils.isBlank(searchCaregiver.getTranfering())){
+            if (!StringUtils.isBlank(searchCaregiver.getTranfering())) {
                 BooleanFilter filter = new BooleanFilter();
-                switch(searchCaregiver.getTranfering()){
+                switch (searchCaregiver.getTranfering()) {
                     case "true":
                         filter.setEquals(true);
                         break;
@@ -173,37 +179,37 @@ public class CaregiverController {
                         filter.setEquals(false);
                         break;
                     default:
-                        filter.setEquals(false);        
+                        filter.setEquals(false);
                 }
                 caregiverCriteria.setTranfering(filter);
             }
-            if(searchCaregiver.getSalaryFrom()!= null || searchCaregiver.getSalaryTo()!= null){
+            if (searchCaregiver.getSalaryFrom() != null || searchCaregiver.getSalaryTo() != null) {
                 IntegerFilter filter = new IntegerFilter();
-                if(searchCaregiver.getSalaryFrom() != null){
+                if (searchCaregiver.getSalaryFrom() != null) {
                     filter.setGreaterThanOrEqual(searchCaregiver.getSalaryFrom());
                     caregiverCriteria.setSalary(filter);
                 }
-                if(searchCaregiver.getSalaryTo() != null){
+                if (searchCaregiver.getSalaryTo() != null) {
                     filter.setLessThanOrEqual(searchCaregiver.getSalaryTo());
                     caregiverCriteria.setSalary(filter);
                 }
             }
-            if(!StringUtils.isBlank(searchCaregiver.getWorkingZone())){
+            if (!StringUtils.isBlank(searchCaregiver.getWorkingZone())) {
                 StringFilter filter = new StringFilter();
                 filter.setContains(searchCaregiver.getWorkingZone());
                 caregiverCriteria.setWorkingZone(filter);
             }
-            if(!StringUtils.isBlank(searchCaregiver.getDescription())){
+            if (!StringUtils.isBlank(searchCaregiver.getDescription())) {
                 StringFilter filter = new StringFilter();
                 filter.setContains(searchCaregiver.getDescription());
                 caregiverCriteria.setDescription(filter);
             }
-            if(searchCaregiver.getWorkingHoursFrom() != null) {           
+            if (searchCaregiver.getWorkingHoursFrom() != null) {
                 IntegerFilter filter = new IntegerFilter();
                 filter.setLessThanOrEqual(searchCaregiver.getHoursFrom());
                 caregiverCriteria.setHoursFrom(filter);
             }
-            if(searchCaregiver.getWorkingHoursTo() != null){               
+            if (searchCaregiver.getWorkingHoursTo() != null) {
                 IntegerFilter filter = new IntegerFilter();
                 filter.setGreaterThanOrEqual(searchCaregiver.getHoursTo());
                 caregiverCriteria.setHoursTo(filter);
@@ -211,20 +217,19 @@ public class CaregiverController {
         }
         return caregiverCriteria;
     }
-    
-    
+
     @GetMapping("")
-    public Caregiver findById(@RequestParam String id) throws Exception {
+        public Caregiver findById(@RequestParam String id) throws Exception {
         return caregiverService.findById(id);
     }
-     
+
     @PostMapping("/delete")
-    public void delete(@RequestParam String id) throws Exception {
+        public void delete(@RequestParam String id) throws Exception {
         caregiverService.delete(id);
     }
-    
+
     @PostMapping("/update")
-    public void update(@RequestParam String id, Caregiver newCaregiver) throws Exception {
+        public void update(@RequestParam String id, Caregiver newCaregiver) throws Exception {
         caregiverService.update(id, newCaregiver);
     }
 }

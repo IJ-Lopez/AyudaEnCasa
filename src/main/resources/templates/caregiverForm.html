@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Cuidado de Personas</title>
-        <link rel="stylesheet" href="/css/caregiverForm.css">
+        <link rel="stylesheet" href="../static/css/caregiverForm.css">
         <!--Google fonts-->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -85,15 +85,22 @@
                     <br>
                     <div>
                         <label class="titulo" for="workingHoursFrom"></label>
-                        <input class="input font" type="time" th:value="${workingHoursFrom}" name="workingHoursFrom" id="hora" placeholder="Hora de incio"
+                        <input class="input font" type="text" th:value="${workingHoursFrom}" name="workingHoursFrom" id="hora" placeholder="Hora de incio"
                                onfocus="(this.type='time')">
                     </div>
                     <br>
                     <br>
                     <div>
                         <label class="titulo" for="workingHoursTo"></label>
-                        <input class="input font" type="time" th:value="${workingHoursTo}" id="hora" name="workingHoursTo" placeholder="Hora de finalización"
+                        <input class="input font" type="text" th:value="${workingHoursTo}" id="hora" name="workingHoursTo" placeholder="Hora de finalización"
                                onfocus="(this.type='time')">
+                    </div>
+                    <br>
+                    <br>
+                    <div>
+                        <label class="titulo" for="quantity"></label>
+                        <input class="input font" type="number" th:value="${quantity}" name="quantity" id="cantidad"
+                               placeholder="Personas a cuidar">
                     </div>
                     <br>
                     <br>
@@ -142,7 +149,4 @@
                 </form>
                 <a class="volver" th:href="@{/}">Volver</a>
             </div>
-            <div class="relleno"></div>
-        </div>
-    </body>
 </html>

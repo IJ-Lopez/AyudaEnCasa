@@ -1,4 +1,3 @@
-
 package com.ayudaencasa.app.services.impl;
 
 import com.ayudaencasa.app.criteria.CleaningCriteria;
@@ -19,13 +18,13 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CleaningServiceImpl extends QueryService<Cleaning> implements CleaningService {
-    
+
     @Autowired
     private CleaningRepository cleaningRepository;
-    
+
     @Autowired
     private ModelMapper modelMapper;
-    
+
     private Specification<Cleaning> createSpecification(CleaningCriteria cleaningCriteria) {
         Specification<Cleaning> specification = Specification.where(null);
         if (cleaningCriteria != null) {
@@ -53,11 +52,11 @@ public class CleaningServiceImpl extends QueryService<Cleaning> implements Clean
             if (cleaningCriteria.getDescription() != null) {
                 specification = specification.and(buildStringSpecification(cleaningCriteria.getDescription(), Cleaning_.description));
             }
-            if(cleaningCriteria.getHoursFrom() != null){
-                
+            if (cleaningCriteria.getHoursFrom() != null) {
+
                 specification = specification.and(buildRangeSpecification(cleaningCriteria.getHoursFrom(), Cleaning_.hoursFrom));
             }
-            if(cleaningCriteria.getHoursTo() != null){
+            if (cleaningCriteria.getHoursTo() != null) {
                 specification = specification.and(buildRangeSpecification(cleaningCriteria.getHoursTo(), Cleaning_.hoursTo));
             }
         }
@@ -70,7 +69,7 @@ public class CleaningServiceImpl extends QueryService<Cleaning> implements Clean
         List<Cleaning> gardeners = cleaningRepository.findAll(specification);
         return gardeners;
     }
-    
+
     @Override
     @Transactional
     public Cleaning create(@NonNull Cleaning cleaning) {
@@ -78,34 +77,34 @@ public class CleaningServiceImpl extends QueryService<Cleaning> implements Clean
     }
 
     @Override
-    public void update(@NonNull String id, @NonNull Cleaning newCleaning) throws CleaningNotFoundException{
-        Optional<Cleaning> opt= cleaningRepository.findById(id);
-        if(opt.isPresent()){
+    public void update(@NonNull String id, @NonNull Cleaning newCleaning) throws CleaningNotFoundException {
+        Optional<Cleaning> opt = cleaningRepository.findById(id);
+        if (opt.isPresent()) {
             Cleaning cleaning = opt.get();
             modelMapper.map(newCleaning, cleaning);
             cleaningRepository.save(cleaning);
-        }else {
+        } else {
             throw new CleaningNotFoundException("Cleaner not found");
         }
-        
+
     }
 
     @Override
-    public void delete(@NonNull String id) throws CleaningNotFoundException{
-        Optional<Cleaning> opt= cleaningRepository.findById(id);
-        if(opt.isPresent()){
+    public void delete(@NonNull String id) throws CleaningNotFoundException {
+        Optional<Cleaning> opt = cleaningRepository.findById(id);
+        if (opt.isPresent()) {
             cleaningRepository.delete(opt.get());
-        }else {
+        } else {
             throw new CleaningNotFoundException("Cleaner not found");
         }
     }
 
     @Override
     public Cleaning findById(@NonNull String id) throws CleaningNotFoundException {
-        Optional<Cleaning> opt= cleaningRepository.findById(id);
-        if(opt.isPresent()){
+        Optional<Cleaning> opt = cleaningRepository.findById(id);
+        if (opt.isPresent()) {
             return opt.get();
-        }else {
+        } else {
             throw new CleaningNotFoundException("Cleaner not found");
         }
     }
@@ -114,5 +113,5 @@ public class CleaningServiceImpl extends QueryService<Cleaning> implements Clean
     public List<Cleaning> findAll() {
         return cleaningRepository.findAll();
     }
-    
+
 }

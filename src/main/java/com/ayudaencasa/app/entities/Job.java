@@ -12,18 +12,25 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.annotations.Where;
-
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -39,24 +46,24 @@ public abstract class Job implements Serializable {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     protected String id;
-    
     protected Integer salary;
-    
-    protected String workingZone;
-    
+    protected String workingZone;  
     protected String description;
+    
+    @Setter(AccessLevel.NONE)
+    protected String type;
     
     @Column(name="user_id")
     protected String user_id;
-  
+
     @ElementCollection(targetClass=String.class)
     protected List<String> days;
-    
+
     protected Integer hoursFrom;
-    
     protected Integer hoursTo;
-    
     protected Boolean status;  
+    
+    protected Boolean showContactInfo;
     
     @Temporal(value = TemporalType.TIMESTAMP)
     @CreationTimestamp
@@ -72,8 +79,6 @@ public abstract class Job implements Serializable {
     @Column(name = "deleted_at")
     protected Date deletedAt;
     
-    public abstract String getType();
-
     public void setHoursFrom(LocalTime lt){
         hoursFrom = lt.toSecondOfDay();
     }
@@ -106,5 +111,5 @@ public abstract class Job implements Serializable {
         }
         return true;
     }
-   
+
 }

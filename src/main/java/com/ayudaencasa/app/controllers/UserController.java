@@ -32,9 +32,9 @@ public class UserController {
     private S3Service s3service;
             
     @GetMapping("/registry")
-    public String registry(Model model, @Valid User inputUser, @Valid RegisterUserDTO User, @RequestParam MultipartFile photo){
-        BeanUtils.copyProperties(User, photo); //falta modificar
-        return "registry";
+
+    public String registry(){
+        return "newRegistryForm";
     }
     
 //    @PostMapping("/form")
@@ -63,18 +63,17 @@ public class UserController {
 
     
     @PostMapping("/registry")
-    @ResponseStatus(HttpStatus.OK)
-    public String create(Model model, @Valid RegisterUserDTO inputUser, @RequestParam String departament) {
+    public String create(Model model, @Valid RegisterUserDTO inputUser) {
         try{
             User user = new User();
             BeanUtils.copyProperties(inputUser, user);
             user.setAddress(inputUser.getAddress() + " - " + inputUser.getDepartament());
             user.setPhoto(s3service.save(inputUser.getPic()));
             userService.create(user);
-            return "index";
+            return "redirect:/home";
         } catch (UserNotFoundException ex) {
             model.addAttribute("error", ex.getMessage());
-            return "registry";
+            return "newRegistryForm";
         }
     }
 

@@ -1,5 +1,6 @@
 package com.ayudaencasa.app.services.impl;
 
+import com.ayudaencasa.app.entities.Role;
 import com.ayudaencasa.app.entities.User;
 import com.ayudaencasa.app.exceptions.UserNotFoundException;
 import com.ayudaencasa.app.repositories.UserRepository;
@@ -22,10 +23,15 @@ public class UserServiceImpl implements UserService{
     
     @Autowired
     private ModelMapper modelMapper;
+    
+    @Autowired
+    private BCryptPasswordEncoder encoder;
 
     @Override
     @Transactional
     public User create(@NonNull User user) {
+        user.setPassword(encoder.encode(user.getPassword()));
+        //user.setRoles(Arrays.asList(adminRole));
         return userRepo.save(user);
     }
     
@@ -110,10 +116,6 @@ public class UserServiceImpl implements UserService{
     @Override
     public List<User> findAll() {
         return userRepo.findAll();
-    }
-
-    
-
-        
+    }        
     
 }
