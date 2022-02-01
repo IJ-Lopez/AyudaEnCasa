@@ -4,6 +4,7 @@ import com.ayudaencasa.app.services.impl.UserIndexService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -55,6 +56,17 @@ public class Security extends WebSecurityConfigurerAdapter {
 //            c.csrfTokenRepository(new CustomCsrfTokenRepository());
 //        });
 
+    }
+    
+    @Bean
+    public JavaMailSenderImpl mailSender() {
+        JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
+
+        javaMailSender.setProtocol("SMTP");
+        javaMailSender.setHost("127.0.0.1");
+        javaMailSender.setPort(25);
+
+        return javaMailSender;
     }
 
     @Bean
