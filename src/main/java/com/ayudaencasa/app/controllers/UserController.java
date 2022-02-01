@@ -1,9 +1,10 @@
 
 package com.ayudaencasa.app.controllers;
 
+import com.ayudaencasa.app.dto.input.RegisterUserDTO;
 import com.ayudaencasa.app.entities.User;
 import com.ayudaencasa.app.exceptions.UserNotFoundException;
-import com.ayudaencasa.app.repositories.AwsRepository;
+import com.ayudaencasa.app.services.S3Service;
 import com.ayudaencasa.app.services.UserService;
 import java.util.List;
 import javax.validation.Valid;
@@ -27,9 +28,12 @@ public class UserController {
     
     @Autowired
     private UserService userService;
-    
+    private RegisterUserDTO User;
+    private S3Service s3service;
+            
     @GetMapping("/registry")
-    public String registry(){
+    public String registry(Model model, @Valid User inputUser, @Valid RegisterUserDTO User, @RequestParam MultipartFile photo){
+        BeanUtils.copyProperties(User, photo); //falta modificar
         return "registry";
     }
     
@@ -60,12 +64,12 @@ public class UserController {
     
     @PostMapping("/registry")
     @ResponseStatus(HttpStatus.OK)
-    public String create(Model model, @Valid User inputUser, @RequestParam String departament, @RequestParam String photo) {
+    public String create(Model model, @Valid RegisterUserDTO inputUser, @RequestParam String departament) {
         try{
-            inputUser.setPhoto(photo);
             User user = new User();
             BeanUtils.copyProperties(inputUser, user);
-            user.setAddress(inputUser.getAddress() + " - " + departament);
+            user.setAddress(inputUser.getAddress() + " - " + inputUser.getDepartament());
+            user.setPhoto(s3service.save(inputUser.getPic()));
             userService.create(user);
             return "index";
         } catch (UserNotFoundException ex) {

@@ -1,3 +1,5 @@
+package com.ayudaencasa.app.controllers;
+
 
 import com.ayudaencasa.app.services.S3Service;
 import org.springframework.beans.factory.annotation.Autowired;
