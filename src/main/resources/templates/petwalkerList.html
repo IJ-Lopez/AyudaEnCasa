@@ -5,8 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Paseador de Perros</title>
-        <link rel="stylesheet" href="/css/style.css">
-        <link rel="stylesheet" href="/css/list.css" />
+        <link rel="stylesheet" href="/css/cardPrueba.css">
         <!--Google fonts-->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -23,109 +22,107 @@
                 <h1>Paseador de Perros</h1>
             </nav>
             <div class="container">
-                <div class="table-container">
-                    <form class="formato" th:action="@{/paseador/list}" method="POST">
-                        <br>
-                        <div>
-                            <label class="titulo" for="salaryTo"></label>
-                            <input class="input font" type="number" th:value="${salaryTo}" name="salaryTo" id="salario"
-                                   placeholder="Remuneración Pretendida">
+                <form class="formato" th:action="@{/paseador/list}" method="POST">
+                    <br>
+                    <div>
+                        <label class="titulo" for="salaryTo"></label>
+                        <input class="input font" type="number" th:value="${salaryTo}" name="salaryTo" id="salario"
+                               placeholder="Remuneración Pretendida">
+                    </div>
+                    <br>
+                    <div>
+                        <label class="titul-o" for="workingZone"></label>
+                        <select class="input" th:value="${workingZone}" name="workingZone" id="zona">
+                            <option disabled selected>Zona Laboral </option>
+                            <option value="Capital">Capital </option>
+                            <option value="General Alvear">General Alvear </option>
+                            <option value="Godoy Cruz">Godoy Cruz </option>
+                            <option value="Guaymallén">Guaymallén </option>
+                            <option value="Junín">Junín </option>
+                            <option value="La Paz">La Paz </option>
+                            <option value="Las Heras">Las Heras </option>
+                            <option value="Lavalle">Lavalle</option>
+                            <option value="Luján de Cuyo">Luján de Cuyo</option>
+                            <option value="Maipú">Maipú</option>
+                            <option value="Malargüe">Malargüe </option>
+                            <option value="Rivadavia">Rivadavia </option>
+                            <option value="San Carlos">San Carlos </option>
+                            <option value="San Martín">San Martín </option>
+                            <option value="San Rafael">San Rafael </option>
+                            <option value="Santa Rosa">Santa Rosa </option>
+                            <option value="Tunuyán">Tunuyán </option>
+                            <option value="Tupungato">Tupungato </option>
+                        </select>
+                    </div>
+                    <br>
+                    <div>
+                        <label class="titulo" for="day"></label>
+                        <select class="input" th:value="${day}" name="day" id="dia">
+                            <option disabled selected>Día Laboral </option>
+                            <option value="Lunes">Lunes </option>
+                            <option value="Martes">Martes </option>
+                            <option value="Miércoles">Miércoles </option>
+                            <option value="Jueves">Jueves </option>
+                            <option value="Viernes">Viernes </option>
+                            <option value="Sábado">Sábado </option>
+                            <option value="Domingo">Domingo </option>
+                        </select>
+                    </div>
+                    <br>
+                    <div>
+                        <label class="titulo" for="workingHoursFrom"></label>
+                        <input class="input font" type="text" th:value="${workingHoursFrom}" name="workingHoursFrom" id="hora" placeholder="Hora de incio"
+                               onfocus="(this.type='time')">
+                    </div>
+                    <br>
+                    <div>
+                        <label class="titulo" for="workingHoursTo"></label>
+                        <input class="input font" type="text" th:value="${workingHoursTo}" id="hora" name="workingHoursTo" placeholder="Hora de finalización"
+                               onfocus="(this.type='time')">
+                    </div>
+                    <br>
+                    <div>
+                        <label class="titulo" for="petQuantityFrom"></label>
+                        <input class="input" th:value="${petQuantityFrom}" name="petQuantityFrom" id="mascotas"
+                               placeholder="Cantidad de mascotas">
+                    </div>
+                    <br>
+                    <div>
+                        <label class="titulo" for="petType"></label>
+                        <input class="input" th:value="${petType}" name="petType" id="mascotas"
+                               placeholder="Tamaño de mascotas">
+                    </div>
+                    <br>
+                    <div class="col-2">
+                        <button type="submit" class="btn btn-dark mb-3">Buscar</button>
+                    </div>
+                </form>
+                <th:block th:each="petwalker : ${petwalkers}">
+                    <div class="card">
+                        <div class="phone"></div>
+                        <div class="card-titulo">
+                            <h1> Nombre y Apellido </h1>
                         </div>
-                        <br>
-                        <div>
-                            <label class="titulo" for="workingZone"></label>
-                            <select class="input" th:value="${workingZone}" name="workingZone" id="zona">
-                                <option disabled selected>Zona Laboral </option>
-                                <option value="Capital">Capital </option>
-                                <option value="General Alvear">General Alvear </option>
-                                <option value="Godoy Cruz">Godoy Cruz </option>
-                                <option value="Guaymallén">Guaymallén </option>
-                                <option value="Junín">Junín </option>
-                                <option value="La Paz">La Paz </option>
-                                <option value="Las Heras">Las Heras </option>
-                                <option value="Lavalle">Lavalle</option>
-                                <option value="Luján de Cuyo">Luján de Cuyo</option>
-                                <option value="Maipú">Maipú</option>
-                                <option value="Malargüe">Malargüe </option>
-                                <option value="Rivadavia">Rivadavia </option>
-                                <option value="San Carlos">San Carlos </option>
-                                <option value="San Martín">San Martín </option>
-                                <option value="San Rafael">San Rafael </option>
-                                <option value="Santa Rosa">Santa Rosa </option>
-                                <option value="Tunuyán">Tunuyán </option>
-                                <option value="Tupungato">Tupungato </option>
-                            </select>
+                        <div class= "card-body">
+                            <div class= "card-body-items">
+                                <div class= "datos-job">
+                                    <p></p>
+                                    <p th:text="${petwalker.salary}"></p>
+                                    <p th:text="${petwalker.workingZone}"></p>
+                                    <p th:text="${petwalker.workingHoursFrom}"></p>
+                                    <p th:text="${petwalker.workingHoursTo}"></p>
+                                </div>
+                            </div>                
+                            <img src="https://www.argentina.gob.ar/sites/default/files/vinetas_justicia_cerca_04_el_paseador_de_mi_perro.png" alt="">
                         </div>
-                        <br>
-                        <div>
-                            <label class="titulo" for="day"></label>
-                            <select class="input" th:value="${day}" name="day" id="dia">
-                                <option disabled selected>Día Laboral </option>
-                                <option value="Lunes">Lunes </option>
-                                <option value="Martes">Martes </option>
-                                <option value="Miércoles">Miércoles </option>
-                                <option value="Jueves">Jueves </option>
-                                <option value="Viernes">Viernes </option>
-                                <option value="Sábado">Sábado </option>
-                                <option value="Domingo">Domingo </option>
-                            </select>
+                        <div class="card-footer">
+                            <p th:text="${petwalker.petQuantity}"></p>
+                            <th:block th:each="day : ${petwalker.days}">
+                                <label th:text="${day} + ' '"></label>
+                            </th:block>
                         </div>
-                        <br>
-                        <div>
-                            <label class="titulo" for="workingHoursFrom"></label>
-                            <input class="input font" type="text" th:value="${workingHoursFrom}" name="workingHoursFrom" id="hora" placeholder="Hora de incio"
-                                   onfocus="(this.type='time')">
-                        </div>
-                        <br>
-                        <div>
-                            <label class="titulo" for="workingHoursTo"></label>
-                            <input class="input font" type="text" th:value="${workingHoursTo}" id="hora" name="workingHoursTo" placeholder="Hora de finalización"
-                                   onfocus="(this.type='time')">
-                        </div>
-                        <br>
-                        <div>
-                            <label class="titulo" for="petQuantityFrom"></label>
-                            <input class="input" th:value="${petQuantityFrom}" name="petQuantityFrom" id="mascotas"
-                                   placeholder="Cantidad de mascotas">
-                        </div>
-                        <br>
-                        <div>
-                            <label class="titulo" for="petType"></label>
-                            <input class="input" th:value="${petType}" name="petType" id="mascotas"
-                                   placeholder="Tamaño de mascotas">
-                        </div>
-                        <br>
-                        <div class="col-2">
-                            <button type="submit" class="btn btn-dark mb-3">Buscar</button>
-                        </div>
-                    </form>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Nº</th>
-                                <!--th>Nombre y apellido</th>
-                                <th>Telefono</th-->
-                                <th>Salario</th>
-                                <th>Zona Laboral</th>
-                                <th>Cantidad de Mascotas</th>
-                                <th>Tamaño de Mascotas</th>
-                                <th>Dias</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr th:each="petwalker,iterator : ${petwalkers}">
-                                <td th:text="${iterator.index+1}"></td>
-                                <!--td th:text="${petwalker.user.firstName} + ' ' + ${petwalker.user.lastName}"></td>
-                                <td th:text="${petwalker.user.phone}"></td-->
-                                <td th:text="${petwalker.salary}"></td>
-                                <td th:text="${petwalker.workingZone}"></td>
-                                <td th:text="${petwalker.petQuantity}"></td>
-                                <td th:text="${petwalker.petType}"></td>
-                                <td th:text="${petwalker.days}"></td>
-                            </tr>       
-                        </tbody>
-                    </table>
-                </div>
+                    </div>
+                </th:block>
             </div>
         </main>
     </body>
