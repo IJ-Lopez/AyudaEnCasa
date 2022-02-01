@@ -696,6 +696,20 @@ select {
   text-decoration: underline;
 }
 
+.error {
+  font-weight: bold;
+  background-color: #fefefe48;
+  font-size: 25px;
+  font-stretch: expanded;
+  padding: 5px 15px;
+  border-radius: 40%;
+}
+
+.error a {
+  color:rgba(255, 0, 0, 0.884);
+  text-shadow: none;
+}
+
 /* .formato .input {
   width: 150px;
   font-size: 25px;

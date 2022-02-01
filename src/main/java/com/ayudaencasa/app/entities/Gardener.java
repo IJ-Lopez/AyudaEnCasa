@@ -21,7 +21,8 @@ import org.hibernate.annotations.Where;
 @Entity
 public class Gardener extends Job implements Serializable{
     
-    private final String type = "Jardinero || Gardener";
+    public static final String JOB_TYPE = "Jardinero || Gardener";
+    private final String type = JOB_TYPE;
     private String surface;
     private Boolean tools;
     private Boolean poolCleaning;

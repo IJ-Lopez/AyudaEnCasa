@@ -18,7 +18,8 @@ import org.hibernate.annotations.Where;
 @Entity
 public class Cleaning extends Job implements Serializable{
     
-    private final String type = "Limpiador || Cleaning";
+    public static final String JOB_TYPE = "Servicio de Limpieza || Cleaning";
+    private final String type = JOB_TYPE;
     private Integer rooms;
     private String exteriors;
     private Boolean cooking;

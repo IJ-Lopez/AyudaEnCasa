@@ -19,7 +19,9 @@ import org.hibernate.annotations.Where;
 @Entity
 public class Caregiver extends Job implements Serializable {
     
-    private final String type = "Cuidador de Personas || Caregiver";
+    public static final String JOB_TYPE = "Cuidado de Personas || Caregiver";
+    
+    private final String type = JOB_TYPE;
     
     private Integer quantity;
     

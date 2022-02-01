@@ -1,5 +1,9 @@
 package com.ayudaencasa.app.controllers;
 
+import com.ayudaencasa.app.entities.Caregiver;
+import com.ayudaencasa.app.entities.Cleaning;
+import com.ayudaencasa.app.entities.Gardener;
+import com.ayudaencasa.app.entities.PetWalker;
 import com.ayudaencasa.app.services.JobBeanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,7 +33,7 @@ public class HomeController {
 
     @PostMapping("/buscar")
     public String search(@RequestParam(name = "trabajo") String type, RedirectAttributes ra ) {
-        if (type == null) {
+        if (type == null || type.isEmpty()) {
             ra.addAttribute("error", "Inserte un parámetro de busqueda");
             return "redirect:/home";
         }
@@ -38,22 +42,26 @@ public class HomeController {
             return "redirect:/home";
         }
         type = type.toLowerCase();
-        Class lookedClass = jobService.getTypeIfExist(type);
-        String[] jobs = {"jardinero", "paseador", "cuidador", "limpiador"};
-        for (String job : jobs) {
-            if (like(job, type)) {
-                return String.format("redirect:/%s/list", job);
-            }
+        if(Caregiver.JOB_TYPE.toLowerCase().startsWith(type)){
+            return "redirect:/cuidador/list";
         }
-        
+        if(Cleaning.JOB_TYPE.toLowerCase().startsWith(type)){
+            return "redirect:/limpiador/list";
+        }
+        if(Gardener.JOB_TYPE.toLowerCase().startsWith(type)){
+            return "redirect:/jardinero/list";
+        }
+        if(PetWalker.JOB_TYPE.toLowerCase().startsWith(type)){
+            return "redirect:/paseador/list";
+        }
         ra.addAttribute("type", type);
         return "redirect:/other/list";
     }
 
-    private boolean like(String matcher, String input) {
+    private boolean startsWithIgnoreCase(String matcher, String input) {
         if (input == null) {
             return false;
         }
-        return matcher.matches(String.format("(.*)?%s(.*)?", input));
+        return matcher.toLowerCase().matches(String.format("%s(.*)?", input));
     }
 }

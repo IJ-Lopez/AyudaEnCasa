@@ -18,7 +18,9 @@ import org.hibernate.annotations.Where;
 @Entity
 public class PetWalker extends Job implements Serializable{
     
-    private String type = "Paseador de Perros || Petwalker";
+    public static final String JOB_TYPE = "Paseador de Perros || Petwalker";
+    
+    private String type = JOB_TYPE;
     
     private Integer petQuantity;
     

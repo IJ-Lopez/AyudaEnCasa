@@ -63,7 +63,9 @@
         <header id="main" class="busqueda">
           <div class="cuadrobusqueda">
             <h2 class="h2b">¿Que desea buscar?</h2>
-            <a th:if="${error != null}" th:text="${error}"></a>
+            <div class="error">
+              <a th:if="${error != null}" th:text="${error}"></a>
+            </div>
             <form action="/home/buscar" method="POST">
               <input class="form" type="text" name="trabajo" id="trabajo" placeholder="Ingrese su busqueda" list="jobs-list"/>
               <datalist id ="jobs-list">
