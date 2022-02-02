@@ -62,7 +62,8 @@ public class DataSeederApp implements CommandLineRunner {
        care.setWorkingHoursFrom(LocalTime.MIDNIGHT);
        care.setWorkingHoursTo(LocalTime.MIDNIGHT);
        care.setWorkingZone("Guaymallen");
-       care.setUser(user);
+       user.getJobs().add(care);
+       userRepository.save(user);
        return care;
     }
     
@@ -76,7 +77,8 @@ public class DataSeederApp implements CommandLineRunner {
        other.setWorkingHoursFrom(LocalTime.MIDNIGHT);
        other.setWorkingHoursTo(LocalTime.MIDNIGHT);
        other.setWorkingZone("Godoy Cruz");
-       other.setUser(user);
+       user.getJobs().add(other);
+       userRepository.save(user);
        return other;
     }
     
@@ -89,21 +91,21 @@ public class DataSeederApp implements CommandLineRunner {
        
       try{
         if (!userRepository.findByEmail("user@user.com").isPresent() ) {
-          //User user1= crearUserTest("User", "User", "user@user.com", "contra123", 123456);
-           // User user2= crearUserTest("Adt", "Adt", "adt@adt.com", "control124", 1452656);
-            // User user3= crearUserTest("usuario", "usuario", "usuario@usuario.com", "cntra23", 15785633);                         
-           // userRepository.save(user1);
-           // userRepository.save(user2);
-           // userRepository.save(user3);
+          User user1= crearUserTest("Useer", "Useer", "useer@useer.com", "contra123", 123456);
+          User user2= crearUserTest("Adlllt", "Adlllt", "adt@adt.com", "control124", 1452656);
+           User user3= crearUserTest("usuario", "usuario", "usuario@usuario.com", "cntra23", 15785633);                         
+          userRepository.save(user1);
+          userRepository.save(user2);
+          userRepository.save(user3);
             
-            //caregiverRepository.save(crearCaregiver(user1));
-           // caregiverRepository.save(crearCaregiver(user2));
-            
-            //otherRepository.save(crearOther(user1));
+          //caregiverRepository.save(crearCaregiver(user1));
+          //caregiverRepository.save(crearCaregiver(user2));
+           crearCaregiver(user1);
+           crearCaregiver(user2);
+           crearOther(user1);
+          //otherRepository.save(crearOther(user1));
                System.out.println("hola");
         } 
-            
-           
             
         
       }catch (Exception e){
