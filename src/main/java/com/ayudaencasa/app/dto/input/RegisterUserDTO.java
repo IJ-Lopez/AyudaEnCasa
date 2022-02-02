@@ -13,8 +13,8 @@ public class RegisterUserDTO {
 
     @NotNull
     private String email;
-    private String password2;
     private String password;
+    private String password2;
     private String firstName;
     private String lastName;
     private String departament;
