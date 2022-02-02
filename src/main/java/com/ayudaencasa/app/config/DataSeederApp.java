@@ -1,9 +1,6 @@
 package com.ayudaencasa.app.config;
 
 import com.ayudaencasa.app.entities.Caregiver;
-import com.ayudaencasa.app.entities.Job;
-import static com.ayudaencasa.app.entities.Job_.id;
-import static com.ayudaencasa.app.entities.Job_.user;
 import com.ayudaencasa.app.entities.Other;
 import com.ayudaencasa.app.entities.Role;
 import com.ayudaencasa.app.entities.User;
@@ -32,12 +29,14 @@ public class DataSeederApp implements CommandLineRunner {
     private RoleRepository roleRepository;
     @Autowired 
     private OtherRepository otherRepository;
-    public User crearUserTest(String firstName, String lastName, String email) {
+    public User crearUserTest(String firstName, String lastName, String email, String password, Integer dni) {
         User user = new User();
-        
+        //user.setDeletedAt(deletedAt);
         user.setFirstName(firstName);
         user.setLastName(lastName);
         user.setEmail(email);
+        user.setPassword(password);
+        user.setDni(dni);
         List<Role> rol= new ArrayList();
         rol.add(roleRepository.findByName("ROLE_USER"));
         user.setRoles(rol);
@@ -90,18 +89,18 @@ public class DataSeederApp implements CommandLineRunner {
        
       try{
         if (!userRepository.findByEmail("user@user.com").isPresent() ) {
-           User user1= crearUserTest("User", "User", "user@user.com");
-            User user2= crearUserTest("Adt", "Adt", "adt@adt.com");
-             User user3= crearUserTest("usuario", "usuario", "usuario@usuario.com");                         
-            userRepository.save(user1);
-            userRepository.save(user2);
-            userRepository.save(user3);
+          //User user1= crearUserTest("User", "User", "user@user.com", "contra123", 123456);
+           // User user2= crearUserTest("Adt", "Adt", "adt@adt.com", "control124", 1452656);
+            // User user3= crearUserTest("usuario", "usuario", "usuario@usuario.com", "cntra23", 15785633);                         
+           // userRepository.save(user1);
+           // userRepository.save(user2);
+           // userRepository.save(user3);
             
-            caregiverRepository.save(crearCaregiver(user1));
-            caregiverRepository.save(crearCaregiver(user2));
+            //caregiverRepository.save(crearCaregiver(user1));
+           // caregiverRepository.save(crearCaregiver(user2));
             
-            otherRepository.save(crearOther(user1));
-               
+            //otherRepository.save(crearOther(user1));
+               System.out.println("hola");
         } 
             
            
