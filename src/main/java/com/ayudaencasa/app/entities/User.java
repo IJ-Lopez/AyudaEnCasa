@@ -68,7 +68,7 @@ public class User implements Serializable {
     // private Cv cv;
     
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="user_id")
+    @JoinColumn(name="USER_ID", referencedColumnName = "ID")
     private Set<Job> jobs = new HashSet<>();
     
     @Temporal(value = TemporalType.TIMESTAMP)

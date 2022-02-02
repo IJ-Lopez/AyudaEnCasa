@@ -53,7 +53,9 @@ public abstract class Job implements Serializable {
     @Setter(AccessLevel.NONE)
     protected String type;
     
-    @Column(name="user_id")
+    @ManyToOne
+    //@Column(name="user_id")
+    //protected String user_id;
     protected User user;
     
     @ElementCollection(targetClass=String.class)
