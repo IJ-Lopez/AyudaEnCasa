@@ -37,7 +37,7 @@ public class OtherController {
     
     @GetMapping("/create")
     public String registry(){
-        return "otherForm";
+        return "newOtherForm";
     }
     
     @PostMapping("/create")
@@ -56,7 +56,7 @@ public class OtherController {
             return "index";
         }catch (OtherNotFoundException ex) {
             model.addAttribute("error", ex.getMessage());
-            return "otherForm";
+            return "newOtherForm";
         }    
     }
     
