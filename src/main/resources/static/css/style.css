@@ -48,7 +48,7 @@ ul {
   margin-bottom: 100px;
   position: fixed;
   width: 100%;
-  z-index: 100;   
+  z-index: 100;
 }
 
 .work-menu li a {
@@ -148,13 +148,13 @@ h1 {
 } */
 
 .form :hover {
-    border: 2px solid #b0e7da;
-    border-radius: 10%;
-    opacity: 1;
-    text-align: center;
-    padding: 20px;
-    cursor: cell;
-  }
+  border: 2px solid #b0e7da;
+  border-radius: 10%;
+  opacity: 1;
+  text-align: center;
+  padding: 20px;
+  cursor: cell;
+}
 
 .h2b {
   font-family: "Licorice", cursive;
@@ -198,25 +198,25 @@ h1 {
 /*Sugerencias*/
 
 .h3-sug {
-    font-family: "Licorice", cursive;
-    font-size: 40px;
-    /* margin: 20px 40px; */
-    text-shadow: 1px 2px 3px white;
-    font-weight: 500;
-    text-align: left;
-    margin-left: 80px;
-    margin-top: 40px;
+  font-family: "Licorice", cursive;
+  font-size: 40px;
+  /* margin: 20px 40px; */
+  text-shadow: 1px 2px 3px white;
+  font-weight: 500;
+  text-align: left;
+  margin-left: 80px;
+  margin-top: 40px;
 }
 
 .sugerencias {
-    width: 100%;
-    margin-top: 15px;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    width: 1fr;
-    gap: 20px;
-    padding: 0px 20px;
-    justify-content: space-between;
+  width: 100%;
+  margin-top: 15px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 1fr;
+  gap: 20px;
+  padding: 0px 20px;
+  justify-content: space-between;
 }
 
 .sugerencias img {
@@ -377,13 +377,14 @@ h1 {
   font-family: "Quicksand", sans-serif !important;
   width: 100%;
   height: max-content;
-  display: flex;
+  display: block;
   border: 2px solid red;
 }
 
-/* .bloque-inf>h3{
-  text-align: right;
-} */
+.subbloque-inf {
+  width: 50%;
+  position: relative;
+}
 
 .redes {
   display: flex;
@@ -428,7 +429,7 @@ h1 {
 }
 
 .contactanos {
-  border: 1px solid blue;
+  border: 1px solid green;
   /* width: 100%; */
 }
 
@@ -623,7 +624,7 @@ table tr:nth-child(even):hover {
      border-radius: 10px; */
 }
 .card h1 {
-border: 2px black solid;
+  border: 2px black solid;
   font-family: "Licorice", cursive;
   font-size: 100px;
   margin: 15px 10px;
@@ -697,8 +698,7 @@ select {
   text-decoration: underline;
 }
 
-.error{
-    
+.error {
 }
 
 .error {
@@ -711,7 +711,7 @@ select {
 }
 
 .error a {
-  color:rgba(255, 0, 0, 0.884);
+  color: rgba(255, 0, 0, 0.884);
   text-shadow: none;
 }
 
