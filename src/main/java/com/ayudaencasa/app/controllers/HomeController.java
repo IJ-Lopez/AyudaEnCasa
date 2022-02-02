@@ -43,16 +43,16 @@ public class HomeController {
         }
         type = type.toLowerCase();
         if(Caregiver.JOB_TYPE.toLowerCase().startsWith(type)){
-            return "redirect:/cuidador/list";
+            return "redirect:/caregiver/list";
         }
         if(Cleaning.JOB_TYPE.toLowerCase().startsWith(type)){
-            return "redirect:/limpiador/list";
+            return "redirect:/cleaning/list";
         }
         if(Gardener.JOB_TYPE.toLowerCase().startsWith(type)){
-            return "redirect:/jardinero/list";
+            return "redirect:/gardener/list";
         }
         if(PetWalker.JOB_TYPE.toLowerCase().startsWith(type)){
-            return "redirect:/paseador/list";
+            return "redirect:/petwalker/list";
         }
         ra.addAttribute("type", type);
         return "redirect:/other/list";

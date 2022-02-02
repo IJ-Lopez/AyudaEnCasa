@@ -29,7 +29,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @Validated
-@RequestMapping ("/paseador")
+@RequestMapping ("/petwalker")
 public class PetWalkerController {
 
     @Autowired

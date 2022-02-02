@@ -29,7 +29,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @Validated
-@RequestMapping("/cuidador")
+@RequestMapping("/caregiver")
 public class CaregiverController {
 
     @Autowired

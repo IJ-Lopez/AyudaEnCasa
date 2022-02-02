@@ -7,8 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title >Ayuda en casa</title>
   <!--Css-->
-  <!--<link rel="stylesheet" href="/src/main/resources/static/css/style.css">-->
-   <link rel="stylesheet" href="/css/style.css" /> 
+  <!--link rel="stylesheet" href="/src/main/resources/static/css/style.css"-->
+  <link rel="stylesheet" href="/css/style.css" />
   <!--Google fonts-->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -37,11 +37,11 @@
             <!-- deberia llevar a un form lista desplegable con los registros -->
             <a href="#form">Quiero trabajar <i class="fas fa-briefcase"></i></a>
             <ul class="work-menu">
-              <li><a href="../jardinero/create">Jardinero</a></li>
-              <li><a href="../limpiador/create">Servicio doméstico</a></li>
-              <li><a href="../cuidador/create">Cuidado de personas</a></li>
-              <li><a href="../paseador/create">Paseador de perros</a></li>
-              <li><a href="../otro/create">Otro</a></li>
+              <li><a href="../gardener/create">Jardinero</a></li>
+              <li><a href="../cleaning/create">Servicio doméstico</a></li>
+              <li><a href="../caregiver/create">Cuidado de personas</a></li>
+              <li><a href="../petwalker/create">Paseador de perros</a></li>
+              <li><a href="../other/create">Otro</a></li>
             </ul>
           </li>
         </div>
@@ -75,7 +75,6 @@
                   <option value="Jardinero"></option>
                   <option value="Paseador de perros"></option>
                   <option value="Servicio de limpieza"></option>
-                  <option value="Otro"></option>
               </datalist>
             </form>
           </div>
@@ -87,35 +86,35 @@
           <img src="img/jardin.jpg" alt="imagen" />
           <h4>Servicios de jardineria</h4>
           <br>
-          <a href="/jardinero/list">Ver más</a>
+          <a th:href="@{/gardener/list}">Ver más</a>
         </div>
         <div class="hola">
           <img src="img/Cuidador/c1.jpg" alt="imagen" />
           <h4>Cuidado de personas</h4>
           <p>
           </p>
-          <a href="caregiver.html">Ver más</a>
+          <a th:href="@{/caregiver/list}">Ver más</a>
         </div>
         <div class="hola">
           <img src="img/Limpieza/limp5(2).jpg" alt="imagen" />
           <h4>Limpieza de hogares</h4>
           <p>
           </p>
-          <a href="cleaning.html">Ver más</a>
+          <a th:href="@{/cleaning/list}">Ver más</a>
         </div>
         <div class="hola">
           <img src="img/Paseador/p10.jpg" alt="imagen" />
           <h4>Paseador de mascotas</h4>
           <p>
           </p>
-          <a href="petwalker.html">Ver más</a>
+          <a th:href="@{/petwalker/list}">Ver más</a>
         </div>
       </div>
       <!--corregir enlaces-->
       <h3 class="h3-sug">Populares</h3>
       <div class="box">
         <div class="card">
-          <a href="/paseador/list">
+          <a th:href="@{/petwalker/list}">
             <div class="imgBx">
               <img src="img/Paseador/p5.jpg" />
             </div>
@@ -125,7 +124,7 @@
           </a>
         </div>
         <div class="card">
-          <a href="/limpiador/list">
+          <a th:href="@{/cleaning/list}">
             <div class="imgBx">
               <img src="img/Limpieza/limp17.jpg" />
             </div>
@@ -135,7 +134,7 @@
           </a>
         </div>
         <div class="card">
-          <a href="/jardinero/list">
+          <a th:href="@{/gardener/list}">
             <div class="imgBx">
               <img src="img/Jardìn/j14.jpg" />
             </div>
@@ -145,7 +144,7 @@
           </a>
         </div>
         <div class="card">
-          <a href="/cuidador/list">
+          <a th:href="@{/caregiver/list}">
             <div class="imgBx">
               <img src="img/Cuidador/c10.jpg"
                   alt="cuidado de personas" />

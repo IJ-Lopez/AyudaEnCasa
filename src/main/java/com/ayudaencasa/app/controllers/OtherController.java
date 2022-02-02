@@ -29,7 +29,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @Validated
-@RequestMapping("/otro")
+@RequestMapping("/other")
 public class OtherController {
     
     @Autowired
@@ -61,11 +61,14 @@ public class OtherController {
     }
     
     @GetMapping("/list")
-    public String findAll(Model model, @RequestParam(required = false) List<Other> others) {
+    public String findAll(Model model, @RequestParam(required = false) List<Other> others, String type) {
+        if(type == null){
+            type = "";
+        }
         if(others != null){
              model.addAttribute("others", others);
         } else {
-            model.addAttribute("others", otherService.findAll());
+            model.addAttribute("others", otherService.findByType(type));
         }
         return "otherList";
     }

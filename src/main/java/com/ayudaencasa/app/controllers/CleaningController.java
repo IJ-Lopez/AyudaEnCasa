@@ -30,7 +30,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @Validated
-@RequestMapping("/limpiador")
+@RequestMapping("/cleaning")
 public class CleaningController {
  
     @Autowired
