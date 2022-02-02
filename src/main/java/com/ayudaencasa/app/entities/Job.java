@@ -54,8 +54,8 @@ public abstract class Job implements Serializable {
     protected String type;
     
     @Column(name="user_id")
-    protected String user_id;
-
+    protected User user;
+    
     @ElementCollection(targetClass=String.class)
     protected List<String> days;
     protected LocalTime workingHoursFrom;
