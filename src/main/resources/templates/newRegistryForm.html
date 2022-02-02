@@ -21,7 +21,7 @@
     <div class="center">
         <div class="container">
             <div class="text">Regístrate</div>
-            <form action="#">
+            <form th:action="@{'/user/registry'}" method="POST">
                 <div class="data">
                     <label for="email"></label>
                     <input type="text" name="email" placeholder="Email" id="" required />
@@ -33,7 +33,7 @@
                 </div>
                 <div class="data">
                     <label for="password"></label>
-                    <input type="password" name="password" placeholder="Repetir contraseña" id="clave" required />
+                    <input type="password" name="password2" placeholder="Repetir contraseña" id="clave" required />
                     <span id="verclave" class="verclave"><i id="icono" class="fas fa-eye"></i></span>
                 </div>
                 <div class="data">
@@ -59,7 +59,7 @@
                 <div class="data">
                     <label for="photo"></label>
                     <title>foto</title>
-                    <input class="controls" type="text" th:value="${photo}" name="photo" id="foto"
+                    <input class="controls" type="text" th:value="${pic}" name="pic" id="foto"
                         placeholder="Foto de perfil" onfocus="(this.type='file')" />
                     <!-- <input type="submit" name="photo" value="Enviar imagen" /> -->
                 </div>
@@ -99,11 +99,11 @@
                     <input class="controls" type="tel" th:value="${phone}" name="phone" id="teléfono"
                         placeholder="(Código de área)Número" required />
                 </div>
-                <div class="data">
+                <!--div class="data">
                     <label for="cv"></label>
                     <input class="controls" type="text" th:value="${cv}" name="cv" id="cv"
                         placeholder="Adjuntá tu curriculum" onfocus="(this.type='file')" />
-                </div>
+                </div-->
                 <div class="">
                     <div class="terms">
                         Estoy de acuerdo con los<a class="terms-link" href="#">Terminos y Condiciones</a>

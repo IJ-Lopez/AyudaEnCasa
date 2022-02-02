@@ -60,8 +60,7 @@ public class UserController {
 //    public String testh(@RequestBody User user) {
 //      return user.toString();
 //    }
-
-    
+ 
     @PostMapping("/registry")
     public String create(Model model, @Valid RegisterUserDTO inputUser) {
         try{
