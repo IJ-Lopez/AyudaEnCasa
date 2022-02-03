@@ -156,37 +156,22 @@
                 <div class="lista">
                     <div class="titulo">
                         Limpieza de piscina
-                        <label for="poolCleaning"> </label>
-                        <ul class="dropdown-menu" th:value="${poolCleaning}" name="poolCleaning">
-                            <li>
-                                <input type="checkbox" value="a" name="si"> Si
-                                <input type="checkbox" value="b" name="no"> No
-                            </li>
-                        </ul>
+                        <label class="dropdown-menu" for="poolCleaning"></label>
+                        <input type="checkbox" name="poolCleaning" th:checked="${poolCleaning}">
                     </div>
                 </div>
                 <div class="lista">
                     <div class="titulo">
                         Corte de cercos
-                        <label for="gardenFence"> </label>
-                        <ul class="dropdown-menu" th:value="${gardenFence}" name="gardenFence">
-                            <li>
-                                <input type="checkbox" value="a" name="si"> Si
-                                <input type="checkbox" value="b" name="no"> No
-                            </li>
-                        </ul>
+                        <label class="dropdown-menu" for="gardenFence"></label>
+                        <input type="checkbox" name="gardenFence" th:checked="${gardenFence}">
                     </div>
                 </div>
                 <div class="lista">
                     <div class="titulo">
                         Desinfección de plantas
-                        <label for="plantDisinfection"> </label>
-                        <ul class="dropdown-menu" th:value="${plantDisinfection}" name="plantDisinfection">
-                            <li>
-                                <input type="checkbox" value="a" name="si"> Si
-                                <input type="checkbox" value="b" name="no"> No
-                            </li>
-                        </ul>
+                        <label class="dropdown-menu" for="plantDisinfection"></label>
+                        <input type="checkbox" name="plantDisinfection" th:checked="${plantDisinfection}">
                     </div>
                 </div>
                 <div class="btn">
