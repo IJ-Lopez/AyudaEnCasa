@@ -21,7 +21,7 @@
     <div class="center">
         <div class="container">
             <div class="text">Regístrate</div>
-            <form th:action="@{'/user/registry'}" method="POST">
+            <form th:action="@{'/user/registry'}" method="POST" enctype="multipart/form-data">
                 <div class="data">
                     <label for="email"></label>
                     <input type="text" name="email" placeholder="Email" id="" required />

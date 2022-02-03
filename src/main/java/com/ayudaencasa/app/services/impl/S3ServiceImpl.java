@@ -38,16 +38,16 @@ public class S3ServiceImpl implements S3Service{
     private AmazonS3 amazonS3;
  
     @Value("${AWS.S3.BUCKET}")
-    private String s3BucketName;
+    private String ayudaencasa;
  
-    @Override
+    //@Override
     public File UploadFile (final MultipartFile multipartFile) {
         final File file = new File(multipartFile.getOriginalFilename());
         try (final FileOutputStream outputStream = new FileOutputStream(file)) {
             outputStream.write(multipartFile.getBytes());
             String newFileName = System.currentTimeMillis()+ "-" + file.getName();
            LOGGER.info("Subiendo archivo con el nombre... " + newFileName);
-			PutObjectRequest request = new PutObjectRequest(s3BucketName, newFileName, file);
+			PutObjectRequest request = new PutObjectRequest(ayudaencasa, newFileName, file);
 			amazonS3.putObject(request);
         } catch (IOException e) {
             LOG.error("Error {} occurred while converting the multipart file", e.getLocalizedMessage());
@@ -65,17 +65,13 @@ public class S3ServiceImpl implements S3Service{
     @Override
     public S3ObjectInputStream findByName(String fileName) {
         LOG.info("Downloading file with name {}" + fileName);
-        return amazonS3.getObject(s3BucketName, fileName).getObjectContent();
+        return amazonS3.getObject(ayudaencasa, fileName).getObjectContent();
     }
  
-    /**Uploads the image to the S3 Bucket from Amazon Web Services.
-     * @param multipartFile Image file of extension .jpg .jpeg .png .gif ONLY
-     * @return The file's absolute path in the S3 Bucket server.
-     */
     
     @Override
 	public List<String> getObjectsFromS3() {
-		ListObjectsV2Result result = amazonS3.listObjectsV2(s3BucketName);
+		ListObjectsV2Result result = amazonS3.listObjectsV2(ayudaencasa);
 		List<S3ObjectSummary> objects = result.getObjectSummaries();
 		List<String> list = objects.stream().map(item -> {
 			return item.getKey();
@@ -85,12 +81,11 @@ public class S3ServiceImpl implements S3Service{
 
 	@Override
 	public InputStream downloadFile(String key) {
-		S3Object object = amazonS3.getObject(s3BucketName, key);
+		S3Object object = amazonS3.getObject(ayudaencasa, key);
 		return object.getObjectContent();
 	}
 
 
-    
     @Async
     @Override
     public String save(final MultipartFile multipartFile) {
@@ -99,7 +94,7 @@ public class S3ServiceImpl implements S3Service{
             final File file = UploadFile(multipartFile);
             final String fileName = file.getName();
             LOG.info("Uploading file with name {}", fileName);
-            final PutObjectRequest putObjectRequest = new PutObjectRequest(s3BucketName, fileName, file);
+            final PutObjectRequest putObjectRequest = new PutObjectRequest(ayudaencasa, fileName, file);
             amazonS3.putObject(putObjectRequest);
             Files.delete(file.toPath()); // Remove the file locally created in the project folder
             filePath = amazonS3.getBucketLocation(fileName);
@@ -107,8 +102,8 @@ public class S3ServiceImpl implements S3Service{
             LOG.error("Error {} occurred while uploading file", e.getLocalizedMessage());
         } catch (IOException ex) {
             java.util.logging.Logger.getLogger(S3ServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       }
         return filePath;
  
-    }
+    }   
 }
