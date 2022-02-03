@@ -5,6 +5,7 @@ import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -53,9 +54,8 @@ public abstract class Job implements Serializable {
     @Setter(AccessLevel.NONE)
     protected String type;
     
-    @ManyToOne
-    //@Column(name="user_id")
-    //protected String user_id;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="USER_ID", referencedColumnName = "ID")
     protected User user;
     
     @ElementCollection(targetClass=String.class)
@@ -65,6 +65,7 @@ public abstract class Job implements Serializable {
     protected Integer hoursFrom;
     protected Integer hoursTo;
     protected Boolean status;  
+    protected String cv;
     
     protected Boolean showContactInfo;
     

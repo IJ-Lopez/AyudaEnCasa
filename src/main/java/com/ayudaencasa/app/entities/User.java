@@ -65,11 +65,6 @@ public class User implements Serializable {
     
     private Long phone;
     private String photo;
-    // private Cv cv;
-    
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="USER_ID", referencedColumnName = "ID")
-    private Set<Job> jobs = new HashSet<>();
     
     @Temporal(value = TemporalType.TIMESTAMP)
     @CreationTimestamp
