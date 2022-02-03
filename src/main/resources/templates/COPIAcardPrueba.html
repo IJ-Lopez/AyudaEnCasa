@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jardinería</title>
     <!-- <link rel="stylesheet" href="/css/cardPrueba.css"/> -->
-    <link rel="stylesheet" href="/src/main/resources/static/css/cardPrueba.css">
+    <link rel="stylesheet" href="/src/main/resources/static/css/COPIAcardPrueba.css">
     <!--Google fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -110,9 +111,69 @@
         </div>
         <th:block th:each="gardener : ${gardeners}">
 
+
+
+            <div class="card">
+                <div class="blog-card">
+                    <div class="meta">
+                        <div class="photo" style="background-image: url(/src/main/resources/static/img/Jardìn/j12.jpg)">
+                        </div>
+                        <!-- <ul class="details">
+                            <li class="author"><a href="#">John Doe</a></li>
+                            <li class="date">Aug. 24, 2015</li>
+                            <li class="tags">
+                                <ul>
+                                    <li><a href="#">Learn</a></li>
+                                    <li><a href="#">Code</a></li>
+                                    <li><a href="#">HTML</a></li>
+                                    <li><a href="#">CSS</a></li>
+                                </ul>
+                            </li>
+                        </ul> -->
+                    </div>
+                    <div class="description">
+                        <h1>Learning to Code</h1>
+                        <h2>Opening a door to the future</h2>
+                        <p>
+                        <div>
+                            <p class="thyme" th:text="'Precio: '+ ${gardener.salary}">Precio: 300</p>
+                            <p class="thyme" th:text="'Zona: '+ ${gardener.workingZone}"> Zona: Maipú</p>
+                            <p class="thyme" th:text="'Hora desde:'+ ${gardener.workingHoursFrom}">10:00hs</p>
+                            <p class="thyme" th:text="'Hora hasta: '+ ${gardener.workingHoursTo}">20:00</p>
+                            <p class="thyme" th:text="'Superficie del terreno: ' + ${gardener.surface}">200</p>
+                        </div>
+
+
+                        <p class="read-more">
+                            <a href="#"> Contactar</a>
+                            <!-- <i class="fab fa-whatsapp"></i> -->
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             <div class="card">
                 <div class="card-titulo">
-                    <h3 th:text="${gardener.user}"> Emiliano Gonzalez </h3>
+                    <h3> Emiliano Gonzalez </h3>
                 </div>
                 <div class="contact">
                     <div class="phone">2616980716 <a href="https://wa.me/5492616980716"><i
