@@ -102,7 +102,7 @@ public class DataSeederApp implements CommandLineRunner {
 
     public Cleaning crearCleaning(User user) {
         Cleaning cl = new Cleaning();
-        cl.setDescription("HOla todo bien?");
+        cl.setDescription("Hola todo bien?");
         cl.setHoursFrom(LocalTime.MIN);
         cl.setHoursTo(LocalTime.MAX);
         cl.setSalary(random.nextInt(10000));
@@ -122,7 +122,7 @@ public class DataSeederApp implements CommandLineRunner {
 
     public Gardener crearGardener(User user) {
         Gardener g = new Gardener();
-        g.setDescription("HOla todo bien?");
+        g.setDescription("Hola todo bien?");
         g.setHoursFrom(LocalTime.MIN);
         g.setHoursTo(LocalTime.MAX);
         g.setSalary(random.nextInt(10000));
@@ -132,7 +132,7 @@ public class DataSeederApp implements CommandLineRunner {
         g.setWorkingHoursTo(LocalTime.MIDNIGHT);
         g.setWorkingZone("Guaymallen");
         g.setUser(user);
-        g.setSurface("" + random.nextInt(400));
+        g.setSurface("Indistinto");
         g.setTools(random.nextBoolean());
         g.setPoolCleaning(random.nextBoolean());
         g.setGardenFence(random.nextBoolean());
