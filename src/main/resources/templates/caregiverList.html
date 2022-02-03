@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cuidado de personas</title>
-    <link rel="stylesheet" href="/src/main/resources/static/css/cardPrueba.css">
     <!-- <link rel="stylesheet" href="/css/cardPrueba.css"/> -->
+    <link rel="stylesheet" href="/src/main/resources/static/css/cardPrueba.css">
     <!--Google fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -21,137 +21,126 @@
 
 <body>
     <main>
-        <div class="class">
-            <nav class="nav-main" id="top">
-                <h1 id="home">Cuidado de personas</h1>
-            </nav>
-            <div class="container">
-                <form class="formato" th:action="@{/cuidador/list}" method="POST">
-                    <br>
-                    <div>
-                        <label class="titulo" for="salaryTo"></label>
-                        <input class="input font" type="number" th:value="${salaryTo}" name="salaryTo" id="salario"
-                            placeholder="Remuneración Pretendida">
-                    </div>
-                    <br>
-                    <div>
-                        <label class="titulo" for="workingZone"></label>
-                        <select class="input" th:value="${workingZone}" name="workingZone" id="zona">
-                            <option disabled selected>Zona Laboral </option>
-                            <option value="Capital">Capital </option>
-                            <option value="General Alvear">General Alvear </option>
-                            <option value="Godoy Cruz">Godoy Cruz </option>
-                            <option value="Guaymallén">Guaymallén </option>
-                            <option value="Junín">Junín </option>
-                            <option value="La Paz">La Paz </option>
-                            <option value="Las Heras">Las Heras </option>
-                            <option value="Lavalle">Lavalle</option>
-                            <option value="Luján de Cuyo">Luján de Cuyo</option>
-                            <option value="Maipú">Maipú</option>
-                            <option value="Malargüe">Malargüe </option>
-                            <option value="Rivadavia">Rivadavia </option>
-                            <option value="San Carlos">San Carlos </option>
-                            <option value="San Martín">San Martín </option>
-                            <option value="San Rafael">San Rafael </option>
-                            <option value="Santa Rosa">Santa Rosa </option>
-                            <option value="Tunuyán">Tunuyán </option>
-                            <option value="Tupungato">Tupungato </option>
-                        </select>
-                    </div>
-                    <br>
-                    <div>
-                        <label class="titulo" for="day"></label>
-                        <select class="input" th:value="${day}" name="day" id="dia">
-                            <option disabled selected>Día Laboral </option>
-                            <option value="Lunes">Lunes </option>
-                            <option value="Martes">Martes </option>
-                            <option value="Miércoles">Miércoles </option>
-                            <option value="Jueves">Jueves </option>
-                            <option value="Viernes">Viernes </option>
-                            <option value="Sábado">Sábado </option>
-                            <option value="Domingo">Domingo </option>
-                        </select>
-                    </div>
-                    <br>
-                    <div>
-                        <label class="titulo" for="workingHoursFrom"></label>
-                        <input class="input font" type="text" th:value="${workingHoursFrom}" name="workingHoursFrom"
-                            id="hora" placeholder="Hora de incio" onfocus="(this.type='time')">
-                    </div>
-                    <br>
-                    <div>
-                        <label class="titulo" for="workingHoursTo"></label>
-                        <input class="input font" type="text" th:value="${workingHoursTo}" id="hora"
-                            name="workingHoursTo" placeholder="Hora de finalización" onfocus="(this.type='time')">
-                    </div>
-                    <br>
-                    <div>
-                        <label class="titulo" for="quantityFrom"></label>
-                        <input class="input font" type="number" th:value="${quantityFrom}" name="quantityFrom"
-                            id="cantidad" placeholder="Personas a cuidar">
-                    </div>
-                    <br>
-                    <div>
-                        <label class="titulo" for="ageFrom"></label>
-                        <input class="input" th:value="${ageFrom}" name="ageFrom" id="edadDesde"
-                            placeholder="Edad Desde">
-                    </div>
-                    <br>
-                    <div>
-                        <label class="titulo" for="ageTo"></label>
-                        <input class="input" th:value="${ageTo}" name="ageTo" id="edadHasta" placeholder="Edad Hasta">
-                    </div>
-                    <br>
-                    <div>
-                        <label class="dropdown-menu" for="cooking"> Servicio de cocina</label>
-                        <input type="checkbox" name="cooking" th:checked="${cooking}" value="true" id="cocina">
-                    </div>
-                    <br>
-                    <div>
-                        <label class="dropdown-menu" for="cleaningPeople"> Limpieza de persona</label>
-                        <input type="checkbox" name="cleaningPeople" th:checked="${cleaningPeople}">
-                    </div>
-                    <br>
-                    <br>
-                    <div>
-                        <label class="dropdown-menu" for="tranfering"> Servicio de transporte</label>
-                        <input type="checkbox" name="tranfering" th:checked="${tranfering}">
-                    </div>
-                    <br>
-                    <div class="col-2">
-                        <button type="submit" class="btn btn-dark mb-3">Buscar</button>
-                    </div>
-                </form>
-
-                <div class="area-tarjetas">
-                    <th:block th:each="caregiver : ${caregivers}">
-                        <div class="card">
-                            <div class="phone"></div>
-                            <div class="card-titulo">
-                                <h1> Nombre y Apellido </h1>
-                            </div>
-                            <div class="card-body">
-                                <div class="card-body-items">
-                                    <div class="datos-job">
-                                        <p></p>
-                                        <p th:text="${caregiver.salary}"></p>
-                                        <p th:text="${caregiver.workingZone}"></p>
-                                        <p th:text="${caregiver.workingHoursFrom}"></p>
-                                        <p th:text="${caregiver.workingHoursTo}"></p>
-                                    </div>
-                                </div>
-                                <img src="https://www.argentina.gob.ar/sites/default/files/vinetas_justicia_cerca_04_el_paseador_de_mi_perro.png"
-                                    alt="">
-                            </div>
-                            <div class="card-footer">
-                                <p th:text="${caregiver.quantity}"></p>
-                                <th:block th:each="day : ${caregiver.days}">
-                                    <label th:text="${day} + ' '"></label>
-                                </th:block>
-                            </div>
-                        </div>
-                    </th:block>
+        <nav class="nav-main">
+            <h1>Cuidado de Personas</h1>
+        </nav>
+        <div class="container">
+            <img src="/src/main/resources/static/img/sillonliving.jpg" alt="">
+        </div>
+        <div class="filtros">
+            <h3>Filtros</h3>
+            <form class="formato" th:action="@{/jardinero/list}" method="POST">
+                <div class="data">
+                    <label for="salaryFrom"></label>
+                    <input class="input" type="number" th:value="${salaryFrom}" name="salaryFrom" id="salario"
+                        placeholder="Remuneración Pretendida">
                 </div>
+                <div class="data">
+                    <label for="workingZone"></label>
+                    <select class="input" th:value="${workingZone}" name="workingZone" id="zona">
+                        <option disabled selected>Zona Laboral </option>
+                        <option value="Capital">Capital </option>
+                        <option value="General Alvear">General Alvear </option>
+                        <option value="Godoy Cruz">Godoy Cruz </option>
+                        <option value="Guaymallén">Guaymallén </option>
+                        <option value="Junín">Junín </option>
+                        <option value="La Paz">La Paz </option>
+                        <option value="Las Heras">Las Heras </option>
+                        <option value="Lavalle">Lavalle</option>
+                        <option value="Luján de Cuyo">Luján de Cuyo</option>
+                        <option value="Maipú">Maipú</option>
+                        <option value="Malargüe">Malargüe </option>
+                        <option value="Rivadavia">Rivadavia </option>
+                        <option value="San Carlos">San Carlos </option>
+                        <option value="San Martín">San Martín </option>
+                        <option value="San Rafael">San Rafael </option>
+                        <option value="Santa Rosa">Santa Rosa </option>
+                        <option value="Tunuyán">Tunuyán </option>
+                        <option value="Tupungato">Tupungato </option>
+                    </select>
+                </div>
+                <div class="data">
+                    <label for="day"></label>
+                    <select class="input" th:value="${day}" name="day" id="dia">
+                        <option disabled selected>Día Laboral </option>
+                        <option value="Lunes">Lunes </option>
+                        <option value="Martes">Martes </option>
+                        <option value="Miércoles">Miércoles </option>
+                        <option value="Jueves">Jueves </option>
+                        <option value="Viernes">Viernes </option>
+                        <option value="Sábado">Sábado </option>
+                        <option value="Domingo">Domingo </option>
+                    </select>
+                </div>
+                <div class="data">
+                    <label for="workingHoursFrom"></label>
+                    <input class="input" type="text" th:value="${workingHoursFrom}" name="workingHoursFrom" id="hora"
+                        placeholder="Hora de incio" onfocus="(this.type='time')">
+                </div>
+                <div class="data">
+                    <label for="workingHoursTo"></label>
+                    <input class="input" type="text" th:value="${workingHoursTo}" id="hora" name="workingHoursTo"
+                        placeholder="Hora de finalización" onfocus="(this.type='time')">
+                </div>
+                <div class="data">
+                    <label  for="quantityFrom"></label>
+                    <input class="input" type="number" th:value="${quantityFrom}" name="quantityFrom" id="cantidad"
+                        placeholder="Personas a cuidar">
+                </div>
+                <div class="data">
+                    <label for="ageFrom"></label>
+                    <input class="input" th:value="${ageFrom}" name="ageFrom" id="edadDesde" placeholder="Edad Desde">
+                </div>
+                <div class="data">
+                    <label for="ageTo"></label>
+                    <input class="input" th:value="${ageTo}" name="ageTo" id="edadHasta" placeholder="Edad Hasta">
+                </div>
+                <div class="lista">
+                    <label for="cooking"> Servicio de cocina</label>
+                    <input type="checkbox" name="cooking" th:checked="${cooking}" value="true" id="cocina">
+                </div>
+                <div class="lista">
+                    <label for="cleaningPeople"> Limpieza de persona</label>
+                    <input type="checkbox" name="cleaningPeople" th:checked="${cleaningPeople}">
+                </div>
+                <div class="lista">
+                    <label for="tranfering"> Servicio de transporte</label>
+                    <input type="checkbox" name="tranfering" th:checked="${tranfering}">
+                </div>
+                <div class="btn">
+                    <div class="inner"></div>
+                    <button type="submit">buscar</button>
+                </div>
+            </form>
+        </div>
+            <div class="area-tarjetas">
+                <th:block th:each="caregiver : ${caregivers}">
+                    <div class="card">
+                        <div class="phone"></div>
+                        <div class="card-titulo">
+                            <h1> Nombre y Apellido </h1>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-body-items">
+                                <div class="datos-job">
+                                    <p></p>
+                                    <p th:text="${caregiver.salary}"></p>
+                                    <p th:text="${caregiver.workingZone}"></p>
+                                    <p th:text="${caregiver.workingHoursFrom}"></p>
+                                    <p th:text="${caregiver.workingHoursTo}"></p>
+                                </div>
+                            </div>
+                            <img src="https://www.argentina.gob.ar/sites/default/files/vinetas_justicia_cerca_04_el_paseador_de_mi_perro.png"
+                                alt="">
+                        </div>
+                        <div class="card-footer">
+                            <p th:text="${caregiver.quantity}"></p>
+                            <th:block th:each="day : ${caregiver.days}">
+                                <label th:text="${day} + ' '"></label>
+                            </th:block>
+                        </div>
+                    </div>
+                </th:block>
             </div>
         </div>
     </main>
