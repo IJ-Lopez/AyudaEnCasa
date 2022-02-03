@@ -1,6 +1,5 @@
 <!DOCTYPE html>
--<html lang="en" xmlns:th="http://www.thymeleaf.org">
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -40,11 +39,11 @@
                         <!-- deberia llevar a un form lista desplegable con los registros -->
                         <a href="#form">Quiero trabajar <i class="fas fa-briefcase"></i></a>
                         <ul class="work-menu">
-                            <li><a href="../jardinero/create">Jardinero</a></li>
-                            <li><a href="../limpiador/create">Servicio doméstico</a></li>
-                            <li><a href="../cuidador/create">Cuidado de personas</a></li>
-                            <li><a href="../paseador/create">Paseador de perros</a></li>
-                            <li><a href="../otro/create">Otro</a></li>
+                            <li><a th:href="@{/gardener/create}">Jardinero</a></li>
+                            <li><a th:href="@{/cleaning/create}">Servicio doméstico</a></li>
+                            <li><a th:href="@{/caregiver/create}">Cuidado de personas</a></li>
+                            <li><a th:href="@{/petwalker/create}">Paseador de perros</a></li>
+                            <li><a th:href="@{/other/create}">Otro</a></li>
                         </ul>
                     </li>
                 </div>
@@ -53,8 +52,8 @@
                         <!-- deberia llevar a un form lista desplegable con los registros -->
                         <a href="#form">Sección usuarios <i class="far fa-user"></i></a>
                         <ul class="work-menu">
-                            <li><a href="/login">Iniciar sesion <i class="fas fa-sign-in-alt"></i></a></li>
-                            <li><a href="/user/registry">Regístrate <i class="fas fa-bars"></i></a></li>
+                            <li><a th:href="@{/login}">Iniciar sesion <i class="fas fa-sign-in-alt"></i></a></li>
+                            <li><a th:href="@{/user/registry}">Regístrate <i class="fas fa-bars"></i></a></li>
                         </ul>
                     </li>
                 </div>
@@ -64,7 +63,7 @@
         <div class="center">
             <div class="container">
                 <div class="text">Servicio Domestico</div>
-                <form th:action="@{/limpiador/create}" method="POST">
+                <form th:action="@{/cleaning/create}" method="POST">
                     <div class="data">
                         <label for="salary"></label>
                         <input type="text" size="50px" th:value="${salary}" name="salary" id="salario"
@@ -150,30 +149,22 @@
                     <div class="lista">
                         <div class="titulo">
                             Servicio de Cocina
-
-                            <label for="cooking"> </label>
-                            <ul class="dropdown-menu" th:value="${cooking}" name="cooking">
-                                <li>
-                                    <input type="checkbox" value="a" name="si">
-                                </li>
-                            </ul>
+                            <label class="dropdown-menu" for="cooking"></label>
+                            <input type="checkbox" name="cooking" th:checked="${cooking}">
                         </div>
                     </div>
                     <div class="lista">
                         <div class="titulo">
-                            <label class="dropdown-menu" for="laundry"> Servicio de Lavado de Ropa</label>
+                            Servicio de Lavandería
+                            <label class="dropdown-menu" for="laundry"></label>
                             <input type="checkbox" name="laundry" th:checked="${laundry}">
                         </div>
                     </div>
                     <div class="lista">
                         <div class="titulo">
                             Servicio de Planchado
-                            <label for="ironing"> </label>
-                            <ul class="dropdown-menu" th:value="${ironing}" name="ironing">
-                                <li>
-                                    <input type="checkbox" value="a" name="si">
-                                </li>
-                            </ul>
+                            <label class="dropdown-menu"  for="ironing"></label>
+                            <input type="checkbox" name="ironing" th:checked="${ironing}">
                         </div>
                     </div>
                     <div class="btn">

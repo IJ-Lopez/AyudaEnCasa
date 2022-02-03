@@ -41,7 +41,6 @@ public class GardenerController {
     }
 
     @PostMapping("/create")
-    @ResponseStatus(HttpStatus.OK)
     public String create(Model model, CreateGardenerDTO inputGardener) {
         try {
             Gardener gardener = new Gardener();
@@ -53,10 +52,10 @@ public class GardenerController {
             }
             BeanUtils.copyProperties(inputGardener, gardener);
             gardenerService.create(gardener);
-            return "index";
+            return "redirect:/home";
         } catch (GardenerNotFoundException ex) {
             model.addAttribute("error", ex.getMessage());
-            return "gardenerForm";
+            return "newGardenerForm";
         }
     }
 

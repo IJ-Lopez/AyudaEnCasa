@@ -38,11 +38,11 @@
                     <!-- deberia llevar a un form lista desplegable con los registros -->
                     <a href="#form">Quiero trabajar <i class="fas fa-briefcase"></i></a>
                     <ul class="work-menu">
-                        <li><a href="../jardinero/create">Jardinero</a></li>
-                        <li><a href="../limpiador/create">Servicio doméstico</a></li>
-                        <li><a href="../cuidador/create">Cuidado de personas</a></li>
-                        <li><a href="../paseador/create">Paseador de perros</a></li>
-                        <li><a href="../otro/create">Otro</a></li>
+                        <li><a th:href="@{/gardener/create}">Jardinero</a></li>
+                        <li><a th:href="@{/cleaning/create}">Servicio doméstico</a></li>
+                        <li><a th:href="@{/caregiver/create}">Cuidado de personas</a></li>
+                        <li><a th:href="@{/petwalker/create}">Paseador de perros</a></li>
+                        <li><a th:href="@{/other/create}">Otro</a></li>
                     </ul>
                 </li>
             </div>
@@ -51,8 +51,8 @@
                     <!-- deberia llevar a un form lista desplegable con los registros -->
                     <a href="#form">Sección usuarios <i class="far fa-user"></i></a>
                     <ul class="work-menu">
-                        <li><a href="/login">Iniciar sesion <i class="fas fa-sign-in-alt"></i></a></li>
-                        <li><a href="/user/registry">Regístrate <i class="fas fa-bars"></i></a></li>
+                        <li><a th:href="@{/login}">Iniciar sesion <i class="fas fa-sign-in-alt"></i></a></li>
+                        <li><a th:href="@{/user/registry}">Regístrate <i class="fas fa-bars"></i></a></li>
                     </ul>
                 </li>
             </div>
@@ -62,7 +62,7 @@
     <div class="center">
         <div class="container">
             <div class="text">Jardinero</div>
-            <form th:action="@{/jardinero/create}" method="POST">
+            <form th:action="@{/gardener/create}" method="POST">
                 <div class="data">
                     <label for="salary"></label>
                     <input type="text" size="50px" th:value="${salary}" name="salary" id="salario"
@@ -144,49 +144,29 @@
                 <div class="lista">
                     <div class="titulo">
                         Herramientas de jardinería
-                        <label for="tools"> </label>
-                        <ul class="dropdown-menu" th:value="${tools}" name="tools">
-                            <li>
-                                <input type="checkbox" value="a" name="si"> Si
-                                <input type="checkbox" value="b" name="no"> No
-                            </li>
-                        </ul>
+                        <label class="dropdown-menu" for="tools"></label>
+                        <input type="checkbox" name="tools" th:checked="${tools}">
                     </div>
                 </div>
                 <div class="lista">
                     <div class="titulo">
                         Limpieza de piscina
-                        <label for="poolCleaning"> </label>
-                        <ul class="dropdown-menu" th:value="${poolCleaning}" name="poolCleaning">
-                            <li>
-                                <input type="checkbox" value="a" name="si"> Si
-                                <input type="checkbox" value="b" name="no"> No
-                            </li>
-                        </ul>
+                        <label class="dropdown-menu" for="poolCleaning"></label>
+                        <input type="checkbox" name="poolCleaning" th:checked="${poolCleaning}">
                     </div>
                 </div>
                 <div class="lista">
                     <div class="titulo">
                         Corte de cercos
-                        <label for="gardenFence"> </label>
-                        <ul class="dropdown-menu" th:value="${gardenFence}" name="gardenFence">
-                            <li>
-                                <input type="checkbox" value="a" name="si"> Si
-                                <input type="checkbox" value="b" name="no"> No
-                            </li>
-                        </ul>
+                        <label class="dropdown-menu" for="gardenFence"></label>
+                        <input type="checkbox" name="gardenFence" th:checked="${gardenFence}">
                     </div>
                 </div>
                 <div class="lista">
                     <div class="titulo">
                         Desinfección de plantas
-                        <label for="plantDisinfection"> </label>
-                        <ul class="dropdown-menu" th:value="${plantDisinfection}" name="plantDisinfection">
-                            <li>
-                                <input type="checkbox" value="a" name="si"> Si
-                                <input type="checkbox" value="b" name="no"> No
-                            </li>
-                        </ul>
+                        <label class="dropdown-menu" for="plantDisinfection"></label>
+                        <input type="checkbox" name="plantDisinfection" th:checked="${plantDisinfection}">
                     </div>
                 </div>
                 <div class="btn">

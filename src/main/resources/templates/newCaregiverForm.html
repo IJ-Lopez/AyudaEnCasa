@@ -37,11 +37,11 @@
                     deberia llevar a un form lista desplegable con los registros
                     <a href="#form">Quiero trabajar <i class="fas fa-briefcase"></i></a>
                     <ul class="work-menu">
-                        <li><a href="../jardinero/create">Jardinero</a></li>
-                        <li><a href="../limpiador/create">Servicio doméstico</a></li>
-                        <li><a href="../cuidador/create">Cuidado de personas</a></li>
-                        <li><a href="../paseador/create">Paseador de perros</a></li>
-                        <li><a href="../otro/create">Otro</a></li>
+                        <li><a th:href="@{/gardener/create}">Jardinero</a></li>
+                        <li><a th:href="@{/cleaning/create}">Servicio doméstico</a></li>
+                        <li><a th:href="@{/caregiver/create}">Cuidado de personas</a></li>
+                        <li><a th:href="@{/petwalker/create}">Paseador de perros</a></li>
+                        <li><a th:href="@{/other/create}">Otro</a></li>
                     </ul>
                 </li>
             </div>
@@ -50,8 +50,8 @@
                     deberia llevar a un form lista desplegable con los registros
                     <a href="#form">Sección usuarios <i class="far fa-user"></i></a>
                     <ul class="work-menu">
-                        <li><a href="/login">Iniciar sesion <i class="fas fa-sign-in-alt"></i></a></li>
-                        <li><a href="/user/registry">Regístrate <i class="fas fa-bars"></i></a></li>
+                        <li><a th:href="@{/login}">Iniciar sesion <i class="fas fa-sign-in-alt"></i></a></li>
+                        <li><a th:href="@{/user/registry}">Regístrate <i class="fas fa-bars"></i></a></li>
                     </ul>
                 </li>
             </div>
@@ -61,7 +61,7 @@
     <div class="center">
         <div class="container">
             <div class="text">Cuidado de personas</div>
-            <form th:action="@{/cuidador/create}" method="POST">
+            <form th:action="@{/caregiver/create}" method="POST">
                 <div class="data">
                     <label for="salary"></label>
                     <input type="text" size="50px" th:value="${salary}" name="salary" id="salario"
@@ -161,37 +161,22 @@
                 <div class="lista">
                     <div class="titulo">
                         Servicio de cocina
-                        <label for="cooking"></label>
-                        <ul class="dropdown-menu" th:value="${cooking}" name="cooking">
-                            <li>
-                                <input type="checkbox" value="a" name="si"> Si
-                                <input type="checkbox" value="b" name="no"> No
-                            </li>
-                        </ul>
+                        <label class="dropdown-menu" for="cooking"></label>
+                        <input type="checkbox" name="cooking" th:checked="${cooking}">  
                     </div>
                 </div>
                 <div class="lista">
                     <div class="titulo">
                         Aseo de personas
-                        <label for="cleaningPeople"></label>
-                        <ul class="dropdown-menu" th:value="${cleaningPeople}" name="cleaningPeople">
-                            <li>
-                                <input type="checkbox" value="a" name="si"> Si
-                                <input type="checkbox" value="b" name="no"> No
-                            </li>
-                        </ul>
+                        <label class="dropdown-menu" for="cleaningPeople"></label>
+                        <input type="checkbox" name="cleaningPeople" th:checked="${cleaningPeople}">
                     </div>
                 </div>
                 <div class="lista">
                     <div class="titulo">
                         Servicio de transporte
-                        <label for="tranfering"></label>
-                        <ul class="dropdown-menu" th:value="${tranfering}" name="tranfering">
-                            <li>
-                                <input type="checkbox" value="a" name="si"> Si
-                                <input type="checkbox" value="b" name="no"> No
-                            </li>
-                        </ul>
+                        <label class="dropdown-menu" for="tranfering"></label>
+                        <input type="checkbox" name="tranfering" th:checked="${tranfering}">
                     </div>
                 </div>
                 <div class="btn">

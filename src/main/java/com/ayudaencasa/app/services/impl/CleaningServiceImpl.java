@@ -3,9 +3,11 @@ package com.ayudaencasa.app.services.impl;
 import com.ayudaencasa.app.criteria.CleaningCriteria;
 import com.ayudaencasa.app.entities.Cleaning;
 import com.ayudaencasa.app.entities.Cleaning_;
+import com.ayudaencasa.app.entities.User;
 import com.ayudaencasa.app.exceptions.CleaningNotFoundException;
 import com.ayudaencasa.app.repositories.CleaningRepository;
 import com.ayudaencasa.app.services.CleaningService;
+import com.ayudaencasa.app.services.UserService;
 import io.github.jhipster.service.QueryService;
 import java.util.List;
 import java.util.Optional;
@@ -14,6 +16,8 @@ import lombok.NonNull;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -21,6 +25,9 @@ public class CleaningServiceImpl extends QueryService<Cleaning> implements Clean
 
     @Autowired
     private CleaningRepository cleaningRepository;
+    
+    @Autowired
+    private UserService userService;
 
     @Autowired
     private ModelMapper modelMapper;
@@ -73,6 +80,12 @@ public class CleaningServiceImpl extends QueryService<Cleaning> implements Clean
     @Override
     @Transactional
     public Cleaning create(@NonNull Cleaning cleaning) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UserDetails userDetails = null;
+        if (principal instanceof UserDetails) {
+            userDetails = (UserDetails) principal;
+        }
+        cleaning.setUser(userService.findByEmail(userDetails.getUsername()));
         return cleaningRepository.save(cleaning);
     }
 

@@ -46,9 +46,10 @@ public class S3ServiceImpl implements S3Service{
         try (final FileOutputStream outputStream = new FileOutputStream(file)) {
             outputStream.write(multipartFile.getBytes());
             String newFileName = System.currentTimeMillis()+ "-" + file.getName();
-           LOGGER.info("Subiendo archivo con el nombre... " + newFileName);
-			PutObjectRequest request = new PutObjectRequest(ayudaencasa, newFileName, file);
-			amazonS3.putObject(request);
+            LOGGER.info("Subiendo archivo con el nombre... " + newFileName);
+            PutObjectRequest request = new PutObjectRequest(ayudaencasa, newFileName, file);
+            amazonS3.putObject(request);
+            LOGGER.info("UPLOAD FILE COMPLETADO");
         } catch (IOException e) {
             LOG.error("Error {} occurred while converting the multipart file", e.getLocalizedMessage());
         }
@@ -95,9 +96,9 @@ public class S3ServiceImpl implements S3Service{
             final String fileName = file.getName();
             LOG.info("Uploading file with name {}", fileName);
             final PutObjectRequest putObjectRequest = new PutObjectRequest(ayudaencasa, fileName, file);
-            amazonS3.putObject(putObjectRequest);
+            amazonS3.putObject(putObjectRequest);LOGGER.info("PUT OBJECT COMPLETADO");
             Files.delete(file.toPath()); // Remove the file locally created in the project folder
-            filePath = amazonS3.getBucketLocation(fileName);
+            filePath = amazonS3.getUrl(ayudaencasa, fileName).toString();
         } catch (AmazonServiceException e) {
             LOG.error("Error {} occurred while uploading file", e.getLocalizedMessage());
         } catch (IOException ex) {
