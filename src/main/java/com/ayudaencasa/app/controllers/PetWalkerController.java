@@ -56,7 +56,7 @@ public class PetWalkerController {
             return "index";
         } catch (PetWalkerNotFoundException ex) {
             model.addAttribute("error", ex.getMessage());
-            return "petwalkerForm";
+            return "newPetwalkerForm";
         }
     }
     

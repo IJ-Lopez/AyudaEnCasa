@@ -77,7 +77,7 @@ public class CaregiverController {
             return "index";
         } catch (Exception ex) {
             model.addAttribute("error", ex.getMessage());
-            return "caregiverForm";
+            return "newCaregiverForm";
         }
     }
 

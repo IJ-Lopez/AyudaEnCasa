@@ -56,7 +56,7 @@ public class GardenerController {
             return "index";
         } catch (GardenerNotFoundException ex) {
             model.addAttribute("error", ex.getMessage());
-            return "gardenerForm";
+            return "newGardenerForm";
         }
     }
 

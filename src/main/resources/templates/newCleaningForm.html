@@ -1,6 +1,5 @@
 <!DOCTYPE html>
--<html lang="en" xmlns:th="http://www.thymeleaf.org">
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -64,7 +63,7 @@
         <div class="center">
             <div class="container">
                 <div class="text">Servicio Domestico</div>
-                <form th:action="@{/limpiador/create}" method="POST">
+                <form th:action="@{/cleaning/create}" method="POST">
                     <div class="data">
                         <label for="salary"></label>
                         <input type="text" size="50px" th:value="${salary}" name="salary" id="salario"
@@ -156,6 +155,7 @@
                     </div>
                     <div class="lista">
                         <div class="titulo">
+                            Servicio de Lavandería
                             <label class="dropdown-menu" for="laundry"></label>
                             <input type="checkbox" name="laundry" th:checked="${laundry}">
                         </div>

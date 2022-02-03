@@ -62,7 +62,7 @@
     <div class="center">
         <div class="container">
             <div class="text">Jardinero</div>
-            <form th:action="@{/jardinero/create}" method="POST">
+            <form th:action="@{/gardener/create}" method="POST">
                 <div class="data">
                     <label for="salary"></label>
                     <input type="text" size="50px" th:value="${salary}" name="salary" id="salario"
@@ -144,13 +144,8 @@
                 <div class="lista">
                     <div class="titulo">
                         Herramientas de jardinería
-                        <label for="tools"> </label>
-                        <ul class="dropdown-menu" th:value="${tools}" name="tools">
-                            <li>
-                                <input type="checkbox" value="a" name="si"> Si
-                                <input type="checkbox" value="b" name="no"> No
-                            </li>
-                        </ul>
+                        <label class="dropdown-menu" for="tools"></label>
+                        <input type="checkbox" name="tools" th:checked="${tools}">
                     </div>
                 </div>
                 <div class="lista">
