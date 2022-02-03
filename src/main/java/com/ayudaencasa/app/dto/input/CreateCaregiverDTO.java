@@ -5,6 +5,7 @@ import java.time.LocalTime;
 import java.util.List;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 
 @Data
@@ -22,9 +23,11 @@ public class CreateCaregiverDTO {
     private Boolean status;
     private Integer quantity;    
     private Integer ageFrom;   
-    private Integer ageTo;  
+    private Integer ageTo;
+    private MultipartFile cv;
+    private String pic;
     private boolean cooking; 
-    private boolean cleaningPeople;   
+    private boolean cleaningPeople;
     private boolean tranfering;
     
 }
