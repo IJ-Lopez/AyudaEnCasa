@@ -92,7 +92,7 @@ public class GardenerController {
             gardeners = gar;
         }  
         rt.addAttribute("gardeners", gardeners);
-        return "redirect:/jardinero/list";
+        return "redirect:/gaardener/list";
     }
 
     private GardenerCriteria createCriteria(SearchGardenerDTO searchGardener) {

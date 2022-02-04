@@ -91,7 +91,7 @@ public class CleaningController {
             cleanings = clean;
         }  
         rt.addAttribute("cleanings", cleanings);
-        return "redirect:/limpiador/list";
+        return "redirect:/cleaning/list";
     }
     
     private CleaningCriteria createCriteria(SearchCleaningDTO searchCleaning){
