@@ -112,8 +112,8 @@
                                     <p></p>
                                     <p th:text="${petwalker.salary}"></p>
                                     <p th:text="${petwalker.workingZone}"></p>
-                                    <p th:text="${petwalker.workingHoursFrom}"></p>
-                                    <p th:text="${petwalker.workingHoursTo}"></p>
+                                    <p th:text="'Hora desde: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(petwalker.hoursFrom), 'HH:mm')}"></p>
+                                    <p th:text="'Hora hasta: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(petwalker.hoursTo), 'HH:mm')}"></p>
                                 </div>
                             </div>                
                             <img src="https://www.argentina.gob.ar/sites/default/files/vinetas_justicia_cerca_04_el_paseador_de_mi_perro.png" alt="">

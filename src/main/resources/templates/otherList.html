@@ -105,8 +105,8 @@
                                     <p></p>
                                     <p th:text="${other.salary}"></p>
                                     <p th:text="${other.workingZone}"></p>
-                                    <p th:text="${other.workingHoursFrom}"></p>
-                                    <p th:text="${other.workingHoursTo}"></p>
+                                    <p th:text="'Hora desde: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(other.hoursFrom), 'HH:mm')}"></p>
+                                    <p th:text="'Hora hasta: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(other.hoursTo), 'HH:mm')}"></p>
                                 </div>
                             </div>                
                             <img src="https://www.argentina.gob.ar/sites/default/files/vinetas_justicia_cerca_04_el_paseador_de_mi_perro.png" alt="">
