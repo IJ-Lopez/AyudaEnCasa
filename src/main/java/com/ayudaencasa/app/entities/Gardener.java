@@ -1,6 +1,9 @@
 package com.ayudaencasa.app.entities;
 
 import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
+import javax.validation.constraints.Min;
 import javax.persistence.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

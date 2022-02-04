@@ -22,15 +22,15 @@ public class S3Controller {
     @Autowired
     S3Service s3Service;
  
-   // @GetMapping(params = "fileName")
-   // public ResponseEntity<Object> findByName2(@RequestParam("fileName") String fileName) {
-     //   return ResponseEntity
-       //         .ok()
-          //      .cacheControl(CacheControl.noCache())
-          //      .header("Content-type", "application/octet-stream")
-            //    .header("Content-disposition", "attachment; filename=\"" + fileName + "\"")
-            //    .body(new InputStreamResource(s3Service.findByName(fileName)));
-    //}
+    @GetMapping(params = "fileName")
+    public ResponseEntity<Object> findByName2(@RequestParam("fileName") String fileName) {
+        return ResponseEntity
+                .ok()
+                .cacheControl(CacheControl.noCache())
+                .header("Content-type", "application/octet-stream")
+                .header("Content-disposition", "attachment; filename=\"" + fileName + "\"")
+                .body(new InputStreamResource(s3Service.findByName(fileName)));
+    }
  
     @RequestMapping(method = RequestMethod.POST,
                     consumes = MediaType.MULTIPART_FORM_DATA_VALUE)

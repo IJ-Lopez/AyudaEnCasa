@@ -6,7 +6,6 @@ import com.ayudaencasa.app.entities.Other_;
 import com.ayudaencasa.app.exceptions.OtherNotFoundException;
 import com.ayudaencasa.app.repositories.OtherRepository;
 import com.ayudaencasa.app.services.OtherService;
-import com.ayudaencasa.app.services.UserService;
 import io.github.jhipster.service.QueryService;
 import java.util.List;
 import java.util.Optional;
@@ -15,8 +14,6 @@ import lombok.NonNull;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -24,9 +21,6 @@ public class OtherServiceImpl extends QueryService<Other> implements OtherServic
     
     @Autowired
     private OtherRepository otherRepository;
-    
-    @Autowired
-    private UserService userService;
     
     @Autowired
     private ModelMapper modelMapper;
@@ -72,12 +66,6 @@ public class OtherServiceImpl extends QueryService<Other> implements OtherServic
     @Override
     @Transactional
     public Other create(@NonNull Other other) {
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        UserDetails userDetails = null;
-        if (principal instanceof UserDetails) {
-            userDetails = (UserDetails) principal;
-        }
-        other.setUser(userService.findByEmail(userDetails.getUsername()));
         return otherRepository.save(other);
     }
 
