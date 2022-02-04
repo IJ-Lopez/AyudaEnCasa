@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cuidado de personas</title>
-    <link rel="stylesheet" href="/src/main/resources/static/css/cardPrueba.css">
-    <!-- <link rel="stylesheet" href="/css/cardPrueba.css"/> -->
+    <!--<link rel="stylesheet" href="/src/main/resources/static/css/cardPrueba.css">-->
+    <link rel="stylesheet" href="/css/cardPrueba.css" />
     <!--Google fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -128,13 +128,14 @@
                         <div class="card">
                             <div class="phone"></div>
                             <div class="card-titulo">
-                                <h1> Nombre y Apellido </h1>
+                                <h1 th:text="${caregiver.user.firstName} +' '+ ${caregiver.user.lastName} "></h1>
+                                <!-- <h1> Nombre y Apellido </h1> -->
                             </div>
                             <div class="card-body">
                                 <div class="card-body-items">
                                     <div class="datos-job">
                                         <p></p>
-                                        <p th:text="${caregiver.salary}"></p>
+                                        <p th:text="'Precio: '+${caregiver.salary}"></p>
                                         <p th:text="${caregiver.workingZone}"></p>
                                         <p th:text="${caregiver.workingHoursFrom}"></p>
                                         <p th:text="${caregiver.workingHoursTo}"></p>
