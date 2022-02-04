@@ -38,11 +38,11 @@
                     <!-- deberia llevar a un form lista desplegable con los registros -->
                     <a href="#form">Quiero trabajar <i class="fas fa-briefcase"></i></a>
                     <ul class="work-menu">
-                        <li><a th:href="@{/gardener/create}">Jardinero</a></li>
-                        <li><a th:href="@{/cleaning/create}">Servicio doméstico</a></li>
-                        <li><a th:href="@{/caregiver/create}">Cuidado de personas</a></li>
-                        <li><a th:href="@{/petwalker/create}">Paseador de perros</a></li>
-                        <li><a th:href="@{/other/create}">Otro</a></li>
+                        <li><a href="../jardinero/create">Jardinero</a></li>
+                        <li><a href="../limpiador/create">Servicio doméstico</a></li>
+                        <li><a href="../cuidador/create">Cuidado de personas</a></li>
+                        <li><a href="../paseador/create">Paseador de perros</a></li>
+                        <li><a href="../otro/create">Otro</a></li>
                     </ul>
                 </li>
             </div>
@@ -51,8 +51,8 @@
                     <!-- deberia llevar a un form lista desplegable con los registros -->
                     <a href="#form">Sección usuarios <i class="far fa-user"></i></a>
                     <ul class="work-menu">
-                        <li><a th:href="@{/login}">Iniciar sesion <i class="fas fa-sign-in-alt"></i></a></li>
-                        <li><a th:href="@{/user/registry}">Regístrate <i class="fas fa-bars"></i></a></li>
+                        <li><a href="/login">Iniciar sesion <i class="fas fa-sign-in-alt"></i></a></li>
+                        <li><a href="/user/registry">Regístrate <i class="fas fa-bars"></i></a></li>
                     </ul>
                 </li>
             </div>
@@ -62,7 +62,7 @@
     <div class="center">
         <div class="container">
             <div class="text">Paseador de perros</div>
-            <form th:action="@{/petwalker/create}" method="POST">
+            <form th:action="@{/paseador/create}" method="POST">
                 <div class="data">
                     <label for="salary"></label>
                     <input type="text" th:value="${salary}" name="salary" id="salario"
@@ -135,6 +135,8 @@
                     <label for="petQuantity"></label>
                     <input class="input font" type="number" th:value="${petQuantity}" name="petQuantity"
                         id="cantidad de perros" placeholder="Cantidad de perros" min="0" max="10">
+                    <!-- Esto es el CSRF Token para su seguridad-->
+                   <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
                 </div>
                 <div class="data">
                     <label for="petType"></label>

@@ -112,16 +112,6 @@ public class UserServiceImpl implements UserService{
             throw new UserNotFoundException();
         }
     }
-    
-    @Override
-    public User findByEmail(@NonNull String email) {
-        Optional<User> opt = userRepo.findByEmail(email);
-        if(opt.isPresent()){
-            return opt.get();
-        } else {
-            throw new UserNotFoundException();
-        }
-    }
 
     @Override
     public List<User> findAll() {

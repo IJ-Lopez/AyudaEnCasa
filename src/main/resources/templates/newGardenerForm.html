@@ -167,6 +167,9 @@
                         Desinfección de plantas
                         <label class="dropdown-menu" for="plantDisinfection"></label>
                         <input type="checkbox" name="plantDisinfection" th:checked="${plantDisinfection}">
+                        
+                        <!-- Esto es el CSRF Token para su seguridad-->
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
                     </div>
                 </div>
                 <div class="btn">

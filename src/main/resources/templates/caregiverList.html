@@ -26,7 +26,7 @@
                 <h1 id="home">Cuidado de personas</h1>
             </nav>
             <div class="container">
-                <form class="formato" th:action="@{/cuidador/list}" method="POST">
+                <form class="formato" th:action="@{/caregiver/list}" method="POST">
                     <br>
                     <div>
                         <label class="titulo" for="salaryTo"></label>
@@ -116,6 +116,7 @@
                     <div>
                         <label class="dropdown-menu" for="tranfering"> Servicio de transporte</label>
                         <input type="checkbox" name="tranfering" th:checked="${tranfering}">
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
                     </div>
                     <br>
                     <div class="col-2">

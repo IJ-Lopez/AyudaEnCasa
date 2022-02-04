@@ -77,7 +77,7 @@ public class CaregiverController {
             return "index";
         } catch (Exception ex) {
             model.addAttribute("error", ex.getMessage());
-            return "newCaregiverForm";
+            return "caregiverForm";
         }
     }
 
@@ -114,7 +114,7 @@ public class CaregiverController {
             caregivers = car;
         }
         rt.addAttribute("caregivers", caregivers);
-        return "redirect:/cuidador/list";
+        return "redirect:/caregiver/list";
     }
 
     private CaregiverCriteria createCriteria(SearchCaregiverDTO searchCaregiver) {

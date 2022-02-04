@@ -56,7 +56,7 @@ public class PetWalkerController {
             return "index";
         } catch (PetWalkerNotFoundException ex) {
             model.addAttribute("error", ex.getMessage());
-            return "newPetwalkerForm";
+            return "petwalkerForm";
         }
     }
     
@@ -93,7 +93,7 @@ public class PetWalkerController {
             petWalkers = pet;
         }
         rt.addAttribute("petwalkers", petWalkers);
-        return "redirect:/paseador/list";
+        return "redirect:/petwalker/list";
     }
 
     private PetWalkerCriteria createCriteria(SearchPetWalkerDTO searchPetWalker) {

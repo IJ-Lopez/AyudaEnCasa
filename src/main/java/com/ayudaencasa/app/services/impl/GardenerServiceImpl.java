@@ -6,7 +6,6 @@ import com.ayudaencasa.app.entities.Gardener_;
 import com.ayudaencasa.app.exceptions.GardenerNotFoundException;
 import com.ayudaencasa.app.repositories.GardenerRepository;
 import com.ayudaencasa.app.services.GardenerService;
-import com.ayudaencasa.app.services.UserService;
 import io.github.jhipster.service.QueryService;
 import java.util.List;
 import java.util.Optional;
@@ -15,8 +14,6 @@ import lombok.NonNull;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -24,9 +21,6 @@ public class GardenerServiceImpl extends QueryService<Gardener> implements Garde
 
     @Autowired
     private GardenerRepository gardenerRepository;
-    
-    @Autowired
-    private UserService userService;
 
     @Autowired
     private ModelMapper modelMapper;
@@ -79,12 +73,6 @@ public class GardenerServiceImpl extends QueryService<Gardener> implements Garde
     @Override
     @Transactional
     public Gardener create(@NonNull Gardener gardener) {
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        UserDetails userDetails = null;
-        if (principal instanceof UserDetails) {
-            userDetails = (UserDetails) principal;
-        }
-        gardener.setUser(userService.findByEmail(userDetails.getUsername()));
         return gardenerRepository.save(gardener);
     }
 

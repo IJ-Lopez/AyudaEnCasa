@@ -30,6 +30,9 @@
                     <div>
                         <label class="titulo" for="message">Mensaje</label>
                         <input class="input font" type="text" th:value="${message}" name="message">
+                        
+                        <!-- Esto es el CSRF Token para su seguridad-->
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
                     </div>
                     <br>
                     <button class="buttons"> Enviar </button>
