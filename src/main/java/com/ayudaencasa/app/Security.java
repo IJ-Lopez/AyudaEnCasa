@@ -33,8 +33,8 @@ public class Security extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.headers().frameOptions().sameOrigin()
                 .and().csrf()
-                .and()
-                    //.disable()
+                    .disable()
+//                .and()
                 .sessionManagement()
                     .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
                 .and()

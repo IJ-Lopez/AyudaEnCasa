@@ -74,11 +74,6 @@ public class SetupDataLoader implements
             userRepository.save(user);
         }
         
-        if(gardenRepository.findAll().isEmpty()){
-            gardenRepository.save(new Gardener());
-            otherRepo.save(new Other("jamon"));            
-        }
-        
         alreadySetup = true;
 
     }

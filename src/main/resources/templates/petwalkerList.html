@@ -96,7 +96,7 @@
                         <input class="input" th:value="${petType}" name="petType" id="mascotas"
                             placeholder="Tamaño de mascotas">
                         <!-- Esto es el CSRF Token para su seguridad-->
-                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+                        <!--input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"-->
                     </div>
 
                     <div class="btn">
@@ -122,12 +122,10 @@
                                     <p></p>
                                     <p th:text="${petwalker.salary}"></p>
                                     <p th:text="${petwalker.workingZone}"></p>
-                                    <p th:text="'Hora desde: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(petwalker.hoursFrom), 'HH:mm')}"></p>
-                                    <p th:text="'Hora hasta: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(petwalker.hoursTo), 'HH:mm')}"></p>
                                 </div>
                                 <div class="bloque-der">
-                                    <p class="thyme" th:text="'Hora desde:'+ ${petwalker.workingHoursFrom}"></p>
-                                    <p class="thyme" th:text="'Hora hasta: '+ ${petwalker.workingHoursTo}"></p>
+                                    <p class="thyme" th:text="'Hora desde: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(petwalker.hoursFrom), 'HH:mm')}"></p>
+                                    <p class="thyme" th:text="'Hora hasta: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(petwalker.hoursTo), 'HH:mm')}"></p>
                                     <p class="thyme" th:text="'Cantidad de mascotas: ' + ${petwalker.petQuantity}"></p>
                                     <th:block th:each="day : ${petwalker.days}">
                                         <label th:text="${day} + ' '"></label>
