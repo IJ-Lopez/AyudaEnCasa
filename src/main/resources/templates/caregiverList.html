@@ -116,6 +116,7 @@
                     <div>
                         <label class="dropdown-menu" for="tranfering"> Servicio de transporte</label>
                         <input type="checkbox" name="tranfering" th:checked="${tranfering}">
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
                     </div>
                     <br>
                     <div class="col-2">

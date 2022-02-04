@@ -70,6 +70,8 @@
             </div>
             <form action="/home/buscar" method="POST">
               <input class="form" type="text" name="trabajo" id="trabajo" placeholder="Ingrese su busqueda" list="jobs-list"/>
+              <!-- Esto es el CSRF Token para su seguridad-->
+                 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
               <datalist id ="jobs-list">
                   <option value="Cuidado de personas"></option>
                   <option value="Jardinero"></option>
