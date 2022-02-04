@@ -143,8 +143,8 @@
                                 <p></p>
                                 <p th:text="'Precio: '+${cleaning.salary}"></p>
                                 <p th:text="'Zona: '+${cleaning.workingZone}"></p>
-                                <p th:text="'Hora desde: '+${cleaning.workingHoursFrom}"></p>
-                                <p th:text="'Hora hasta: '+${cleaning.workingHoursTo}"></p>
+                                <p th:text="'Hora desde: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(caregiver.hoursFrom), 'HH:mm')}"></p>
+                                <p th:text="'Hora hasta: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(caregiver.hoursTo), 'HH:mm')}"></p>
                             </div>
                         </div>
 

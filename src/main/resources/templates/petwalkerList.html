@@ -116,16 +116,14 @@
                                 <!-- <img th:src="${petwalker.user.photo}" alt="">                                 -->
                             </div>
                         </div>
-                        <div class="description">
-                            <h1 th:text="${petwalker.user.firstName}+' '+${petwalker.user.lastName}"></h1>
-                            <div class="mail-contact">
-                                <a href=""></a>
-                            </div>
-                            <div>
-                                <div class="bloque-izq">
-                                    <p class="thyme" th:text="'Precio: '+ ${petwalker.salary}"></p>
-                                    <p class="thyme" th:text="'Zona: '+ ${petwalker.workingZone}"></p>
-    
+                        <div class= "card-body">
+                            <div class= "card-body-items">
+                                <div class= "datos-job">
+                                    <p></p>
+                                    <p th:text="${petwalker.salary}"></p>
+                                    <p th:text="${petwalker.workingZone}"></p>
+                                    <p th:text="'Hora desde: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(petwalker.hoursFrom), 'HH:mm')}"></p>
+                                    <p th:text="'Hora hasta: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(petwalker.hoursTo), 'HH:mm')}"></p>
                                 </div>
                                 <div class="bloque-der">
                                     <p class="thyme" th:text="'Hora desde:'+ ${petwalker.workingHoursFrom}"></p>

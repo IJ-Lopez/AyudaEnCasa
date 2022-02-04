@@ -129,9 +129,11 @@
 
                             </div>
                             <div class="bloque-der">
-                                <p class="thyme" th:text="'Hora desde:'+ ${gardener.workingHoursFrom}"></p>
-                                <p class="thyme" th:text="'Hora hasta: '+ ${gardener.workingHoursTo}"></p>
-                                <p class="thyme" th:text="'Superficie del terreno: ' + ${gardener.surface}"></p>
+                                <p class="thyme" th:text="'Hora desde: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(gardener.hoursFrom), 'HH:mm')}"></p>
+                                <p class="thyme" th:text="'Hora hasta: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(gardener.hoursTo), 'HH:mm')}"></p>
+                                <p class="thyme" th:text="'Superficie del terreno: ' + ${gardener.surface}">Superficie:
+                                    200
+                                </p>
                             </div>
                         </div>
                         <div class="read-more">
