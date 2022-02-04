@@ -136,7 +136,7 @@
                     <input class="input font" type="number" th:value="${petQuantity}" name="petQuantity"
                         id="cantidad de perros" placeholder="Cantidad de perros" min="0" max="10">
                     <!-- Esto es el CSRF Token para su seguridad-->
-                   <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
                 </div>
                 <div class="data">
                     <label for="petType"></label>

@@ -98,7 +98,7 @@
                         <input class="input" th:value="${petType}" name="petType" id="mascotas"
                             placeholder="Tamaño de mascotas">
                         <!-- Esto es el CSRF Token para su seguridad-->
-                        <!--input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"-->
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
                     </div>
 
                     <div class="btn">
