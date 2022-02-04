@@ -90,7 +90,7 @@
                     <label class="titulo" for="quantityFrom"></label>
                     <input class="input" type="number" th:value="${quantityFrom}" name="quantityFrom" id="cantidad"
                         placeholder="Personas a cuidar">
-                </div class="data">
+                </div>
                 <div class="data" id="ageFrom">
                     <label class="titulo" for="ageFrom"></label>
                     <input class="input" th:value="${ageFrom}" name="ageFrom" id="edadDesde" placeholder="Edad Desde">
@@ -111,8 +111,9 @@
                 <div class="lista">
                     <label for="tranfering"> Servicio de transporte</label>
                     <input id="checkbox" type="checkbox" name="tranfering" th:checked="${tranfering}">
+                    
                     <!-- Esto es el CSRF Token para su seguridad-->
-                    <!--input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"-->
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
                 </div>
                 <div class="btn">
                     <div class="inner"></div>
