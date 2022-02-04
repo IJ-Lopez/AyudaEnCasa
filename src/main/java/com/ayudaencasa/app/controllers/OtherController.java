@@ -96,7 +96,7 @@ public class OtherController {
             others = ot;
         }  
          rt.addAttribute("others", others);
-        return "redirect:/otro/list";
+        return "redirect:/other/list";
     }
     
     private OtherCriteria createCriteria(SearchOtherDTO searchOther){

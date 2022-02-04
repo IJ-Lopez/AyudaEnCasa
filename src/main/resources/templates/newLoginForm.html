@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
     <head>
         <meta charset="UTF-8" />
@@ -45,7 +45,7 @@
                             <button type="submit">ingresar</button>
                         </div>
                         <div class="signup-link">
-                            ¿No tenes cuenta? <a href="#">¡Regístrate ahora!</a>              
+                            ¿No tenes cuenta? <a th:href="@{/user/registry}">¡Regístrate ahora!</a>              
                         </div>
                         <div class="goback-link">
                             <a class="data" href="/home">Volver</a>

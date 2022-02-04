@@ -93,7 +93,7 @@ public class PetWalkerController {
             petWalkers = pet;
         }
         rt.addAttribute("petwalkers", petWalkers);
-        return "redirect:/paseador/list";
+        return "redirect:/petwalker/list";
     }
 
     private PetWalkerCriteria createCriteria(SearchPetWalkerDTO searchPetWalker) {
