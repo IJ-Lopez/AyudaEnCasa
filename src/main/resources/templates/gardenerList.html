@@ -19,6 +19,7 @@
     <link rel="stylesheet" type="text/css" media="all" href="/css/gtvg.css" data-th-href="@{..}" />
 </head>
 
+
 <body>
     <main>
         <nav class="nav-main">
@@ -89,274 +90,61 @@
                 </div>
                 <div class="lista">
                     <label for="tools"> Herramientas de jardinería</label>
-                    <input type="checkbox" name="tools" th:checked="${tools}" value="true" id="herramientas">
+                    <input type="checkbox" name="tools" th:checked="${tools}" value="true" id="checkbox">
                 </div>
                 <div class="lista">
                     <label for="poolCleaning"> Limpieza de piscina</label>
-                    <input type="checkbox" name="poolCleaning" th:checked="${poolCleaning}">
+                    <input type="checkbox" name="poolCleaning" th:checked="${poolCleaning}" id="checkbox">
                 </div>
                 <div class="lista">
                     <label for="gardenFence"> Corte de cercos</label>
-                    <input type="checkbox" name="gardenFence" th:checked="${gardenFence}">
+                    <input type="checkbox" name="gardenFence" th:checked="${gardenFence}" id="checkbox">
                 </div>
                 <div class="lista">
                     <label for="plantDisinfection"> Desinfección de plantas</label>
-                    <input type="checkbox" name="plantDisinfection" th:checked="${plantDisinfection}">
+                    <input type="checkbox" name="plantDisinfection" th:checked="${plantDisinfection}" id="checkbox">
                 </div>
-
                 <div class="btn">
                     <div class="inner"></div>
                     <button type="submit">buscar</button>
                 </div>
-
             </form>
         </div>
         <th:block th:each="gardener : ${gardeners}">
             <div class="card">
-                <div class="phone">2616980716</div>
-                <div class="card-titulo">
-                    <h3 th:text="${gardener.user.firstName} +' '+ ${gardener.user.lastName} "> Emiliano Gonzalez </h3>
-                </div>
-                <div class="card-body">
-                    <div class="card-body-items">
-                        <div class="datos-job">
-                            <p></p>
-                            <p th:text="${gardener.salary}">$200</p>
-                            <p th:text="${gardener.workingZone}"> Maipú</p>
-                            <p th:text="${gardener.workingHoursFrom}">10:00hs</p>
-                            <p th:text="${gardener.workingHoursTo}">20:00</p>
+                <div class="blog-card">
+                    <div class="meta">
+                        <div class="photo" style="background-image: url(/src/main/resources/static/img/Jardìn/j12.jpg)">
                         </div>
                     </div>
-                    <img th:src="${gardener.user.photo}" alt="">
-                </div>
-                <div class="card-footer">
-                    <p th:text="${gardener.surface}"></p>
-                    <th:block th:each="day : ${gardener.days}">
-                        <label th:text="${day} + ' '"></label>
-                    </th:block>
-                </div>
-            </div>
-            <div class="card">
-                <div class="phone"></div>
-                <div class="card-titulo">
-                    <h3> Nombre y Apellido </h3>
-                </div>
-                <div class="card-body">
-                    <div class="card-body-items">
-                        <div class="datos-job">
-                            <p></p>
-                            <p th:text="${gardener.salary}"></p>
-                            <p th:text="${gardener.workingZone}"></p>
-                            <p th:text="${gardener.workingHoursFrom}"></p>
-                            <p th:text="${gardener.workingHoursTo}"></p>
+                    <div class="description">
+                        <h1 th:text="${gardener.user.firstName}+' '+${gardener.user.lastName}">Nombre y apellido</h1>
+                        <div class="mail-contact">
+                            <a href=""> juancarlos@ayudaencasa.com</a>
+                        </div>
+                        <div>
+                            <div class="bloque-izq">
+                                <p class="thyme" th:text="'Precio: '+ ${gardener.salary}">Precio: 300</p>
+                                <p class="thyme" th:text="'Zona: '+ ${gardener.workingZone}"> Zona: Maipú</p>
+
+                            </div>
+                            <div class="bloque-der">
+                                <p class="thyme" th:text="'Hora desde:'+ ${gardener.workingHoursFrom}">Hora desde:
+                                    10:00hs
+                                </p>
+                                <p class="thyme" th:text="'Hora hasta: '+ ${gardener.workingHoursTo}">Hora hasta: 20:00
+                                </p>
+                                <p class="thyme" th:text="'Superficie del terreno: ' + ${gardener.surface}">Superficie:
+                                    200
+                                </p>
+                            </div>
+                        </div>
+                        <div class="read-more">
+                            <a href="https://wa.me/+5492616980716" target="_blank">Contactar</a> <!--con este funciona wha-->
+                            <a th:href="https://wa.me/+5492616980716 +${gardener.user.phone}"> Contactar</a>
                         </div>
                     </div>
-                    <img src="https://www.argentina.gob.ar/sites/default/files/vinetas_justicia_cerca_04_el_paseador_de_mi_perro.png"
-                        alt="">
-                </div>
-                <div class="card-footer">
-                    <p th:text="${gardener.surface}"></p>
-                    <th:block th:each="day : ${gardener.days}">
-                        <label th:text="${day} + ' '"></label>
-                    </th:block>
-                </div>
-            </div>
-            <div class="card">
-                <div class="phone"></div>
-                <div class="card-titulo">
-                    <h3> Nombre y Apellido </h3>
-                </div>
-                <div class="card-body">
-                    <div class="card-body-items">
-                        <div class="datos-job">
-                            <p></p>
-                            <p th:text="${gardener.salary}"></p>
-                            <p th:text="${gardener.workingZone}"></p>
-                            <p th:text="${gardener.workingHoursFrom}"></p>
-                            <p th:text="${gardener.workingHoursTo}"></p>
-                        </div>
-                    </div>
-                    <img src="https://www.argentina.gob.ar/sites/default/files/vinetas_justicia_cerca_04_el_paseador_de_mi_perro.png"
-                        alt="">
-                </div>
-                <div class="card-footer">
-                    <p th:text="${gardener.surface}"></p>
-                    <th:block th:each="day : ${gardener.days}">
-                        <label th:text="${day} + ' '"></label>
-                    </th:block>
-                </div>
-            </div>
-            <div class="card">
-                <div class="phone"></div>
-                <div class="card-titulo">
-                    <h3> Nombre y Apellido </h3>
-                </div>
-                <div class="card-body">
-                    <div class="card-body-items">
-                        <div class="datos-job">
-                            <p></p>
-                            <p th:text="${gardener.salary}"></p>
-                            <p th:text="${gardener.workingZone}"></p>
-                            <p th:text="${gardener.workingHoursFrom}"></p>
-                            <p th:text="${gardener.workingHoursTo}"></p>
-                        </div>
-                    </div>
-                    <img src="https://www.argentina.gob.ar/sites/default/files/vinetas_justicia_cerca_04_el_paseador_de_mi_perro.png"
-                        alt="">
-                </div>
-                <div class="card-footer">
-                    <p th:text="${gardener.surface}"></p>
-                    <th:block th:each="day : ${gardener.days}">
-                        <label th:text="${day} + ' '"></label>
-                    </th:block>
-                </div>
-            </div>
-            <div class="card">
-                <div class="phone"></div>
-                <div class="card-titulo">
-                    <h3> Nombre y Apellido </h3>
-                </div>
-                <div class="card-body">
-                    <div class="card-body-items">
-                        <div class="datos-job">
-                            <p></p>
-                            <p th:text="${gardener.salary}"></p>
-                            <p th:text="${gardener.workingZone}"></p>
-                            <p th:text="${gardener.workingHoursFrom}"></p>
-                            <p th:text="${gardener.workingHoursTo}"></p>
-                        </div>
-                    </div>
-                    <img src="https://www.argentina.gob.ar/sites/default/files/vinetas_justicia_cerca_04_el_paseador_de_mi_perro.png"
-                        alt="">
-                </div>
-                <div class="card-footer">
-                    <p th:text="${gardener.surface}"></p>
-                    <th:block th:each="day : ${gardener.days}">
-                        <label th:text="${day} + ' '"></label>
-                    </th:block>
-                </div>
-            </div>
-            <div class="card">
-                <div class="phone"></div>
-                <div class="card-titulo">
-                    <h3> Nombre y Apellido </h3>
-                </div>
-                <div class="card-body">
-                    <div class="card-body-items">
-                        <div class="datos-job">
-                            <p></p>
-                            <p th:text="${gardener.salary}"></p>
-                            <p th:text="${gardener.workingZone}"></p>
-                            <p th:text="${gardener.workingHoursFrom}"></p>
-                            <p th:text="${gardener.workingHoursTo}"></p>
-                        </div>
-                    </div>
-                    <img src="https://www.argentina.gob.ar/sites/default/files/vinetas_justicia_cerca_04_el_paseador_de_mi_perro.png"
-                        alt="">
-                </div>
-                <div class="card-footer">
-                    <p th:text="${gardener.surface}"></p>
-                    <th:block th:each="day : ${gardener.days}">
-                        <label th:text="${day} + ' '"></label>
-                    </th:block>
-                </div>
-            </div>
-            <div class="card">
-                <div class="phone"></div>
-                <div class="card-titulo">
-                    <h3> Nombre y Apellido </h3>
-                </div>
-                <div class="card-body">
-                    <div class="card-body-items">
-                        <div class="datos-job">
-                            <p></p>
-                            <p th:text="${gardener.salary}"></p>
-                            <p th:text="${gardener.workingZone}"></p>
-                            <p th:text="${gardener.workingHoursFrom}"></p>
-                            <p th:text="${gardener.workingHoursTo}"></p>
-                        </div>
-                    </div>
-                    <img src="https://www.argentina.gob.ar/sites/default/files/vinetas_justicia_cerca_04_el_paseador_de_mi_perro.png"
-                        alt="">
-                </div>
-                <div class="card-footer">
-                    <p th:text="${gardener.surface}"></p>
-                    <th:block th:each="day : ${gardener.days}">
-                        <label th:text="${day} + ' '"></label>
-                    </th:block>
-                </div>
-            </div>
-            <div class="card">
-                <div class="phone"></div>
-                <div class="card-titulo">
-                    <h3> Nombre y Apellido </h3>
-                </div>
-                <div class="card-body">
-                    <div class="card-body-items">
-                        <div class="datos-job">
-                            <p></p>
-                            <p th:text="${gardener.salary}"></p>
-                            <p th:text="${gardener.workingZone}"></p>
-                            <p th:text="${gardener.workingHoursFrom}"></p>
-                            <p th:text="${gardener.workingHoursTo}"></p>
-                        </div>
-                    </div>
-                    <img src="https://www.argentina.gob.ar/sites/default/files/vinetas_justicia_cerca_04_el_paseador_de_mi_perro.png"
-                        alt="">
-                </div>
-                <div class="card-footer">
-                    <p th:text="${gardener.surface}"></p>
-                    <th:block th:each="day : ${gardener.days}">
-                        <label th:text="${day} + ' '"></label>
-                    </th:block>
-                </div>
-            </div>
-            <div class="card">
-                <div class="phone"></div>
-                <div class="card-titulo">
-                    <h3> Nombre y Apellido </h3>
-                </div>
-                <div class="card-body">
-                    <div class="card-body-items">
-                        <div class="datos-job">
-                            <p></p>
-                            <p th:text="${gardener.salary}"></p>
-                            <p th:text="${gardener.workingZone}"></p>
-                            <p th:text="${gardener.workingHoursFrom}"></p>
-                            <p th:text="${gardener.workingHoursTo}"></p>
-                        </div>
-                    </div>
-                    <img src="https://www.argentina.gob.ar/sites/default/files/vinetas_justicia_cerca_04_el_paseador_de_mi_perro.png"
-                        alt="">
-                </div>
-                <div class="card-footer">
-                    <p th:text="${gardener.surface}"></p>
-                    <th:block th:each="day : ${gardener.days}">
-                        <label th:text="${day} + ' '"></label>
-                    </th:block>
-                </div>
-            </div>
-            <div class="card">
-                <div class="phone"></div>
-                <div class="card-titulo">
-                    <h3> Nombre y Apellido </h3>
-                </div>
-                <div class="card-body">
-                    <div class="card-body-items">
-                        <div class="datos-job">
-                            <p></p>
-                            <p th:text="${gardener.salary}"></p>
-                            <p th:text="${gardener.workingZone}"></p>
-                            <p th:text="${gardener.workingHoursFrom}"></p>
-                            <p th:text="${gardener.workingHoursTo}"></p>
-                        </div>
-                    </div>
-                    <img src="https://www.argentina.gob.ar/sites/default/files/vinetas_justicia_cerca_04_el_paseador_de_mi_perro.png"
-                        alt="">
                 </div>
             </div>
         </th:block>
-    </main>
 </body>
-
-</html>
