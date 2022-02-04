@@ -136,6 +136,9 @@
                     <label for="workingHoursTo"></label>
                     <input class="input font" type="text" th:value="${workingHoursTo}" id="hora" name="workingHoursTo"
                         placeholder="Hora de finalización" onfocus="(this.type='time')">
+                    
+                    <!-- Esto es el CSRF Token para su seguridad-->
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
                 </div>
 
                 <div class="btn">

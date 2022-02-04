@@ -91,6 +91,9 @@
                         <label class="titulo" for="petType"></label>
                         <input class="input" th:value="${petType}" name="petType" id="mascotas"
                                placeholder="Tamaño de mascotas">
+                        
+                        <!-- Esto es el CSRF Token para su seguridad-->
+                       <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
                     </div>
                     <br>
                     <div class="col-2">

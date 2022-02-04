@@ -103,6 +103,7 @@
                 <div> 
                     <label class="dropdown-menu"  for="ironing">Servicio de Planchado</label>
                     <input type="checkbox" name="ironing" th:checked="${ironing}">
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
                 </div>
                 <br>
                 <div class="col-2">

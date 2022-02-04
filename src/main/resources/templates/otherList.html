@@ -84,6 +84,9 @@
                         <div>
                             <label class="titulo" for="jobType"></label>
                             <input class="input font" type="text" th:value="${jobType}" id="hora" name="jobType" placeholder="Tipo de trabajo">
+                            
+                            <!-- Esto es el CSRF Token para su seguridad-->
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
                         </div>
                         <br>
                         <div class="col-2">
