@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jardinería</title>
-    <link rel="stylesheet" href="/css/cardPrueba.css"/>
-    <!-- <link rel="stylesheet" href="/src/main/resources/static/css/cardPrueba.css"> -->
+    <!-- <link rel="stylesheet" href="/css/cardPrueba.css"/> -->
+    <link rel="stylesheet" href="/src/main/resources/static/css/cardPrueba.css">
     <!--Google fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -25,7 +25,8 @@
             <h1>Jardinería</h1>
         </nav>
         <div class="container">
-            <img src="/img/sillonliving.jpg" alt="">
+            <!-- <img src="/img/sillonliving.jpg" alt=""> -->
+            <img src="/src/main/resources/static/img/sillonliving.jpg" alt="">
         </div>
         <div class="filtros">
             <h3>Filtros</h3>
@@ -113,7 +114,8 @@
             <div class="card">
                 <div class="blog-card">
                         <div class="photo">
-                            <img th:src="@{gardener.user.photo}" alt="">
+                            <!-- <img th:src="@{gardener.user.photo}" alt=""> -->
+                            <img src="/src/main/resources/static/img/Jardìn/j13.jpg" alt="">
                         </div>
                     <div class="description">
                         <h1 th:text="${gardener.user.firstName}+' '+${gardener.user.lastName} "></h1>
