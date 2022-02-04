@@ -287,11 +287,7 @@ hr {
   transform: scale(1);
 } */
 
-.meta {
-  /*position:*/
-  z-index: 0;
-  height: auto;
-}
+
 .photo {
   position: absolute;
   float: left;
@@ -304,6 +300,14 @@ hr {
   background-position: center;
   transition: transform 0.2s;
 }
+
+.photo img{
+  border: 1px solid red;
+  width: auto;
+  height: auto;
+  z-index: 100;
+}
+
 .details,
 .details ul {
   margin: auto;

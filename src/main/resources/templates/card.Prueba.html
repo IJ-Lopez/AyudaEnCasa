@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jardinería</title>
-    <!-- <link rel="stylesheet" href="/css/cardPrueba.css"/> -->
-    <link rel="stylesheet" href="/src/main/resources/static/css/cardPrueba.css">
+    <link rel="stylesheet" href="/css/cardPrueba.css"/>
+    <!-- <link rel="stylesheet" href="/src/main/resources/static/css/cardPrueba.css"> -->
     <!--Google fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -29,7 +29,7 @@
         </div>
         <div class="filtros">
             <h3>Filtros</h3>
-            <form class="formato" th:action="@{/jardinero/list}" method="POST">
+            <form class="formato" th:action="@{/gardener/list}" method="POST">
                 <div class="data">
                     <label for="salaryFrom"></label>
                     <input class="input" type="number" th:value="${salaryFrom}" name="salaryFrom" id="salario"
@@ -139,8 +139,8 @@
                             </div>
                         </div>
                         <div class="read-more">
-                            <a href="https://wa.me/+5492616980716" target="_blank">Contactar</a> <!--con este funciona wha-->
-                            <a th:href="https://wa.me/+5492616980716 +${gardener.user.phone}"> Contactar</a>
+                            <!-- <a href="https://wa.me/+5492616980716" target="_blank">Contactar</a> con este funciona wha -->
+                            <a th:href="https://wa.me/+${gardener.user.phone}"> Contactar</a>
                         </div>
                     </div>
                 </div>

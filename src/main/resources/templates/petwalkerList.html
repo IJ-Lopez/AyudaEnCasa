@@ -1,37 +1,43 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Paseador de Perros</title>
-        <link rel="stylesheet" href="/css/cardPrueba.css">
-        <!--Google fonts-->
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link rel="stylesheet"
-              href="https://fonts.googleapis.com/css2?family=Licorice&family=Pushster&family=Quicksand:wght@300&family=Spline+Sans:wght@300&display=swap" />
-        <!--Font Awesome-->
-        <script src="https://kit.fontawesome.com/83a37f8406.js" crossorigin="anonymous"></script>
-        <!--Thymeleaf-->
-        <link rel="stylesheet" type="text/css" media="all" href="/css/gtvg.css" data-th-href="@{..}" />
-    </head>
-    <body>
-        <main>
-            <nav class="nav-main">
-                <h1>Paseador de Perros</h1>
-            </nav>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paseador de Perros</title>
+    <link rel="stylesheet" href="/css/cardPrueba.css">
+    <!--Google fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Licorice&family=Pushster&family=Quicksand:wght@300&family=Spline+Sans:wght@300&display=swap" />
+    <!--Font Awesome-->
+    <script src="https://kit.fontawesome.com/83a37f8406.js" crossorigin="anonymous"></script>
+    <!--Thymeleaf-->
+    <link rel="stylesheet" type="text/css" media="all" href="/css/gtvg.css" data-th-href="@{..}" />
+</head>
+
+<body>
+    <main>
+        <nav class="nav-main">
+            <h1>Paseador de Perros</h1>
+        </nav>
+        <div class="container">
             <div class="container">
-                <form class="formato" th:action="@{/petwalker/list}" method="POST">
-                    <br>
-                    <div>
-                        <label class="titulo" for="salaryTo"></label>
-                        <input class="input font" type="number" th:value="${salaryTo}" name="salaryTo" id="salario"
-                               placeholder="Remuneración Pretendida">
+                <img src="/img/sillonliving.jpg" alt="">
+            </div>
+
+            <div class="filtros">
+                <h3>Filtros</h3>
+                <form class="formato" th:action="@{/petWalker/list}" method="POST">
+                    <div class="data">
+                        <label for="salaryFrom"></label>
+                        <input class="input" type="number" th:value="${salaryTo}" name="salaryFrom" id="salario"
+                            placeholder="Remuneración Pretendida">
                     </div>
-                    <br>
-                    <div>
-                        <label class="titul-o" for="workingZone"></label>
+                    <div class="data">
+                        <label for="workingZone"></label>
                         <select class="input" th:value="${workingZone}" name="workingZone" id="zona">
                             <option disabled selected>Zona Laboral </option>
                             <option value="Capital">Capital </option>
@@ -54,9 +60,8 @@
                             <option value="Tupungato">Tupungato </option>
                         </select>
                     </div>
-                    <br>
-                    <div>
-                        <label class="titulo" for="day"></label>
+                    <div class="data">
+                        <label for="day"></label>
                         <select class="input" th:value="${day}" name="day" id="dia">
                             <option disabled selected>Día Laboral </option>
                             <option value="Lunes">Lunes </option>
@@ -68,65 +73,109 @@
                             <option value="Domingo">Domingo </option>
                         </select>
                     </div>
-                    <br>
-                    <div>
-                        <label class="titulo" for="workingHoursFrom"></label>
-                        <input class="input font" type="text" th:value="${workingHoursFrom}" name="workingHoursFrom" id="hora" placeholder="Hora de incio"
-                               onfocus="(this.type='time')">
+
+                    <div class="data">
+                        <label for="workingHoursFrom"></label>
+                        <input class="input" type="text" th:value="${workingHoursFrom}" name="workingHoursFrom"
+                            id="hora" placeholder="Hora de incio" onfocus="(this.type='time')">
                     </div>
-                    <br>
-                    <div>
-                        <label class="titulo" for="workingHoursTo"></label>
-                        <input class="input font" type="text" th:value="${workingHoursTo}" id="hora" name="workingHoursTo" placeholder="Hora de finalización"
-                               onfocus="(this.type='time')">
+                    <div class="data">
+                        <label for="workingHoursTo"></label>
+                        <input class="input" type="text" th:value="${workingHoursTo}" id="hora" name="workingHoursTo"
+                            placeholder="Hora de finalización" onfocus="(this.type='time')">
                     </div>
-                    <br>
-                    <div>
-                        <label class="titulo" for="petQuantityFrom"></label>
+
+                    <div class="data">
+                        <label for="petQuantityFrom"></label>
                         <input class="input" th:value="${petQuantityFrom}" name="petQuantityFrom" id="mascotas"
-                               placeholder="Cantidad de mascotas">
+                            placeholder="Cantidad de mascotas">
                     </div>
-                    <br>
-                    <div>
-                        <label class="titulo" for="petType"></label>
+
+                    <div class="data">
+                        <label for="petType"></label>
                         <input class="input" th:value="${petType}" name="petType" id="mascotas"
-                               placeholder="Tamaño de mascotas">
-                        
+                            placeholder="Tamaño de mascotas">
                         <!-- Esto es el CSRF Token para su seguridad-->
-                       <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
                     </div>
-                    <br>
-                    <div class="col-2">
-                        <button type="submit" class="btn btn-dark mb-3">Buscar</button>
+
+                    <div class="btn">
+                        <div class="inner"></div>
+                        <button type="submit">buscar</button>
                     </div>
                 </form>
-                <th:block th:each="petwalker : ${petwalkers}">
-                    <div class="card">
-                        <div class="phone"></div>
-                        <div class="card-titulo">
-                            <h1> Nombre y Apellido </h1>
+            </div>
+
+
+            <th:block th:each="petwalker : ${petwalkers}">
+                <div class="card">
+                    <div class="blog-card">
+                        <div class="meta">
+                            <!-- <div class="photo" style="background-image: url(/src/main/resources/static/img/Jardìn/j12.jpg)"> -->
+                            <div class="photo">
+                                <!-- <img th:src="${petwalker.user.photo}" alt="">                                 -->
+                            </div>
                         </div>
-                        <div class= "card-body">
-                            <div class= "card-body-items">
-                                <div class= "datos-job">
-                                    <p></p>
-                                    <p th:text="${petwalker.salary}"></p>
-                                    <p th:text="${petwalker.workingZone}"></p>
-                                    <p th:text="${petwalker.workingHoursFrom}"></p>
-                                    <p th:text="${petwalker.workingHoursTo}"></p>
+                        <div class="description">
+                            <h1 th:text="${petwalker.user.firstName}+' '+${petwalker.user.lastName}"></h1>
+                            <div class="mail-contact">
+                                <a href=""></a>
+                            </div>
+                            <div>
+                                <div class="bloque-izq">
+                                    <p class="thyme" th:text="'Precio: '+ ${petwalker.salary}"></p>
+                                    <p class="thyme" th:text="'Zona: '+ ${petwalker.workingZone}"></p>
+    
                                 </div>
-                            </div>                
-                            <img src="https://www.argentina.gob.ar/sites/default/files/vinetas_justicia_cerca_04_el_paseador_de_mi_perro.png" alt="">
-                        </div>
-                        <div class="card-footer">
-                            <p th:text="${petwalker.petQuantity}"></p>
-                            <th:block th:each="day : ${petwalker.days}">
-                                <label th:text="${day} + ' '"></label>
-                            </th:block>
+                                <div class="bloque-der">
+                                    <p class="thyme" th:text="'Hora desde:'+ ${petwalker.workingHoursFrom}"></p>
+                                    <p class="thyme" th:text="'Hora hasta: '+ ${petwalker.workingHoursTo}"></p>
+                                    <p class="thyme" th:text="'Cantidad de mascotas: ' + ${petwalker.petQuantity}"></p>
+                                    <th:block th:each="day : ${petwalker.days}">
+                                        <label th:text="${day} + ' '"></label>
+                                    </th:block>
+                               
+                                </div>
+                            </div>
+                            <div class="read-more">
+                                <!-- <a href="https://wa.me/+5492616980716" target="_blank">Contactar</a> con este funciona wha -->
+                                <!-- <a th:href="https://wa.me/+${gardener.user.phone}"> Contactar</a> -->
+                                <a href="#"> Contactar</a>
+                            </div>
                         </div>
                     </div>
-                </th:block>
-            </div>
-        </main>
-    </body>
+                </div>
+            </th:block>
+<!-- 
+            <th:block th:each="petwalker : ${petwalkers}">
+                <div class="card">
+                    <div class="phone"></div>
+                    <div class="card-titulo">
+                        <h1> Nombre y Apellido </h1>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-body-items">
+                            <div class="datos-job">
+                                <p></p>
+                                <p th:text="${petwalker.salary}"></p>
+                                <p th:text="${petwalker.workingZone}"></p>
+                                <p th:text="${petwalker.workingHoursFrom}"></p>
+                                <p th:text="${petwalker.workingHoursTo}"></p>
+                            </div>
+                        </div>
+                        <img src="https://www.argentina.gob.ar/sites/default/files/vinetas_justicia_cerca_04_el_paseador_de_mi_perro.png"
+                            alt="">
+                    </div>
+                    <div class="card-footer">
+                        <p th:text="${petwalker.petQuantity}"></p>
+                        <th:block th:each="day : ${petwalker.days}">
+                            <label th:text="${day} + ' '"></label>
+                        </th:block>
+                    </div>
+                </div>
+            </th:block> -->
+        </div>
+    </main>
+</body>
+
 </html>

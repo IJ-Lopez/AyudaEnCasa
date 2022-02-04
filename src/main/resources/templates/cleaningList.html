@@ -1,33 +1,41 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Limpieza Doméstica</title>
-        <link rel="stylesheet" href="/css/cardPrueba.css"/>
-        <!--Google fonts-->
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link rel="stylesheet"
-              href="https://fonts.googleapis.com/css2?family=Licorice&family=Pushster&family=Quicksand:wght@300&family=Spline+Sans:wght@300&display=swap" />
-        <!--Font Awesome-->
-        <script src="https://kit.fontawesome.com/83a37f8406.js" crossorigin="anonymous"></script>
-        <!--Thymeleaf-->
-        <link rel="stylesheet" type="text/css" media="all" href="/css/gtvg.css" data-th-href="@{..}" />
-    </head>
-    <body>
-        <main>
-            <nav class="nav-main">
-                <h1>Limpieza Doméstica</h1>
-            </nav>
-            <div class="container">
-                <form class="formato" th:action="@{/cleaning/list}" method="POST">
-                    <br>
-                    <div>
-                        <label class="titulo" for="salaryTo"></label>
-                        <input class="input font" type="number" th:value="${salaryTo}" name="salaryTo" id="salario"
-                               placeholder="Remuneración Pretendida">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Limpieza Doméstica</title>
+    <link rel="stylesheet" href="/css/cardPrueba.css" />
+    <!--Google fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Licorice&family=Pushster&family=Quicksand:wght@300&family=Spline+Sans:wght@300&display=swap" />
+    <!--Font Awesome-->
+    <script src="https://kit.fontawesome.com/83a37f8406.js" crossorigin="anonymous"></script>
+    <!--Thymeleaf-->
+    <link rel="stylesheet" type="text/css" media="all" href="/css/gtvg.css" data-th-href="@{..}" />
+</head>
+
+<body>
+    <main>
+        <nav class="nav-main">
+            <h1>Limpieza Doméstica</h1>
+            <!-- <div>
+                <img th:if="@{cleaning.user.photo} != null || @{!cleaning.user.photo.isEmpty()}"
+                    th:src="@{cleaning.user.photo}" alt="">
+                <img th:if="@{cleaning.user.photo} == null || @{cleaning.user.photo.isEmpty()}"
+                    src="https://cdn.icon-icons.com/icons2/2506/PNG/512/user_icon_150670.png" alt="">
+            </div> -->
+        </nav>
+        <div class="container">
+            <form class="formato" th:action="@{/cleaning/list}" method="POST">
+                <br>
+                <div>
+                    <label class="titulo" for="salaryTo"></label>
+                    <input class="input font" type="number" th:value="${salaryTo}" name="salaryTo" id="salario"
+                        placeholder="Remuneración Pretendida">
                 </div>
                 <br>
                 <div>
@@ -105,18 +113,27 @@
                 <div>
                     <label class="dropdown-menu" for="ironing">Servicio de Planchado</label>
                     <input type="checkbox" name="ironing" th:checked="${ironing}">
-                    
+
                     <!-- Esto es el CSRF Token para su seguridad-->
-                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
                 </div>
                 <br>
                 <div class="col-2">
                     <button type="submit" class="btn btn-dark mb-3">Buscar</button>
                 </div>
             </form>
+
             <th:block th:each="cleaning : ${cleanings}">
                 <div class="card">
-                    <div class="phone"></div>
+                    <div class="blog-card">
+                        <div class="photo">
+                            <img th:hrefc=${cleaning.user.photo} alt="">
+                            <!-- <img th:if="@{cleaning.user.photo} != null || @{!cleaning.user.photo.isEmpty()}"
+                                th:src="@{cleaning.user.photo}" alt="">
+                            <img th:if="@{cleaning.user.photo} == null || @{cleaning.user.photo.isEmpty()}"
+                                src="https://cdn.icon-icons.com/icons2/2506/PNG/512/user_icon_150670.png" alt=""> -->
+                        </div>
+                    </div>
                     <div class="card-titulo">
                         <h1 th:text="${cleaning.user.firstName} +' '+ ${cleaning.user.lastName} "></h1>
                     </div>
@@ -131,14 +148,10 @@
                             </div>
                         </div>
 
-                        <img th:if="${cleaning.user.photo} != null || ${!cleaning.user.photo.isEmpty()}"
-                            th:src="${cleaning.user.photo}" alt="">
-                        <img th:if="${cleaning.user.photo} == null || ${cleaning.user.photo.isEmpty()}"
-                            src="https://cdn.icon-icons.com/icons2/2506/PNG/512/user_icon_150670.png" alt="">
 
 
 
-                        <!-- <img th:hrefc=${cleaning.user.photo} alt=""> -->
+
                     </div>
                     <div class="card-footer">
                         <p th:text="${cleaning.rooms}"></p>
