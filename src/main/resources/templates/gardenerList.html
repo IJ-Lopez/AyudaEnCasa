@@ -113,36 +113,41 @@
         <th:block th:each="gardener : ${gardeners}">
             <div class="card">
                 <div class="blog-card">
-                        <div class="photo">
-                            <!-- <img th:src="@{gardener.user.photo}" alt=""> -->
-                            <img src="/src/main/resources/static/img/Jardìn/j13.jpg" alt="">
-                        </div>
+                    <div class="photo">
+                        <!-- <img th:src="@{gardener.user.photo}" alt=""> -->
+                        <img src="/src/main/resources/static/img/Jardìn/j13.jpg" alt="">
+                    </div>
                     <div class="description">
-                        <h1 th:text="${gardener.user.firstName}+' '+${gardener.user.lastName} "></h1>
+                        <h1 th:text="${gardener.user.firstName}+' '+${gardener.user.lastName} ">nombre y apellido</h1>
                         <!-- <h1 th:text="${gardener.user.firstName}+' '+${gardener.user.lastName}"></h1> -->
                         <!-- <h1 th:text="${gardener.firstName}"></h1> -->
                         <div class="mail-contact">
-                            <a href=""></a>
-                        </div>
-                        <div>
-                            <div class="bloque-izq">
-                                <p class="thyme" th:text="'Precio: '+ ${gardener.salary}"></p>
-                                <p class="thyme" th:text="'Zona: '+ ${gardener.workingZone}"></p>
-
-                            </div>
-                            <div class="bloque-der">
-                                <p class="thyme" th:text="'Hora desde: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(gardener.hoursFrom), 'HH:mm')}"></p>
-                                <p class="thyme" th:text="'Hora hasta: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(gardener.hoursTo), 'HH:mm')}"></p>
-                                <p class="thyme" th:text="'Superficie del terreno: ' + ${gardener.surface}">Superficie:
-                                    200
-                                </p>
-                            </div>
-                        </div>
-                        <div class="read-more">
-                            <a href="https://wa.me/"> Contactar</a>
+                            <a href="">nombre@gmail.com</a>
                         </div>
                     </div>
+                    <div class="card-body">
+                        <div class="bloque-izq">
+                            <p class="thyme" th:text="'Precio: '+ ${gardener.salary}">precio: $199</p>
+                            <p class="thyme" th:text="'Zona: '+ ${gardener.workingZone}">zona: maipu</p>
+                        </div>
+                        <div class="bloque-cen">
+                            <p class="thyme"
+                                th:text="'Hora desde: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(gardener.hoursFrom), 'HH:mm')}">
+                                desde 10:00hs</p>
+                            <p class="thyme"
+                                th:text="'Hora hasta: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(gardener.hoursTo), 'HH:mm')}">
+                                hasta: 20:00hs</p>
+                        </div>
+                        <div class="bloque-der">
+                            <p class="thyme" th:text="'Superficie del terreno: ' + ${gardener.surface}">Superficie:
+                                200m2 </p>
+                        </div>
+                    </div>
+                    <div class="read-more">
+                        <a href="https://wa.me/"> Contactar</a>
+                    </div>
                 </div>
+            </div>
             </div>
         </th:block>
 </body>
