@@ -1,5 +1,6 @@
 package com.ayudaencasa.app.services.impl;
 
+import com.ayudaencasa.app.dto.input.RegisterUserDTO;
 import com.ayudaencasa.app.entities.Role;
 import com.ayudaencasa.app.entities.User;
 import com.ayudaencasa.app.exceptions.UserNotFoundException;
@@ -33,6 +34,44 @@ public class UserServiceImpl implements UserService{
         user.setPassword(encoder.encode(user.getPassword()));
         //user.setRoles(Arrays.asList(adminRole));
         return userRepo.save(user);
+    }
+    
+    @Override
+    public boolean validated(RegisterUserDTO user) throws UserNotFoundException{
+        boolean valid = false;
+        if(user.getEmail() == null || user.getEmail().isEmpty()){
+            throw new UserNotFoundException("El mail del usuario no puede estar vacío");
+        }
+        if(userRepo.findByEmail(user.getEmail()).isPresent()){
+            throw new UserNotFoundException("El mail ingresado ya existe");
+        }
+        if(user.getFirstName() == null || user.getFirstName().isEmpty()){
+            throw new UserNotFoundException("El nombre del usuario no puede estar vacío");
+        }
+        if(user.getLastName() == null || user.getLastName().isEmpty()){
+            throw new UserNotFoundException("El apellido del usuario no puede estar vacío");
+        }
+        if(user.getDni() == null){
+            throw new UserNotFoundException("El dni del usuario no puede ser nulo");
+        }
+        if(user.getPhone() == null){
+            throw new UserNotFoundException("El teléfono del usuario no puede ser nulo");
+        }
+        if(user.getDob() == null){
+            throw new UserNotFoundException("La fecha de nacimiento del usuario no puede ser nula");
+        }
+        if(user.getDepartament() == null || user.getDepartament().isEmpty()){
+            throw new UserNotFoundException("El departamento no puede estar vacío");
+        }
+        
+        if(user.getPassword() == null || user.getPassword2() == null || user.getPassword().isEmpty() || user.getPassword2().isEmpty()){
+            throw new UserNotFoundException("La contraseña no puede estar vacía");
+        }
+        if(!user.getPassword().equals(user.getPassword2())){
+            throw new UserNotFoundException("Las contraseñas deben ser iguales");
+        }
+        return valid = true;
+        
     }
     
 //    @Override

@@ -37,7 +37,7 @@ public class CaregiverController {
 
     @GetMapping("/create")
     public String registry() {
-        return "newCaregiverForm";
+        return "caregiverForm";
     }
     
     @PostMapping("/create")

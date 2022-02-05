@@ -13,7 +13,7 @@ public class GlobalController {
     
     @GetMapping("/login")
     public String login(){
-        return "newLoginForm";
+        return "loginForm";
     }
 
 }

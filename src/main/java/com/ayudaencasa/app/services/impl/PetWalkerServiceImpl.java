@@ -6,6 +6,7 @@ import com.ayudaencasa.app.entities.PetWalker_;
 import com.ayudaencasa.app.exceptions.PetWalkerNotFoundException;
 import com.ayudaencasa.app.repositories.PetWalkerRepository;
 import com.ayudaencasa.app.services.PetWalkerService;
+import com.ayudaencasa.app.services.UserService;
 import io.github.jhipster.service.QueryService;
 import java.util.List;
 import java.util.Optional;
@@ -14,6 +15,8 @@ import lombok.NonNull;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -24,6 +27,9 @@ public class PetWalkerServiceImpl extends QueryService<PetWalker> implements Pet
     
     @Autowired
     private ModelMapper modelMapper;
+    
+    @Autowired
+    private UserService userService;
     
     private Specification<PetWalker> createSpecification(PetWalkerCriteria petWalkerCriteria) {
         Specification<PetWalker> specification = Specification.where(null);
@@ -67,6 +73,12 @@ public class PetWalkerServiceImpl extends QueryService<PetWalker> implements Pet
     @Override
     @Transactional
     public PetWalker create (@NonNull PetWalker petWalker){
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UserDetails userDetails = null;
+        if (principal instanceof UserDetails) {
+            userDetails = (UserDetails) principal;
+        }
+        petWalker.setUser(userService.findByEmail(userDetails.getUsername()));
         return petWalkerRepo.save(petWalker);
     }
     

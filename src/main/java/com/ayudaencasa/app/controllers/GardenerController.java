@@ -37,7 +37,7 @@ public class GardenerController {
 
     @GetMapping("/create")
     public String registry() {
-        return "newGardenerForm";
+        return "gardenerForm";
     }
 
     @PostMapping("/create")

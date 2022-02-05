@@ -1,5 +1,6 @@
 package com.ayudaencasa.app.services;
 
+import com.ayudaencasa.app.dto.input.RegisterUserDTO;
 import com.ayudaencasa.app.entities.User;
 import com.ayudaencasa.app.exceptions.UserNotFoundException;
 import java.util.Date;
@@ -8,6 +9,8 @@ import java.util.List;
 public interface UserService {
 
     public User create(User user);
+    
+    public boolean validated(RegisterUserDTO user) throws UserNotFoundException;
     
     //public User create(String firstName, String lastName, Integer dni, String address, Integer phone, String mail, String password, String password2);
 

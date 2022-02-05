@@ -6,6 +6,7 @@ import com.ayudaencasa.app.entities.Caregiver_;
 import com.ayudaencasa.app.exceptions.UserNotFoundException;
 import com.ayudaencasa.app.repositories.CaregiverRepository;
 import com.ayudaencasa.app.services.CaregiverService;
+import com.ayudaencasa.app.services.UserService;
 import io.github.jhipster.service.QueryService;
 import java.util.List;
 import java.util.Optional;
@@ -14,6 +15,8 @@ import lombok.NonNull;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -24,6 +27,9 @@ public class CaregiverServiceImpl extends QueryService<Caregiver> implements Car
 
     @Autowired
     private ModelMapper modelMapper;
+    
+    @Autowired
+    private UserService userService;
 
     private Specification<Caregiver> createSpecification(CaregiverCriteria caregiverCriteria) {
         Specification<Caregiver> specification = Specification.where(null);
@@ -76,6 +82,12 @@ public class CaregiverServiceImpl extends QueryService<Caregiver> implements Car
     @Override
     @Transactional
     public Caregiver create(@NonNull Caregiver caregiver) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UserDetails userDetails = null;
+        if (principal instanceof UserDetails) {
+            userDetails = (UserDetails) principal;
+        }
+        caregiver.setUser(userService.findByEmail(userDetails.getUsername()));
         return caregiverRepository.save(caregiver);
     }
 
