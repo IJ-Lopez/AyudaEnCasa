@@ -100,15 +100,27 @@ public class GardenerServiceImpl extends QueryService<Gardener> implements Garde
         }
     }
 
-    @Override
-    public Gardener findById(@NonNull String id) {
+//    meli, copie este de cleaningServiceImp
+        @Override
+    public Gardener findById(@NonNull String id) throws GardenerNotFoundException {
         Optional<Gardener> opt = gardenerRepository.findById(id);
         if (opt.isPresent()) {
             return opt.get();
         } else {
-            throw new GardenerNotFoundException();
+            throw new GardenerNotFoundException("Cleaner not found");
         }
     }
+    
+ //Comenté este que es el que estaba
+//    @Override
+//    public Gardener findById(@NonNull String id) {
+//        Optional<Gardener> opt = gardenerRepository.findById(id);
+//        if (opt.isPresent()) {
+//            return opt.get();
+//        } else {
+//            throw new GardenerNotFoundException();
+//        }
+//    }
 
     @Override
     public List<Gardener> findAll() {
