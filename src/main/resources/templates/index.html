@@ -65,10 +65,10 @@
                             </div>
                             <!-- <p th:text="'¡Bienvenido '+' '+${#authentication.getName()}+'!'"><i class="far fa-smile-wink"></i></p> -->
                             <ul class="work-menu">
-                                <li><a th:href="@{/corregir!}">Mis postulaciones<i class="fas fa-sign-in-alt"></i></a></li>
+                                <li><a th:href="@{/jobs/myjobs}">Mis postulaciones<i class="fas fa-sign-in-alt"></i></a></li>
                                 <!-- <span th:text ="${#authentication.getPrincipal().getUser().getFirstName()}"></span> -->
                                 <!-- meter el condicional para el inicio de sesion -->
-                                <li><a th:href="@{/corregir!}">Cerrar sesión <i class="fas fa-times"></i></a></li>
+                                <li><a th:href="@{/logout}">Cerrar sesión <i class="fas fa-times"></i></a></li>
                             </ul>
                         </li>
                     </div>

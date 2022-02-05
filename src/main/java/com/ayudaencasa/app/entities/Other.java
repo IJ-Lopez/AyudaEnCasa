@@ -15,7 +15,7 @@ import org.hibernate.annotations.Where;
 @RequiredArgsConstructor
 @Setter
 @Getter
-@SQLDelete(sql = "UPDATE categories SET deleted_at = current_timestamp() WHERE id = ?")
+@SQLDelete(sql = "UPDATE other SET deleted_at = current_timestamp() WHERE id = ?")
 @Where(clause = "deleted_at is null")
 @Entity
 public class Other extends Job implements Serializable {

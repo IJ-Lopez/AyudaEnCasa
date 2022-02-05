@@ -24,10 +24,10 @@
         <nav class="nav-main">
             <h1>Paseador de Perros</h1>
         </nav>
-        <div class="container">
+        
             <div class="container">
                 <!-- <img src="/img/sillonliving.jpg" alt=""> -->
-                <img src="/src/main/resources/static/img/sillonliving.jpg" alt="">
+                <img src="/img/sillonliving.jpg" alt="">
             </div>
 
             <div class="filtros">
@@ -115,7 +115,7 @@
                         <div class="meta">
                             <!-- <div class="photo" style="background-image: url(/src/main/resources/static/img/Jardìn/j12.jpg)"> -->
                             <div class="photo">
-                                <!-- <img th:src="${petwalker.user.photo}" alt="">                                 -->
+                                <img th:src="${petwalker.user.photo != null && petwalker.user.photo != ''} ? @{petwalker.user.photo} : 'https://t4.ftcdn.net/jpg/02/29/75/83/240_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg'" alt="User photo">  <!-- MODIFICA EL LINK DEL FINAL POR LO QUE QUIERAS, FIJATE DE INCLUIR LAS COMILLAS SIMPLES COMO SI FUESE UNA STRING DE JS-->
                             </div>
                         </div>
                         <div class= "card-body">
@@ -172,7 +172,7 @@
                     </div>
                 </div>
             </th:block> -->
-        </div>
+        
     </main>
 </body>
 

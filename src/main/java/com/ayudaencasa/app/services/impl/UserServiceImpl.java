@@ -114,6 +114,16 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    public User findByEmail(@NonNull String email) {
+        Optional<User> opt = userRepo.findByEmail(email);
+        if(opt.isPresent()){
+            return opt.get();
+        } else {
+            throw new UserNotFoundException();
+        }
+    }
+
+    @Override
     public List<User> findAll() {
         return userRepo.findAll();
     }        

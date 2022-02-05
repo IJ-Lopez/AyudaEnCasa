@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Limpieza Doméstica</title>
     <!-- <link rel="stylesheet" href="/css/cardPrueba.css" /> -->
-    <link rel="stylesheet" href="/src/main/resources/static/css/cardPrueba.css">
+    <link rel="stylesheet" href="/css/cardPrueba.css">
     <!--Google fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -32,7 +32,7 @@
         </nav>
         <div class="container">
             <!--<img src="/img/sillonliving.jpg" alt=""> -->
-            <img src="/src/main/resources/static/img/sillonliving.jpg" alt="">
+            <img src="/img/sillonliving.jpg" alt="">
         </div>
         <div class="filtros">
             <h3>Filtros</h3>
@@ -128,12 +128,7 @@
             <div class="card">
                 <div class="blog-card">
                     <div class="photo">
-                        <!-- <img th:hrefc=${cleaning.user.photo} alt=""> -->
-                        <!-- <img th:if="@{cleaning.user.photo} != null || @{!cleaning.user.photo.isEmpty()}"
-                                    th:src="@{cleaning.user.photo}" alt="">
-                                <img th:if="@{cleaning.user.photo} == null || @{cleaning.user.photo.isEmpty()}"
-                                    src="https://cdn.icon-icons.com/icons2/2506/PNG/512/user_icon_150670.png" alt=""> -->
-                        <img src="/src/main/resources/static/img/Jardìn/j13.jpg" alt="">
+                        <img th:src="${cleaning.user.photo != null && cleaning.user.photo != ''} ? @{cleaning.user.photo} : 'https://t4.ftcdn.net/jpg/02/29/75/83/240_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg'" alt="User photo">  <!-- MODIFICA EL LINK DEL FINAL POR LO QUE QUIERAS, FIJATE DE INCLUIR LAS COMILLAS SIMPLES COMO SI FUESE UNA STRING DE JS-->
                     </div>
                     <div class="description">
                         <h1 th:text="${cleaning.user.firstName} +' '+ ${cleaning.user.lastName} ">nombre y apellido</h1>

@@ -13,7 +13,7 @@ import org.hibernate.annotations.Where;
 @AllArgsConstructor
 @Getter
 @Setter
-@SQLDelete(sql = "UPDATE categories SET deleted_at = current_timestamp() WHERE id = ?")
+@SQLDelete(sql = "UPDATE pet_walker SET deleted_at = current_timestamp() WHERE id = ?")
 @Where(clause = "deleted_at is null")
 @Entity
 public class PetWalker extends Job implements Serializable{

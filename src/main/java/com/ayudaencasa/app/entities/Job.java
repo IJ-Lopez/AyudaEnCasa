@@ -37,7 +37,7 @@ import org.hibernate.annotations.Where;
 @AllArgsConstructor
 @Getter
 @Setter
-@SQLDelete(sql = "UPDATE categories SET deleted_at = current_timestamp() WHERE id = ?")
+@SQLDelete(sql = "UPDATE job SET deleted_at = current_timestamp() WHERE id = ?")
 @Where(clause = "deleted_at is null")
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -54,7 +54,7 @@ public abstract class Job implements Serializable {
     @Setter(AccessLevel.NONE)
     protected String type;
     
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name="USER_ID", referencedColumnName = "ID")
     protected User user;
     

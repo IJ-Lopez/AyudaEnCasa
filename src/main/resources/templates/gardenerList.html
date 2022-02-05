@@ -117,7 +117,7 @@
             <div class="card">
                 <div class="blog-card">
                     <div class="photo">
-                         <img th:src="@{gardener.user.photo}" alt=""> 
+                        <img th:src="${gardener.user.photo != null && gardener.user.photo != ''} ? @{gardener.user.photo} : 'https://t4.ftcdn.net/jpg/02/29/75/83/240_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg'" alt="User photo">  <!-- MODIFICA EL LINK DEL FINAL POR LO QUE QUIERAS, FIJATE DE INCLUIR LAS COMILLAS SIMPLES COMO SI FUESE UNA STRING DE JS-->
                         <!--<img src="/src/main/resources/static/img/Jardìn/j13.jpg" alt="">-->
                     </div>
                     <div class="description">
