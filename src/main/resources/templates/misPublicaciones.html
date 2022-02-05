@@ -32,14 +32,14 @@
         <div class="area-tarjetas">
             <!--CUIDADOR DE PERSONAS-->
             <th:block th:each="caregiver : ${caregivers}">
-                <div class="card">
+                <div class="postCard">
                     <div class="blog-card">
                         <div class="photo">
                             <!-- <img th:src="@{caregiver.user.photo}" alt=""> -->
                             <img src="/src/main/resources/static/img/Jardìn/j13.jpg" alt="">
                         </div>
                         <div class="description">
-                            <h1 th:text="${caregiver.user.firstName}+' '+${caregiver.user.lastName} ">nombre y apellido
+                            <h1 th:text="${caregiver.jobType}">Cuidado de personas
                             </h1>
                             <!-- <h1 th:text="${caregiver.user.firstName}+' '+${caregiver.user.lastName}"></h1> -->
                             <!-- <h1 th:text="${caregiver.firstName}"></h1> -->
@@ -52,6 +52,7 @@
                         <div class="bloque-izq">
                             <p class="thyme" th:text="'Precio: '+${caregiver.salary}">Precio: $200</p>
                             <p class="thyme" th:text="${caregiver.workingZone}">Zona: Guaymallén</p>
+                            <p class="thyme" th:text="${caregiver.quantity}">Cantidad de personas: 2</p>
                         </div>
                         <div class="bloque-cen">
                             <p class="thyme"
@@ -61,85 +62,98 @@
                             <p class="thyme"
                                 th:text="'Hora hasta: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(caregiver.hoursTo), 'HH:mm')}">
                                 Hora hasta: 19:00hs
+                                <th:block th:each="day : ${caregiver.days}">
+                                    <label th:text="${day} + ' '">Dias: Martes, miercoles, jueves</label>
+                                </th:block>
                             </p>
                         </div>
                         <div class="bloque-der">
-                            <p class="thyme" th:text="${caregiver.quantity}">Cantidad de personas: 2</p>
-                            <th:block th:each="day : ${caregiver.days}">
-                                <label th:text="${day} + ' '">Dias: Martes, miercoles, jueves</label>
-                            </th:block>
+                            <p class="thyme" th:text="${caregiver.ageRange}">Edad de personas: 2</p>
+                            <p class="thyme" th:text="${caregiver.cooking}">Servicio de cocina: Si</p>
+                            <p class="thyme" th:text="${caregiver.cleaningPeople}">Higiene de personas: Si</p>
+                            <p class="thyme" th:text="${caregiver.transfering}">Servicio de traslado: Si</p>
                         </div>
                     </div>
-                    <div class="boton-contact">
-                        <div class="read-more">
-                            <a href="https://wa.me/"> Contactar</a>
+                    <div class="botones">
+                        <div class="btn-edit">
+                            <button>Modificar</button>
+                        </div>
+                        <div class="btn-delete">
+                            <button>Eliminar</button>
                         </div>
                     </div>
                 </div>
-            </th:block>
+                </th:block>
             <!--SERVICIO DOMESTICO-->
             <th:block th:each="cleaning : ${cleanings}">
-                <div class="card">
-                    <div class="blog-cad">
+                <div class="postCard">
+                    <div class="blog-card">
                         <div class="photo">
-                            <!-- <img th:src="@{caregiver.user.photo}" alt=""> -->
+                            <!-- <img th:src="@{cleaning.user.photo}" alt=""> -->
                             <img src="/src/main/resources/static/img/Jardìn/j13.jpg" alt="">
                         </div>
                         <div class="description">
-                            <h1 th:text="${caregiver.user.firstName}+' '+${caregiver.user.lastName} ">nombre y apellido
+                            <h1 th:text="${cleaning.jobType}">Servicio domestico
                             </h1>
-                            <!-- <h1 th:text="${caregiver.user.firstName}+' '+${caregiver.user.lastName}"></h1> -->
-                            <!-- <h1 th:text="${caregiver.firstName}"></h1> -->
+                            <!-- <h1 th:text="${cleaning.user.firstName}+' '+${cleaning.user.lastName}"></h1> -->
+                            <!-- <h1 th:text="${cleaning.firstName}"></h1> -->
                             <div class="mail-contact">
                                 <a href="">nombre@gmail.com</a>
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="card-body">
-                            <div class="bloque-izq">
-                                <p class="thyme" th:text="'Precio: '+${caregiver.salary}">Precio: $200</p>
-                                <p class="thyme" th:text="${caregiver.workingZone}">Zona: Guaymallén</p>
-                            </div>
-                            <div class="bloque-cen">
-                                <p class="thyme"
-                                    th:text="'Hora desde: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(caregiver.hoursFrom), 'HH:mm')}">
-                                    Hora desde: 07:00hs
-                                </p>
-                                <p class="thyme"
-                                    th:text="'Hora hasta: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(caregiver.hoursTo), 'HH:mm')}">
-                                    Hora hasta: 19:00hs
-                                </p>
-                            </div>
-
-                            <div class="bloque-der">
-                                <p class="thyme" th:text="${cleaning.roomsy}">Ambientes: 2</p>
-                                <th:block th:each="day : ${cleaning.days}">
-                                    <label th:text="${day} + ' '">Dias: Martes, miercoles, jueves</label>
-                                </th:block>
-                            </div>
+                        <div class="bloque-izq">
+                            <p class="thyme" th:text="'Precio: '+${cleaning.salary}">Precio: $200</p>
+                            <p class="thyme" th:text="${cleaning.workingZone}">Zona: Guaymallén</p>
+                            <p class="thyme" th:text="${cleaning.rooms}">Ambientes: 2</p>
                         </div>
-                        <div class="boton-contact">
-                            <div class="read-more">
-                                <a href="https://wa.me/"> Contactar</a>
-                            </div>
+                        <div class="bloque-cen">
+                            <p class="thyme"
+                                th:text="'Hora desde: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(cleaning.hoursFrom), 'HH:mm')}">
+                                Hora desde: 07:00hs
+                            </p>
+                            <p class="thyme"
+                                th:text="'Hora hasta: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(cleaning.hoursTo), 'HH:mm')}">
+                                Hora hasta: 19:00hs
+                            </p>
+                            <p class="thyme">
+                                <th:block th:each="day : ${cleaning.days}">
+                                    <label th:text="${day} + "> Dias: Martes, miercoles, jueves</label>
+                                </th:block>
+                            </p>
+                            <p class="thyme" th:text="${cleaning.exteriors}">Sectores: Ambos</p>
+                        </div>
+                        <div class="bloque-der">
+                            <p class="thyme" th:text="${cleaning.cooking}">Servicio de cocina: Si</p>
+                            <p class="thyme" th:text="${cleaning.laundry}">Servicio de lavanderia: Si</p>
+                            <p class="thyme" th:text="${cleaning.ironing}">Servicio de planchado: Si</p>
                         </div>
                     </div>
-            </th:block>
+                    <div class="botones">
+                        <div class="btn-edit">
+                            <button>Modificar</button>
+                        </div>
+                        <div class="btn-delete">
+                            <button>Eliminar</button>
+                        </div>
+                    </div>
+                </div>
+                </th:block>
             <!--JARDINERO-->
-            <th:block th:each="cleaning : ${cleanings}">
-                <div class="card">
+            <th:block th:each="gardener : ${gardeners}">
+                <div class="postCard">
                     <div class="blog-card">
                         <div class="photo">
-                            <!-- <img th:hrefc=${cleaning.user.photo} alt=""> -->
-                            <!-- <img th:if="@{cleaning.user.photo} != null || @{!cleaning.user.photo.isEmpty()}"
-                                    th:src="@{cleaning.user.photo}" alt="">
-                                <img th:if="@{cleaning.user.photo} == null || @{cleaning.user.photo.isEmpty()}"
+                            <!-- <img th:hrefc=${gardener.user.photo} alt=""> -->
+                            <!-- <img th:if="@{gardener.user.photo} != null || @{!gardener.user.photo.isEmpty()}"
+                                    th:src="@{gardener.user.photo}" alt="">
+                                <img th:if="@{gardener.user.photo} == null || @{gardener.user.photo.isEmpty()}"
                                     src="https://cdn.icon-icons.com/icons2/2506/PNG/512/user_icon_150670.png" alt=""> -->
                             <img src="/src/main/resources/static/img/Jardìn/j13.jpg" alt="">
                         </div>
                         <div class="description">
-                            <h1 th:text="${cleaning.user.firstName} +' '+ ${cleaning.user.lastName} ">nombre y apellido
+                            <h1 th:text="${gardener.userjobType}">Jardinero
                             </h1>
                             <div class="mail-contact">
                                 <a href="#">nombre@gmail.com</a>
@@ -148,37 +162,52 @@
                     </div>
                     <div class="card-body">
                         <div class="bloque-izq">
-                            <p class="thyme" th:text="'Precio: '+ ${cleaning.salary}">precio: $199</p>
-                            <p class="thyme" th:text="'Zona: '+ ${cleaning.workingZone}">zona: maipu</p>
+                            <p class="thyme" th:text="'Precio: '+ ${gardener.salary}">precio: $199</p>
+                            <p class="thyme" th:text="'Zona: '+ ${gardener.workingZone}">zona: maipu</p>
+                            <p class="thyme"
+                                th:text="'Hora desde: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(gardener.hoursFrom), 'HH:mm')}">
+                                desde 10:00hs</p>
                         </div>
                         <div class="bloque-cen">
                             <p class="thyme"
-                                th:text="'Hora desde: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(cleaning.hoursFrom), 'HH:mm')}">
-                                desde 10:00hs</p>
-                            <p class="thyme"
-                                th:text="'Hora hasta: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(cleaning.hoursTo), 'HH:mm')}">
+                                th:text="'Hora hasta: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(gardener.hoursTo), 'HH:mm')}">
                                 hasta: 20:00hs</p>
+                            <p class="thyme" th:text="'Superficie: ' + ${gardener.surface}">Superficie: 300m2
+                            </p>
+                            <p class="thyme" th:text="'Herramientas : ' + ${gardener.tools}">Herraminetas: Si
+                            </p>
                         </div>
                         <div class="bloque-der">
-                            <p class="thyme" th:text="'Cantidad de habitaciones: ' + ${cleaning.rooms}">ambientes: 3
+                            <p class="thyme" th:text="'Limpieza de piscinas: ' + ${gardener.poolCleaning}">Limpieza de
+                                piscinas: Si
+                            </p>
+                            <p class="thyme" th:text="'Cercos: ' + ${gardener.gardenFence}">Corte de cercos: Si
+                            </p>
+                            <p class="thyme" th:text="'Desinfección: ' + ${gardener.plantDesinfection}">Desinfección de
+                                plantas: No
                             </p>
                         </div>
                     </div>
-                    <div class="read-more">
-                        <a href="https://wa.me/"> Contactar</a>
+                    <div class="botones">
+                        <div class="btn-edit">
+                            <button>Modificar</button>
+                        </div>
+                        <div class="btn-delete">
+                            <button>Eliminar</button>
+                        </div>
                     </div>
                 </div>
             </th:block>
             <!--OTROS TRABAJOS-->
             <th:block th:each="other : ${others}">
-                <div class="card">
+                <div class="postCard">
                     <div class="blog-card">
                         <div class="photo">
                             <!-- <img th:src="@{other.user.photo}" alt=""> -->
                             <img src="/src/main/resources/static/img/Jardìn/j13.jpg" alt="">
                         </div>
                         <div class="description">
-                            <h1 th:text="${other.user.firstName}+' '+${other.user.lastName} ">nombre y apellido</h1>
+                            <h1 th:text="${other.jobType} ">Mecanico</h1>
                             <!-- <h1 th:text="${other.user.firstName}+' '+${other.user.lastName}"></h1> -->
                             <!-- <h1 th:text="${other.firstName}"></h1> -->
                             <div class="mail-contact">
@@ -201,63 +230,78 @@
                                 </p>
                             </div>
                             <div class="bloque-der">
-                                <p class="thyme" th:text="${other.jobType}">mecanico</p>
                                 <th:block th:each="day : ${other.days}">
                                     <label th:text="${day} + ' '">martes miercoles jueves</label>
                                 </th:block>
                             </div>
                         </div>
-                        <div class="read-more">
-                            <a href="https://wa.me/"> Contactar</a>
+                        <div class="botones">
+                            <div class="btn-edit">
+                                <button>Modificar</button>
+                            </div>
+                            <div class="btn-delete">
+                                <button>Eliminar</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </th:block>
             <!--PASEADOR DE PERROS-->
             <th:block th:each="petwalker : ${petwalkers}">
-                <div class="card">
+                <div class="postCard">
                     <div class="blog-card">
-                        <div class="meta">
-                            <!-- <div class="photo" style="background-image: url(/src/main/resources/static/img/Jardìn/j12.jpg)"> -->
-                            <div class="photo">
-                                <!-- <img th:src="${petwalker.user.photo}" alt="">                                 -->
+                        <div class="photo">
+                            <!-- <img th:hrefc=${gardener.user.photo} alt=""> -->
+                            <!-- <img th:if="@{gardener.user.photo} != null || @{!gardener.user.photo.isEmpty()}"
+                                    th:src="@{gardener.user.photo}" alt="">
+                                <img th:if="@{gardener.user.photo} == null || @{gardener.user.photo.isEmpty()}"
+                                    src="https://cdn.icon-icons.com/icons2/2506/PNG/512/user_icon_150670.png" alt=""> -->
+                            <img src="/src/main/resources/static/img/Jardìn/j13.jpg" alt="">
+                        </div>
+                        <div class="description">
+                            <h1 th:text="${petwalker.userjobType}">Paseador de Perros
+                            </h1>
+                            <div class="mail-contact">
+                                <a href="#">nombre@gmail.com</a>
                             </div>
                         </div>
-                        <div class="card-body">
-                            <div class="card-body-items">
-                                <div class="datos-job">
-                                    <p></p>
-                                    <p th:text="${petwalker.salary}"></p>
-                                    <p th:text="${petwalker.workingZone}"></p>
-                                </div>
-                                <div class="bloque-der">
-                                    <p class="thyme"
-                                        th:text="'Hora desde: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(petwalker.hoursFrom), 'HH:mm')}">
-                                    </p>
-                                    <p class="thyme"
-                                        th:text="'Hora hasta: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(petwalker.hoursTo), 'HH:mm')}">
-                                    </p>
-                                    <p class="thyme" th:text="'Cantidad de mascotas: ' + ${petwalker.petQuantity}"></p>
-                                    <th:block th:each="day : ${petwalker.days}">
-                                        <label th:text="${day} + ' '"></label>
-                                    </th:block>
-
-                                </div>
-                            </div>
-                            <div class="btn">
-                                <div class="inner"></div>
-                                <button type="submit">Eliminar</button>
-                            </div>
-                            <div class="btn">
-                                <div class="inner"></div>
-                                <button type="submit">Editar</button>
-                            </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="bloque-izq">
+                            <p class="thyme" th:text="'Precio: '+ ${petwalker.salary}">precio: $199</p>
+                            <p class="thyme" th:text="'Zona: '+ ${petwalker.workingZone}">zona: maipu</p>
+                        </div>
+                        <div class="bloque-cen">
+                            <p class="thyme"
+                                th:text="'Hora desde: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(petwalker.hoursFrom), 'HH:mm')}">
+                                Hora desde: 09:00hs
+                            </p>
+                            <p class="thyme"
+                                th:text="'Hora hasta: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(petwalker.hoursTo), 'HH:mm')}">
+                                Hora hasta: 20:00hs
+                            </p>
+                        </div>
+                        <div class="bloque-der">
+                            <p class="thyme" th:text="'Cantidad de mascotas: ' + ${petwalker.petQuantity}"> Cantidad de
+                                mascotas:5
+                            </p>
+                            <th:block th:each="day : ${petwalker.days}">
+                                <label th:text="${day} + ' '">Lunes y Miercoles</label>
+                            </th:block>
+                        </div>
+                    </div>
+                    <div class="botones">
+                        <div class="btn-edit">
+                            <button>Modificar</button>
+                        </div>
+                        <div class="btn-delete">
+                            <button>Eliminar</button>
                         </div>
                     </div>
                 </div>
             </th:block>
+        </div>
     </main>
-    </div>
 </body>
 
 </html>

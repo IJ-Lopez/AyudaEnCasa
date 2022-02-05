@@ -237,6 +237,23 @@ form .btn button:hover {
   margin-right: 16px;
 }
 
+.postCard {
+  width: 900px;
+  height: 250px;
+  padding: 15px 15px 10px;
+  top: 100px;
+  /* left: 500px; */
+  display: flex;
+  /* float: left; */
+  background-color: #4e4d4d;
+  border-radius: 20px;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 16px;
+  margin-right: 16px;
+}
+
 .puntos {
   align-self: flex-end;
   z-index: 3;
@@ -294,16 +311,6 @@ hr {
   overflow: none;
   z-index: 0;
 }
-/* 
-.blog-card a {
-  color: inherit;
-}
-.blog-card a:hover {
-  color: #5ad67d;
-}
-.blog-card .photo:hover {
-  transform: scale(1);
-} */
 
 .photo {
   position: absolute;
@@ -318,7 +325,8 @@ hr {
   transition: transform 0.2s;
 }
 
-.card img {
+.card img,
+.postCard img {
   width: 300px;
   height: 300px;
   z-index: 100;
@@ -479,6 +487,15 @@ h2 {
   width: 11.25rem;
 }
 
+.postCard .card-body .bloque-izq,
+.bloque-cen {
+  margin-top: 25px;
+}
+
+.postCard .card-body .bloque-der {
+  margin-top: 25px;
+}
+
 .bloque-izq .thyme,
 .bloque-cen .thyme,
 .bloque-der .thyme {
@@ -486,9 +503,16 @@ h2 {
 }
 
 /* CONTACTO */
+
+.boton-contact {
+  border: 2px solid greenyellow;
+  position: fixed;
+  top: 300px;
+}
 .read-more {
-  text-align: end;
-  margin-top: 30px;
+  left: 350px;
+  text-align: center;
+  margin-top: 12px;
 }
 
 .read-more a {
@@ -551,20 +575,52 @@ p .thyme {
 }
 
 .bloque-izq {
-  /* border: 1px solid red ; */
   float: left;
   width: 50%;
 }
 
 .bloque-der {
   width: 50%;
-  /* border: 1px solid green; */
   float: right;
 }
 
-.boton-contact{
-  border: 2px solid greenyellow;
-  position: fixed;
-  top: 280px;
+.postCard {
+  margin: 10px auto 20px auto;
+}
 
+.botones {
+  position: absolute;
+  justify-content: center;
+  text-align: center;
+  width: auto;
+  top: 15px;
+  left: 720px;
+  padding: 5px;
+}
+
+.btn-edit {
+  float: inline-start;
+  padding: 5px;
+  width: 30px;
+}
+
+.btn-delete {
+  float: inline-end;
+  /* background-color: #cb997e; */
+  padding: 5px;
+  width: 30px;
+}
+
+.btn-edit button,
+.btn-delete button {
+  width: 120px;
+  background-image: linear-gradient(72deg,#fafef2, #424242);
+  font-weight:bold;
+  border: none;
+  color: #363434;
+  font-size: 15px;
+  border-style: ridge;
+  border-color: #4e4d4d;
+  letter-spacing: 1px;
+  border-radius: 30px;
 }

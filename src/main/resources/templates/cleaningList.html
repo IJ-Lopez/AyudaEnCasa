@@ -96,7 +96,7 @@
                 </div>
                 <div class="lista">
                     <label for="exteriors"> Limpieza de exteriores</label>
-                    <input type="checkbox" id="checkbox" name="exteriors" th:checked="${exteriors}" >
+                    <input type="checkbox" id="checkbox" name="exteriors" th:checked="${exteriors}">
                     <!-- value="true" id="exteriores"-->
                 </div>
                 <div class="lista">
@@ -110,15 +110,13 @@
                 <div class="lista">
                     <label for="ironing">Servicio de Planchado</label>
                     <input type="checkbox" id="checkbox" name="ironing" th:checked="${ironing}">
-                    
+
                     <!-- Esto es el CSRF Token para su seguridad-->
                     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
-                <br>
-              <!--  <div>
+                    <br>
+                    <!--  <div>
                     <label class="dropdown-menu" for="ironing">Servicio de Planchado</label>
                     <input type="checkbox" name="ironing" th:checked="${ironing}"> -->
-            
-
                 </div>
                 <div class="btn">
                     <div class="inner"></div>
