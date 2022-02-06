@@ -24,11 +24,12 @@
     <!--editar datos de registro-->
     <div class="center">
         <div class="container">
-            <div class="text">Regístrate</div>
-            <form th:action="@{'/user/registry'}" method="POST" enctype="multipart/form-data">
+            <div class="text">Actualiza tus datos!</div>
+            <form th:action="@{/user/editUser}" method="POST" enctype="multipart/form-data">
                 <div class="data">
                     <label for="email"></label>
                     <input type="text" name="email" placeholder="Email" id="" required />
+                                        
                 </div>
                 <div class="data">
                     <label for="password"></label>
@@ -114,12 +115,12 @@
                         <input type="checkbox" name="terms" id="" required />
 
                         <!-- Esto es el CSRF Token para su seguridad-->
-                        <!-- <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"> -->
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
                     </div>
                 </div>
                 <div class="btn">
                     <div class="inner"></div>
-                    <button type="submit">ingresar</button>
+                    <button type="submit">Enviar</button>
                 </div>
                 <div class="goback-link">
                     <a class="data" href="/home">Volver</a>
@@ -137,6 +138,7 @@
                     <label for="salary"></label>
                     <input type="text" size="50px" th:value="${salary}" name="salary" id="salario"
                         placeholder="Remuneración Pretendida">
+                    
                 </div>
                 <div class="data">
                     <label for="workingZone"></label>
@@ -250,7 +252,7 @@
                         <input type="checkbox" name="tranfering" th:checked="${tranfering}">
 
                         <!-- Esto es el CSRF Token para su seguridad-->
-                        <!-- <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"> -->
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
                     </div>
                 </div>
                 <div class="btn">
@@ -268,11 +270,13 @@
     <div class="center">
         <div class="container">
             <div class="text">Servicio Domestico</div>
-            <form th:action="@{/cleaning/create}" method="POST">
+            <form th:action="@{/cleaning/updateCleaning}" method="POST">
                 <div class="data">
                     <label for="salary"></label>
                     <input type="text" size="50px" th:value="${salary}" name="salary" id="salario"
                            placeholder="Remuneración Pretendida">
+                    <input type="hidden" th:value="${#authentication.getName()}">
+                    
                 </div>
                 <div class="data">
                     <label for="workingZone"></label>
@@ -372,7 +376,7 @@
                         <input type="checkbox" name="ironing" th:checked="${ironing}">
                         
                         <!-- Esto es el CSRF Token para su seguridad-->
-                        <!-- <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"> -->
+                      <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
                     </div>
                 </div>
                 <div class="btn">
@@ -497,7 +501,7 @@
                         <input type="checkbox" name="plantDisinfection" th:checked="${plantDisinfection}">
                         
                         <!-- Esto es el CSRF Token para su seguridad-->
-                        <!-- <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"> -->
+                       <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
                     </div>
                 </div>
                 <div class="btn">
@@ -512,7 +516,7 @@
     </div>
     <script src="/js/main.js"></script>
     <!--editar trabajo:otros-->
-    <div class="center">
+  <!--  <div class="center">
         <div class="container">
             <div class="text">Otros empleos</div>
             <form th:action="@{/otro/create}" method="POST">
@@ -591,7 +595,7 @@
                         placeholder="Hora de finalización" onfocus="(this.type='time')">
                     
                     <!-- Esto es el CSRF Token para su seguridad-->
-                    <!-- <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"> -->
+          <!--          <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
                 </div>
 
                 <div class="btn">
@@ -606,7 +610,7 @@
     </div>
     <script src="/js/main.js"></script>
     <!--editar trabajo:petWalker-->
-    <div class="center">
+  <!--  <div class="center">
         <div class="container">
             <div class="text">Paseador de perros</div>
             <form th:action="@{/petwalker/create}" method="POST">
@@ -683,7 +687,7 @@
                     <input class="input font" type="number" th:value="${petQuantity}" name="petQuantity"
                         id="cantidad de perros" placeholder="Cantidad de perros" min="0" max="10">
                     <!-- Esto es el CSRF Token para su seguridad-->
-                    <!-- <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"> -->
+               <!--     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
                 </div>
                 <div class="data">
                     <label for="petType"></label>
@@ -702,7 +706,7 @@
             </form>
         </div>
     </div>
-    <script src="/src/main/resources/static/js/main.js"></script>
+    <script src="/src/main/resources/static/js/main.js"></script> -->
 </body>
 
 </html>

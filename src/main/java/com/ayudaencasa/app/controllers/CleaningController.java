@@ -4,8 +4,10 @@ import com.ayudaencasa.app.criteria.CleaningCriteria;
 import com.ayudaencasa.app.dto.input.CreateCleaningDTO;
 import com.ayudaencasa.app.dto.input.SearchCleaningDTO;
 import com.ayudaencasa.app.entities.Cleaning;
+import com.ayudaencasa.app.entities.User;
 import com.ayudaencasa.app.exceptions.CleaningNotFoundException;
 import com.ayudaencasa.app.services.CleaningService;
+import com.ayudaencasa.app.services.UserService;
 import io.github.jhipster.service.filter.BooleanFilter;
 import io.github.jhipster.service.filter.IntegerFilter;
 import io.github.jhipster.service.filter.StringFilter;
@@ -17,10 +19,15 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,7 +42,8 @@ public class CleaningController {
  
     @Autowired
     private CleaningService cleaningService;
-    
+    @Autowired
+    private UserService userService;
     @GetMapping("/create")
     public String registry(){
         return "cleaningForm";
@@ -201,10 +209,28 @@ public class CleaningController {
         }
         return cleaningCriteria;
     }
+    
+    @GetMapping("/EditCleaning")
+    public String editarClear(){
+      //  User user= userService.
+        return "editarMisPublicaciones";
+        
+    }
 
-    @PostMapping("/update")
-    public void update(String id, Cleaning newCleaning) {
+    @PostMapping("/updateCleaning")
+    public void update(@PathVariable String id, Cleaning newCleaning) {
+         UserDetails userDetails;
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth instanceof AnonymousAuthenticationToken) {
+            throw new RuntimeException("Logeate capo");
+        }
+        userDetails = (UserDetails)auth.getPrincipal();
+        User user = userService.findByEmail(userDetails.getUsername());
+        newCleaning = cleaningService.findById(user.getId());
+        if(newCleaning!=null){
+            
         cleaningService.update(id, newCleaning);
+        }
     }
 
     @PostMapping("/delete")

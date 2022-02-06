@@ -117,7 +117,7 @@
                             </p>
                             <p class="thyme">
                                 <th:block th:each="day : ${cleaning.days}">
-                                    <label th:text="${day} + "> Dias: Martes, miercoles, jueves</label>
+                                    <label th:text="${day}"> Dias: Martes, miercoles, jueves</label>
                                 </th:block>
                             </p>
                             <p class="thyme" th:text="${cleaning.exteriors}">Sectores: Ambos</p>
@@ -130,10 +130,10 @@
                     </div>
                     <div class="botones">
                         <div class="btn-edit">
-                            <button>Modificar</button>
+                            <a href="/cleaning/EditCleaning">Modificar</a>
                         </div>
                         <div class="btn-delete">
-                            <button>Eliminar</button>
+                            <a href="/delete/{id}"> Eliminar</a>
                         </div>
                     </div>
                 </div>

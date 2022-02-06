@@ -93,9 +93,9 @@ public class GardenerController {
             gardeners = gar;
         }  
         rt.addAttribute("gardeners", gardeners);
+
         return "redirect:/gardener/list";
     }
-
     private GardenerCriteria createCriteria(SearchGardenerDTO searchGardener) {
         GardenerCriteria gardenerCriteria = new GardenerCriteria();
         if (searchGardener != null) {
@@ -212,8 +212,16 @@ public class GardenerController {
     }
 
     @PostMapping("/update")
-    public void update(@RequestParam String id, Gardener newGardener) {
-        gardenerService.update(id, newGardener);
+    public void update(Model model, @RequestParam String id, Gardener newGardener) {
+       Gardener gardener = gardenerService.findById(id);
+       try{
+           if(gardener!=null){
+               gardenerService.update(id, newGardener);
+           }
+       }catch (GardenerNotFoundException ex){
+            model.addAttribute("error", ex.getMessage());
+       }
+        //gardenerService.update(id, newGardener);
     }
 
 }

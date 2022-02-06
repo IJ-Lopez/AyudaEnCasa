@@ -42,7 +42,7 @@ public class Security extends WebSecurityConfigurerAdapter {
                     .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
                 .and()
                     .authorizeRequests()
-                    .antMatchers("/**/create","/unauthorized")
+                    .antMatchers("/**/create","/unauthorized", "/editarMisPublicaciones")
                     .hasAnyRole("USER","ADMIN")
                 .and().formLogin()
                     .successHandler(authSucc)               

@@ -94,13 +94,20 @@ public class UserController {
             return "redirect:/user/registry";
         }
     }
-
-    @PostMapping("/")
-    public void update(String id, User newUser) {
-        userService.update(id, newUser);
+    
+    @GetMapping("/editarUser")
+    public String editarUser(String id){
+        
+        return "/editarMisPublicaciones";
     }
     
-    @PostMapping
+    @PostMapping("/editUser")
+    public void update(String id, User newUser) {
+        userService.update(id, newUser);
+        
+    }
+    
+    @PostMapping("/delete/{id}")
     public void delete(String id) throws UserNotFoundException {
        userService.delete(id);
     }
