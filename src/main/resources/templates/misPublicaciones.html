@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mis publicaciones</title>
     <link rel="stylesheet" href="/css/cardPrueba.css" />
-    <!-- <link rel="stylesheet" href="/css/cardPrueba.css"> -->
     <!--Google fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -23,7 +22,56 @@
 <body>
     <main>
         <nav class="nav-main" id="top">
-            <h1 id="home">Mis publicaciones</h1>
+            <a th:href="@{'/home'}">
+                <abbr title="Volver al home">
+                    <h1 id="home">Mis publicaciones</h1>
+                </abbr>
+            </a>
+            <ul class="nav-menu">
+                <!-- <li>
+                       <a href="#main">Inicio <i class="fas fa-home"></i></a>
+                     </li> -->
+                <li>
+                    <a href="#aboutus">Sobre nosotros <i class="fas fa-users"></i></a>
+                </li>
+                <li>
+                    <a href="#contact">Contacto <i class="far fa-address-card"></i></a>
+                </li>
+                <div class="work-menu">
+                    <li>
+                        <!-- deberia llevar a un form lista desplegable con los registros -->
+                        <a href="#form">Quiero trabajar <i class="fas fa-briefcase"></i></a>
+                        <ul class="work-menu">
+                            <li><a th:href="@{/gardener/create}">Jardinero</a></li>
+                            <li><a th:href="@{/cleaning/create}">Servicio doméstico</a></li>
+                            <li><a th:href="@{/caregiver/create}">Cuidado de personas</a></li>
+                            <li><a th:href="@{/petwalker/create}">Paseador de perros</a></li>
+                            <li><a th:href="@{/other/create}">Otro</a></li>
+                        </ul>
+                    </li>
+                </div>
+                <div class="work-menu">
+                    <div th:if="${#authentication.getName()} != anonymousUser" class="work-menu" id="userRegistred">
+                        <li>
+                            <div class="wellcome">
+                                <a href="#"
+                                    th:text="${T(net.logstash.logback.encoder.org.apache.commons.lang3.StringUtils).capitalize(@userServiceImpl.findByEmail(#authentication.getName()).firstName)}"><i
+                                        class="far fa-smile-wink"></i></a>
+                            </div>
+                            <ul class="work-menu">
+                                <li><a th:href="@{/jobs/myjobs}">Mis postulaciones<i class="fas fa-sign-in-alt"></i></a>
+                                </li>
+                                <li><a th:href="@{/jobs/myjobs}">Modificar<i class="fas fa-sign-in-alt"></i></a></li>
+                                <li>
+                                    <form th:action="@{/logout}" method="POST">
+                                        <button>Cerrar sesión <i class="fas fa-times"></i></button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                    </div>
+                </div>
+            </ul>
         </nav>
         <div class="container">
             <!-- <img src="/img/sillonliving.jpg" alt=""> -->
@@ -150,144 +198,144 @@
                         </div>
                     </div>
                 </div>
-                    <div class="card-body">
-                        <div class="bloque-izq">
-                            <p class="thyme" th:text="'Precio: '+ ${gardener.salary}">precio: $199</p>
-                            <p class="thyme" th:text="'Zona: '+ ${gardener.workingZone}">zona: maipu</p>
-                            <p class="thyme"
-                                th:text="'Hora desde: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(gardener.hoursFrom), 'HH:mm')}">
-                                desde 10:00hs</p>
-                        </div>
-                        <div class="bloque-cen">
-                            <p class="thyme"
-                                th:text="'Hora hasta: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(gardener.hoursTo), 'HH:mm')}">
-                                hasta: 20:00hs</p>
-                            <p class="thyme" th:text="'Superficie: ' + ${gardener.surface}">Superficie: 300m2
-                            </p>
-                            <p class="thyme" th:text="'Herramientas : ' + ${gardener.tools}">Herraminetas: Si
-                            </p>
-                        </div>
-                        <div class="bloque-der">
-                            <p class="thyme" th:text="'Limpieza de piscinas: ' + ${gardener.poolCleaning}">Limpieza de
-                                piscinas: Si
-                            </p>
-                            <p class="thyme" th:text="'Cercos: ' + ${gardener.gardenFence}">Corte de cercos: Si
-                            </p>
-                            <p class="thyme" th:text="'Desinfección: ' + ${gardener.plantDisinfection}">Desinfección de
-                                plantas: No
-                            </p>
-                        </div>
+                <div class="card-body">
+                    <div class="bloque-izq">
+                        <p class="thyme" th:text="'Precio: '+ ${gardener.salary}">precio: $199</p>
+                        <p class="thyme" th:text="'Zona: '+ ${gardener.workingZone}">zona: maipu</p>
+                        <p class="thyme"
+                            th:text="'Hora desde: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(gardener.hoursFrom), 'HH:mm')}">
+                            desde 10:00hs</p>
                     </div>
-                    <div class="botones">
-                        <div class="btn-edit">
-                            <button>Modificar</button>
-                        </div>
-                        <div class="btn-delete">
-                            <button>Eliminar</button>
+                    <div class="bloque-cen">
+                        <p class="thyme"
+                            th:text="'Hora hasta: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(gardener.hoursTo), 'HH:mm')}">
+                            hasta: 20:00hs</p>
+                        <p class="thyme" th:text="'Superficie: ' + ${gardener.surface}">Superficie: 300m2
+                        </p>
+                        <p class="thyme" th:text="'Herramientas : ' + ${gardener.tools}">Herraminetas: Si
+                        </p>
+                    </div>
+                    <div class="bloque-der">
+                        <p class="thyme" th:text="'Limpieza de piscinas: ' + ${gardener.poolCleaning}">Limpieza de
+                            piscinas: Si
+                        </p>
+                        <p class="thyme" th:text="'Cercos: ' + ${gardener.gardenFence}">Corte de cercos: Si
+                        </p>
+                        <p class="thyme" th:text="'Desinfección: ' + ${gardener.plantDisinfection}">Desinfección de
+                            plantas: No
+                        </p>
+                    </div>
+                </div>
+                <div class="botones">
+                    <div class="btn-edit">
+                        <button>Modificar</button>
+                    </div>
+                    <div class="btn-delete">
+                        <button>Eliminar</button>
+                    </div>
+                </div>
+        </div>
+        </th:block>
+        <!--OTROS TRABAJOS-->
+        <th:block th:if="${other != null}">
+            <div class="postCard">
+                <div class="blog-card">
+                    <div class="photo">
+                        <!-- <img th:src="@{other.user.photo}" alt=""> -->
+                        <img src="/src/main/resources/static/img/Jardìn/j13.jpg" alt="">
+                    </div>
+                    <div class="description">
+                        <h1>Otros empleos</h1>
+                        <div class="mail-contact">
+                            <p th:text="${#authentication.getName()}"> </p>
                         </div>
                     </div>
                 </div>
-            </th:block>
-            <!--OTROS TRABAJOS-->
-            <th:block th:if="${other != null}">
-                <div class="postCard">
-                    <div class="blog-card">
-                        <div class="photo">
-                            <!-- <img th:src="@{other.user.photo}" alt=""> -->
-                            <img src="/src/main/resources/static/img/Jardìn/j13.jpg" alt="">
-                        </div>
-                        <div class="description">
-                            <h1>Otros empleos</h1>
-                            <div class="mail-contact">
-                                <p th:text="${#authentication.getName()}"> </p>
-                            </div>
-                        </div>
+                <div class="card-body">
+                    <div class="bloque-izq">
+                        <p class="thyme" th:text="${other.salary}"> precio: $200</p>
+                        <p class="thyme" th:text="${other.workingZone}">zona: godoy cruz</p>
                     </div>
-                        <div class="card-body">
-                            <div class="bloque-izq">
-                                <p class="thyme" th:text="${other.salary}"> precio: $200</p>
-                                <p class="thyme" th:text="${other.workingZone}">zona: godoy cruz</p>
-                            </div>
-                            <div class="bloque-cen">
-                                <p class="thyme"
-                                    th:text="'Hora desde: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(other.hoursFrom), 'HH:mm')}">
-                                    hora desde: 10:00hs
-                                </p>
-                                <p class="thyme"
-                                    th:text="'Hora hasta: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(other.hoursTo), 'HH:mm')}">
-                                    hora hasta: 18:00hs
-                                </p>
-                            </div>
-                            <div class="bloque-der">
-                                <th:block th:each="day : ${other.days}">
-                                    <label th:text="${day} + ' '">martes miercoles jueves</label>
-                                </th:block>
-                            </div>
-                        </div>
-                        <div class="botones">
-                            <div class="btn-edit">
-                                <button>Modificar</button>
-                            </div>
-                            <div class="btn-delete">
-                                <button>Eliminar</button>
-                            </div>
-                        </div>
+                    <div class="bloque-cen">
+                        <p class="thyme"
+                            th:text="'Hora desde: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(other.hoursFrom), 'HH:mm')}">
+                            hora desde: 10:00hs
+                        </p>
+                        <p class="thyme"
+                            th:text="'Hora hasta: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(other.hoursTo), 'HH:mm')}">
+                            hora hasta: 18:00hs
+                        </p>
+                    </div>
+                    <div class="bloque-der">
+                        <th:block th:each="day : ${other.days}">
+                            <label th:text="${day} + ' '">martes miercoles jueves</label>
+                        </th:block>
                     </div>
                 </div>
-            </th:block>
-            <!--PASEADOR DE PERROS-->
-            <th:block th:if="${petwalker != null}">
-                <div class="postCard">
-                    <div class="blog-card">
-                        <div class="photo">
-                            <!-- <img th:hrefc=${gardener.user.photo} alt=""> -->
-                            <!-- <img th:if="@{gardener.user.photo} != null || @{!gardener.user.photo.isEmpty()}"
+                <div class="botones">
+                    <div class="btn-edit">
+                        <button>Modificar</button>
+                    </div>
+                    <div class="btn-delete">
+                        <button>Eliminar</button>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </th:block>
+        <!--PASEADOR DE PERROS-->
+        <th:block th:if="${petwalker != null}">
+            <div class="postCard">
+                <div class="blog-card">
+                    <div class="photo">
+                        <!-- <img th:hrefc=${gardener.user.photo} alt=""> -->
+                        <!-- <img th:if="@{gardener.user.photo} != null || @{!gardener.user.photo.isEmpty()}"
                                     th:src="@{gardener.user.photo}" alt="">
                                 <img th:if="@{gardener.user.photo} == null || @{gardener.user.photo.isEmpty()}"
                                     src="https://cdn.icon-icons.com/icons2/2506/PNG/512/user_icon_150670.png" alt=""> -->
-                            <img src="/src/main/resources/static/img/Jardìn/j13.jpg" alt="">
-                        </div>
-                        <div class="description">
-                            <h1>Paseador de perros</h1>
-                            <div class="mail-contact">
-                                <p th:text="${#authentication.getName()}"> </p>
-                            </div>
-                        </div>
+                        <img src="/src/main/resources/static/img/Jardìn/j13.jpg" alt="">
                     </div>
-                    <div class="card-body">
-                        <div class="bloque-izq">
-                            <p class="thyme" th:text="'Precio: '+ ${petwalker.salary}">precio: $199</p>
-                            <p class="thyme" th:text="'Zona: '+ ${petwalker.workingZone}">zona: maipu</p>
-                        </div>
-                        <div class="bloque-cen">
-                            <p class="thyme"
-                                th:text="'Hora desde: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(petwalker.hoursFrom), 'HH:mm')}">
-                                Hora desde: 09:00hs
-                            </p>
-                            <p class="thyme"
-                                th:text="'Hora hasta: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(petwalker.hoursTo), 'HH:mm')}">
-                                Hora hasta: 20:00hs
-                            </p>
-                        </div>
-                        <div class="bloque-der">
-                            <p class="thyme" th:text="'Cantidad de mascotas: ' + ${petwalker.petQuantity}"> Cantidad de
-                                mascotas:5
-                            </p>
-                            <th:block th:each="day : ${petwalker.days}">
-                                <label th:text="${day} + ' '">Lunes y Miercoles</label>
-                            </th:block>
-                        </div>
-                    </div>
-                    <div class="botones">
-                        <div class="btn-edit">
-                            <button>Modificar</button>
-                        </div>
-                        <div class="btn-delete">
-                            <button>Eliminar</button>
+                    <div class="description">
+                        <h1>Paseador de perros</h1>
+                        <div class="mail-contact">
+                            <p th:text="${#authentication.getName()}"> </p>
                         </div>
                     </div>
                 </div>
-            </th:block>
+                <div class="card-body">
+                    <div class="bloque-izq">
+                        <p class="thyme" th:text="'Precio: '+ ${petwalker.salary}">precio: $199</p>
+                        <p class="thyme" th:text="'Zona: '+ ${petwalker.workingZone}">zona: maipu</p>
+                    </div>
+                    <div class="bloque-cen">
+                        <p class="thyme"
+                            th:text="'Hora desde: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(petwalker.hoursFrom), 'HH:mm')}">
+                            Hora desde: 09:00hs
+                        </p>
+                        <p class="thyme"
+                            th:text="'Hora hasta: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(petwalker.hoursTo), 'HH:mm')}">
+                            Hora hasta: 20:00hs
+                        </p>
+                    </div>
+                    <div class="bloque-der">
+                        <p class="thyme" th:text="'Cantidad de mascotas: ' + ${petwalker.petQuantity}"> Cantidad de
+                            mascotas:5
+                        </p>
+                        <th:block th:each="day : ${petwalker.days}">
+                            <label th:text="${day} + ' '">Lunes y Miercoles</label>
+                        </th:block>
+                    </div>
+                </div>
+                <div class="botones">
+                    <div class="btn-edit">
+                        <button>Modificar</button>
+                    </div>
+                    <div class="btn-delete">
+                        <button>Eliminar</button>
+                    </div>
+                </div>
+            </div>
+        </th:block>
         </div>
     </main>
 </body>

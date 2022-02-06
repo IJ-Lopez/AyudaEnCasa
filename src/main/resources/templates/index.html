@@ -56,19 +56,20 @@
                     <li>
                         <a href="#"
                             th:text="'¡Bienvenido '+' '+${T(net.logstash.logback.encoder.org.apache.commons.lang3.StringUtils).capitalize(@userServiceImpl.findByEmail(#authentication.getName()).firstName)}+'!'">
-                            <i class="far fa-smile-wink"></i></a>
-
+                        </a>
                         <ul class="work-menu">
-                            <li><a th:href="@{/jobs/myjobs}">Mis postulaciones<i class="fas fa-sign-in-alt"></i></a>
+                            <li>
+                                <a th:href="@{/jobs/myjobs}">Mis postulaciones<i class="fas fa-sign-in-alt"></i></a>
                             </li>
-                            <li><a th:href="@{/user/editarUser}">Modifica tus datos<i class="fas fa-sign-in-alt"></i></a></li>
+                            <li>
+                                <a th:href="@{/user/editarUser}">Modifica tu perfil<i class="fas fa-sign-in-alt"></i></a>
+                            </li>
                             <li>
                                 <form th:action="@{/logout}" method="POST">
                                     <button> Cerrar sesión <i class="fas fa-times"></i></button>
                                     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
                                 </form>
                             </li>
-
                         </ul>
                     </li>
                 </div>

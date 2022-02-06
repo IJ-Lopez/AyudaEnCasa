@@ -3,7 +3,7 @@
   padding: 0;
   outline: none;
   box-sizing: border-box;
-  font-family: sans-serif;
+  font-family: "Quicksand", sans-serif;
 }
 
 body {
@@ -27,6 +27,10 @@ ul {
 a {
   text-decoration: none;
   color: #fefefe;
+}
+
+abbr{
+  text-decoration: none;
 }
 
 .nav-main {
@@ -92,6 +96,7 @@ h1 {
   color: #fff;
   display: block;
   position: static;
+  letter-spacing: 2px;
   font-weight: 500;
 }
 
@@ -116,6 +121,25 @@ h1 {
 
 .nav-main ul.nav-menu {
   align-items: center;
+  padding-right: 30px;
+  letter-spacing: 1px;
+}
+
+
+.work-menu li button {
+  background: none;
+}
+.work-menu button {
+  border: none;
+  color: #fafafa;
+  text-decoration: none;
+  padding: 5px;
+  font-size: 15px;
+}
+
+.work-menu li form:hover {
+  border-bottom: 2px solid #fafafa;
+  transition: 0.2s;
 }
 
 .container {

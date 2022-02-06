@@ -5,6 +5,10 @@
   box-sizing: border-box;
 }
 
+abbr{
+  text-decoration: none;
+}
+
 body {
   margin-right: calc(100vw-80px);
   background-repeat: no-repeat;

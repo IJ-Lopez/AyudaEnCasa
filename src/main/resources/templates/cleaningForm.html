@@ -5,16 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Limpieza Doméstica</title>
-    
+    <title>Servicio Doméstico</title>
     <link rel="stylesheet" href="/css/workForms.css">
-    <!--<link rel="stylesheet" href="../static/css/workForms.css">-->
-    <!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
     <!--Google fonts-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/index.css">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet"
@@ -26,13 +19,12 @@
 <body>
 
     <nav class="nav-main" id="top">
-        <a th:href="@{'/home'}">
-            <h1 id="home">Ayuda en casa</h1>
-        </a>
+        <abbr title="Volver al home">
+            <a th:href="@{'/home'}">
+                <h1 id="home">Ayuda en casa</h1>
+            </a>
+        </abbr>
         <ul class="nav-menu">
-            <!-- <li>
-                   <a href="#main">Inicio <i class="fas fa-home"></i></a>
-                 </li> -->
             <li>
                 <a href="#aboutus">Sobre nosotros <i class="fas fa-users"></i></a>
             </li>
@@ -41,7 +33,6 @@
             </li>
             <div class="work-menu">
                 <li>
-                    <!-- deberia llevar a un form lista desplegable con los registros -->
                     <a href="#form">Quiero trabajar <i class="fas fa-briefcase"></i></a>
                     <ul class="work-menu">
                         <li><a th:href="@{/gardener/create}">Jardinero</a></li>
@@ -52,34 +43,26 @@
                     </ul>
                 </li>
             </div>
-            <div class="work-menu">
-                <div th:if="${#authentication.getName()} != anonymousUser" class="work-menu" id="userRegistred">
-                    <li>
-                        <div class="wellcome">
-                            <a href="#" th:text="${#authentication.getName()}"><i class="far fa-smile-wink"></i></a>
-
-                        </div>
-                        <!-- <p th:text="'¡Bienvenido '+' '+${#authentication.getName()}+'!'"><i class="far fa-smile-wink"></i></p> -->
-                        <ul class="work-menu">
-                            <li><a th:href="@{/jobs/myjobs}">Mis postulaciones<i class="fas fa-sign-in-alt"></i></a>
-                            </li>
-                            <li><a th:href="@{/jobs/myjobs}">Modificar<i class="fas fa-sign-in-alt"></i></a></li>
-                            <!-- <span th:text ="${#authentication.getPrincipal().getUser().getFirstName()}"></span> -->
-                            <!-- meter el condicional para el inicio de sesion -->
-                            <li>
-                                <form th:action="@{/logout}" method="POST">
-                                    <button>Cerrar sesión <i class="fas fa-times"></i></button>
-                                </form>
-                        </ul>
-                    </li>
-                </div>
-                <!-- <li> deberia llevar a un form lista desplegable con los registros
-                        <a href="#form">Sección usuarios <i class="far fa-user"></i></a>
-                        <ul class="work-menu">
-                            <li><a th:href="@{/login}">Iniciar sesion <i class="fas fa-sign-in-alt"></i></a></li>
-                            <li><a th:href="@{/user/registry}">Regístrate <i class="fas fa-bars"></i></a></li>
-                        </ul> 
-                    </li> -->
+            <div th:if="${#authentication.getName()} != anonymousUser" class="work-menu">
+                <li>
+                    <a href="#"
+                        th:text="'¡Bienvenido '+' '+${T(net.logstash.logback.encoder.org.apache.commons.lang3.StringUtils).capitalize(@userServiceImpl.findByEmail(#authentication.getName()).firstName)}+'!'">
+                    </a>
+                    <ul class="work-menu">
+                        <li>
+                            <a th:href="@{/jobs/myjobs}">Mis postulaciones<i class="fas fa-sign-in-alt"></i></a>
+                        </li>
+                        <li>
+                            <a th:href="@{/user/editarUser}">Modifica tu perfil<i class="fas fa-sign-in-alt"></i></a>
+                        </li>
+                        <li>
+                            <form th:action="@{/logout}" method="POST">
+                                <button> Cerrar sesión <i class="fas fa-times"></i></button>
+                                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+                            </form>
+                        </li>
+                    </ul>
+                </li>
             </div>
         </ul>
     </nav>
@@ -199,7 +182,7 @@
                 </div>
                <div class="data">
                         <label for="cv"></label>
-                        <input class="controls" type="file" th:value="${cv}" name="cv" id="cv" placeholder="Adjuntá tu curriculum" onfocus="(this.type='file')" />
+                        <input class="controls" type="text" th:value="${cv}" name="cv" id="cv" placeholder="Adjuntá tu curriculum" onfocus="(this.type='file')" />
                     </div>
                 <div class="btn">
                     <div class="inner"></div>
@@ -215,20 +198,3 @@
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-<!--div>
-                    <label class="input" for="ironing"></label>
-                        <p class="parrafo"> Servicio de Planchado </p>
-                        <ul class="dropdown-menu" th:value="${ironing}" name="ironing" id="planchado">
-                            <input type="radio" name="ironing" value="true"> Si
-                            <br>
-                            <input type="radio" name="ironing" value="false"> No
-                        </ul>
-                    </div-->
