@@ -38,11 +38,11 @@
                     <!-- deberia llevar a un form lista desplegable con los registros -->
                     <a href="#form">Quiero trabajar <i class="fas fa-briefcase"></i></a>
                     <ul class="work-menu">
-                        <li><a href="../jardinero/create">Jardinero</a></li>
-                        <li><a href="../limpiador/create">Servicio doméstico</a></li>
-                        <li><a href="../cuidador/create">Cuidado de personas</a></li>
-                        <li><a href="../paseador/create">Paseador de perros</a></li>
-                        <li><a href="../otro/create">Otro</a></li>
+                        <li><a href="/gardener/create">Servicio doméstico</a></li>
+                        <li><a href="/cleaning/create">Cuidado de personas</a></li>
+                        <li><a href="/caregiver/create">Jardinero</a></li>
+                        <li><a href="/petwalker/create">Paseador de perros</a></li>
+                        <li><a href="/other/create">Otro</a></li>
                     </ul>
                 </li>
             </div>
@@ -104,25 +104,25 @@
                         <label for="days"></label>
                         <ul class="dropdown-menu" th:value="${days}" name="days">
                             <li>
-                                <input type="checkbox" value="Lunes" name="days"> Lunes
+                                <input id="checkbox" type="checkbox" value="Lunes" name="days"> Lunes
                             </li>
                             <li>
-                                <input type="checkbox" value="Martes" name="days"> Martes
+                                <input id="checkbox" type="checkbox" value="Martes" name="days"> Martes
                             </li>
                             <li>
-                                <input type="checkbox" value="Miércoles" name="days"> Miércoles
+                                <input id="checkbox" type="checkbox" value="Miércoles" name="days"> Miércoles
                             </li>
                             <li>
-                                <input type="checkbox" value="Jueves" name="days"> Jueves
+                                <input id="checkbox" type="checkbox" value="Jueves" name="days"> Jueves
                             </li>
                             <li>
-                                <input type="checkbox" value="Viernes" name="days"> Viernes
+                                <input id="checkbox" type="checkbox" value="Viernes" name="days"> Viernes
                             </li>
                             <li>
-                                <input type="checkbox" value="Sábado" name="days"> Sábado
+                                <input id="checkbox" type="checkbox" value="Sábado" name="days"> Sábado
                             </li>
                             <li>
-                                <input type="checkbox" value="Domingo" name="days"> Domingo
+                                <input id="checkbox" type="checkbox" value="Domingo" name="days"> Domingo
                             </li>
                         </ul>
                     </div>

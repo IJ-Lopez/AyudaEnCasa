@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Limpieza Doméstica</title>
+    
     <link rel="stylesheet" href="/css/workForms.css">
     <!--<link rel="stylesheet" href="../static/css/workForms.css">-->
     <!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -79,10 +80,9 @@
             </div>
         </ul>
     </nav>
-
     <div class="center">
         <div class="container">
-            <div class="text">Servicio Domestico</div>
+            <div class="text">Servicio Doméstico</div>
             <form th:action="@{/cleaning/create}" method="POST">
                 <div class="data">
                     <label for="salary"></label>
@@ -119,25 +119,25 @@
                         <label for="days"></label>
                         <ul class="dropdown-menu" th:value="${days}" name="days">
                             <li>
-                                <input type="checkbox" value="Lunes" name="days"> Lunes
+                                <input id="checkbox" type="checkbox" value="Lunes" name="days"> Lunes
                             </li>
                             <li>
-                                <input type="checkbox" value="Martes" name="days"> Martes
+                                <input id="checkbox" type="checkbox" value="Martes" name="days"> Martes
                             </li>
                             <li>
-                                <input type="checkbox" value="Miércoles" name="days"> Miércoles
+                                <input id="checkbox" type="checkbox" value="Miércoles" name="days"> Miércoles
                             </li>
                             <li>
-                                <input type="checkbox" value="Jueves" name="days"> Jueves
+                                <input id="checkbox" type="checkbox" value="Jueves" name="days"> Jueves
                             </li>
                             <li>
-                                <input type="checkbox" value="Viernes" name="days"> Viernes
+                                <input id="checkbox" type="checkbox" value="Viernes" name="days"> Viernes
                             </li>
                             <li>
-                                <input type="checkbox" value="Sábado" name="days"> Sábado
+                                <input id="checkbox" type="checkbox" value="Sábado" name="days"> Sábado
                             </li>
                             <li>
-                                <input type="checkbox" value="Domingo" name="days"> Domingo
+                                <input id="checkbox" type="checkbox" value="Domingo" name="days"> Domingo
                             </li>
                         </ul>
                     </div>
@@ -170,21 +170,21 @@
                     <div class="titulo">
                         Servicio de Cocina
                         <label class="dropdown-menu" for="cooking"></label>
-                        <input type="checkbox" name="cooking" th:checked="${cooking}">
+                        <input id="checkbox" type="checkbox" name="cooking" th:checked="${cooking}">
                     </div>
                 </div>
                 <div class="lista">
                     <div class="titulo">
                         Servicio de Lavandería
                         <label class="dropdown-menu" for="laundry"></label>
-                        <input type="checkbox" name="laundry" th:checked="${laundry}">
+                        <input id="checkbox" type="checkbox" name="laundry" th:checked="${laundry}">
                     </div>
                 </div>
                 <div class="lista">
                     <div class="titulo">
                         Servicio de Planchado
                         <label class="dropdown-menu" for="ironing"></label>
-                        <input type="checkbox" name="ironing" th:checked="${ironing}">
+                        <input id="checkbox" type="checkbox" name="ironing" th:checked="${ironing}">
 
                         <!-- Esto es el CSRF Token para su seguridad-->
                         <!-- <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"> -->

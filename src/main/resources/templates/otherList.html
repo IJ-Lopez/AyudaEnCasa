@@ -21,8 +21,57 @@
 
 <body>
     <main>
-        <nav class="nav-main">
-            <h1>Otros empleos</h1>
+        <nav class="nav-main" id="top">
+            <a th:href="@{'/home'}">
+                <h1 id="home">Otros empleos</h1>
+            </a>
+            <ul class="nav-menu">
+                <li>
+                    <a href="#aboutus">Sobre nosotros <i class="fas fa-users"></i></a>
+                </li>
+                <li>
+                    <a href="#contact">Contacto <i class="far fa-address-card"></i></a>
+                </li>
+                <div class="work-menu">
+                    <li>
+                        <a href="#form">Quiero trabajar <i class="fas fa-briefcase"></i></a>
+                        <ul class="work-menu">
+                            <li><a href="/gardener/create">Servicio de jardinería</a></li>
+                            <li><a href="/cleaning/create">Servicio doméstico</a></li>
+                            <li><a href="/caregiver/create">Cuidado de personas</a></li>
+                            <li><a href="/petwalker/create">Paseador de perros</a></li>
+                            <li><a href="/other/create">Otro</a></li>
+                        </ul>
+                    </li>
+                </div>
+                <div th:if="${#authentication.getName()} == anonymousUser" class="work-menu">
+                    <li>
+                        <a href="#form">Sección usuarios <i class="far fa-user"></i></a>
+                        <ul class="work-menu">
+                            <li><a th:href="@{/unauthorized}">Iniciar sesion <i class="fas fa-sign-in-alt"></i></a></li>
+                            <li><a th:href="@{/user/registry}">Regístrate <i class="fas fa-bars"></a></li></i>
+                        </ul>
+                    </li>
+                </div>
+                <div th:if="${#authentication.getName()} != anonymousUser" class="work-menu">
+                    <li>
+                        <a href="#"
+                            th:text="'¡Bienvenido '+' '+${T(net.logstash.logback.encoder.org.apache.commons.lang3.StringUtils).capitalize(@userServiceImpl.findByEmail(#authentication.getName()).firstName)}+'!'">
+                            <i class="far fa-smile-wink"></i></a>
+
+                        <ul class="work-menu">
+                            <li><a th:href="@{/jobs/myjobs}">Mis postulaciones<i class="fas fa-sign-in-alt"></a></li></i>
+                            <li><a th:href="@{/jobs/myjobs}">Modificar<i class="fas fa-sign-in-alt"></a></li></i>
+                            <li>
+                                <form th:action="@{/logout}" method="POST">
+                                    <button> Cerrar sesión <i class="fas fa-times"></i></button>
+                                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                </div>
+            </ul>
         </nav>
         <div class="container">
             <!-- <img src="/img/sillonliving.jpg" alt=""> -->
@@ -34,7 +83,7 @@
                 <div class="data">
                     <label for="salaryFrom"></label>
                     <input class="input" type="number" th:value="${salaryFrom}" name="salaryFrom" id="salario"
-                        placeholder="Remuneración Pretendida">
+                        placeholder="¿Cuanto desea pagar?">
                 </div>
                 <div class="data">
                     <label for="workingZone"></label>
