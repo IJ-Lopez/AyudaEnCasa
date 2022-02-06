@@ -97,7 +97,7 @@ public class S3ServiceImpl implements S3Service{
             final PutObjectRequest putObjectRequest = new PutObjectRequest(ayudaencasa, fileName, file);
             amazonS3.putObject(putObjectRequest);
             Files.delete(file.toPath()); // Remove the file locally created in the project folder
-            filePath = amazonS3.getBucketLocation(fileName);
+            filePath = amazonS3.getUrl(ayudaencasa, fileName).toString();
         } catch (AmazonServiceException e) {
             LOG.error("Error {} occurred while uploading file", e.getLocalizedMessage());
         } catch (IOException ex) {
