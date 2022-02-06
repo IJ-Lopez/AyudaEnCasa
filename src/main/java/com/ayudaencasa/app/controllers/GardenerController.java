@@ -7,6 +7,7 @@ import com.ayudaencasa.app.dto.input.SearchGardenerDTO;
 import com.ayudaencasa.app.entities.Gardener;
 import com.ayudaencasa.app.exceptions.GardenerNotFoundException;
 import com.ayudaencasa.app.services.GardenerService;
+import com.ayudaencasa.app.services.S3Service;
 import io.github.jhipster.service.filter.BooleanFilter;
 import io.github.jhipster.service.filter.DoubleFilter;
 import io.github.jhipster.service.filter.IntegerFilter;
@@ -14,6 +15,7 @@ import io.github.jhipster.service.filter.StringFilter;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.lang3.StringUtils;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,6 +36,10 @@ public class GardenerController {
 
     @Autowired
     private GardenerService gardenerService;
+    @Autowired
+    private S3Service s3service;
+     @Autowired
+    private ModelMapper modelmap;
 
     @GetMapping("/create")
     public String registry() {
@@ -45,6 +51,9 @@ public class GardenerController {
     public String create(Model model, CreateGardenerDTO inputGardener) {
         try {
             Gardener gardener = new Gardener();
+            System.out.println(inputGardener);
+            modelmap.map(inputGardener, gardener);
+            gardener.setCurriculum(s3service.save(inputGardener.getCv()));
             if (inputGardener.getWorkingHoursTo() != null) {
                 gardener.setHoursTo(inputGardener.getWorkingHoursTo());
             }

@@ -5,6 +5,7 @@ import com.ayudaencasa.app.dto.input.CreateCaregiverDTO;
 import com.ayudaencasa.app.dto.input.SearchCaregiverDTO;
 import com.ayudaencasa.app.entities.Caregiver;
 import com.ayudaencasa.app.services.CaregiverService;
+import com.ayudaencasa.app.services.S3Service;
 import io.github.jhipster.service.filter.BooleanFilter;
 import io.github.jhipster.service.filter.IntegerFilter;
 import io.github.jhipster.service.filter.StringFilter;
@@ -12,6 +13,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import net.logstash.logback.encoder.org.apache.commons.lang3.StringUtils;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,6 +36,10 @@ public class CaregiverController {
 
     @Autowired
     private CaregiverService caregiverService;
+    @Autowired
+    private S3Service s3service;
+     @Autowired
+    private ModelMapper modelmap;
 
     @GetMapping("/create")
     public String registry() {
@@ -45,13 +51,15 @@ public class CaregiverController {
     public String create(Model model, CreateCaregiverDTO inputCaregiver, @RequestParam(required = false) String ageRange) {
         try {
             Caregiver caregiver = new Caregiver();
+            System.out.println(inputCaregiver);
+            modelmap.map(inputCaregiver, caregiver);
+            caregiver.setCurriculum(s3service.save(inputCaregiver.getCv()));
             if (inputCaregiver.getWorkingHoursTo() != null) {
                 caregiver.setHoursTo(inputCaregiver.getWorkingHoursTo());
             }
             if (inputCaregiver.getWorkingHoursFrom() != null) {
                 caregiver.setHoursFrom(inputCaregiver.getWorkingHoursFrom());
             }
-            BeanUtils.copyProperties(inputCaregiver, caregiver);
             switch (ageRange) {
                 case "a":
                     caregiver.setAgeFrom(0);

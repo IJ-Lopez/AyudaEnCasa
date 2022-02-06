@@ -24,7 +24,7 @@ public class CreateCaregiverDTO {
     private Integer quantity;    
     private Integer ageFrom;   
     private Integer ageTo;
-    private MultipartFile cvs;
+    private MultipartFile cv;
     private String pic;
     private boolean cooking; 
     private boolean cleaningPeople;

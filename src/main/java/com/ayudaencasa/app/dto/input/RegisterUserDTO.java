@@ -24,6 +24,5 @@ public class RegisterUserDTO {
     private String address;
     private Long phone;
     private MultipartFile pic;
-    private MultipartFile cv;
 
 }

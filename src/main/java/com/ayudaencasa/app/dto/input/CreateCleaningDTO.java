@@ -4,6 +4,7 @@ import java.time.LocalTime;
 import java.util.List;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 
 @NoArgsConstructor
@@ -24,5 +25,6 @@ public class CreateCleaningDTO {
     private Integer hoursFrom;
     private Integer hoursTo;
     private Boolean status;
+    private MultipartFile cv;
     
 }

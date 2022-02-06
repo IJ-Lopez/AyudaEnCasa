@@ -178,7 +178,7 @@
                 <div class="blog-card">
                     <div class="photo">
                         <!-- <img th:src="@{caregiver.user.photo}" alt=""> -->
-                        <img th:src="${caregiver.user.photo != null && caregiver.user.photo != ''} ? @{caregiver.user.photo} : '/img/Jardìn/j13.jpg'" alt="User photo">  <!-- MODIFICA EL LINK DEL FINAL POR LO QUE QUIERAS, FIJATE DE INCLUIR LAS COMILLAS SIMPLES COMO SI FUESE UNA STRING DE JS-->
+                        <img th:src="${caregiver.user.photo != null && caregiver.user.photo != ''} ? ${caregiver.user.photo} : '/img/Jardìn/j13.jpg'" alt="User photo">  <!-- MODIFICA EL LINK DEL FINAL POR LO QUE QUIERAS, FIJATE DE INCLUIR LAS COMILLAS SIMPLES COMO SI FUESE UNA STRING DE JS-->
                     </div>
                     <div class="description">
                         <h1 th:text="${caregiver.user.firstName}+' '+${caregiver.user.lastName} ">nombre y apellido</h1>

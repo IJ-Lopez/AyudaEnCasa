@@ -6,12 +6,14 @@ import com.ayudaencasa.app.dto.input.SearchPetWalkerDTO;
 import com.ayudaencasa.app.entities.PetWalker;
 import com.ayudaencasa.app.exceptions.PetWalkerNotFoundException;
 import com.ayudaencasa.app.services.PetWalkerService;
+import com.ayudaencasa.app.services.S3Service;
 import io.github.jhipster.service.filter.IntegerFilter;
 import io.github.jhipster.service.filter.StringFilter;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.lang3.StringUtils;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,6 +36,10 @@ public class PetWalkerController {
 
     @Autowired
     private PetWalkerService petWalkerService;
+    @Autowired
+    private S3Service s3service;
+     @Autowired
+    private ModelMapper modelmap;
 
     @GetMapping("/create")
     public String registry() {
@@ -45,6 +51,9 @@ public class PetWalkerController {
     public String create(Model model, CreatePetWalkerDTO inputPetWalker) {
         try {
             PetWalker petWalker = new PetWalker();
+            System.out.println(inputPetWalker);
+            modelmap.map(inputPetWalker, petWalker);
+            petWalker.setCurriculum(s3service.save(inputPetWalker.getCv()));
             if (inputPetWalker.getWorkingHoursTo() != null) {
                 petWalker.setHoursTo(inputPetWalker.getWorkingHoursTo());
             }

@@ -80,7 +80,7 @@
     <div class="center">
         <div class="container">
             <div class="text">Paseador de perros</div>
-            <form th:action="@{/petwalker/create}" method="POST">
+            <form enctype="multipart/form-data" th:action="@{/petwalker/create}" method="POST">
                 <div class="data">
                     <label for="salary"></label>
                     <input type="text" th:value="${salary}" name="salary" id="salario"
@@ -166,6 +166,10 @@
                         <option value="indistinto">Indistinto </option>
                     </select>
                 </div>
+                <div class="data">
+                        <label for="cv"></label>
+                        <input class="controls" type="file" th:value="${cv}" name="cv" id="cv" placeholder="Adjuntá tu curriculum" onfocus="(this.type='file')" />
+                    </div>
                 <div class="btn">
                     <div class="inner"></div>
                     <button type="submit">enviar</button>

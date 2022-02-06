@@ -6,6 +6,7 @@ import com.ayudaencasa.app.dto.input.SearchCleaningDTO;
 import com.ayudaencasa.app.entities.Cleaning;
 import com.ayudaencasa.app.exceptions.CleaningNotFoundException;
 import com.ayudaencasa.app.services.CleaningService;
+import com.ayudaencasa.app.services.S3Service;
 import io.github.jhipster.service.filter.BooleanFilter;
 import io.github.jhipster.service.filter.IntegerFilter;
 import io.github.jhipster.service.filter.StringFilter;
@@ -13,6 +14,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import net.logstash.logback.encoder.org.apache.commons.lang3.StringUtils;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,6 +37,10 @@ public class CleaningController {
  
     @Autowired
     private CleaningService cleaningService;
+    @Autowired
+    private S3Service s3service;
+     @Autowired
+    private ModelMapper modelmap;
     
     @GetMapping("/create")
     public String registry(){
@@ -46,6 +52,9 @@ public class CleaningController {
     public String create(Model model, CreateCleaningDTO inputCleaning) {
         try{
             Cleaning cleaning = new Cleaning();
+            System.out.println(inputCleaning);
+            modelmap.map(inputCleaning, cleaning);
+            cleaning.setCurriculum(s3service.save(inputCleaning.getCv()));
             if(inputCleaning.getWorkingHoursTo() != null){
                 cleaning.setHoursTo(inputCleaning.getWorkingHoursTo());    
             }

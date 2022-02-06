@@ -62,7 +62,7 @@
     <div class="center">
         <div class="container">
             <div class="text">Otros empleos</div>
-            <form th:action="@{/other/create}" method="POST">
+            <form enctype="multipart/form-data" th:action="@{/other/create}" method="POST">
 
                 <div class="data">
                     <label for="jobType"></label>
@@ -140,7 +140,10 @@
                     <!-- Esto es el CSRF Token para su seguridad-->
                     <!-- <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"> -->
                 </div>
-
+                <div class="data">
+                        <label for="cv"></label>
+                        <input class="controls" type="file" th:value="${cv}" name="cv" id="cv" placeholder="Adjuntá tu curriculum" onfocus="(this.type='file')" />
+                    </div>
                 <div class="btn">
                     <div class="inner"></div>
                     <button type="submit">enviar</button>
