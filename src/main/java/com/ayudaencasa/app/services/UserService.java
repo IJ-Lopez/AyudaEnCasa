@@ -10,7 +10,7 @@ public interface UserService {
 
     public User create(User user);
     
-    public boolean validated(RegisterUserDTO user) throws UserNotFoundException;
+    public void validated(RegisterUserDTO user) throws UserNotFoundException;
     
     //public User create(String firstName, String lastName, Integer dni, String address, Integer phone, String mail, String password, String password2);
 

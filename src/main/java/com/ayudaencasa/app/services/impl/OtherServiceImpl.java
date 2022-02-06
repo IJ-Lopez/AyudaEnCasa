@@ -1,6 +1,7 @@
 package com.ayudaencasa.app.services.impl;
 
 import com.ayudaencasa.app.criteria.OtherCriteria;
+import com.ayudaencasa.app.dto.input.CreateOtherDTO;
 import com.ayudaencasa.app.entities.Other;
 import com.ayudaencasa.app.entities.Other_;
 import com.ayudaencasa.app.exceptions.OtherNotFoundException;
@@ -79,6 +80,28 @@ public class OtherServiceImpl extends QueryService<Other> implements OtherServic
         }
         other.setUser(userService.findByEmail(userDetails.getUsername()));
         return otherRepository.save(other);
+    }
+    
+    @Override
+    public void validated(CreateOtherDTO other) throws OtherNotFoundException {
+        if(other.getWorkingZone()== null || other.getWorkingZone().isEmpty()){
+            throw new OtherNotFoundException("La zona laboral no puede estar vacía");
+        }
+        if(other.getJobType() == null || other.getJobType().isEmpty()){
+            throw new OtherNotFoundException("El tipo de trabajo no puede estar vacío");
+        }
+        if(other.getDays() == null || other.getDays().isEmpty()){
+            throw new OtherNotFoundException("Los días laborales no pueden estar vacíos");
+        }
+        if(other.getSalary() == null){
+            throw new OtherNotFoundException("El salario no puede ser nulo");
+        }
+        if(other.getWorkingHoursFrom() == null){
+            throw new OtherNotFoundException("El horario no puede ser nulo");
+        }
+        if(other.getWorkingHoursTo() == null){
+            throw new OtherNotFoundException("El horario no puede ser nulo");
+        }       
     }
 
     @Override

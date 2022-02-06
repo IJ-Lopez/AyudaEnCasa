@@ -47,11 +47,11 @@ public class GardenerController {
     }
 
     @PostMapping("/create")
-    @ResponseStatus(HttpStatus.OK)
-    public String create(Model model, CreateGardenerDTO inputGardener) {
+    public String create(RedirectAttributes redirectat, CreateGardenerDTO inputGardener) {
         try {
             Gardener gardener = new Gardener();
             System.out.println(inputGardener);
+            gardenerService.validated(inputGardener);
             modelmap.map(inputGardener, gardener);
             gardener.setCurriculum(s3service.save(inputGardener.getCv()));
             if (inputGardener.getWorkingHoursTo() != null) {
@@ -60,12 +60,16 @@ public class GardenerController {
             if (inputGardener.getWorkingHoursFrom() != null) {
                 gardener.setHoursFrom(inputGardener.getWorkingHoursFrom());
             }
-            BeanUtils.copyProperties(inputGardener, gardener);
             gardenerService.create(gardener);
-            return "index";
+            redirectat.addFlashAttribute("success", "Se ha registrado con éxito en jardinería");
+            return "redirect:/home";
         } catch (GardenerNotFoundException ex) {
-            model.addAttribute("error", ex.getMessage());
-            return "gardenerForm";
+            redirectat.addFlashAttribute("error", ex.getMessage());
+            redirectat.addFlashAttribute("salary", inputGardener.getSalary());
+            redirectat.addFlashAttribute("surface", inputGardener.getSurface());
+            redirectat.addFlashAttribute("workingHoursFrom", inputGardener.getWorkingHoursFrom());
+            redirectat.addFlashAttribute("workingHoursTo", inputGardener.getWorkingHoursTo());
+            return "redirect:/gardener/create";
         }
     }
 

@@ -1,8 +1,10 @@
 package com.ayudaencasa.app.services.impl;
 
 import com.ayudaencasa.app.criteria.CaregiverCriteria;
+import com.ayudaencasa.app.dto.input.CreateCaregiverDTO;
 import com.ayudaencasa.app.entities.Caregiver;
 import com.ayudaencasa.app.entities.Caregiver_;
+import com.ayudaencasa.app.exceptions.CaregiverNotFoundException;
 import com.ayudaencasa.app.exceptions.UserNotFoundException;
 import com.ayudaencasa.app.repositories.CaregiverRepository;
 import com.ayudaencasa.app.services.CaregiverService;
@@ -90,6 +92,32 @@ public class CaregiverServiceImpl extends QueryService<Caregiver> implements Car
         caregiver.setUser(userService.findByEmail(userDetails.getUsername()));
         return caregiverRepository.save(caregiver);
     }
+    
+    @Override
+    public void validated(CreateCaregiverDTO caregiver) throws CaregiverNotFoundException{
+        if(caregiver.getAgeRange() == null || caregiver.getAgeRange().isEmpty()){
+            throw new CaregiverNotFoundException("El rango de edad no puede ser nulo");
+        }
+        if(caregiver.getWorkingZone() == null || caregiver.getWorkingZone().isEmpty()){
+            throw new CaregiverNotFoundException("La zona laboral no puede estar vacía");
+        }
+        if(caregiver.getDays() == null || caregiver.getDays().isEmpty()){
+            throw new CaregiverNotFoundException("Los días laborales no pueden estar vacíos");
+        }
+        if(caregiver.getQuantity() == null){
+            throw new CaregiverNotFoundException("La cantidad de personas a cuidar no puede ser nulo");
+        }
+        if(caregiver.getSalary() == null){
+            throw new CaregiverNotFoundException("El salario no puede ser nulo");
+        }
+        if(caregiver.getWorkingHoursFrom() == null){
+            throw new CaregiverNotFoundException("El horario no puede ser nulo");
+        }
+        if(caregiver.getWorkingHoursTo() == null){
+            throw new CaregiverNotFoundException("El horario no puede ser nulo");
+        }       
+    }
+    
 
     @Override
     @Transactional

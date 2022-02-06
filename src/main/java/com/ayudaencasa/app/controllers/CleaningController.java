@@ -48,11 +48,11 @@ public class CleaningController {
     }
     
     @PostMapping("/create")
-    @ResponseStatus(HttpStatus.OK)
-    public String create(Model model, CreateCleaningDTO inputCleaning) {
+    public String create(RedirectAttributes redirectat, CreateCleaningDTO inputCleaning) {
         try{
             Cleaning cleaning = new Cleaning();
             System.out.println(inputCleaning);
+            cleaningService.validated(inputCleaning);
             modelmap.map(inputCleaning, cleaning);
             cleaning.setCurriculum(s3service.save(inputCleaning.getCv()));
             if(inputCleaning.getWorkingHoursTo() != null){
@@ -61,15 +61,20 @@ public class CleaningController {
             if(inputCleaning.getWorkingHoursFrom() != null){
                 cleaning.setHoursFrom(inputCleaning.getWorkingHoursFrom());
             }
-            BeanUtils.copyProperties(inputCleaning, cleaning);
+//            BeanUtils.copyProperties(inputCleaning, cleaning);
             cleaningService.create(cleaning);
-            return "index";
+            redirectat.addFlashAttribute("success", "Se ha registrado con éxito en servicio doméstico");
+            return "redirect:/home";
         }catch (CleaningNotFoundException ex) {
-            model.addAttribute("error", ex.getMessage());
-            return "cleaningForm";
+            redirectat.addFlashAttribute("error", ex.getMessage());
+            redirectat.addFlashAttribute("salary", inputCleaning.getSalary());
+            redirectat.addFlashAttribute("rooms", inputCleaning.getRooms());
+            redirectat.addFlashAttribute("workingHoursFrom", inputCleaning.getWorkingHoursFrom());
+            redirectat.addFlashAttribute("workingHoursTo", inputCleaning.getWorkingHoursTo());
+            return "redirect:/cleaning/create";
         }    
     }
-    
+     
     @GetMapping("/list")
     public String findAll(Model model, @RequestParam(required = false) List<Cleaning> cleanings) {
         if (cleanings != null) {

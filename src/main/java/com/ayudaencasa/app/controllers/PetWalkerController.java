@@ -47,11 +47,11 @@ public class PetWalkerController {
     }
 
     @PostMapping("/create")
-    @ResponseStatus(HttpStatus.OK)
-    public String create(Model model, CreatePetWalkerDTO inputPetWalker) {
+    public String create(RedirectAttributes redirectat, CreatePetWalkerDTO inputPetWalker) {
         try {
             PetWalker petWalker = new PetWalker();
             System.out.println(inputPetWalker);
+            petWalkerService.validated(inputPetWalker);
             modelmap.map(inputPetWalker, petWalker);
             petWalker.setCurriculum(s3service.save(inputPetWalker.getCv()));
             if (inputPetWalker.getWorkingHoursTo() != null) {
@@ -62,13 +62,18 @@ public class PetWalkerController {
             }
             BeanUtils.copyProperties(inputPetWalker, petWalker);
             petWalkerService.create(petWalker);
-            return "index";
+            redirectat.addFlashAttribute("success", "Se ha registrado con éxito en paseador de mascotas");
+            return "redirect:/home";
         } catch (PetWalkerNotFoundException ex) {
-            model.addAttribute("error", ex.getMessage());
-            return "petwalkerForm";
+            redirectat.addFlashAttribute("error", ex.getMessage());
+            redirectat.addFlashAttribute("salary", inputPetWalker.getSalary());
+            redirectat.addFlashAttribute("petQuantity", inputPetWalker.getPetQuantity());
+            redirectat.addFlashAttribute("workingHoursFrom", inputPetWalker.getWorkingHoursFrom());
+            redirectat.addFlashAttribute("workingHoursTo", inputPetWalker.getWorkingHoursTo());
+            return "redirect:/petwalker/create";
         }
     }
-    
+          
     @GetMapping("/list")
     public String findAll(Model model, @RequestParam(required = false) List<PetWalker> petWalkers) {
         if(petWalkers != null){
