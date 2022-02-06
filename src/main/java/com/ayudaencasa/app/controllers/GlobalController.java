@@ -5,15 +5,25 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class GlobalController {
-    
+
     @GetMapping
-    public String index(){
+    public String index() {
+        return "redirect:/home";
+    }
+
+    @GetMapping("/login")
+    public String login() {
+        return "loginForm";
+    }
+
+    @GetMapping("/unauthorized")
+    public String unauthorized() {
         return "redirect:/home";
     }
     
-    @GetMapping("/login")
-    public String login(){
-        return "loginForm";
-    }
+//        @GetMapping("/unauthorized")
+//    public String unauthorized() {
+//        return "redirect:/home";
+//    }    
 
 }

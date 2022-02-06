@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mis publicaciones</title>
-    <!-- <link rel="stylesheet" href="/css/cardPrueba.css" /> -->
-    <link rel="stylesheet" href="/css/cardPrueba.css">
+    <link rel="stylesheet" href="/css/cardPrueba.css" />
+    <!-- <link rel="stylesheet" href="/css/cardPrueba.css"> -->
     <!--Google fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -39,39 +39,35 @@
                             <img src="/src/main/resources/static/img/Jardìn/j13.jpg" alt="">
                         </div>
                         <div class="description">
-                            <h1 th:text="${caregiver.type}">Cuidado de personas
-                            </h1>
-                            <!-- <h1 th:text="${caregiver.user.firstName}+' '+${caregiver.user.lastName}"></h1> -->
-                            <!-- <h1 th:text="${caregiver.firstName}"></h1> -->
+                            <h1>Cuidado de personas</h1>
                             <div class="mail-contact">
-                                <a href="">nombre@gmail.com</a>
+                                <p th:text="${#authentication.getName()}"> </p>
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
                         <div class="bloque-izq">
-                            <p class="thyme" th:text="'Precio: '+${caregiver.salary}">Precio: $200</p>
-                            <p class="thyme" th:text="${caregiver.workingZone}">Zona: Guaymallén</p>
-                            <p class="thyme" th:text="${caregiver.quantity}">Cantidad de personas: 2</p>
+                            <p class="thyme" th:text="'Precio: '+${caregiver.salary}"></p>
+                            <p class="thyme" th:text="'Zona: '+${caregiver.workingZone}"></p>
+                            <p class="thyme" th:text="'Cantidad de personas: '+${caregiver.quantity}"></p>
                         </div>
                         <div class="bloque-cen">
                             <p class="thyme"
                                 th:text="'Hora desde: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(caregiver.hoursFrom), 'HH:mm')}">
-                                Hora desde: 07:00hs
                             </p>
                             <p class="thyme"
                                 th:text="'Hora hasta: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(caregiver.hoursTo), 'HH:mm')}">
-                                Hora hasta: 19:00hs
                                 <th:block th:each="day : ${caregiver.days}">
-                                    <label th:text="${day} + ' '">Dias: Martes, miercoles, jueves</label>
+                                    <label th:text="${day}"></label>
                                 </th:block>
                             </p>
                         </div>
                         <div class="bloque-der">
-                            <p class="thyme" th:text="${caregiver.ageFrom}">Edad de personas: 2</p>
-                            <p class="thyme" th:text="${caregiver.cooking}">Servicio de cocina: Si</p>
-                            <p class="thyme" th:text="${caregiver.cleaningPeople}">Higiene de personas: Si</p>
-                            <p class="thyme" th:text="${caregiver.tranfering}">Servicio de traslado: Si</p>
+                            <p class="thyme" th:text="'Edad de las personas desde: '+${caregiver.ageFrom}+' años'"></p>
+                            <p class="thyme" th:text="'Servicio de cocina: '+(${caregiver.cooking}?'Si':'No')"></p>
+                            <p class="thyme"
+                                th:text="'Higiene de las personas: '+(${caregiver.cleaningPeople}?'Si':'No')"></p>
+                            <p class="thyme" th:text="'Servicio de traslado: '+(${caregiver.tranfering}?'Si':'No')"></p>
                         </div>
                     </div>
                     <div class="botones">
@@ -85,7 +81,7 @@
                         </div>
                     </div>
                 </div>
-                </th:block>
+            </th:block>
             <!--SERVICIO DOMESTICO-->
             <th:block th:if="${cleaning != null}">
                 <div class="postCard">
@@ -95,7 +91,7 @@
                             <img src="/src/main/resources/static/img/Jardìn/j13.jpg" alt="">
                         </div>
                         <div class="description">
-                            <h1 th:text="${cleaning.jobType}">Servicio domestico
+                            <!-- <h1 th:text="${cleaning.jobType}">Servicio domestico -->
                             </h1>
                             <!-- <h1 th:text="${cleaning.user.firstName}+' '+${cleaning.user.lastName}"></h1> -->
                             <!-- <h1 th:text="${cleaning.firstName}"></h1> -->
@@ -141,21 +137,16 @@
                         </div>
                     </div>
                 </div>
-                </th:block>
+            </th:block>
             <!--JARDINERO-->
             <th:block th:if="${gardener != null}">
                 <div class="postCard">
                     <div class="blog-card">
                         <div class="photo">
-                            <!-- <img th:hrefc=${gardener.user.photo} alt=""> -->
-                            <!-- <img th:if="@{gardener.user.photo} != null || @{!gardener.user.photo.isEmpty()}"
-                                    th:src="@{gardener.user.photo}" alt="">
-                                <img th:if="@{gardener.user.photo} == null || @{gardener.user.photo.isEmpty()}"
-                                    src="https://cdn.icon-icons.com/icons2/2506/PNG/512/user_icon_150670.png" alt=""> -->
                             <img src="/src/main/resources/static/img/Jardìn/j13.jpg" alt="">
                         </div>
                         <div class="description">
-                            <h1 th:text="${gardener.userjobType}">Jardinero
+                            <!-- <h1 th:text="${gardener.userjobType}">Jardinero -->
                             </h1>
                             <div class="mail-contact">
                                 <a href="#">nombre@gmail.com</a>
@@ -185,7 +176,7 @@
                             </p>
                             <p class="thyme" th:text="'Cercos: ' + ${gardener.gardenFence}">Corte de cercos: Si
                             </p>
-                            <p class="thyme" th:text="'Desinfección: ' + ${gardener.plantDesinfection}">Desinfección de
+                            <p class="thyme" th:text="'Desinfección: ' + ${gardener.plantDisinfection}">Desinfección de
                                 plantas: No
                             </p>
                         </div>
@@ -209,7 +200,7 @@
                             <img src="/src/main/resources/static/img/Jardìn/j13.jpg" alt="">
                         </div>
                         <div class="description">
-                            <h1 th:text="${other.jobType} ">Mecanico</h1>
+                            <!-- <h1 th:text="${other.jobType} ">Mecanico</h1> -->
                             <!-- <h1 th:text="${other.user.firstName}+' '+${other.user.lastName}"></h1> -->
                             <!-- <h1 th:text="${other.firstName}"></h1> -->
                             <div class="mail-contact">
@@ -261,7 +252,7 @@
                             <img src="/src/main/resources/static/img/Jardìn/j13.jpg" alt="">
                         </div>
                         <div class="description">
-                            <h1 th:text="${petwalker.userjobType}">Paseador de Perros
+                            <!-- <h1 th:text="${petwalker.userjobType}">Paseador de Perros -->
                             </h1>
                             <div class="mail-contact">
                                 <a href="#">nombre@gmail.com</a>

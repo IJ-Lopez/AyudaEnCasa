@@ -26,7 +26,7 @@
         </nav>
         <div class="container">
             <!-- <img src="/img/sillonliving.jpg" alt=""> -->
-            <img src="/src/main/resources/static/img/sillonliving.jpg" alt="">
+            <img src="/img/sillonliving.jpg" alt="">
         </div>
         <div class="filtros">
             <h3>Filtros</h3>
@@ -104,7 +104,7 @@
                 <div class="blog-card">
                     <div class="photo">
                         <!-- <img th:src="@{other.user.photo}" alt=""> -->
-                        <img src="/src/main/resources/static/img/Jardìn/j13.jpg" alt="">
+                        <img src="/img/Jardìn/j13.jpg" alt="">
                     </div>
                     <div class="description">
                         <h1 th:text="${other.user.firstName}+' '+${other.user.lastName} ">nombre y apellido</h1>
@@ -130,7 +130,7 @@
                             </p>
                         </div>
                         <div class="bloque-der">
-                            <p class="thyme" th:text="${other.jobType}">mecanico</p>
+                            <p class="thyme" th:text="${other.type}">mecanico</p>
                             <th:block th:each="day : ${other.days}">
                                 <label th:text="${day} + ' '">martes miercoles jueves</label>
                             </th:block>

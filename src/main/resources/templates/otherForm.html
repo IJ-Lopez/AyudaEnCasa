@@ -62,7 +62,7 @@
     <div class="center">
         <div class="container">
             <div class="text">Otros empleos</div>
-            <form th:action="@{/otro/create}" method="POST">
+            <form th:action="@{/other/create}" method="POST">
 
                 <div class="data">
                     <label for="jobType"></label>
@@ -138,7 +138,7 @@
                         placeholder="Hora de finalización" onfocus="(this.type='time')">
                     
                     <!-- Esto es el CSRF Token para su seguridad-->
-                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+                    <!-- <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"> -->
                 </div>
 
                 <div class="btn">

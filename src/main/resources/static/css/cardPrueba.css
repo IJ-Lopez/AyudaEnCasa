@@ -420,7 +420,7 @@ h2 {
 
 .description .mail-contact {
   text-align: start;
-  margin-top: 15px;
+  margin-top: 10px;
 }
 
 .description .mail-contact a {
@@ -451,22 +451,29 @@ h2 {
   color: #ee9e5c;
 }
 
-.mail-contact a {
+/* .mail-contact a {
   position: relative;
   margin: 1rem 0 0;
-}
+} */
 
 .mail-contact :before {
   content: "";
   position: absolute;
   height: 5px;
   background: #ee9e5c;
-  /* background: #cb997e; */
   left: -25px;
   width: 100%;
   top: 30px;
   border-radius: 3px;
 }
+
+.mail-contact p::before{
+  display: none;
+}
+/* .mail-contact p::after{
+  display: none;
+} */
+
 
 /* CARD BODY */
 

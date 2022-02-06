@@ -4,8 +4,10 @@ import com.ayudaencasa.app.dto.input.RegisterUserDTO;
 import com.ayudaencasa.app.entities.Role;
 import com.ayudaencasa.app.entities.User;
 import com.ayudaencasa.app.exceptions.UserNotFoundException;
+import com.ayudaencasa.app.repositories.RoleRepository;
 import com.ayudaencasa.app.repositories.UserRepository;
 import com.ayudaencasa.app.services.UserService;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -23,6 +25,9 @@ public class UserServiceImpl implements UserService{
     private UserRepository userRepo;
     
     @Autowired
+    private RoleRepository roleRepo;
+   
+    @Autowired
     private ModelMapper modelMapper;
     
     @Autowired
@@ -32,7 +37,7 @@ public class UserServiceImpl implements UserService{
     @Transactional
     public User create(@NonNull User user) {
         user.setPassword(encoder.encode(user.getPassword()));
-        //user.setRoles(Arrays.asList(adminRole));
+        user.setRoles(Arrays.asList(roleRepo.findByName("ROLE_USER")));
         return userRepo.save(user);
     }
     

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edición</title>
+    <!-- Style -->
+    <!-- <link rel="stylesheet" href="/css/newRegistry.css"> / -->
+    <!-- <link rel="stylesheet" href="../static/css/newRegistry.css"> -->
+    <!-- <link rel="stylesheet" href="/css/workForms.css"> -->
+    <link rel="stylesheet" href="../static/css/COPIAworkForms.css">
+    <!--Google fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Licorice&family=Pushster&family=Quicksand:wght@300&family=Spline+Sans:wght@300&display=swap" />
+    <!--Font Awesome-->
+    <script src="https://kit.fontawesome.com/83a37f8406.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <main>
+        <!--editar datos de registro-->
+        <div class="card-container">
+            <div class="card-left">
+                <div class="container">
+                    <div class="text">Regístrate</div>
+                    <form th:action="@{'/user/registry'}" method="POST" enctype="multipart/form-data">
+                        <div class="data">
+                            <label for="email"></label>
+                            <input type="text" name="email" placeholder="Email" id="" required />
+                        </div>
+                        <div class="data">
+                            <label for="password"></label>
+                            <input type="password" name="password" placeholder="Contraseña" id="clave" required />
+                            <span id="verclave" class="verclave"><i id="icono" class="fas fa-eye"></i></span>
+                        </div>
+                        <div class="data">
+                            <label for="password"></label>
+                            <input type="password" name="password2" placeholder="Repetir contraseña" id="clave"
+                                required />
+                            <span id="verclave" class="verclave"><i id="icono" class="fas fa-eye"></i></span>
+                        </div>
+                        <div class="data">
+                            <label for="firstName"></label>
+                            <input class="controls" type="text" th:value="${firstName}" name="firstName" id="nombre"
+                                placeholder="Nombre" required />
+                        </div>
+                        <div class="data">
+                            <label for="lastName"></label>
+                            <input class="controls" type="text" th:value="${lastName}" name="lastName" id="apellido"
+                                placeholder="Apellido" required />
+                        </div>
+                        <div class="data">
+                            <label for="dob"></label>
+                            <input class="controls" type="text" th:value="${dob}" name="dob" id="fechaNacimiento"
+                                pattern="yyyy-MM-dd" placeholder="Fecha de nacimiento" onfocus="(this.type='date')" />
+                        </div>
+                        <div class="data">
+                            <label for="dni"></label>
+                            <input class="controls" type="number" th:value="${dni}" name="dni" id="DNI"
+                                placeholder="Documento" required />
+                        </div>
+                        <div class="data">
+                            <label for="photo"></label>
+                            <title>foto</title>
+                            <input class="controls" type="text" th:value="${pic}" name="pic" id="foto"
+                                placeholder="Foto de perfil" onfocus="(this.type='file')" />
+                            <!-- <input type="submit" name="photo" value="Enviar imagen" /> -->
+                        </div>
+                        <div class="data">
+                            <label for="address"></label>
+                            <input class="controls" type="text" th:value="${address}" name="address" id="dirección"
+                                placeholder="Dirección" required />
+                        </div>
+                        <div class="data">
+                            <div class="departamento">
+                                <label for="departament"> </label>
+                                <select th:value="${departament}" name="departament" id="deptartamento">
+                                    <option disabled selected>Elija su departamento</option>
+                                    <option value="Capital">Capital</option>
+                                    <option value="General Alvear">General Alvear</option>
+                                    <option value="Godoy Cruz">Godoy Cruz</option>
+                                    <option value="Guaymallén">Guaymallén</option>
+                                    <option value="Junín">Junín</option>
+                                    <option value="La Paz">La Paz</option>
+                                    <option value="Las Heras">Las Heras</option>
+                                    <option value="Lavalle">Lavalle</option>
+                                    <option value="Luján de Cuyo">Luján de Cuyo</option>
+                                    <option value="Maipú">Maipú</option>
+                                    <option value="Malargüe">Malargüe</option>
+                                    <option value="Rivadavia">Rivadavia</option>
+                                    <option value="San Carlos">San Carlos</option>
+                                    <option value="San Martín">San Martín</option>
+                                    <option value="San Rafael">San Rafael</option>
+                                    <option value="Santa Rosa">Santa Rosa</option>
+                                    <option value="Tunuyán">Tunuyán</option>
+                                    <option value="Tupungato">Tupungato</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="data">
+                            <label for="phone"> </label>
+                            <input class="controls" type="tel" th:value="${phone}" name="phone" id="teléfono"
+                                placeholder="(Código de área)Número" required />
+                        </div>
+                        <!--div class="data">
+                            <label for="cv"></label>
+                            <input class="controls" type="text" th:value="${cv}" name="cv" id="cv"
+                            placeholder="Adjuntá tu curriculum" onfocus="(this.type='file')" />
+                        </div-->
+                        <div class="">
+                            <!-- Esto es el CSRF Token para su seguridad-->
+                            <!-- <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"> -->
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- editar trabajo:caregiver -->
+            <div class="card-right">
+                <div class="container">
+                    <div class="text">Cuidado de personas</div>
+                    <form th:action="@{/caregiver/create}" method="POST">
+                        <div class="data">
+                            <label for="salary"></label>
+                            <input type="text" size="50px" th:value="${salary}" name="salary" id="salario"
+                                placeholder="Remuneración Pretendida">
+                        </div>
+                        <div class="data">
+                            <label for="workingZone"></label>
+                            <select class="input" th:value="${workingZone}" name="workingZone" id="zona">
+                                <option disabled selected>Zona Laboral </option>
+                                <option value="Capital">Capital </option>
+                                <option value="General Alvear">General Alvear </option>
+                                <option value="Godoy Cruz">Godoy Cruz </option>
+                                <option value="Guaymallén">Guaymallén </option>
+                                <option value="Junín">Junín </option>
+                                <option value="La Paz">La Paz </option>
+                                <option value="Las Heras">Las Heras </option>
+                                <option value="Lavalle">Lavalle</option>
+                                <option value="Luján de Cuyo">Luján de Cuyo</option>
+                                <option value="Maipú">Maipú</option>
+                                <option value="Malargüe">Malargüe </option>
+                                <option value="Rivadavia">Rivadavia </option>
+                                <option value="San Carlos">San Carlos </option>
+                                <option value="San Martín">San Martín </option>
+                                <option value="San Rafael">San Rafael </option>
+                                <option value="Santa Rosa">Santa Rosa </option>
+                                <option value="Tunuyán">Tunuyán </option>
+                                <option value="Tupungato">Tupungato </option>
+                            </select>
+                        </div>
+                        <div class="lista">
+                            <div class="titulo">
+                                Días Laborales
+                                <label for="days"></label>
+                                <ul class="dropdown-menu" th:value="${days}" name="days">
+                                    <li>
+                                        <input type="checkbox" value="Lunes" name="days"> Lunes
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" value="Martes" name="days"> Martes
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" value="Miércoles" name="days"> Miércoles
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" value="Jueves" name="days"> Jueves
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" value="Viernes" name="days"> Viernes
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" value="Sábado" name="days"> Sábado
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" value="Domingo" name="days"> Domingo
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="data">
+                            <label for="workingHoursFrom"></label>
+                            <input class="input font" type="text" th:value="${workingHoursFrom}" name="workingHoursFrom"
+                                id="hora" placeholder="Hora de incio" onfocus="(this.type='time')">
+                        </div>
+                        <div class="data">
+                            <label for="workingHoursTo"></label>
+                            <input class="input font" type="text" th:value="${workingHoursTo}" id="hora"
+                                name="workingHoursTo" placeholder="Hora de finalización" onfocus="(this.type='time')">
+                        </div>
+                        <div class="data">
+                            <label for="quantity"></label>
+                            <input class="input font" type="number" th:value="${quantity}" name="quantity" id="cantidad"
+                                placeholder="Cantidad de personas a cuidar" min="0" max="10">
+                        </div>
+                        <div class="lista">
+                            <div class="titulo">
+                                Rango de edad
+                                <label for="ageRange"></label>
+                                <ul class="dropdown-menu" th:value="${ageRange}" name="ageRange">
+                                    <li>
+                                        <input type="checkbox" value="a" name="ageRange"> 0 a 5 años
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" value="b" name="ageRange"> 6 a 10 años
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" value="c" name="ageRange"> 11 a 18 años
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" value="d" name="ageRange"> Adultos Mayores
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" value="e" name="ageRange"> Indistinto
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="lista">
+                            <div class="titulo">
+                                Servicio de cocina
+                                <label class="dropdown-menu" for="cooking"></label>
+                                <input type="checkbox" name="cooking" th:checked="${cooking}">
+                            </div>
+                        </div>
+                        <div class="lista">
+                            <div class="titulo">
+                                Aseo de personas
+                                <label class="dropdown-menu" for="cleaningPeople"></label>
+                                <input type="checkbox" name="cleaningPeople" th:checked="${cleaningPeople}">
+                            </div>
+                        </div>
+                        <div class="lista">
+                            <div class="titulo">
+                                Servicio de transporte
+                                <label class="dropdown-menu" for="tranfering"></label>
+                                <input type="checkbox" name="tranfering" th:checked="${tranfering}">
+
+                                <!-- Esto es el CSRF Token para su seguridad
+                                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"> -->
+                            </div>
+                        </div>
+                        <div class="btn">
+                            <div class="inner"></div>
+                            <button type="submit">enviar</button>
+                        </div>
+                        <div class="goback-link">
+                            <a class="data" href="/home">Volver</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

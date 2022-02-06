@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jardinería</title>
-     <link rel="stylesheet" href="/css/cardPrueba.css"/> 
+    <link rel="stylesheet" href="/css/cardPrueba.css" />
     <!--<link rel="stylesheet" href="/src/main/resources/static/css/cardPrueba.css">-->
     <!--Google fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -23,9 +23,12 @@
     <main>
         <nav class="nav-main">
             <h1>Jardinería</h1>
+            <a href="/home">VOLVER</a>
         </nav>
+
+
         <div class="container">
-             <img src="/img/sillonliving.jpg" alt=""> 
+            <img src="/img/sillonliving.jpg" alt="">
             <!--<img src="/src/main/resources/static/img/sillonliving.jpg" alt="">-->
         </div>
         <div class="filtros">
@@ -103,9 +106,9 @@
                 <div class="lista">
                     <label for="plantDisinfection"> Desinfección de plantas</label>
                     <input type="checkbox" name="plantDisinfection" th:checked="${plantDisinfection}" id="checkbox">
-                    
+
                     <!-- Esto es el CSRF Token para su seguridad-->
-                    <!--<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">-->
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
                 </div>
                 <div class="btn">
                     <div class="inner"></div>
@@ -113,11 +116,14 @@
                 </div>
             </form>
         </div>
+
         <th:block th:each="gardener : ${gardeners}">
             <div class="card">
                 <div class="blog-card">
                     <div class="photo">
-                        <img th:src="${gardener.user.photo != null && gardener.user.photo != ''} ? @{gardener.user.photo} : 'https://t4.ftcdn.net/jpg/02/29/75/83/240_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg'" alt="User photo">  <!-- MODIFICA EL LINK DEL FINAL POR LO QUE QUIERAS, FIJATE DE INCLUIR LAS COMILLAS SIMPLES COMO SI FUESE UNA STRING DE JS-->
+                        <img th:src="${gardener.user.photo != null && gardener.user.photo != ''} ? @{gardener.user.photo} : 'https://t4.ftcdn.net/jpg/02/29/75/83/240_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg'"
+                            alt="User photo">
+                        <!-- MODIFICA EL LINK DEL FINAL POR LO QUE QUIERAS, FIJATE DE INCLUIR LAS COMILLAS SIMPLES COMO SI FUESE UNA STRING DE JS-->
                         <!--<img src="/src/main/resources/static/img/Jardìn/j13.jpg" alt="">-->
                     </div>
                     <div class="description">
@@ -125,7 +131,10 @@
                         <!-- <h1 th:text="${gardener.user.firstName}+' '+${gardener.user.lastName}"></h1> -->
                         <!-- <h1 th:text="${gardener.firstName}"></h1> -->
                         <div class="mail-contact">
-                            <a href="">nombre@gmail.com</a>
+                            <!-- <p th:text= ></th:text> -->
+                            <a th:if="${#authentication.getName()} != anonymousUser"  href="https://mail.google.com/mail/u/0/#inbox?compose=new">                              
+                                <p  th:text="${gardener.user.email}"></p>
+                            </a>
                         </div>
                     </div>
                     <div class="card-body">
@@ -147,7 +156,7 @@
                         </div>
                     </div>
                     <div class="read-more">
-                        <a href="https://wa.me/"> Contactar</a>
+                        <a th:if="${#authentication.getName()} != anonymousUser" href="https://wa.me/"> Contactar</a>
                     </div>
                 </div>
             </div>
@@ -156,3 +165,4 @@
 </body>
 
 </html>
+'Para ver los datos de contacto, inicia sesión'
