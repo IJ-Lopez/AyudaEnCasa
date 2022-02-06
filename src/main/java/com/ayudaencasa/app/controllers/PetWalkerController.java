@@ -22,6 +22,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,23 +32,32 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @Validated
-@RequestMapping ("/petwalker")
+@RequestMapping("/petwalker")
 public class PetWalkerController {
 
     @Autowired
     private PetWalkerService petWalkerService;
     @Autowired
     private S3Service s3service;
-     @Autowired
+    @Autowired
     private ModelMapper modelmap;
 
     @GetMapping("/create")
-    public String registry() {
+    public String registry(Model model, @RequestParam(required = false) String id) {
+        if (id != null) {
+            PetWalker petWalker = petWalkerService.findById(id);
+            if (petWalker != null) {
+                model.addAttribute("salary", petWalker.getSalary());
+                model.addAttribute("petQuantity", petWalker.getPetQuantity());
+            } else {
+                return "redirect:/petwalker/list";
+            }
+        }
         return "petwalkerForm";
     }
 
     @PostMapping("/create")
-    public String create(RedirectAttributes redirectat, CreatePetWalkerDTO inputPetWalker) {
+    public String create(RedirectAttributes redirectat, @ModelAttribute CreatePetWalkerDTO inputPetWalker) {
         try {
             PetWalker petWalker = new PetWalker();
             System.out.println(inputPetWalker);
@@ -73,13 +83,13 @@ public class PetWalkerController {
             return "redirect:/petwalker/create";
         }
     }
-          
+
     @GetMapping("/list")
     public String findAll(Model model, @RequestParam(required = false) List<PetWalker> petWalkers) {
-        if(petWalkers != null){
-        model.addAttribute("petwalkers", petWalkers);
+        if (petWalkers != null) {
+            model.addAttribute("petwalkers", petWalkers);
         } else {
-        model.addAttribute("petwalkers", petWalkerService.findAll());
+            model.addAttribute("petwalkers", petWalkerService.findAll());
         }
         return "petwalkerList";
     }

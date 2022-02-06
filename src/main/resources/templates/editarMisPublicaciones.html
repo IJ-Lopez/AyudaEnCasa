@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -26,7 +26,7 @@
         <div class="container">
             <div class="text">Actualiza tus datos!</div>
             
-            <form th:action="@{/user/editUser}" method="POST" th:object="${newUser}"
+            <form th:action="@{/user/editUser}" method="POST" th:object="${user}"
                         enctype="multipart/form-data">
                 
                 <input hidden th:field="*{id}"/>
@@ -40,11 +40,11 @@
                     <input type="password" name="password" th:field="*{password}" placeholder="Contraseña" id="clave" required />
                     <span id="verclave" class="verclave"><i id="icono" class="fas fa-eye"></i></span>
                 </div>
-                <div class="data">
+                <!--div class="data">
                     <label for="password"></label>
                     <input type="password" name="password2" th:field="*{password2}" placeholder="Repetir contraseña" id="clave" required />
                     <span id="verclave" class="verclave"><i id="icono" class="fas fa-eye"></i></span>
-                </div>
+                </div-->
                 <div class="data">
                     <label for="firstName"></label>
                     <input class="controls" type="text" th:field="*{firstName}" name="firstName" id="nombre"
@@ -65,19 +65,19 @@
                     <input class="controls" type="number" th:field="*{dni}" name="dni" id="DNI" placeholder="Documento"
                         required />
                 </div>
-                <div class="data">
+                <!--div class="data">
                     <label for="photo"></label>
                     <title>foto</title>
                     <input class="controls" type="text" th:field="*{pic}" name="pic" id="foto"
                         placeholder="Foto de perfil" onfocus="(this.type='file')" />
                     <!-- <input type="submit" name="photo" value="Enviar imagen" /> -->
                 </div>
-                <div class="data">
+                <!--div class="data">
                     <label for="address"></label>
                     <input class="controls" type="text" th:field="*{address}" name="address" id="dirección"
                         placeholder="Dirección" required />
                 </div>
-                <div class="data">
+                <!--div class="data">
                     <div class="departamento">
                         <label for="departament"> </label>
                         <select th:field="*{departament}" name="departament" id="deptartamento">
@@ -102,8 +102,8 @@
                             <option value="Tupungato">Tupungato</option>
                         </select>
                     </div>
-                </div>
-                <div class="data">
+                </div-->
+                <!--div class="data">
                     <label for="phone"> </label>
                     <input class="controls" type="tel" th:field="*{phone}" name="phone" id="teléfono"
                         placeholder="(Código de área)Número" required />
@@ -137,7 +137,7 @@
     <div class="center">
         <div class="container">
             <div class="text">Cuidado de personas</div>
-            <form th:action="@{/caregiver/create}" method="POST">
+            <form th:action="@{/caregiver/update}" method="POST">
                
                 <div class="data">
                     <label for="salary"></label>

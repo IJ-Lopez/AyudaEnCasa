@@ -78,6 +78,7 @@
             </div>
             <div class="text">Paseador de perros</div>
             <form enctype="multipart/form-data" th:action="@{/petwalker/create}" method="POST">
+                <input hidden th:value="${id}"/>
                 <div class="data">
                     <label for="salary"></label>
                     <input type="text" th:value="${salary}" name="salary" id="salario"

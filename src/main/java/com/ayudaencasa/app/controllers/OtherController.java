@@ -22,6 +22,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,12 +43,21 @@ public class OtherController {
     private ModelMapper modelmap;
     
     @GetMapping("/create")
-    public String registry(){
+    public String registry(Model model, @RequestParam(required = false) String id){
+        if (id != null) {
+            Other other = otherService.findById(id);
+            if (other != null) {
+                model.addAttribute("salary", other.getSalary());
+                model.addAttribute("type", other.getType());
+            } else {
+                return "redirect:/other/list";
+            }
+        }
         return "otherForm";
     }
     
     @PostMapping("/create")
-    public String create(RedirectAttributes redirectat, CreateOtherDTO inputOther) {
+    public String create(RedirectAttributes redirectat, @ModelAttribute CreateOtherDTO inputOther) {
         try{
             Other other = new Other();
             System.out.println(inputOther);

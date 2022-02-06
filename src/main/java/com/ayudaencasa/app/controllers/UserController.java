@@ -78,6 +78,8 @@ public class UserController {
                 model.addAttribute("user", user);
             }
             
+        } else {
+            model.addAttribute("user", new User());
         }
             
         
@@ -85,8 +87,8 @@ public class UserController {
     }
     
     @PostMapping("/editUser")
-    public void update(String id, @ModelAttribute User newUser) {
-        userService.update(id, newUser);
+    public void update(String id, @ModelAttribute User user) {
+        userService.update(id, user);
         
     }
     

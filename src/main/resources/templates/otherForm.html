@@ -79,7 +79,7 @@
             </div>
             <div class="text">Otros empleos</div>
             <form enctype="multipart/form-data" th:action="@{/other/create}" method="POST">
-
+                <input hidden th:value="${id}"/>
                 <div class="data">
                     <label for="jobType"></label>
                     <input type="text" th:value="${jobType}" id="tipo" name="jobType" placeholder="Tipo de trabajo">

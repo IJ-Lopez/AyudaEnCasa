@@ -23,6 +23,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -42,12 +43,21 @@ public class GardenerController {
     private ModelMapper modelmap;
 
     @GetMapping("/create")
-    public String registry() {
+    public String registry(Model model, @RequestParam(required = false) String id){
+        if (id != null) {
+            Gardener gardener = gardenerService.findById(id);
+            if (gardener != null) {
+                model.addAttribute("salary", gardener.getSalary());
+                model.addAttribute("surface", gardener.getSurface());
+            } else {
+                return "redirect:/gardener/list";
+            }
+        }
         return "gardenerForm";
     }
 
     @PostMapping("/create")
-    public String create(RedirectAttributes redirectat, CreateGardenerDTO inputGardener) {
+    public String create(RedirectAttributes redirectat, @ModelAttribute CreateGardenerDTO inputGardener) {
         try {
             Gardener gardener = new Gardener();
             System.out.println(inputGardener);

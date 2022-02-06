@@ -28,6 +28,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -49,15 +50,23 @@ public class CleaningController {
     private ModelMapper modelmap;
     
     @GetMapping("/create")
-    public String registry(){
+    public String registry(Model model, @RequestParam(required = false) String id) {
+        if (id != null) {
+            Cleaning cleaning = cleaningService.findById(id);
+            if (cleaning != null) {
+                model.addAttribute("salary", cleaning.getSalary());
+                model.addAttribute("rooms", cleaning.getRooms());
+            } else {
+                return "redirect:/cleaning/list";
+            }
+        }
         return "cleaningForm";
     }
     
     @PostMapping("/create")
-    public String create(RedirectAttributes redirectat, CreateCleaningDTO inputCleaning) {
+    public String create(RedirectAttributes redirectat, @ModelAttribute CreateCleaningDTO inputCleaning) {
         try{
             Cleaning cleaning = new Cleaning();
-            System.out.println(inputCleaning);
             cleaningService.validated(inputCleaning);
             modelmap.map(inputCleaning, cleaning);
             cleaning.setCurriculum(s3service.save(inputCleaning.getCv()));

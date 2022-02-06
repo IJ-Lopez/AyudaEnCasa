@@ -10,9 +10,9 @@ public interface CaregiverService {
 
     public Caregiver create(Caregiver caregiver);
     public void validated(CreateCaregiverDTO caregiver) throws CaregiverNotFoundException;
-    public void update(String id, Caregiver newCaregiver)throws Exception;
-    public void delete(String id)throws Exception;
-    public Caregiver findById(String id) throws Exception;
+    public void update(String id, Caregiver newCaregiver)throws CaregiverNotFoundException;
+    public void delete(String id)throws CaregiverNotFoundException;
+    public Caregiver findById(String id) throws CaregiverNotFoundException;
     public List<Caregiver> findAll();
     public List<Caregiver> findByCriteria(CaregiverCriteria caregiverCriteria);
     

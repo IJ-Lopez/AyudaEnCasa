@@ -23,6 +23,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,17 +44,26 @@ public class CaregiverController {
     private ModelMapper modelmap;
 
     @GetMapping("/create")
-    public String registry() {
+    public String registry(Model model, @RequestParam(required = false) String id){
+        if (id != null) {
+            Caregiver caregiver = caregiverService.findById(id);
+            if (caregiver != null) {
+                model.addAttribute("salary", caregiver.getSalary());
+                model.addAttribute("quantity", caregiver.getQuantity());
+            } else {
+                return "redirect:/caregiver/list";
+            }
+        }
         return "caregiverForm";
     }
-    
+        
     @PostMapping("/create")
-    public String create(RedirectAttributes redirectat, CreateCaregiverDTO inputCaregiver) {
+    public String create(RedirectAttributes redirectat, @ModelAttribute CreateCaregiverDTO inputCaregiver) {
         try {
             Caregiver caregiver = new Caregiver();
             caregiverService.validated(inputCaregiver);
             modelmap.map(inputCaregiver, caregiver);
-            caregiver.setCurriculum(s3service.save(inputCaregiver.getCv()));
+//            caregiver.setCurriculum(s3service.save(inputCaregiver.getCv()));
             if (inputCaregiver.getWorkingHoursTo() != null) {
                 caregiver.setHoursTo(inputCaregiver.getWorkingHoursTo());
             }
