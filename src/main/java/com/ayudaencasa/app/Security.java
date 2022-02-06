@@ -13,6 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -31,22 +32,25 @@ public class Security extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        SavedRequestAwareAuthenticationSuccessHandler authSucc = new SavedRequestAwareAuthenticationSuccessHandler();
+        authSucc.setUseReferer(true);
         http.headers().frameOptions().sameOrigin()
                 .and().csrf()
-                    .disable()
-//                .and()
+//                    .disable()
+                .and()
                 .sessionManagement()
                     .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
                 .and()
                     .authorizeRequests()
-                    .anyRequest()
-                    .permitAll()
+                    .antMatchers("/**/create","/unauthorized")
+                    .hasAnyRole("USER","ADMIN")
                 .and().formLogin()
+                    .successHandler(authSucc)               
                     .loginPage("/login")
                     .loginProcessingUrl("/logincheck")
                     .usernameParameter("email")
                     .passwordParameter("password")
-                    .defaultSuccessUrl("/")
+//                    .defaultSuccessUrl("/")
                     .permitAll()
                 .and().logout()
                     .logoutUrl("/logout")

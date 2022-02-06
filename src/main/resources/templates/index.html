@@ -1,179 +1,181 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title >Ayuda en casa</title>
-        <!--Css-->
-        <!--link rel="stylesheet" href="/src/main/resources/static/css/style.css"-->
-        <link rel="stylesheet" href="/css/style.css" />
-        <!--Google fonts-->
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link rel="stylesheet"
-              href="https://fonts.googleapis.com/css2?family=Licorice&family=Pushster&family=Quicksand:wght@300&family=Spline+Sans:wght@300&display=swap" />
-        <!--Font Awesome-->
-        <script src="https://kit.fontawesome.com/83a37f8406.js" crossorigin="anonymous"></script>
-    </head>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ayuda en casa</title>
+    <!--Css-->
+    <!-- <link rel="stylesheet" href="/src/main/resources/static/css/style.css" /> -->
+    <link rel="stylesheet" href="/css/style.css" />
+    <!--Google fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Licorice&family=Pushster&family=Quicksand:wght@300&family=Spline+Sans:wght@300&display=swap" />
+    <!--Font Awesome-->
+    <script src="https://kit.fontawesome.com/83a37f8406.js" crossorigin="anonymous"></script>
+</head>
 
-    <body>
-        <div class="container">
-            <nav class="nav-main" id="top">
-                <a th:href="@{'/home'}"> <h1 id="home">Ayuda en casa</h1></a>
-                <ul class="nav-menu">
-                    <!-- <li>
-                      <a href="#main">Inicio <i class="fas fa-home"></i></a>
-                    </li> -->
+<body>
+    <div class="container">
+        <nav class="nav-main" id="top">
+            <a th:href="@{'/home'}">
+                <h1 id="home">Ayuda en casa</h1>
+            </a>
+            <ul class="nav-menu">
+                <li>
+                    <a href="#aboutus">Sobre nosotros <i class="fas fa-users"></i></a>
+                </li>
+                <li>
+                    <a href="#contact">Contacto <i class="far fa-address-card"></i></a>
+                </li>
+                <div class="work-menu">
                     <li>
-                        <a href="#aboutus">Sobre nosotros <i class="fas fa-users"></i></a>
+                        <a href="#form">Quiero trabajar <i class="fas fa-briefcase"></i></a>
+                        <ul class="work-menu">
+                            <li><a href="/gardener/create">Servicio de jardinería</a></li>
+                            <li><a href="/cleaning/create">Servicio doméstico</a></li>
+                            <li><a href="/caregiver/create">Cuidado de personas</a></li>
+                            <li><a href="/petwalker/create">Paseador de perros</a></li>
+                            <li><a href="/other/create">Otro</a></li>
+                        </ul>
                     </li>
+                </div>
+                <div th:if="${#authentication.getName()} == anonymousUser" class="work-menu">
                     <li>
-                        <a href="#contact">Contacto <i class="far fa-address-card"></i></a>
+                        <a href="#form">Sección usuarios <i class="far fa-user"></i></a>
+                        <ul class="work-menu">
+                            <li><a th:href="@{/unauthorized}">Iniciar sesion <i class="fas fa-sign-in-alt"></i></a></li>
+                            <li><a th:href="@{/user/registry}">Regístrate <i class="fas fa-bars"></i></a></li>
+                        </ul>
                     </li>
-                    <div class="work-menu">
-                        <li>
-                            <!-- deberia llevar a un form lista desplegable con los registros -->
-                            <a href="#form">Quiero trabajar <i class="fas fa-briefcase"></i></a>
-                            <ul class="work-menu">
-                                <li><a href="../gardener/create">Jardinero</a></li>
-                                <li><a href="../cleaning/create">Servicio doméstico</a></li>
-                                <li><a href="../caregiver/create">Cuidado de personas</a></li>
-                                <li><a href="../petwalker/create">Paseador de perros</a></li>
-                                <li><a href="../other/create">Otro</a></li>
-                            </ul>
-                        </li>
-                    </div>
-                    <div th:if="${#authentication.getName()} == anonymousUser" class="work-menu">
-                        <li>
-                            <!-- deberia llevar a un form lista desplegable con los registros -->
-                            <a href="#form">Sección usuarios <i class="far fa-user"></i></a>
-                            <ul class="work-menu">
-                                <li><a th:href="@{/login}">Iniciar sesion <i class="fas fa-sign-in-alt"></i></a></li>
-                                <!-- <span th:text ="${#authentication.getPrincipal().getUser().getFirstName()}"></span> -->
-                                <!-- meter el condicional para el inicio de sesion -->
-                                <li><a th:href="@{/user/registry}">Regístrate <i class="fas fa-bars"></i></a></li>
-                            </ul>
-                        </li>
-                    </div>
-                    <div th:if="${#authentication.getName()} != anonymousUser" class="work-menu" id="userRegistred">
-                        <li>
-                            <div class="wellcome">
-                                <a href="#" th:text="'¡Bienvenido '+' '+${#authentication.getName()}+'!'"></a> 
-                                <i class="far fa-smile-wink"></i>
-                            </div>
-                            <!-- <p th:text="'¡Bienvenido '+' '+${#authentication.getName()}+'!'"><i class="far fa-smile-wink"></i></p> -->
-                            <ul class="work-menu">
-                                <li><a th:href="@{/jobs/myjobs}">Mis postulaciones<i class="fas fa-sign-in-alt"></i></a></li>
-                                <!-- <span th:text ="${#authentication.getPrincipal().getUser().getFirstName()}"></span> -->
-                                <!-- meter el condicional para el inicio de sesion -->
-                                <li><a th:href="@{/logout}">Cerrar sesión <i class="fas fa-times"></i></a></li>
-                            </ul>
-                        </li>
-                    </div>
-                </ul>
-            </nav>
+                </div>
+                <div th:if="${#authentication.getName()} != anonymousUser" class="work-menu">
+                    <li>
+                        <a href="#"
+                            th:text="'¡Bienvenido '+' '+${T(net.logstash.logback.encoder.org.apache.commons.lang3.StringUtils).capitalize(@userServiceImpl.findByEmail(#authentication.getName()).firstName)}+'!'">
+                            <i class="far fa-smile-wink"></i></a>
 
-            <main>
-                <!--Busqueda-->
-                <section class="otrocontainer">
-                    <header id="main" class="busqueda">
-                        <div class="cuadrobusqueda">
-                            <h2 class="h2b">¿Que desea buscar?</h2>
-                            <div class="error" th:if="${error != null}" >
-                                <a th:text="${error}"></a>
-                            </div>
-                            <form action="/home/buscar" method="POST">
-                                <input class="form" type="text" name="trabajo" id="trabajo" placeholder="Ingrese su busqueda" list="jobs-list"/>
-                                <!-- Esto es el CSRF Token para su seguridad-->
-                                <!--<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">-->
-                                <datalist id ="jobs-list">
-                                    <option value="Cuidado de personas"></option>
-                                    <option value="Jardinero"></option>
-                                    <option value="Paseador de perros"></option>
-                                    <option value="Servicio de limpieza"></option>
-                                </datalist>
-                            </form>
+                        <ul class="work-menu">
+                            <li><a th:href="@{/jobs/myjobs}">Mis postulaciones<i class="fas fa-sign-in-alt"></i></a>
+                            </li>
+                            <li><a th:href="@{/jobs/myjobs}">Modificar<i class="fas fa-sign-in-alt"></i></a></li>
+                            <li>
+                                <form th:action="@{/logout}" method="POST">
+                                    <button> Cerrar sesión <i class="fas fa-times"></i></button>
+                                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+                                </form>
+                            </li>
+
+                        </ul>
+                    </li>
+                </div>
+            </ul>
+        </nav>
+
+
+        <main>
+            <!--Busqueda-->
+            <section class="otrocontainer">
+                <header id="main" class="busqueda">
+                    <div class="cuadrobusqueda">
+                        <h2 class="h2b">¿Que desea buscar?</h2>
+                        <div class="error" th:if="${error != null}">
+                            <a th:text="${error}"></a>
                         </div>
-                    </header>
-                </section>
-                <h3 class="h3-sug">Sugerencias</h3>
-                <div class="sugerencias">
-                    <div class="hola">
-                        <img src="img/jardin.jpg" alt="imagen" />
-                        <h4>Servicios de jardineria</h4>
-                        <br>
-                        <a th:href="@{/gardener/list}">Ver más</a>
+                        <form action="/home/buscar" method="POST">
+                            <input class="form" type="text" name="trabajo" id="trabajo"
+                                placeholder="Ingrese su busqueda" list="jobs-list" />
+                            <!-- Esto es el CSRF Token para su seguridad-->
+                            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+                            <datalist id="jobs-list">
+                                <option value="Cuidado de personas"></option>
+                                <option value="Jardinero"></option>
+                                <option value="Paseador de perros"></option>
+                                <option value="Servicio de limpieza"></option>
+                            </datalist>
+                        </form>
                     </div>
-                    <div class="hola">
-                        <img src="img/Cuidador/c1.jpg" alt="imagen" />
-                        <h4>Cuidado de personas</h4>
-                        <p>
-                        </p>
-                        <a th:href="@{/caregiver/list}">Ver más</a>
-                    </div>
-                    <div class="hola">
-                        <img src="img/Limpieza/limp5(2).jpg" alt="imagen" />
-                        <h4>Limpieza de hogares</h4>
-                        <p>
-                        </p>
-                        <a th:href="@{/cleaning/list}">Ver más</a>
-                    </div>
-                    <div class="hola">
-                        <img src="img/Paseador/p10.jpg" alt="imagen" />
-                        <h4>Paseador de mascotas</h4>
-                        <p>
-                        </p>
-                        <a th:href="@{/petwalker/list}">Ver más</a>
-                    </div>
+                </header>
+            </section>
+            <h3 class="h3-sug">Sugerencias</h3>
+            <div class="sugerencias">
+                <div class="hola">
+                    <img src="img/jardin.jpg" alt="imagen" />
+                    <h4>Servicios de jardinería</h4>
+                    <br>
+                    <a th:href="@{/gardener/list}">Ver más</a>
                 </div>
-                <!--corregir enlaces-->
-                <h3 class="h3-sug">Populares</h3>
-                <div class="box">
-                    <div class="card">
-                        <a th:href="@{/petwalker/list}">
-                            <div class="imgBx">
-                                <img src="img/Paseador/p5.jpg" />
-                            </div>
-                            <div class="details">
-                                <p>Paseador</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="card">
-                        <a th:href="@{/cleaning/list}">
-                            <div class="imgBx">
-                                <img src="img/Limpieza/limp17.jpg" />
-                            </div>
-                            <div class="details">
-                                <p>Limpieza domestica</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="card">
-                        <a th:href="@{/gardener/list}">
-                            <div class="imgBx">
-                                <img src="img/Jardìn/j14.jpg" />
-                            </div>
-                            <div class="details">
-                                <p>Jardinería</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="card">
-                        <a th:href="@{/caregiver/list}">
-                            <div class="imgBx">
-                                <img src="img/Cuidador/c10.jpg"
-                                     alt="cuidado de personas" />
-                            </div>
-                            <div class="details">
-                                <p>Cuidado de personas</p>
-                            </div>
-                        </a>
-                    </div>
+                <div class="hola">
+                    <img src="img/Cuidador/c1.jpg" alt="imagen" />
+                    <h4>Cuidado de personas</h4>
+                    <p>
+                    </p>
+                    <a th:href="@{/caregiver/list}">Ver más</a>
                 </div>
-        </div>
+                <div class="hola">
+                    <img src="img/Limpieza/limp5(2).jpg" alt="imagen" />
+                    <h4>Servicio doméstico
+                    </h4>
+                    <p>
+                    </p>
+                    <a th:href="@{/cleaning/list}">Ver más</a>
+                </div>
+                <div class="hola">
+                    <img src="img/Paseador/p10.jpg" alt="imagen" />
+                    <h4>Paseador de mascotas</h4>
+                    <p>
+                    </p>
+                    <a th:href="@{/petwalker/list}">Ver más</a>
+                </div>
+            </div>
+            <!--corregir enlaces-->
+            <h3 class="h3-sug">Populares</h3>
+            <div class="box">
+                <div class="card">
+                    <a th:href="@{/petwalker/list}">
+                        <div class="imgBx">
+                            <img src="img/Paseador/p5.jpg" />
+                        </div>
+                        <div class="details">
+                            <p>Paseador</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="card">
+                    <a th:href="@{/cleaning/list}">
+                        <div class="imgBx">
+                            <img src="img/Limpieza/limp17.jpg" />
+                        </div>
+                        <div class="details">
+                            <p>Servicio doméstico</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="card">
+                    <a th:href="@{/gardener/list}">
+                        <div class="imgBx">
+                            <img src="img/Jardìn/j14.jpg" />
+                        </div>
+                        <div class="details">
+                            <p>ía</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="card">
+                    <a th:href="@{/caregiver/list}">
+                        <div class="imgBx">
+                            <img src="img/Cuidador/c10.jpg" alt="cuidado de personas" />
+                        </div>
+                        <div class="details">
+                            <p>Cuidado de personas</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+    </div>
     </main>
 
     <div class="bloque-inf">
@@ -189,23 +191,25 @@
                 <p>aca no hay nada
                 </p>
             </div>
-        </div>    
+        </div>
         <div class="contactanos">
             <h3 class="h3bis">Contactanos</h3>
-            <div class="form">
-                <form action="POST">
-                    <input type="text" placeholder="nombre"><br>
-                    <input type="text" placeholder="apellido"><br>
-                    <input type="email" placeholder="mail"><br>
-                    <textarea name="comentario" placeholder="comentario" id="comentario" cols="20" rows="5"></textarea><br>
-                    <input type="submit">
-
-                    <!-- Esto es el CSRF Token para su seguridad-->
-                    <!--<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">-->
-                </form>
-            </div>
-            <div class="img">
-                <img src="img/mail.png" alt="">
+            <div class="bloque-mail">
+                <div class="form">
+                    <form action="POST">
+                        <input type="text" placeholder="nombre"><br>
+                        <input type="text" placeholder="apellido"><br>
+                        <input type="email" placeholder="mail"><br>
+                        <textarea name="comentario" placeholder="comentario" id="comentario" cols="20"
+                            rows="5"></textarea><br>
+                        <input type="submit">
+                        <!-- Esto es el CSRF Token para su seguridad-->
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+                    </form>
+                </div>
+                <div class="img">
+                    <img src="img/mail.png" alt="">
+                </div>
             </div>
         </div>
     </div>
@@ -215,4 +219,5 @@
     </footer>
     <script src="https://unpkg.com/scrollreveal"></script>
 </body>
+
 </html>
