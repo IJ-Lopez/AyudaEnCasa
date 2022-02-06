@@ -1,6 +1,7 @@
 package com.ayudaencasa.app.services.impl;
 
 import com.ayudaencasa.app.criteria.CleaningCriteria;
+import com.ayudaencasa.app.dto.input.CreateCleaningDTO;
 import com.ayudaencasa.app.entities.Cleaning;
 import com.ayudaencasa.app.entities.Cleaning_;
 import com.ayudaencasa.app.exceptions.CleaningNotFoundException;
@@ -86,6 +87,25 @@ public class CleaningServiceImpl extends QueryService<Cleaning> implements Clean
         }
         cleaning.setUser(userService.findByEmail(userDetails.getUsername()));
         return cleaningRepository.save(cleaning);
+    }
+    
+    @Override
+    public void validated(CreateCleaningDTO cleaning) throws CleaningNotFoundException {
+        if(cleaning.getWorkingZone()== null || cleaning.getWorkingZone().isEmpty()){
+            throw new CleaningNotFoundException("La zona laboral no puede estar vacía");
+        }
+        if(cleaning.getDays() == null || cleaning.getDays().isEmpty()){
+            throw new CleaningNotFoundException("Los días laborales no pueden estar vacíos");
+        }
+        if(cleaning.getSalary() == null){
+            throw new CleaningNotFoundException("El salario no puede ser nulo");
+        }
+        if(cleaning.getWorkingHoursFrom() == null){
+            throw new CleaningNotFoundException("El horario no puede ser nulo");
+        }
+        if(cleaning.getWorkingHoursTo() == null){
+            throw new CleaningNotFoundException("El horario no puede ser nulo");
+        }       
     }
 
     @Override

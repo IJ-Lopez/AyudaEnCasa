@@ -121,6 +121,19 @@ h1 {
   color: #fafafa;
 }
 
+.fa-sign-in-alt:before {
+  /* border:20px solid red; */
+  width: auto;
+  content: "\f2bb";
+  /* content: "\f0b1"; */
+  padding: 3px;
+}
+.work menu .form {
+  border:20px solid red;
+}
+
+
+
 /*Busqueda*/
 
 .otrocontainer {

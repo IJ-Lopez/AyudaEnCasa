@@ -6,12 +6,14 @@ import com.ayudaencasa.app.dto.input.SearchOtherDTO;
 import com.ayudaencasa.app.entities.Other;
 import com.ayudaencasa.app.exceptions.OtherNotFoundException;
 import com.ayudaencasa.app.services.OtherService;
+import com.ayudaencasa.app.services.S3Service;
 import io.github.jhipster.service.filter.IntegerFilter;
 import io.github.jhipster.service.filter.StringFilter;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import net.logstash.logback.encoder.org.apache.commons.lang3.StringUtils;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,6 +36,10 @@ public class OtherController {
     
     @Autowired
     private OtherService otherService;
+    @Autowired
+    private S3Service s3service;
+     @Autowired
+    private ModelMapper modelmap;
     
     @GetMapping("/create")
     public String registry(){
@@ -41,10 +47,13 @@ public class OtherController {
     }
     
     @PostMapping("/create")
-    @ResponseStatus(HttpStatus.OK)
-    public String create(Model model, CreateOtherDTO inputOther) {
+    public String create(RedirectAttributes redirectat, CreateOtherDTO inputOther) {
         try{
             Other other = new Other();
+            System.out.println(inputOther);
+            otherService.validated(inputOther);
+            modelmap.map(inputOther, other);
+            other.setCurriculum(s3service.save(inputOther.getCv()));
             if(inputOther.getWorkingHoursTo() != null){
                 other.setHoursTo(inputOther.getWorkingHoursTo());    
             }
@@ -53,10 +62,15 @@ public class OtherController {
             }
             BeanUtils.copyProperties(inputOther, other);
             otherService.create(other);
-            return "index";
+            redirectat.addFlashAttribute("success", "Se ha registrado con éxito en jardinería");
+            return "redirect:/home";
         }catch (OtherNotFoundException ex) {
-            model.addAttribute("error", ex.getMessage());
-            return "otherForm";
+            redirectat.addFlashAttribute("error", ex.getMessage());
+            redirectat.addFlashAttribute("salary", inputOther.getSalary());
+            redirectat.addFlashAttribute("jobType", inputOther.getJobType());
+            redirectat.addFlashAttribute("workingHoursFrom", inputOther.getWorkingHoursFrom());
+            redirectat.addFlashAttribute("workingHoursTo", inputOther.getWorkingHoursTo());
+            return "redirect:/other/create";
         }    
     }
     

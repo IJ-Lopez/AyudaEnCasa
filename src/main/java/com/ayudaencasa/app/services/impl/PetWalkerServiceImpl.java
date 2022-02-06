@@ -1,6 +1,7 @@
 package com.ayudaencasa.app.services.impl;
 
 import com.ayudaencasa.app.criteria.PetWalkerCriteria;
+import com.ayudaencasa.app.dto.input.CreatePetWalkerDTO;
 import com.ayudaencasa.app.entities.PetWalker;
 import com.ayudaencasa.app.entities.PetWalker_;
 import com.ayudaencasa.app.exceptions.PetWalkerNotFoundException;
@@ -80,6 +81,25 @@ public class PetWalkerServiceImpl extends QueryService<PetWalker> implements Pet
         }
         petWalker.setUser(userService.findByEmail(userDetails.getUsername()));
         return petWalkerRepo.save(petWalker);
+    }
+    
+    @Override
+    public void validated(CreatePetWalkerDTO petWalker) throws PetWalkerNotFoundException {
+        if(petWalker.getWorkingZone()== null || petWalker.getWorkingZone().isEmpty()){
+            throw new PetWalkerNotFoundException("La zona laboral no puede estar vacía");
+        }
+        if(petWalker.getDays() == null || petWalker.getDays().isEmpty()){
+            throw new PetWalkerNotFoundException("Los días laborales no pueden estar vacíos");
+        }
+        if(petWalker.getSalary() == null){
+            throw new PetWalkerNotFoundException("El salario no puede ser nulo");
+        }
+        if(petWalker.getWorkingHoursFrom() == null){
+            throw new PetWalkerNotFoundException("El horario no puede ser nulo");
+        }
+        if(petWalker.getWorkingHoursTo() == null){
+            throw new PetWalkerNotFoundException("El horario no puede ser nulo");
+        }       
     }
     
     @Override

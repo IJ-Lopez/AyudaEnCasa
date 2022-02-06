@@ -1,6 +1,7 @@
 package com.ayudaencasa.app.services.impl;
 
 import com.ayudaencasa.app.criteria.GardenerCriteria;
+import com.ayudaencasa.app.dto.input.CreateGardenerDTO;
 import com.ayudaencasa.app.entities.Gardener;
 import com.ayudaencasa.app.entities.Gardener_;
 import com.ayudaencasa.app.exceptions.GardenerNotFoundException;
@@ -86,6 +87,25 @@ public class GardenerServiceImpl extends QueryService<Gardener> implements Garde
         }
         gardener.setUser(userService.findByEmail(userDetails.getUsername()));
         return gardenerRepository.save(gardener);
+    }
+    
+    @Override
+    public void validated(CreateGardenerDTO gardener) throws GardenerNotFoundException {
+        if(gardener.getWorkingZone()== null || gardener.getWorkingZone().isEmpty()){
+            throw new GardenerNotFoundException("La zona laboral no puede estar vacía");
+        }
+        if(gardener.getDays() == null || gardener.getDays().isEmpty()){
+            throw new GardenerNotFoundException("Los días laborales no pueden estar vacíos");
+        }
+        if(gardener.getSalary() == null){
+            throw new GardenerNotFoundException("El salario no puede ser nulo");
+        }
+        if(gardener.getWorkingHoursFrom() == null){
+            throw new GardenerNotFoundException("El horario no puede ser nulo");
+        }
+        if(gardener.getWorkingHoursTo() == null){
+            throw new GardenerNotFoundException("El horario no puede ser nulo");
+        }       
     }
 
     @Override

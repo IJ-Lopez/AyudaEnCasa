@@ -35,6 +35,5 @@ public class Caregiver extends Job implements Serializable {
     
     private Boolean tranfering;
     
-    private String curriculim;
     
 }

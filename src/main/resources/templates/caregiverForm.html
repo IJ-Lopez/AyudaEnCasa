@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="/css/workForms.css">
     <!-- <link rel="stylesheet" href="../static/css/workForms.css"> -->
     <!--Google fonts-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/index.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet"
@@ -23,45 +26,67 @@
             <h1 id="home">Ayuda en casa</h1>
         </a>
         <ul class="nav-menu">
-            <li>
-                <a href="#main">Inicio <i class="fas fa-home"></i></a>
-            </li>
-            <li>
-                <a href="#aboutus">Sobre nosotros <i class="fas fa-users"></i></a>
-            </li>
-            <li>
-                <a href="#contact">Contacto <i class="far fa-address-card"></i></a>
-            </li>
-            <div class="work-menu">
-                <li>
-                    deberia llevar a un form lista desplegable con los registros
-                    <a href="#form">Quiero trabajar <i class="fas fa-briefcase"></i></a>
-                    <ul class="work-menu">
-                        <li><a th:href="@{/gardener/create}">Jardinero</a></li>
-                        <li><a th:href="@{/cleaning/create}">Servicio doméstico</a></li>
-                        <li><a th:href="@{/caregiver/create}">Cuidado de personas</a></li>
-                        <li><a th:href="@{/petwalker/create}">Paseador de perros</a></li>
-                        <li><a th:href="@{/other/create}">Otro</a></li>
-                    </ul>
+            <!-- <li>
+                   <a href="#main">Inicio <i class="fas fa-home"></i></a>
+                 </li> -->
+                 <li>
+                    <a href="#aboutus">Sobre nosotros <i class="fas fa-users"></i></a>
                 </li>
-            </div>
-            <div class="work-menu">
                 <li>
-                    deberia llevar a un form lista desplegable con los registros
-                    <a href="#form">Sección usuarios <i class="far fa-user"></i></a>
-                    <ul class="work-menu">
-                        <li><a th:href="@{/login}">Iniciar sesion <i class="fas fa-sign-in-alt"></i></a></li>
-                        <li><a th:href="@{/user/registry}">Regístrate <i class="fas fa-bars"></i></a></li>
-                    </ul>
+                    <a href="#contact">Contacto <i class="far fa-address-card"></i></a>
                 </li>
+                <div class="work-menu">
+                    <li>
+                        <!-- deberia llevar a un form lista desplegable con los registros -->
+                        <a href="#form">Quiero trabajar <i class="fas fa-briefcase"></i></a>
+                        <ul class="work-menu">
+                            <li><a th:href="@{/gardener/create}">Jardinero</a></li>
+                            <li><a th:href="@{/cleaning/create}">Servicio doméstico</a></li>
+                            <li><a th:href="@{/caregiver/create}">Cuidado de personas</a></li>
+                            <li><a th:href="@{/petwalker/create}">Paseador de perros</a></li>
+                            <li><a th:href="@{/other/create}">Otro</a></li>
+                        </ul>
+                    </li>
+                </div>
+            <div class="work-menu">
+                <div th:if="${#authentication.getName()} != anonymousUser" class="work-menu" id="userRegistred">
+                    <li>
+                        <div class="wellcome">
+                            <a href="#" th:text="${#authentication.getName()}"><i class="far fa-smile-wink"></i></a>
+
+                        </div>
+                        <!-- <p th:text="'¡Bienvenido '+' '+${#authentication.getName()}+'!'"><i class="far fa-smile-wink"></i></p> -->
+                        <ul class="work-menu">
+                            <li><a th:href="@{/jobs/myjobs}">Mis postulaciones<i class="fas fa-sign-in-alt"></i></a>
+                            </li>
+                            <li><a th:href="@{/jobs/myjobs}">Modificar<i class="fas fa-sign-in-alt"></i></a></li>
+                            <!-- <span th:text ="${#authentication.getPrincipal().getUser().getFirstName()}"></span> -->
+                            <!-- meter el condicional para el inicio de sesion -->
+                            <li>
+                                <form th:action="@{/logout}" method="POST">
+                                    <button>Cerrar sesión <i class="fas fa-times"></i></button>
+                                </form>
+                        </ul>
+                    </li>
+                </div>
+                <!-- <li> deberia llevar a un form lista desplegable con los registros
+                        <a href="#form">Sección usuarios <i class="far fa-user"></i></a>
+                        <ul class="work-menu">
+                            <li><a th:href="@{/login}">Iniciar sesion <i class="fas fa-sign-in-alt"></i></a></li>
+                            <li><a th:href="@{/user/registry}">Regístrate <i class="fas fa-bars"></i></a></li>
+                        </ul> 
+                    </li> -->
             </div>
         </ul>
     </nav>
-
     <div class="center">
         <div class="container">
+            <div th:if="${error}" class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+                <strong th:text="${error}"></strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
             <div class="text">Cuidado de personas</div>
-            <form th:action="@{/caregiver/create}" method="POST">
+            <form enctype="multipart/form-data" th:action="@{/caregiver/create}" method="POST">
                 <div class="data">
                     <label for="salary"></label>
                     <input type="text" size="50px" th:value="${salary}" name="salary" id="salario"
@@ -97,25 +122,25 @@
                         <label for="days"></label>
                         <ul class="dropdown-menu" th:value="${days}" name="days">
                             <li>
-                                <input type="checkbox" value="Lunes" name="days"> Lunes
+                                <input id="checkbox" type="checkbox" value="Lunes" name="days"> Lunes
                             </li>
                             <li>
-                                <input type="checkbox" value="Martes" name="days"> Martes
+                                <input id="checkbox" type="checkbox" value="Martes" name="days"> Martes
                             </li>
                             <li>
-                                <input type="checkbox" value="Miércoles" name="days"> Miércoles
+                                <input id="checkbox" type="checkbox" value="Miércoles" name="days"> Miércoles
                             </li>
                             <li>
-                                <input type="checkbox" value="Jueves" name="days"> Jueves
+                                <input id="checkbox" type="checkbox" value="Jueves" name="days"> Jueves
                             </li>
                             <li>
-                                <input type="checkbox" value="Viernes" name="days"> Viernes
+                                <input id="checkbox" type="checkbox" value="Viernes" name="days"> Viernes
                             </li>
                             <li>
-                                <input type="checkbox" value="Sábado" name="days"> Sábado
+                                <input id="checkbox" type="checkbox" value="Sábado" name="days"> Sábado
                             </li>
                             <li>
-                                <input type="checkbox" value="Domingo" name="days"> Domingo
+                                <input id="checkbox" type="checkbox" value="Domingo" name="days"> Domingo
                             </li>
                         </ul>
                     </div>
@@ -141,19 +166,19 @@
                         <label for="ageRange"></label>
                         <ul class="dropdown-menu" th:value="${ageRange}" name="ageRange">
                             <li>
-                                <input type="checkbox" value="a" name="ageRange"> 0 a 5 años
+                                <input id="checkbox" type="checkbox" value="a" name="ageRange"> 0 a 5 años
                             </li>
                             <li>
-                                <input type="checkbox" value="b" name="ageRange"> 6 a 10 años
+                                <input id="checkbox" type="checkbox" value="b" name="ageRange"> 6 a 10 años
                             </li>
                             <li>
-                                <input type="checkbox" value="c" name="ageRange"> 11 a 18 años
+                                <input id="checkbox" type="checkbox" value="c" name="ageRange"> 11 a 18 años
                             </li>
                             <li>
-                                <input type="checkbox" value="d" name="ageRange"> Adultos Mayores
+                                <input id="checkbox" type="checkbox" value="d" name="ageRange"> Adultos Mayores
                             </li>
                             <li>
-                                <input type="checkbox" value="e" name="ageRange"> Indistinto
+                                <input id="checkbox" type="checkbox" value="e" name="ageRange"> Indistinto
                             </li>
                         </ul>
                     </div>
@@ -162,26 +187,30 @@
                     <div class="titulo">
                         Servicio de cocina
                         <label class="dropdown-menu" for="cooking"></label>
-                        <input type="checkbox" name="cooking" th:checked="${cooking}">  
+                        <input id="checkbox" type="checkbox" name="cooking" th:checked="${cooking}">  
                     </div>
                 </div>
                 <div class="lista">
                     <div class="titulo">
                         Aseo de personas
                         <label class="dropdown-menu" for="cleaningPeople"></label>
-                        <input type="checkbox" name="cleaningPeople" th:checked="${cleaningPeople}">
+                        <input id="checkbox" type="checkbox" name="cleaningPeople" th:checked="${cleaningPeople}">
                     </div>
                 </div>
                 <div class="lista">
                     <div class="titulo">
                         Servicio de transporte
                         <label class="dropdown-menu" for="tranfering"></label>
-                        <input type="checkbox" name="tranfering" th:checked="${tranfering}">
+                        <input id="checkbox" type="checkbox" name="tranfering" th:checked="${tranfering}">
                         
                         <!-- Esto es el CSRF Token para su seguridad-->
                         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
                     </div>
                 </div>
+                <div class="data">
+                        <label for="cv"></label>
+                        <input class="controls" type="file" th:value="${cv}" name="cv" id="cv" placeholder="Adjuntá tu curriculum" onfocus="(this.type='file')" />
+                    </div>
                 <div class="btn">
                     <div class="inner"></div>
                     <button type="submit">enviar</button>

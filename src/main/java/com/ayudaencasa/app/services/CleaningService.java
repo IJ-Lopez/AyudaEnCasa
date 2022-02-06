@@ -1,6 +1,7 @@
 package com.ayudaencasa.app.services;
 
 import com.ayudaencasa.app.criteria.CleaningCriteria;
+import com.ayudaencasa.app.dto.input.CreateCleaningDTO;
 import com.ayudaencasa.app.entities.Cleaning;
 import com.ayudaencasa.app.exceptions.CleaningNotFoundException;
 import java.util.List;
@@ -10,6 +11,8 @@ import org.springframework.stereotype.Service;
 public interface CleaningService {
 
     public Cleaning create(Cleaning cleaning);
+    
+    public void validated(CreateCleaningDTO cleaning) throws CleaningNotFoundException;
            
     public void update(String id, Cleaning cleaning);
     

@@ -6,12 +6,14 @@ import com.ayudaencasa.app.dto.input.SearchPetWalkerDTO;
 import com.ayudaencasa.app.entities.PetWalker;
 import com.ayudaencasa.app.exceptions.PetWalkerNotFoundException;
 import com.ayudaencasa.app.services.PetWalkerService;
+import com.ayudaencasa.app.services.S3Service;
 import io.github.jhipster.service.filter.IntegerFilter;
 import io.github.jhipster.service.filter.StringFilter;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.lang3.StringUtils;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,6 +36,10 @@ public class PetWalkerController {
 
     @Autowired
     private PetWalkerService petWalkerService;
+    @Autowired
+    private S3Service s3service;
+     @Autowired
+    private ModelMapper modelmap;
 
     @GetMapping("/create")
     public String registry() {
@@ -41,10 +47,13 @@ public class PetWalkerController {
     }
 
     @PostMapping("/create")
-    @ResponseStatus(HttpStatus.OK)
-    public String create(Model model, CreatePetWalkerDTO inputPetWalker) {
+    public String create(RedirectAttributes redirectat, CreatePetWalkerDTO inputPetWalker) {
         try {
             PetWalker petWalker = new PetWalker();
+            System.out.println(inputPetWalker);
+            petWalkerService.validated(inputPetWalker);
+            modelmap.map(inputPetWalker, petWalker);
+            petWalker.setCurriculum(s3service.save(inputPetWalker.getCv()));
             if (inputPetWalker.getWorkingHoursTo() != null) {
                 petWalker.setHoursTo(inputPetWalker.getWorkingHoursTo());
             }
@@ -53,13 +62,18 @@ public class PetWalkerController {
             }
             BeanUtils.copyProperties(inputPetWalker, petWalker);
             petWalkerService.create(petWalker);
-            return "index";
+            redirectat.addFlashAttribute("success", "Se ha registrado con éxito en paseador de mascotas");
+            return "redirect:/home";
         } catch (PetWalkerNotFoundException ex) {
-            model.addAttribute("error", ex.getMessage());
-            return "petwalkerForm";
+            redirectat.addFlashAttribute("error", ex.getMessage());
+            redirectat.addFlashAttribute("salary", inputPetWalker.getSalary());
+            redirectat.addFlashAttribute("petQuantity", inputPetWalker.getPetQuantity());
+            redirectat.addFlashAttribute("workingHoursFrom", inputPetWalker.getWorkingHoursFrom());
+            redirectat.addFlashAttribute("workingHoursTo", inputPetWalker.getWorkingHoursTo());
+            return "redirect:/petwalker/create";
         }
     }
-    
+          
     @GetMapping("/list")
     public String findAll(Model model, @RequestParam(required = false) List<PetWalker> petWalkers) {
         if(petWalkers != null){

@@ -63,7 +63,7 @@ public abstract class Job implements Serializable {
     protected Integer hoursFrom;
     protected Integer hoursTo;
     protected Boolean status;  
-    protected String cv;
+    protected String curriculum;
     
     protected Boolean showContactInfo;
     

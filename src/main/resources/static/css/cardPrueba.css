@@ -18,9 +18,46 @@ body {
 }
 
 /* BARRA DE NAVEGACION SUPERIOR */
+body {
+  background-color: #dadada;
+  font-size: 17px;
+  color: rgb(122, 115, 115);
+  color: #044e64;
+  height: auto;
+  width: 100%;
+}
 
+a {
+  color: #fafafa;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+.container {
+  margin: auto;
+}
+
+.containercito {
+  margin: auto;
+  margin-top: 100px;
+}
 .nav-main {
   top: 0px;
+  background-color: #cb997e;
+  font-size: 15px;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 5em;
+  padding: 20px 10px;
+  margin-bottom: 100px;
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+/*   top: 0px;
   font-size: 15px;
   display: inline-flex;
   justify-content: space-between;
@@ -34,9 +71,34 @@ body {
   color: black;
   background-color: #cb997e;
   height: 5em;
-  margin: auto;
+  margin: auto; */
+}
+.work-menu li a {
+  display: block;
 }
 
+.work-menu > li {
+  float: inline-start;
+  padding: 17px !important;
+}
+
+.work-menu li ul {
+  text-align: left;
+  display: none;
+  position: absolute;
+  width: auto;
+}
+
+.work-menu li:hover > ul {
+  display: block;
+  width: auto;
+  background-color: #cb997e;
+  border-radius: 0px 0px 20px 20px;
+}
+
+.work-menu li button{
+  background: none;
+}
 h1 {
   font-family: "Licorice", cursive;
   font-size: 60px;
@@ -47,6 +109,75 @@ h1 {
   font-weight: 500;
   letter-spacing: 2px;
 }
+/*NAV LEFT*/
+.nav-main ul {
+  display: flex;
+}
+
+.nav-main ul li {
+  padding: 15px;
+}
+
+.nav-main ul li a {
+  padding: 5px;
+}
+
+.nav-main ul li a:hover {
+  border-bottom: 2px solid #fafafa;
+  padding: 5px;
+  transition: 0.2s;
+}
+
+.nav-main ul li p:hover {
+  border-bottom: 2px solid #fafafa;
+  padding: 5px;
+  transition: 0.2s;
+}
+
+.nav-main ul.nav-menu {
+  align-items: center;
+}
+
+.work-menu p {
+  color: #fafafa;
+}
+
+.fa-sign-in-alt:before {
+  /* border:20px solid red; */
+  width: auto;
+  content: "\f2bb";
+  /* content: "\f0b1"; */
+  padding: 3px;
+}
+.work menu .form {
+  border:20px solid red;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* CONTAINER QUE TIENE SOLO LA FOTO DE FONDO */
 .container {
   position: relative;

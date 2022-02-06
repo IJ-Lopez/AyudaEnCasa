@@ -31,56 +31,30 @@ public class UserController {
     
     @Autowired
     private UserService userService;
-     @Autowired
+    
+    @Autowired
     private S3Service s3service;
-     @Autowired
+    
+    @Autowired
     private ModelMapper modelmap;
-     
-//     @Autowired
-//     RedirectAttributes redirectat;
             
     @GetMapping("/registry")
-
     public String registry(){
         return "registryForm";
     }
     
-//    @PostMapping("/form")
-//    @PostMapping(value ="/form", consumes =MediaType.APPLICATION_JSON_VALUE, produces =MediaType.APPLICATION_JSON_VALUE)
-//    @ResponseStatus(HttpStatus.OK)
-//    public String create(@RequestBody User inputUser) {
-//        try{
-//            User user = new User();
-//            BeanUtils.copyProperties(inputUser, user);
-//            userService.created(user);
-//            return "index.html";
-//        }catch(UserNotFoundException ex){
-//            System.out.println(ex.getMessage());
-//            return "/registro";
-//        }
-//    }
-//    @PostMapping(path = "/form", consumes = "application/json")
-//    public String test(@RequestBody User user) {
-//      return user.toString();
-//    }
-
-//    @PostMapping(path ="/form", consumes = "application/x-www-form-urlencoded", produces =MediaType.APPLICATION_JSON_VALUE)
-//    public String testh(@RequestBody User user) {
-//      return user.toString();
-//    }
- 
     @PostMapping("/registry")
     public String create(RedirectAttributes redirectat, RegisterUserDTO inputUser) {
         try{
             System.out.println(inputUser);
             User user = new User();
-            boolean valid = userService.validated(inputUser);
-            if(valid){
+            userService.validated(inputUser);
             modelmap.map(inputUser, user);
             user.setAddress(inputUser.getAddress() + " - " + inputUser.getDepartament());
-            user.setPhoto(s3service.save(inputUser.getPic()));
-            userService.create(user);
+            if(inputUser.getPic() != null && !inputUser.getPic().isEmpty()){
+                user.setPhoto(s3service.save(inputUser.getPic()));
             }
+            userService.create(user);
             redirectat.addFlashAttribute("success", "Se ha registrado con éxito");
             return "redirect:/home";
         } catch (UserNotFoundException ex) {

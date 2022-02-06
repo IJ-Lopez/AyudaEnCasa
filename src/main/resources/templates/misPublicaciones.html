@@ -91,12 +91,9 @@
                             <img src="/src/main/resources/static/img/Jardìn/j13.jpg" alt="">
                         </div>
                         <div class="description">
-                            <!-- <h1 th:text="${cleaning.jobType}">Servicio domestico -->
-                            </h1>
-                            <!-- <h1 th:text="${cleaning.user.firstName}+' '+${cleaning.user.lastName}"></h1> -->
-                            <!-- <h1 th:text="${cleaning.firstName}"></h1> -->
+                            <h1>Servicio Domestico</h1>
                             <div class="mail-contact">
-                                <a href="">nombre@gmail.com</a>
+                                <p th:text="${#authentication.getName()}"> </p>
                             </div>
                         </div>
                     </div>
@@ -145,14 +142,14 @@
                         <div class="photo">
                             <img src="/src/main/resources/static/img/Jardìn/j13.jpg" alt="">
                         </div>
-                        <div class="description">
-                            <!-- <h1 th:text="${gardener.userjobType}">Jardinero -->
-                            </h1>
-                            <div class="mail-contact">
-                                <a href="#">nombre@gmail.com</a>
-                            </div>
+                    </div>
+                    <div class="description">
+                        <h1>Jardinero</h1>
+                        <div class="mail-contact">
+                            <p th:text="${#authentication.getName()}"> </p>
                         </div>
                     </div>
+                </div>
                     <div class="card-body">
                         <div class="bloque-izq">
                             <p class="thyme" th:text="'Precio: '+ ${gardener.salary}">precio: $199</p>
@@ -200,13 +197,12 @@
                             <img src="/src/main/resources/static/img/Jardìn/j13.jpg" alt="">
                         </div>
                         <div class="description">
-                            <!-- <h1 th:text="${other.jobType} ">Mecanico</h1> -->
-                            <!-- <h1 th:text="${other.user.firstName}+' '+${other.user.lastName}"></h1> -->
-                            <!-- <h1 th:text="${other.firstName}"></h1> -->
+                            <h1>Otros empleos</h1>
                             <div class="mail-contact">
-                                <a href="">nombre@gmail.com</a>
+                                <p th:text="${#authentication.getName()}"> </p>
                             </div>
                         </div>
+                    </div>
                         <div class="card-body">
                             <div class="bloque-izq">
                                 <p class="thyme" th:text="${other.salary}"> precio: $200</p>
@@ -252,10 +248,9 @@
                             <img src="/src/main/resources/static/img/Jardìn/j13.jpg" alt="">
                         </div>
                         <div class="description">
-                            <!-- <h1 th:text="${petwalker.userjobType}">Paseador de Perros -->
-                            </h1>
+                            <h1>Paseador de perros</h1>
                             <div class="mail-contact">
-                                <a href="#">nombre@gmail.com</a>
+                                <p th:text="${#authentication.getName()}"> </p>
                             </div>
                         </div>
                     </div>
