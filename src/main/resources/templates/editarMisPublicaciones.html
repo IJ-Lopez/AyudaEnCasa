@@ -25,58 +25,62 @@
     <div class="center">
         <div class="container">
             <div class="text">Actualiza tus datos!</div>
-            <form th:action="@{/user/editUser}" method="POST" enctype="multipart/form-data">
+            
+            <form th:action="@{/user/editUser}" method="POST" th:object="${newUser}"
+                        enctype="multipart/form-data">
+                
+                <input hidden th:field="*{id}"/>
                 <div class="data">
                     <label for="email"></label>
-                    <input type="text" name="email" placeholder="Email" id="" required />
+                    <input type="text" name="email" th:field="*{email}" placeholder="Email" id="" required />
                                         
                 </div>
                 <div class="data">
                     <label for="password"></label>
-                    <input type="password" name="password" placeholder="Contraseña" id="clave" required />
+                    <input type="password" name="password" th:field="*{password}" placeholder="Contraseña" id="clave" required />
                     <span id="verclave" class="verclave"><i id="icono" class="fas fa-eye"></i></span>
                 </div>
                 <div class="data">
                     <label for="password"></label>
-                    <input type="password" name="password2" placeholder="Repetir contraseña" id="clave" required />
+                    <input type="password" name="password2" th:field="*{password2}" placeholder="Repetir contraseña" id="clave" required />
                     <span id="verclave" class="verclave"><i id="icono" class="fas fa-eye"></i></span>
                 </div>
                 <div class="data">
                     <label for="firstName"></label>
-                    <input class="controls" type="text" th:value="${firstName}" name="firstName" id="nombre"
+                    <input class="controls" type="text" th:field="*{firstName}" name="firstName" id="nombre"
                         placeholder="Nombre" required />
                 </div>
                 <div class="data">
                     <label for="lastName"></label>
-                    <input class="controls" type="text" th:value="${lastName}" name="lastName" id="apellido"
+                    <input class="controls" type="text" th:field="*{lastName}" name="lastName" id="apellido"
                         placeholder="Apellido" required />
                 </div>
                 <div class="data">
                     <label for="dob"></label>
-                    <input class="controls" type="text" th:value="${dob}" name="dob" id="fechaNacimiento"
+                    <input class="controls" type="text" th:field="*{dob}" name="dob" id="fechaNacimiento"
                         pattern="yyyy-MM-dd" placeholder="Fecha de nacimiento" onfocus="(this.type='date')" />
                 </div>
                 <div class="data">
                     <label for="dni"></label>
-                    <input class="controls" type="number" th:value="${dni}" name="dni" id="DNI" placeholder="Documento"
+                    <input class="controls" type="number" th:field="*{dni}" name="dni" id="DNI" placeholder="Documento"
                         required />
                 </div>
                 <div class="data">
                     <label for="photo"></label>
                     <title>foto</title>
-                    <input class="controls" type="text" th:value="${pic}" name="pic" id="foto"
+                    <input class="controls" type="text" th:field="*{pic}" name="pic" id="foto"
                         placeholder="Foto de perfil" onfocus="(this.type='file')" />
                     <!-- <input type="submit" name="photo" value="Enviar imagen" /> -->
                 </div>
                 <div class="data">
                     <label for="address"></label>
-                    <input class="controls" type="text" th:value="${address}" name="address" id="dirección"
+                    <input class="controls" type="text" th:field="*{address}" name="address" id="dirección"
                         placeholder="Dirección" required />
                 </div>
                 <div class="data">
                     <div class="departamento">
                         <label for="departament"> </label>
-                        <select th:value="${departament}" name="departament" id="deptartamento">
+                        <select th:field="*{departament}" name="departament" id="deptartamento">
                             <option disabled selected>Elija su departamento</option>
                             <option value="Capital">Capital</option>
                             <option value="General Alvear">General Alvear</option>
@@ -101,7 +105,7 @@
                 </div>
                 <div class="data">
                     <label for="phone"> </label>
-                    <input class="controls" type="tel" th:value="${phone}" name="phone" id="teléfono"
+                    <input class="controls" type="tel" th:field="*{phone}" name="phone" id="teléfono"
                         placeholder="(Código de área)Número" required />
                 </div>
                 <!--div class="data">
@@ -134,6 +138,7 @@
         <div class="container">
             <div class="text">Cuidado de personas</div>
             <form th:action="@{/caregiver/create}" method="POST">
+               
                 <div class="data">
                     <label for="salary"></label>
                     <input type="text" size="50px" th:value="${salary}" name="salary" id="salario"

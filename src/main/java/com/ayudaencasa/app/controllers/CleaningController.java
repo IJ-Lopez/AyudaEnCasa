@@ -237,8 +237,8 @@ public class CleaningController {
             throw new RuntimeException("Logeate capo");
         }
         userDetails = (UserDetails)auth.getPrincipal();
-        User user = userService.findByEmail(userDetails.getUsername());
-        newCleaning = cleaningService.findById(user.getId());
+       // User user = userService.findByEmail(userDetails.getUsername());
+       //newCleaning = cleaningService.findById(user.getId());
         if(newCleaning!=null){
             
         cleaningService.update(id, newCleaning);
