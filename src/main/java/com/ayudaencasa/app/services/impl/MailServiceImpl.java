@@ -14,9 +14,9 @@ public class MailServiceImpl implements MailService {
     private JavaMailSender javaMailSender;
     
     @Override
-    public void sendMail(String addressee, String subject, String message){
+    public void sendMail(String email, String subject, String message){
         SimpleMailMessage smm = new SimpleMailMessage();
-        smm.setTo(addressee);
+        smm.setTo(email);
         smm.setSubject(subject);
         smm.setText(message);
         javaMailSender.send(smm);

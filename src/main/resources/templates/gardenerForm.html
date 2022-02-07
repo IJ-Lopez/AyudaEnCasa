@@ -79,6 +79,7 @@
             </div>
             <div class="text">Jardinero</div>
             <form enctype="multipart/form-data" th:action="@{/gardener/create}" method="POST">
+                <input hidden th:value="${id}"  name="id"/>
                 <div class="data">
                     <label for="salary"></label>
                     <input type="text" size="50px" th:value="${salary}" name="salary" id="salario"

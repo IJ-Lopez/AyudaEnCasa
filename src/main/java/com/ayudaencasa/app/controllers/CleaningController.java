@@ -54,6 +54,7 @@ public class CleaningController {
         if (id != null) {
             Cleaning cleaning = cleaningService.findById(id);
             if (cleaning != null) {
+                model.addAttribute("id", id);
                 model.addAttribute("salary", cleaning.getSalary());
                 model.addAttribute("rooms", cleaning.getRooms());
             } else {
@@ -64,7 +65,7 @@ public class CleaningController {
     }
     
     @PostMapping("/create")
-    public String create(RedirectAttributes redirectat, @ModelAttribute CreateCleaningDTO inputCleaning) {
+    public String create(RedirectAttributes redirectat, CreateCleaningDTO inputCleaning) {
         try{
             Cleaning cleaning = new Cleaning();
             cleaningService.validated(inputCleaning);
@@ -76,12 +77,17 @@ public class CleaningController {
             if(inputCleaning.getWorkingHoursFrom() != null){
                 cleaning.setHoursFrom(inputCleaning.getWorkingHoursFrom());
             }
-//            BeanUtils.copyProperties(inputCleaning, cleaning);
-            cleaningService.create(cleaning);
-            redirectat.addFlashAttribute("success", "Se ha registrado con éxito en servicio doméstico");
+            if (inputCleaning.getId() != null) {
+                update(inputCleaning.getId(), cleaning);
+                redirectat.addFlashAttribute("success", "Se ha modificado con éxito en servicio doméstico");
+            } else {
+                cleaningService.create(cleaning);
+                redirectat.addFlashAttribute("success", "Se ha registrado con éxito en servicio doméstico");
+            }
             return "redirect:/home";
         }catch (CleaningNotFoundException ex) {
             redirectat.addFlashAttribute("error", ex.getMessage());
+            redirectat.addFlashAttribute("id", inputCleaning.getId());
             redirectat.addFlashAttribute("salary", inputCleaning.getSalary());
             redirectat.addFlashAttribute("rooms", inputCleaning.getRooms());
             redirectat.addFlashAttribute("workingHoursFrom", inputCleaning.getWorkingHoursFrom());
@@ -231,27 +237,9 @@ public class CleaningController {
         return cleaningCriteria;
     }
     
-    @GetMapping("/EditCleaning")
-    public String editarClear(){
-      //  User user= userService.
-        return "editarMisPublicaciones";
-        
-    }
-
-    @PostMapping("/updateCleaning")
-    public void update(@PathVariable String id, Cleaning newCleaning) {
-         UserDetails userDetails;
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth instanceof AnonymousAuthenticationToken) {
-            throw new RuntimeException("Logeate capo");
-        }
-        userDetails = (UserDetails)auth.getPrincipal();
-       // User user = userService.findByEmail(userDetails.getUsername());
-       //newCleaning = cleaningService.findById(user.getId());
-        if(newCleaning!=null){
-            
-        cleaningService.update(id, newCleaning);
-        }
+    @PostMapping("")
+    public void update(@RequestParam String id, Cleaning newCleaning) { 
+        cleaningService.update(id, newCleaning);     
     }
 
     @PostMapping("/delete")

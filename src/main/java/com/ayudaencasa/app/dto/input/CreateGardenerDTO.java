@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 @NoArgsConstructor
 public class CreateGardenerDTO {
 
+    private String id;
     private String surface;
     private boolean tools;
     private boolean poolCleaning;

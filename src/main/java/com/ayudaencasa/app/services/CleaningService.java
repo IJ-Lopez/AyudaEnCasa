@@ -14,7 +14,7 @@ public interface CleaningService {
     
     public void validated(CreateCleaningDTO cleaning) throws CleaningNotFoundException;
            
-    public void update(String id, Cleaning cleaning);
+    public void update(String id, Cleaning cleaning) throws CleaningNotFoundException;
     
     public void delete(String id) throws CleaningNotFoundException;
     

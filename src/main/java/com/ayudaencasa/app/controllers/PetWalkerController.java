@@ -47,6 +47,7 @@ public class PetWalkerController {
         if (id != null) {
             PetWalker petWalker = petWalkerService.findById(id);
             if (petWalker != null) {
+                model.addAttribute("id", id);
                 model.addAttribute("salary", petWalker.getSalary());
                 model.addAttribute("petQuantity", petWalker.getPetQuantity());
             } else {
@@ -57,7 +58,7 @@ public class PetWalkerController {
     }
 
     @PostMapping("/create")
-    public String create(RedirectAttributes redirectat, @ModelAttribute CreatePetWalkerDTO inputPetWalker) {
+    public String create(RedirectAttributes redirectat, CreatePetWalkerDTO inputPetWalker) {
         try {
             PetWalker petWalker = new PetWalker();
             System.out.println(inputPetWalker);
@@ -70,12 +71,17 @@ public class PetWalkerController {
             if (inputPetWalker.getWorkingHoursFrom() != null) {
                 petWalker.setHoursFrom(inputPetWalker.getWorkingHoursFrom());
             }
-            BeanUtils.copyProperties(inputPetWalker, petWalker);
-            petWalkerService.create(petWalker);
-            redirectat.addFlashAttribute("success", "Se ha registrado con éxito en paseador de mascotas");
+            if (inputPetWalker.getId() != null) {
+                update(inputPetWalker.getId(), petWalker);
+                redirectat.addFlashAttribute("success", "Se ha modificado con éxito en paseador de mascotas");
+            } else {
+                petWalkerService.create(petWalker);
+                redirectat.addFlashAttribute("success", "Se ha registrado con éxito en paseador de mascotas");
+            }
             return "redirect:/home";
         } catch (PetWalkerNotFoundException ex) {
             redirectat.addFlashAttribute("error", ex.getMessage());
+            redirectat.addFlashAttribute("id", inputPetWalker.getId());
             redirectat.addFlashAttribute("salary", inputPetWalker.getSalary());
             redirectat.addFlashAttribute("petQuantity", inputPetWalker.getPetQuantity());
             redirectat.addFlashAttribute("workingHoursFrom", inputPetWalker.getWorkingHoursFrom());
@@ -189,7 +195,7 @@ public class PetWalkerController {
         petWalkerService.delete(id);
     }
 
-    @PostMapping("/update")
+    @PostMapping("")
     public void update(String id, PetWalker newPetWalker) {
         petWalkerService.update(id, newPetWalker);
 

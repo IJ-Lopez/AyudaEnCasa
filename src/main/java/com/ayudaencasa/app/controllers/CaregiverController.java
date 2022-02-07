@@ -40,14 +40,15 @@ public class CaregiverController {
     private CaregiverService caregiverService;
     @Autowired
     private S3Service s3service;
-     @Autowired
+    @Autowired
     private ModelMapper modelmap;
 
     @GetMapping("/create")
-    public String registry(Model model, @RequestParam(required = false) String id){
+    public String registry(Model model, @RequestParam(required = false) String id) {
         if (id != null) {
             Caregiver caregiver = caregiverService.findById(id);
             if (caregiver != null) {
+                model.addAttribute("id", id);
                 model.addAttribute("salary", caregiver.getSalary());
                 model.addAttribute("quantity", caregiver.getQuantity());
             } else {
@@ -56,9 +57,9 @@ public class CaregiverController {
         }
         return "caregiverForm";
     }
-        
+
     @PostMapping("/create")
-    public String create(RedirectAttributes redirectat, @ModelAttribute CreateCaregiverDTO inputCaregiver) {
+    public String create(RedirectAttributes redirectat, CreateCaregiverDTO inputCaregiver) {
         try {
             Caregiver caregiver = new Caregiver();
             caregiverService.validated(inputCaregiver);
@@ -91,11 +92,17 @@ public class CaregiverController {
                     caregiver.setAgeFrom(0);
                     caregiver.setAgeTo(100);
             }
-            caregiverService.create(caregiver);
-            redirectat.addFlashAttribute("success", "Se ha registrado con éxito en cuidado de personas");
+            if (inputCaregiver.getId() != null) {
+                update(inputCaregiver.getId(), caregiver);
+                redirectat.addFlashAttribute("success", "Se ha modificado con éxito en cuidado de personas");
+            } else {
+                caregiverService.create(caregiver);
+                redirectat.addFlashAttribute("success", "Se ha registrado con éxito en cuidado de personas");
+            }
             return "redirect:/home";
         } catch (CaregiverNotFoundException ex) {
             redirectat.addFlashAttribute("error", ex.getMessage());
+            redirectat.addFlashAttribute("id", inputCaregiver.getId());
             redirectat.addFlashAttribute("salary", inputCaregiver.getSalary());
             redirectat.addFlashAttribute("quantity", inputCaregiver.getQuantity());
             redirectat.addFlashAttribute("workingHoursFrom", inputCaregiver.getWorkingHoursFrom());
@@ -103,7 +110,7 @@ public class CaregiverController {
             return "redirect:/caregiver/create";
         }
     }
-    
+
     @GetMapping("/list")
     public String findAll(Model model, @RequestParam(required = false) List<Caregiver> caregivers) {
         if (caregivers != null) {
@@ -115,7 +122,7 @@ public class CaregiverController {
     }
 
     @PostMapping("/list")
-        public String findByFilter(SearchCaregiverDTO searchCaregiver, RedirectAttributes rt) {
+    public String findByFilter(SearchCaregiverDTO searchCaregiver, RedirectAttributes rt) {
         if (searchCaregiver.getWorkingHoursTo() != null) {
             searchCaregiver.setHoursTo(searchCaregiver.getWorkingHoursTo());
         }
@@ -242,17 +249,17 @@ public class CaregiverController {
     }
 
     @GetMapping("")
-        public Caregiver findById(@RequestParam String id) throws Exception {
+    public Caregiver findById(@RequestParam String id) throws Exception {
         return caregiverService.findById(id);
     }
 
     @PostMapping("/delete")
-        public void delete(@RequestParam String id) throws Exception {
+    public void delete(@RequestParam String id) throws Exception {
         caregiverService.delete(id);
     }
 
-    @PostMapping("/update")
-        public void update(@RequestParam String id, Caregiver newCaregiver) throws Exception {
+    @PostMapping("")
+    public void update(@RequestParam String id, Caregiver newCaregiver) {
         caregiverService.update(id, newCaregiver);
     }
 }

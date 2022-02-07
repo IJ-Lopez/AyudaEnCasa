@@ -10,7 +10,8 @@ import org.springframework.web.multipart.MultipartFile;
 @NoArgsConstructor
 @Data
 public class CreateCleaningDTO {
-
+    
+    private String id;
     private Integer rooms;
     private String exteriors;
     private boolean cooking;

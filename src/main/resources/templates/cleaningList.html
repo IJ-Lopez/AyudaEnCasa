@@ -176,7 +176,7 @@
                     <div class="description">
                         <h1 th:text="${cleaning.user.firstName} +' '+ ${cleaning.user.lastName} "></h1>
                         <div class="mail-contact">
-                            <h1 th:text="${cleaning.user.email}"></h1>
+                            <a th:text="${cleaning.user.email}" th:href="@{/mail/send}+'?id='+${cleaning.user.id}"></a>
                         </div>
                     </div>
                 </div>
@@ -205,7 +205,7 @@
                     <div class="read-more">
                         <a href="https://wa.me/"> Contactar</a>
                     </div>
-                </div>>
+                </div>
             </div>
         </th:block>
     </main>

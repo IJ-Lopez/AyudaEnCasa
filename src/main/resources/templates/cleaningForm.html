@@ -74,7 +74,7 @@
             </div>
             <div class="text">Servicio Domestico</div>
             <form enctype="multipart/form-data" th:action="@{/cleaning/create}" method="POST">
-                <input hidden th:value="${id}"/>
+                <input hidden th:value="${id}"  name="id"/>
                 <div class="data">
                     <label for="salary"></label>
                     <input type="text" size="50px" th:value="${salary}" name="salary" id="salario"

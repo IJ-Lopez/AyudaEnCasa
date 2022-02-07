@@ -47,6 +47,7 @@ public class OtherController {
         if (id != null) {
             Other other = otherService.findById(id);
             if (other != null) {
+                model.addAttribute("id", id);
                 model.addAttribute("salary", other.getSalary());
                 model.addAttribute("type", other.getType());
             } else {
@@ -57,7 +58,7 @@ public class OtherController {
     }
     
     @PostMapping("/create")
-    public String create(RedirectAttributes redirectat, @ModelAttribute CreateOtherDTO inputOther) {
+    public String create(RedirectAttributes redirectat, CreateOtherDTO inputOther) {
         try{
             Other other = new Other();
             System.out.println(inputOther);
@@ -71,12 +72,17 @@ public class OtherController {
             if(inputOther.getWorkingHoursFrom() != null){
                 other.setHoursFrom(inputOther.getWorkingHoursFrom());
             }
-            BeanUtils.copyProperties(inputOther, other);
-            otherService.create(other);
-            redirectat.addFlashAttribute("success", "Se ha registrado con éxito en jardinería");
+            if (inputOther.getId() != null) {
+                update(inputOther.getId(), other);
+                redirectat.addFlashAttribute("success", "Se ha modificado con éxito su trabajo");
+            } else {
+                otherService.create(other);
+                redirectat.addFlashAttribute("success", "Se ha registrado con éxito su trabajo");
+            }
             return "redirect:/home";
         }catch (OtherNotFoundException ex) {
             redirectat.addFlashAttribute("error", ex.getMessage());
+            redirectat.addFlashAttribute("id", inputOther.getId());
             redirectat.addFlashAttribute("salary", inputOther.getSalary());
             redirectat.addFlashAttribute("type", inputOther.getType());
             redirectat.addFlashAttribute("workingHoursFrom", inputOther.getWorkingHoursFrom());
@@ -182,7 +188,7 @@ public class OtherController {
         otherService.delete(id);
     }
     
-    @PostMapping("/update")
+    @PostMapping("")
     public void update(@RequestParam String id, Other newOther) {
         otherService.update(id, newOther);
     }

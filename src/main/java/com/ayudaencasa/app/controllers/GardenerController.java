@@ -47,6 +47,7 @@ public class GardenerController {
         if (id != null) {
             Gardener gardener = gardenerService.findById(id);
             if (gardener != null) {
+                model.addAttribute("id", id);
                 model.addAttribute("salary", gardener.getSalary());
                 model.addAttribute("surface", gardener.getSurface());
             } else {
@@ -57,7 +58,7 @@ public class GardenerController {
     }
 
     @PostMapping("/create")
-    public String create(RedirectAttributes redirectat, @ModelAttribute CreateGardenerDTO inputGardener) {
+    public String create(RedirectAttributes redirectat, CreateGardenerDTO inputGardener) {
         try {
             Gardener gardener = new Gardener();
             System.out.println(inputGardener);
@@ -70,8 +71,13 @@ public class GardenerController {
             if (inputGardener.getWorkingHoursFrom() != null) {
                 gardener.setHoursFrom(inputGardener.getWorkingHoursFrom());
             }
-            gardenerService.create(gardener);
-            redirectat.addFlashAttribute("success", "Se ha registrado con éxito en jardinería");
+            if (inputGardener.getId() != null) {
+                update(inputGardener.getId(), gardener);
+                redirectat.addFlashAttribute("success", "Se ha modificado con éxito en jardinería");
+            } else {
+                gardenerService.create(gardener);
+                redirectat.addFlashAttribute("success", "Se ha registrado con éxito en jardinería");
+            }
             return "redirect:/home";
         } catch (GardenerNotFoundException ex) {
             redirectat.addFlashAttribute("error", ex.getMessage());
@@ -233,18 +239,11 @@ public class GardenerController {
     public void delete(@RequestParam String id) {
         gardenerService.delete(id);
     }
-
-    @PostMapping("/update")
-    public void update(Model model, @RequestParam String id, Gardener newGardener) {
-       Gardener gardener = gardenerService.findById(id);
-       try{
-           if(gardener!=null){
-               gardenerService.update(id, newGardener);
-           }
-       }catch (GardenerNotFoundException ex){
-            model.addAttribute("error", ex.getMessage());
-       }
-        //gardenerService.update(id, newGardener);
+    
+    @PostMapping("")
+    public void update(@RequestParam String id, Gardener newGardener) {
+        gardenerService.update(id, newGardener);
     }
 
+ 
 }

@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 @NoArgsConstructor
 public class CreateCaregiverDTO {
     
+    private String id;
     private Integer salary;
     private String workingZone;
     private String description;
