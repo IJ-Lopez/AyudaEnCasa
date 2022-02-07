@@ -63,7 +63,7 @@ public class CaregiverController {
             Caregiver caregiver = new Caregiver();
             caregiverService.validated(inputCaregiver);
             modelmap.map(inputCaregiver, caregiver);
-//            caregiver.setCurriculum(s3service.save(inputCaregiver.getCv()));
+            caregiver.setCurriculum(s3service.save(inputCaregiver.getCv()));
             if (inputCaregiver.getWorkingHoursTo() != null) {
                 caregiver.setHoursTo(inputCaregiver.getWorkingHoursTo());
             }

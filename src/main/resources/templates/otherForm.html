@@ -81,8 +81,8 @@
             <form enctype="multipart/form-data" th:action="@{/other/create}" method="POST">
                 <input hidden th:value="${id}"/>
                 <div class="data">
-                    <label for="jobType"></label>
-                    <input type="text" th:value="${jobType}" id="tipo" name="jobType" placeholder="Tipo de trabajo">
+                    <label for="type"></label>
+                    <input type="text" th:value="${type}" id="tipo" name="type" placeholder="Tipo de trabajo">
                 </div>
 
                 <div class="data">
@@ -154,7 +154,7 @@
                         placeholder="Hora de finalización" onfocus="(this.type='time')">
 
                     <!-- Esto es el CSRF Token para su seguridad-->
-                    <!-- <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"> -->
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
                 </div>
                 <div class="data">
                     <label for="cv"></label>
