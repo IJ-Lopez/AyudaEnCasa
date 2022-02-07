@@ -63,7 +63,7 @@ public class JobController {
             } else if (job.getClass().equals(PetWalker.class)){
                 model.addAttribute("petwalker", job);
             } else if (job.getClass().equals(Other.class)){
-                model.addAttribute("other", job);
+                model.addAttribute("others", job);
             }
         });
         System.out.println(model);

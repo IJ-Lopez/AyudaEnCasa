@@ -121,25 +121,23 @@ public class CaregiverServiceImpl extends QueryService<Caregiver> implements Car
 
     @Override
     @Transactional
-    public void update(@NonNull String id, @NonNull Caregiver newCaregiver) throws Exception {
+    public void update(@NonNull String id, @NonNull Caregiver newCaregiver) {
         Optional<Caregiver> opt = caregiverRepository.findById(id);
         if (opt.isPresent()) {
             Caregiver caregiver = opt.get();
             modelMapper.map(newCaregiver, caregiver);
             caregiverRepository.save(caregiver);
-        } else {
-            throw new Exception();
         }
     }
 
     @Override
     @Transactional
-    public void delete(@NonNull String id) throws Exception {
+    public void delete(@NonNull String id) throws CaregiverNotFoundException {
         Optional<Caregiver> opt = caregiverRepository.findById(id);
         if (opt.isPresent()) {
             caregiverRepository.delete(opt.get());
         } else {
-            throw new Exception();
+            throw new CaregiverNotFoundException();
         }
     }
 

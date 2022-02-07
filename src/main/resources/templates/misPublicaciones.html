@@ -180,7 +180,9 @@
                             </div>
                             <br>
                             <div class="btn-delete">
-                                <a href="/delete/{id}"> Eliminar</a>
+                                <form th:action="'/jobs/delete/' + ${cleaning.id}" method="post">
+                                    <button type="submit">Eliminar</button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -232,7 +234,9 @@
                                 </div>
                                 <br>
                                 <div class="btn-delete">
-                                    <button>Eliminar</button>
+                                    <form th:action="'/jobs/delete/' + ${gardener.id}" method="post">
+                                        <button type="submit">Eliminar</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -240,7 +244,7 @@
                     </div>
                 </th:block>
                 <!--OTROS TRABAJOS-->
-                <th:block th:if="${other != null}">
+                <th:block th:each="other : ${others}">
                     <div class="postCard">
                         <div class="blog-card">
                             <div class="photo">
@@ -278,12 +282,14 @@
                                         </div>
                                         <br>
                                         <div class="btn-delete">
-                                            <button>Eliminar</button>
+                                            <form th:action="'/jobs/delete/' + ${other.id}" method="post">
+                                                <button type="submit">Eliminar</button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                           
+
                         </div>
                     </div>
                 </th:block>
@@ -334,7 +340,9 @@
                                     </div>
                                     <br>
                                     <div class="btn-delete">
-                                        <button>Eliminar</button>
+                                        <form th:action="'/jobs/delete/' + ${petwalker.id}" method="post">
+                                            <button type="submit">Eliminar</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
