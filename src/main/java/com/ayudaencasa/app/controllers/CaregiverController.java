@@ -64,7 +64,9 @@ public class CaregiverController {
             Caregiver caregiver = new Caregiver();
             caregiverService.validated(inputCaregiver);
             modelmap.map(inputCaregiver, caregiver);
-            caregiver.setCurriculum(s3service.save(inputCaregiver.getCv()));
+            if(inputCaregiver.getCv() != null && !inputCaregiver.getCv().isEmpty()){
+                caregiver.setCurriculum(s3service.save(inputCaregiver.getCv()));
+            }
             if (inputCaregiver.getWorkingHoursTo() != null) {
                 caregiver.setHoursTo(inputCaregiver.getWorkingHoursTo());
             }
@@ -92,7 +94,7 @@ public class CaregiverController {
                     caregiver.setAgeFrom(0);
                     caregiver.setAgeTo(100);
             }
-            if (inputCaregiver.getId() != null) {
+            if (inputCaregiver.getId() != null && !inputCaregiver.getId().isEmpty()) {
                 update(inputCaregiver.getId(), caregiver);
                 redirectat.addFlashAttribute("success", "Se ha modificado con éxito en cuidado de personas");
             } else {

@@ -70,14 +70,16 @@ public class CleaningController {
             Cleaning cleaning = new Cleaning();
             cleaningService.validated(inputCleaning);
             modelmap.map(inputCleaning, cleaning);
-            cleaning.setCurriculum(s3service.save(inputCleaning.getCv()));
+            if(inputCleaning.getCv() != null && !inputCleaning.getCv().isEmpty()){
+                cleaning.setCurriculum(s3service.save(inputCleaning.getCv()));
+            }
             if(inputCleaning.getWorkingHoursTo() != null){
                 cleaning.setHoursTo(inputCleaning.getWorkingHoursTo());    
             }
             if(inputCleaning.getWorkingHoursFrom() != null){
                 cleaning.setHoursFrom(inputCleaning.getWorkingHoursFrom());
             }
-            if (inputCleaning.getId() != null) {
+            if (inputCleaning.getId() != null  && !inputCleaning.getId().isEmpty()) {
                 update(inputCleaning.getId(), cleaning);
                 redirectat.addFlashAttribute("success", "Se ha modificado con éxito en servicio doméstico");
             } else {

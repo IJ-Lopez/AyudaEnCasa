@@ -64,7 +64,9 @@ public class OtherController {
             System.out.println(inputOther);
             otherService.validated(inputOther);
             modelmap.map(inputOther, other);
+            if(inputOther.getCv() != null && !inputOther.getCv().isEmpty()){
             other.setCurriculum(s3service.save(inputOther.getCv()));
+            }
             other.setType(inputOther.getType());
             if(inputOther.getWorkingHoursTo() != null){
                 other.setHoursTo(inputOther.getWorkingHoursTo());    
@@ -72,7 +74,7 @@ public class OtherController {
             if(inputOther.getWorkingHoursFrom() != null){
                 other.setHoursFrom(inputOther.getWorkingHoursFrom());
             }
-            if (inputOther.getId() != null) {
+            if (inputOther.getId() != null  && !inputOther.getId().isEmpty()) {
                 update(inputOther.getId(), other);
                 redirectat.addFlashAttribute("success", "Se ha modificado con éxito su trabajo");
             } else {

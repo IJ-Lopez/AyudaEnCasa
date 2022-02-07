@@ -64,14 +64,16 @@ public class GardenerController {
             System.out.println(inputGardener);
             gardenerService.validated(inputGardener);
             modelmap.map(inputGardener, gardener);
-            gardener.setCurriculum(s3service.save(inputGardener.getCv()));
+            if(inputGardener.getCv() != null && !inputGardener.getCv().isEmpty()){
+                gardener.setCurriculum(s3service.save(inputGardener.getCv()));
+            }
             if (inputGardener.getWorkingHoursTo() != null) {
                 gardener.setHoursTo(inputGardener.getWorkingHoursTo());
             }
             if (inputGardener.getWorkingHoursFrom() != null) {
                 gardener.setHoursFrom(inputGardener.getWorkingHoursFrom());
             }
-            if (inputGardener.getId() != null) {
+            if (inputGardener.getId() != null && !inputGardener.getId().isEmpty()) {
                 update(inputGardener.getId(), gardener);
                 redirectat.addFlashAttribute("success", "Se ha modificado con éxito en jardinería");
             } else {

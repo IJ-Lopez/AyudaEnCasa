@@ -45,14 +45,26 @@ public class UserController {
     private ModelMapper modelmap;
             
     @GetMapping("/registry")
-    public String registry(){
+    public String registry(Model model, @RequestParam(required = false) String id){
+        if (id != null) {
+            User user = userService.findById(id);
+            if (user != null) {
+                model.addAttribute("id", id);
+                model.addAttribute("salary", user.getDni());
+                model.addAttribute("email", user.getEmail());
+                model.addAttribute("firstName", user.getFirstName());
+                model.addAttribute("lastName", user.getLastName());
+                model.addAttribute("phone", user.getPhone());
+            } else {
+                return "redirect:/home";
+            }
+        }
         return "registryForm";
     }
     
     @PostMapping("/registry")
     public String create(RedirectAttributes redirectat, RegisterUserDTO inputUser) {
         try{
-            System.out.println(inputUser);
             User user = new User();
             userService.validated(inputUser);
             modelmap.map(inputUser, user);
@@ -60,11 +72,17 @@ public class UserController {
             if(inputUser.getPic() != null && !inputUser.getPic().isEmpty()){
                 user.setPhoto(s3service.save(inputUser.getPic()));
             }
-            userService.create(user);
-            redirectat.addFlashAttribute("success", "Se ha registrado con éxito");
+            if(inputUser.getId() != null) {
+                update(inputUser.getId(), user);
+                redirectat.addFlashAttribute("success", "Se ha modificado con éxito su perfil");
+            } else {
+                userService.create(user);
+                redirectat.addFlashAttribute("success", "Se ha registrado con éxito");
+            }
             return "redirect:/home";
         } catch (UserNotFoundException ex) {
             redirectat.addFlashAttribute("error", ex.getMessage());
+            redirectat.addFlashAttribute("id", inputUser.getId());
             redirectat.addFlashAttribute("firstName", inputUser.getFirstName());
             redirectat.addFlashAttribute("lastName", inputUser.getLastName());
             redirectat.addFlashAttribute("email", inputUser.getEmail());
@@ -85,8 +103,8 @@ public class UserController {
         return "editarMisPublicaciones";
     }
     
-    @PostMapping("/editUser")
-    public void update(String id, @ModelAttribute User user) {
+    @PostMapping("")
+    public void update(@RequestParam String id, User user) {
         userService.update(id, user);
         
     }

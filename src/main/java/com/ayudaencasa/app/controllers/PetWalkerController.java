@@ -64,14 +64,16 @@ public class PetWalkerController {
             System.out.println(inputPetWalker);
             petWalkerService.validated(inputPetWalker);
             modelmap.map(inputPetWalker, petWalker);
-            petWalker.setCurriculum(s3service.save(inputPetWalker.getCv()));
+            if(inputPetWalker.getCv() != null && !inputPetWalker.getCv().isEmpty()){
+                petWalker.setCurriculum(s3service.save(inputPetWalker.getCv()));
+            }
             if (inputPetWalker.getWorkingHoursTo() != null) {
                 petWalker.setHoursTo(inputPetWalker.getWorkingHoursTo());
             }
             if (inputPetWalker.getWorkingHoursFrom() != null) {
                 petWalker.setHoursFrom(inputPetWalker.getWorkingHoursFrom());
             }
-            if (inputPetWalker.getId() != null) {
+            if (inputPetWalker.getId() != null  && !inputPetWalker.getId().isEmpty()) {
                 update(inputPetWalker.getId(), petWalker);
                 redirectat.addFlashAttribute("success", "Se ha modificado con éxito en paseador de mascotas");
             } else {

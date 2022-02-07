@@ -30,6 +30,7 @@
             </div>
             <div class="text">Regístrate</div>
             <form th:action="@{'/user/registry'}" method="POST" enctype="multipart/form-data">
+                <input hidden th:value="${id}"  name="id"/>
                 <div class="data">
                     <label for="email"></label>
                     <input type=email th:value="${email}" name="email" placeholder="Email" id="" required />
