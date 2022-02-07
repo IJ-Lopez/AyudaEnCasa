@@ -1,20 +1,21 @@
 * {
   margin: 0%;
   padding: 0%;
-  font-family: "Quicksand", sans-serif;
+  outline: none;
   box-sizing: border-box;
+  font-family: "Quicksand", sans-serif;
 }
 
-abbr{
+abbr {
   text-decoration: none;
 }
 
 body {
-  margin-right: calc(100vw-80px);
+  width: 100%;
+  height: 100vh;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  /* display: flex; */
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -28,7 +29,6 @@ body {
   color: rgb(122, 115, 115);
   color: #044e64;
   height: auto;
-  width: 100%;
 }
 
 a {
@@ -61,22 +61,12 @@ ul {
   position: fixed;
   width: 100%;
   z-index: 100;
-/*   top: 0px;
-  font-size: 15px;
-  display: inline-flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 5em;
-  padding: 20px 10px;
-  margin-bottom: 100px;
-  position: fixed;
-  width: 100%;
-  z-index: 100;
-  color: black;
-  background-color: #cb997e;
-  height: 5em;
-  margin: auto; */
 }
+
+.nav-menu ul {
+  list-style: none;
+}
+
 .work-menu li a {
   display: block;
 }
@@ -95,12 +85,11 @@ ul {
 
 .work-menu li:hover > ul {
   display: block;
-  width: auto;
   background-color: #cb997e;
   border-radius: 0px 0px 20px 20px;
 }
 
-.work-menu li button{
+.work-menu li button {
   background: none;
 }
 h1 {
@@ -113,7 +102,8 @@ h1 {
   font-weight: 500;
   letter-spacing: 2px;
 }
-/*NAV LEFT*/
+
+/*NAV RIGHT*/
 .nav-main ul {
   display: flex;
 }
@@ -132,14 +122,34 @@ h1 {
   transition: 0.2s;
 }
 
+.nav-main ul.nav-menu {
+  align-items: center;
+  padding-right: 30px;
+  letter-spacing: 1px;
+}
+
+.work-menu li button {
+  background: none;
+}
+
+.work-menu button {
+  border: none;
+  color: #fafafa;
+  text-decoration: none;
+  padding: 5px;
+  font-size: 15px;
+}
+
+
+.work-menu li form:hover {
+  border-bottom: 2px solid #fafafa;
+  transition: 0.2s;
+}
+
 .nav-main ul li p:hover {
   border-bottom: 2px solid #fafafa;
   padding: 5px;
   transition: 0.2s;
-}
-
-.nav-main ul.nav-menu {
-  align-items: center;
 }
 
 .work-menu p {
@@ -154,33 +164,8 @@ h1 {
   padding: 3px;
 }
 .work menu .form {
-  border:20px solid red;
+  border: 20px solid red;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* CONTAINER QUE TIENE SOLO LA FOTO DE FONDO */
 .container {
@@ -282,18 +267,6 @@ form .data ::placeholder {
   float: right;
   width: 30px;
   height: 15px;
-  /* 
-
-  color: #000;
-  position: fixed;
-  text-align: end;
-  width: 13px;
-  height: 13px;
-  padding: 0;
-  margin: 0;
-  vertical-align: bottom;
-  position: relative;
-  overflow: hidden; */
 }
 
 #ageFrom {
@@ -602,13 +575,12 @@ h2 {
   border-radius: 3px;
 }
 
-.mail-contact p::before{
+.mail-contact p::before {
   display: none;
 }
 /* .mail-contact p::after{
   display: none;
 } */
-
 
 /* CARD BODY */
 
@@ -642,6 +614,10 @@ h2 {
 .bloque-cen .thyme,
 .bloque-der .thyme {
   padding: 5px;
+}
+
+.line-days {
+  position: relative;
 }
 
 /* CONTACTO */
@@ -756,8 +732,8 @@ p .thyme {
 .btn-edit button,
 .btn-delete button {
   width: 120px;
-  background-image: linear-gradient(72deg,#fafef2, #424242);
-  font-weight:bold;
+  background-image: linear-gradient(72deg, #fafef2, #424242);
+  font-weight: bold;
   border: none;
   color: #363434;
   font-size: 15px;

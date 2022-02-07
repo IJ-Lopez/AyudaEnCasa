@@ -27,43 +27,41 @@
             </a>
         </abbr>
         <ul class="nav-menu">
-            <!-- <li>
-                   <a href="#main">Inicio <i class="fas fa-home"></i></a>
-                 </li> -->
-                 <li>
-                    <a href="#aboutus">Sobre Nosotros <i class="fas fa-users"></i></a>
-                </li>
+            <li>
+                <a href="#aboutus">Sobre Nosotros <i class="fas fa-users"></i></a>
+            </li>
+            <li>
+                <a href="#contact">Contacto <i class="far fa-address-card"></i></a>
+            </li>
+            <div class="work-menu">
                 <li>
-                    <a href="#contact">Contacto <i class="far fa-address-card"></i></a>
+                    <a href="#form">Quiero Trabajar <i class="fas fa-briefcase"></i></a>
+                    <ul class="work-menu">
+                        <li><a th:href="@{/gardener/create}">Jardinero</a></li>
+                        <li><a th:href="@{/cleaning/create}">Servicio Doméstico</a></li>
+                        <li><a th:href="@{/caregiver/create}">Cuidado de Personas</a></li>
+                        <li><a th:href="@{/petwalker/create}">Paseador de Perros</a></li>
+                        <li><a th:href="@{/other/create}">Otro</a></li>
+                    </ul>
                 </li>
-                <div class="work-menu">
-                    <li>
-                        <!-- deberia llevar a un form lista desplegable con los registros -->
-                        <a href="#form">Quiero Trabajar <i class="fas fa-briefcase"></i></a>
-                        <ul class="work-menu">
-                            <li><a th:href="@{/gardener/create}">Jardinero</a></li>
-                            <li><a th:href="@{/cleaning/create}">Servicio Doméstico</a></li>
-                            <li><a th:href="@{/caregiver/create}">Cuidado de Personas</a></li>
-                            <li><a th:href="@{/petwalker/create}">Paseador de Perros</a></li>
-                            <li><a th:href="@{/other/create}">Otro</a></li>
-                        </ul>
-                    </li>
-                </div>
+            </div>
             <div class="work-menu">
                 <div th:if="${#authentication.getName()} != anonymousUser" class="work-menu" id="userRegistred">
                     <li>
                         <div class="wellcome">
-                            <a href="#" th:text="'¡Bienvenido '+' '+${T(net.logstash.logback.encoder.org.apache.commons.lang3.StringUtils).capitalize(@userServiceImpl.findByEmail(#authentication.getName()).firstName)}+'!'"><i class="far fa-smile-wink"></i></a>
+                            <a href="#"
+                                th:text="'¡Bienvenido '+' '+${T(net.logstash.logback.encoder.org.apache.commons.lang3.StringUtils).capitalize(@userServiceImpl.findByEmail(#authentication.getName()).firstName)}+'!'"><i
+                                    class="far fa-smile-wink"></i></a>
                         </div>
                         <ul class="work-menu">
                             <li><a th:href="@{/jobs/myjobs}">Mis Postulaciones<i class="fas fa-sign-in-alt"></i></a>
                             </li>
                             <li><a th:href="@{/jobs/myjobs}">Modificar<i class="fas fa-sign-in-alt"></i></a></li>
-
                             <li>
                                 <form th:action="@{/logout}" method="POST">
                                     <button>Cerrar sesión <i class="fas fa-times"></i></button>
                                 </form>
+                            </li>
                         </ul>
                     </li>
                 </div>
@@ -78,7 +76,7 @@
             </div>
             <div class="text">Cuidado de personas</div>
             <form enctype="multipart/form-data" th:action="@{/caregiver/create}" method="POST">
-                <input hidden th:value="${id}"/>
+                <input hidden th:value="${id}" />
                 <div class="data">
                     <label for="salary"></label>
                     <input type="text" size="50px" th:value="${salary}" name="salary" id="salario"
@@ -179,7 +177,7 @@
                     <div class="titulo">
                         Servicio de cocina
                         <label class="dropdown-menu" for="cooking"></label>
-                        <input id="checkbox" type="checkbox" name="cooking" th:checked="${cooking}">  
+                        <input id="checkbox" type="checkbox" name="cooking" th:checked="${cooking}">
                     </div>
                 </div>
                 <div class="lista">
@@ -194,14 +192,15 @@
                         Servicio de transporte
                         <label class="dropdown-menu" for="tranfering"></label>
                         <input id="checkbox" type="checkbox" name="tranfering" th:checked="${tranfering}">
-                        
+
                         <!-- Esto es el CSRF Token para su seguridad-->
                         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
                     </div>
                 </div>
                 <div class="data">
                     <label for="cv"></label>
-                    <input class="controls" type="text" th:value="${cv}" name="cv" id="cv" placeholder="Adjuntá tu curriculum" onfocus="(this.type='file')" />
+                    <input class="controls" type="text" th:value="${cv}" name="cv" id="cv"
+                        placeholder="Adjuntá tu curriculum" onfocus="(this.type='file')" />
                 </div>
                 <div class="btn">
                     <div class="inner"></div>
