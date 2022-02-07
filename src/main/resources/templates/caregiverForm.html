@@ -31,7 +31,7 @@
                    <a href="#main">Inicio <i class="fas fa-home"></i></a>
                  </li> -->
                  <li>
-                    <a href="#aboutus">Sobre nosotros <i class="fas fa-users"></i></a>
+                    <a href="#aboutus">Sobre Nosotros <i class="fas fa-users"></i></a>
                 </li>
                 <li>
                     <a href="#contact">Contacto <i class="far fa-address-card"></i></a>
@@ -39,12 +39,12 @@
                 <div class="work-menu">
                     <li>
                         <!-- deberia llevar a un form lista desplegable con los registros -->
-                        <a href="#form">Quiero trabajar <i class="fas fa-briefcase"></i></a>
+                        <a href="#form">Quiero Trabajar <i class="fas fa-briefcase"></i></a>
                         <ul class="work-menu">
                             <li><a th:href="@{/gardener/create}">Jardinero</a></li>
-                            <li><a th:href="@{/cleaning/create}">Servicio doméstico</a></li>
-                            <li><a th:href="@{/caregiver/create}">Cuidado de personas</a></li>
-                            <li><a th:href="@{/petwalker/create}">Paseador de perros</a></li>
+                            <li><a th:href="@{/cleaning/create}">Servicio Doméstico</a></li>
+                            <li><a th:href="@{/caregiver/create}">Cuidado de Personas</a></li>
+                            <li><a th:href="@{/petwalker/create}">Paseador de Perros</a></li>
                             <li><a th:href="@{/other/create}">Otro</a></li>
                         </ul>
                     </li>
@@ -56,7 +56,7 @@
                             <a href="#" th:text="'¡Bienvenido '+' '+${T(net.logstash.logback.encoder.org.apache.commons.lang3.StringUtils).capitalize(@userServiceImpl.findByEmail(#authentication.getName()).firstName)}+'!'"><i class="far fa-smile-wink"></i></a>
                         </div>
                         <ul class="work-menu">
-                            <li><a th:href="@{/jobs/myjobs}">Mis postulaciones<i class="fas fa-sign-in-alt"></i></a>
+                            <li><a th:href="@{/jobs/myjobs}">Mis Postulaciones<i class="fas fa-sign-in-alt"></i></a>
                             </li>
                             <li><a th:href="@{/jobs/myjobs}">Modificar<i class="fas fa-sign-in-alt"></i></a></li>
 

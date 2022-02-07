@@ -26,7 +26,7 @@
             </a>
             <ul class="nav-menu">
                 <li>
-                    <a href="#aboutus">Sobre nosotros <i class="fas fa-users"></i></a>
+                    <a href="#aboutus">Sobre Nosotros <i class="fas fa-users"></i></a>
                 </li>
                 <li>
                     <a href="#contact">Contacto <i class="far fa-address-card"></i></a>
@@ -35,10 +35,10 @@
                     <li>
                         <a href="#form">Quiero trabajar <i class="fas fa-briefcase"></i></a>
                         <ul class="work-menu">
-                            <li><a href="/gardener/create">Servicio de jardinería</a></li>
-                            <li><a href="/cleaning/create">Servicio doméstico</a></li>
-                            <li><a href="/caregiver/create">Cuidado de personas</a></li>
-                            <li><a href="/petwalker/create">Paseador de perros</a></li>
+                            <li><a href="/gardener/create">Servicio de Jardinería</a></li>
+                            <li><a href="/cleaning/create">Servicio Doméstico</a></li>
+                            <li><a href="/caregiver/create">Cuidado de Personas</a></li>
+                            <li><a href="/petwalker/create">Paseador de Perros</a></li>
                             <li><a href="/other/create">Otro</a></li>
                         </ul>
                     </li>
@@ -47,7 +47,7 @@
                     <li>
                         <a href="#form">Sección usuarios <i class="far fa-user"></i></a>
                         <ul class="work-menu">
-                            <li><a th:href="@{/unauthorized}">Iniciar sesion <i class="fas fa-sign-in-alt"></i></a></li>
+                            <li><a th:href="@{/unauthorized}">Iniciar Sesion <i class="fas fa-sign-in-alt"></i></a></li>
                             <li><a th:href="@{/user/registry}">Regístrate <i class="fas fa-bars"></i></a></li>
                         </ul>
                     </li>
@@ -59,14 +59,14 @@
                         </a>
                         <ul class="work-menu">
                             <li>
-                                <a th:href="@{/jobs/myjobs}">Mis postulaciones<i class="fas fa-sign-in-alt"></i></a>
+                                <a th:href="@{/jobs/myjobs}">Mis Postulaciones<i class="fas fa-sign-in-alt"></i></a>
                             </li>
                             <li>
-                                <a th:href="@{/user/editarUser}">Modifica tu perfil<i class="fas fa-sign-in-alt"></i></a>
+                                <a th:href="@{/user/editarUser}">Modifica tu Perfil<i class="fas fa-sign-in-alt"></i></a>
                             </li>
                             <li>
                                 <form th:action="@{/logout}" method="POST">
-                                    <button> Cerrar sesión <i class="fas fa-times"></i></button>
+                                    <button> Cerrar Sesión <i class="fas fa-times"></i></button>
                                     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
                                 </form>
                             </li>
@@ -103,20 +103,20 @@
             <div class="sugerencias">
                 <div class="hola">
                     <img src="img/jardin.jpg" alt="imagen" />
-                    <h4>Servicios de jardinería</h4>
+                    <h4>Servicios de Jardinería</h4>
                     <br>
                     <a th:href="@{/gardener/list}">Ver más</a>
                 </div>
                 <div class="hola">
                     <img src="img/Cuidador/c1.jpg" alt="imagen" />
-                    <h4>Cuidado de personas</h4>
+                    <h4>Cuidado de Personas</h4>
                     <p>
                     </p>
                     <a th:href="@{/caregiver/list}">Ver más</a>
                 </div>
                 <div class="hola">
                     <img src="img/Limpieza/limp5(2).jpg" alt="imagen" />
-                    <h4>Servicio doméstico
+                    <h4>Servicio Doméstico
                     </h4>
                     <p>
                     </p>
@@ -124,7 +124,7 @@
                 </div>
                 <div class="hola">
                     <img src="img/Paseador/p10.jpg" alt="imagen" />
-                    <h4>Paseador de mascotas</h4>
+                    <h4>Paseador de Mascotas</h4>
                     <p>
                     </p>
                     <a th:href="@{/petwalker/list}">Ver más</a>
@@ -149,7 +149,7 @@
                             <img src="img/Limpieza/limp17.jpg" />
                         </div>
                         <div class="details">
-                            <p>Servicio doméstico</p>
+                            <p>Servicio Doméstico</p>
                         </div>
                     </a>
                 </div>
@@ -169,7 +169,7 @@
                             <img src="img/Cuidador/c10.jpg" alt="cuidado de personas" />
                         </div>
                         <div class="details">
-                            <p>Cuidado de personas</p>
+                            <p>Cuidado de Personas</p>
                         </div>
                     </a>
                 </div>
