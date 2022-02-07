@@ -132,9 +132,9 @@ public class DataSeederApp implements CommandLineRunner {
         return g;
     }
 
-    public Other crearOther(User user) {
+    public Other crearOther(User user, String job) {
         Other other = new Other();
-        other.setType("plomero");
+        other.setType(job);
         other.setDescription("Se electricidad");
         other.setHoursFrom(LocalTime.NOON);
         other.setHoursTo(LocalTime.MIDNIGHT);
@@ -157,7 +157,7 @@ public class DataSeederApp implements CommandLineRunner {
             userRepository.save(user3);
             caregiverRepository.save(crearCaregiver(user1));
             caregiverRepository.save(crearCaregiver(user2));
-            otherRepository.save(crearOther(user1));
+            otherRepository.save(crearOther(user1, "Cocinero"));
             for (int i = 0; i < 25; i++) {
                 String name = RandomStringUtils.randomAlphabetic(8);
                 User randomUser = crearUserTest(name, name, String.format("%s@%s.com", name, name), "contraseña", 1);
@@ -169,8 +169,10 @@ public class DataSeederApp implements CommandLineRunner {
                     gardenerRepo.save(crearGardener(randomUser));
                 } else if (i < 20) {
                     cleaningRepo.save(crearCleaning(randomUser));
+                } else if (i < 23) {
+                    otherRepository.save(crearOther(randomUser, "Gasista"));
                 } else if (i < 25) {
-                    otherRepository.save(crearOther(randomUser));
+                    otherRepository.save(crearOther(randomUser, "Plomero"));
                 }
             }
         }
