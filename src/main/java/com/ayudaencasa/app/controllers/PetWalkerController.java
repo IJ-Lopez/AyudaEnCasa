@@ -85,7 +85,7 @@ public class PetWalkerController {
     }
 
     @GetMapping("/list")
-    public String findAll(Model model, @RequestParam(required = false) List<PetWalker> petWalkers) {
+    public String findAll(Model model, @RequestParam(required = false, name="petwalkers") List<PetWalker> petWalkers) {
         if (petWalkers != null) {
             model.addAttribute("petwalkers", petWalkers);
         } else {
