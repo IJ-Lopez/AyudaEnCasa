@@ -60,7 +60,8 @@
                             <i class="far fa-smile-wink"></i></a>
 
                         <ul class="work-menu">
-                            <li><a th:href="@{/jobs/myjobs}">Mis postulaciones<i class="fas fa-sign-in-alt"></a></li></i>
+                            <li><a th:href="@{/jobs/myjobs}">Mis postulaciones<i class="fas fa-sign-in-alt"></a></li>
+                            </i>
                             <li><a th:href="@{/jobs/myjobs}">Modificar<i class="fas fa-sign-in-alt"></a></li></i>
                             <li>
                                 <form th:action="@{/logout}" method="POST">
@@ -82,8 +83,8 @@
             <h3>Filtros</h3>
             <form class="formato" th:action="@{/gardener/list}" method="POST">
                 <div class="data">
-                    <label for="salaryFrom"></label>
-                    <input class="input" type="number" th:value="${salaryFrom}" name="salaryFrom" id="salario"
+                    <label for="salaryTo"></label>
+                    <input class="input" type="number" th:value="${salaryTo}" name="salaryTo" id="salario"
                         placeholder="¿Cuanto desea pagar?">
                 </div>
                 <div class="data">
@@ -178,32 +179,33 @@
                         <!-- <h1 th:text="${gardener.user.firstName}+' '+${gardener.user.lastName}"></h1> -->
                         <!-- <h1 th:text="${gardener.firstName}"></h1> -->
                         <div class="mail-contact">
-                            <!-- <p th:text= ></th:text> -->
-                            <a th:if="${#authentication.getName()} != anonymousUser"  href="https://mail.google.com/mail/u/0/#inbox?compose=new">                              
-                                <p  th:text="${gardener.user.email}"></p>
-                            </a>
+                            <h1 th:text="${gardener.user.email}"></h1>
                         </div>
                     </div>
-                    <div class="card-body">
-                        <div class="bloque-izq">
-                            <p class="thyme" th:text="'Precio: '+ ${gardener.salary}">precio: $199</p>
-                            <p class="thyme" th:text="'Zona: '+ ${gardener.workingZone}">zona: maipu</p>
-                        </div>
-                        <div class="bloque-cen">
-                            <p class="thyme"
-                                th:text="'Hora desde: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(gardener.hoursFrom), 'HH:mm')}">
-                                desde 10:00hs</p>
-                            <p class="thyme"
-                                th:text="'Hora hasta: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(gardener.hoursTo), 'HH:mm')}">
-                                hasta: 20:00hs</p>
-                        </div>
-                        <div class="bloque-der">
-                            <p class="thyme" th:text="'Superficie del terreno: ' + ${gardener.surface}">Superficie:
-                                200m2 </p>
-                        </div>
+                </div>
+                <div class="card-body">
+                    <div class="bloque-izq">
+                        <p class="thyme" th:text="'Precio: '+ ${gardener.salary}"></p>
+                        <p class="thyme" th:text="'Zona: '+ ${gardener.workingZone}"></p>
                     </div>
+                    <div class="bloque-cen">
+                        <p class="thyme"
+                            th:text="'Hora desde: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(gardener.hoursFrom), 'HH:mm')}">
+                        </p>
+                        <p class="thyme"
+                            th:text="'Hora hasta: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(gardener.hoursTo), 'HH:mm')}">
+                        </p>
+                    </div>
+                    <div class="bloque-der">
+                        <p class="thyme" th:text="'Superficie del terreno: ' + ${gardener.surface}"> </p>
+                        <th:block th:each="day : ${gardener.days}">
+                            <label th:text="${day} + ' '"></label>
+                        </th:block>
+                    </div>
+                </div>
+                <div class="boton-contact">
                     <div class="read-more">
-                        <a th:if="${#authentication.getName()} != anonymousUser" href="https://wa.me/"> Contactar</a>
+                        <a href="https://wa.me/"> Contactar</a>
                     </div>
                 </div>
             </div>

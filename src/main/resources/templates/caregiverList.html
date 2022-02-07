@@ -21,9 +21,6 @@
 
 <body>
     <main>
-<!--         <nav class="nav-main" id="top">
-            <h1 id="home">Cuidado de personas</h1>
-        </nav> -->
         <nav class="nav-main" id="top">
             <a th:href="@{'/home'}">
                 <h1 id="home">Cuidado de Personas</h1>
@@ -181,33 +178,33 @@
                         <img th:src="${caregiver.user.photo != null && caregiver.user.photo != ''} ? ${caregiver.user.photo} : '/img/Jardìn/j13.jpg'" alt="User photo">  <!-- MODIFICA EL LINK DEL FINAL POR LO QUE QUIERAS, FIJATE DE INCLUIR LAS COMILLAS SIMPLES COMO SI FUESE UNA STRING DE JS-->
                     </div>
                     <div class="description">
-                        <h1 th:text="${caregiver.user.firstName}+' '+${caregiver.user.lastName} ">nombre y apellido</h1>
+                        <h1 th:text="${caregiver.user.firstName}+' '+${caregiver.user.lastName} "></h1>
                         <!-- <h1 th:text="${caregiver.user.firstName}+' '+${caregiver.user.lastName}"></h1> -->
                         <!-- <h1 th:text="${caregiver.firstName}"></h1> -->
                         <div class="mail-contact">
-                            <a href="">nombre@gmail.com</a>
+                            <h1 th:text="${caregiver.user.email}"></h1>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
                     <div class="bloque-izq">
-                        <p class="thyme" th:text="'Precio: '+${caregiver.salary}">Precio: $200</p>
-                        <p class="thyme" th:text="${caregiver.workingZone}">Zona: Guaymallén</p>
+                        <p class="thyme" th:text="'Precio: '+${caregiver.salary}"></p>
+                        <p class="thyme" th:text="'Zona: '+${caregiver.workingZone}"></p>
                     </div>
                     <div class="bloque-cen">
                         <p class="thyme"
                             th:text="'Hora desde: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(caregiver.hoursFrom), 'HH:mm')}">
-                            Hora desde: 07:00hs
+                            
                         </p>
                         <p class="thyme"
                             th:text="'Hora hasta: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(caregiver.hoursTo), 'HH:mm')}">
-                            Hora hasta: 19:00hs
+                            
                         </p>
                     </div>
                     <div class="bloque-der">
-                        <p class="thyme" th:text="${caregiver.quantity}">Cantidad de personas: 2</p>
+                        <p class="thyme" th:text="'Cantidad de personas: '+${caregiver.quantity}"></p>
                         <th:block th:each="day : ${caregiver.days}">
-                            <label th:text="${day} + ' '">Dias: Martes, miercoles, jueves</label>
+                            <label th:text="'Dias: '+${day} + ' '"></label>
                         </th:block>
                     </div>
                 </div>

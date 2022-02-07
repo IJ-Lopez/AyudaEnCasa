@@ -54,7 +54,7 @@ public abstract class Job implements Serializable {
     @Setter(AccessLevel.NONE)
     protected String type;
     
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name="USER_ID", referencedColumnName = "ID")
     protected User user;
     

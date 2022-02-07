@@ -57,7 +57,7 @@ body {
 
 form .data input {
   height: 100%;
-  width: 100%;
+ width: 100%;
   padding-left: 20px;
   text-align: left;
   font-size: 18px;
@@ -130,7 +130,9 @@ option {
 #clave {
   width: 83%;
 }
-
+#clave2 {
+  width: 83%;
+}
 #icono {
   height: 100%;
   width: 15%;

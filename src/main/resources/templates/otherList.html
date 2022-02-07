@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Otros empleos</title>
-     <link rel="stylesheet" href="/css/cardPrueba.css" /> 
+    <link rel="stylesheet" href="/css/cardPrueba.css" />
     <!--<link rel="stylesheet" href="/src/main/resources/static/css/cardPrueba.css" />-->
     <!--Google fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -60,7 +60,8 @@
                             <i class="far fa-smile-wink"></i></a>
 
                         <ul class="work-menu">
-                            <li><a th:href="@{/jobs/myjobs}">Mis postulaciones<i class="fas fa-sign-in-alt"></a></li></i>
+                            <li><a th:href="@{/jobs/myjobs}">Mis postulaciones<i class="fas fa-sign-in-alt"></a></li>
+                            </i>
                             <li><a th:href="@{/jobs/myjobs}">Modificar<i class="fas fa-sign-in-alt"></a></li></i>
                             <li>
                                 <form th:action="@{/logout}" method="POST">
@@ -81,8 +82,8 @@
             <h3>Filtros</h3>
             <form class="formato" th:action="@{/other/list}" method="POST">
                 <div class="data">
-                    <label for="salaryFrom"></label>
-                    <input class="input" type="number" th:value="${salaryFrom}" name="salaryFrom" id="salario"
+                    <label for="salaryTo"></label>
+                    <input class="input" type="number" th:value="${salaryTo}" name="salaryTo" id="salario"
                         placeholder="¿Cuanto desea pagar?">
                 </div>
                 <div class="data">
@@ -153,40 +154,40 @@
                 <div class="blog-card">
                     <div class="photo">
                         <!-- <img th:src="@{other.user.photo}" alt=""> -->
-                        <img src="/img/Jardìn/j13.jpg" alt="">
+                        <img th:src="${other.user.photo != null && other.user.photo != ''} ? ${other.user.photo} : '/img/Jardìn/j13.jpg'"
+                            alt="User photo">
+                        <!-- MODIFICA EL LINK DEL FINAL POR LO QUE QUIERAS, FIJATE DE INCLUIR LAS COMILLAS SIMPLES COMO SI FUESE UNA STRING DE JS-->
                     </div>
                     <div class="description">
-                        <h1 th:text="${other.user.firstName}+' '+${other.user.lastName} ">nombre y apellido</h1>
-                        <!-- <h1 th:text="${other.user.firstName}+' '+${other.user.lastName}"></h1> -->
-                        <!-- <h1 th:text="${other.firstName}"></h1> -->
+                        <h1 th:text="${other.user.firstName}+' '+${other.user.lastName} "></h1>
                         <div class="mail-contact">
-                            <a href="">nombre@gmail.com</a>
+                            <h1 th:text="${other.user.email}"></h1>
                         </div>
                     </div>
                     <div class="card-body">
                         <div class="bloque-izq">
-                            <p class="thyme" th:text="${other.salary}"> precio: $200</p>
-                            <p class="thyme" th:text="${other.workingZone}">zona: godoy cruz</p>
+                            <p class="thyme" th:text="'Precio: '+${other.salary}"></p>
+                            <p class="thyme" th:text="'Zona: '+${other.workingZone}"></p>
                         </div>
                         <div class="bloque-cen">
                             <p class="thyme"
                                 th:text="'Hora desde: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(other.hoursFrom), 'HH:mm')}">
-                                hora desde: 10:00hs
                             </p>
                             <p class="thyme"
                                 th:text="'Hora hasta: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(other.hoursTo), 'HH:mm')}">
-                                hora hasta: 18:00hs
                             </p>
                         </div>
                         <div class="bloque-der">
-                            <p class="thyme" th:text="${other.type}">mecanico</p>
+                            <p class="thyme" th:text="${other.type}"></p>
                             <th:block th:each="day : ${other.days}">
-                                <label th:text="${day} + ' '">martes miercoles jueves</label>
+                                <label th:text="${day} + ' '"></label>
                             </th:block>
                         </div>
                     </div>
-                    <div class="read-more">
-                        <a href="https://wa.me/"> Contactar</a>
+                    <div class="boton-contact">
+                        <div class="read-more">
+                            <a href="https://wa.me/"> Contactar</a>
+                        </div>
                     </div>
                 </div>
             </div>

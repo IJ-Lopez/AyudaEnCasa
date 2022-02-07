@@ -730,8 +730,6 @@ select {
   text-decoration: underline;
 }
 
-.error {
-}
 
 .error {
   font-weight: bold;
@@ -743,7 +741,7 @@ select {
 }
 
 .error a {
-  color: rgba(255, 0, 0, 0.884);
+  color: #4e4d4d;
   text-shadow: none;
 }
 
