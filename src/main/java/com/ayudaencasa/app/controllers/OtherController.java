@@ -64,6 +64,7 @@ public class OtherController {
             otherService.validated(inputOther);
             modelmap.map(inputOther, other);
             other.setCurriculum(s3service.save(inputOther.getCv()));
+            other.setType(inputOther.getJobType());
             if(inputOther.getWorkingHoursTo() != null){
                 other.setHoursTo(inputOther.getWorkingHoursTo());    
             }
