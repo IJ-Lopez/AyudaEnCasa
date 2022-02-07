@@ -22,7 +22,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
 import static org.hibernate.bytecode.BytecodeLogging.LOGGER;
@@ -39,6 +41,8 @@ public class S3ServiceImpl implements S3Service{
  
     @Value("${AWS.S3.BUCKET}")
     private String ayudaencasa;
+    
+    private Map<String,String> oldNewFileName = new HashMap<>();
  
     //@Override
     public File UploadFile (final MultipartFile multipartFile) {
@@ -46,6 +50,7 @@ public class S3ServiceImpl implements S3Service{
         try (final FileOutputStream outputStream = new FileOutputStream(file)) {
             outputStream.write(multipartFile.getBytes());
             String newFileName = System.currentTimeMillis()+ "-" + file.getName();
+            oldNewFileName.put(file.getName(), newFileName);
            LOGGER.info("Subiendo archivo con el nombre... " + newFileName);
 			PutObjectRequest request = new PutObjectRequest(ayudaencasa, newFileName, file);
 			amazonS3.putObject(request);
@@ -94,10 +99,11 @@ public class S3ServiceImpl implements S3Service{
             final File file = UploadFile(multipartFile);
             final String fileName = file.getName();
             LOG.info("Uploading file with name {}", fileName);
-            final PutObjectRequest putObjectRequest = new PutObjectRequest(ayudaencasa, fileName, file);
+            final PutObjectRequest putObjectRequest = new PutObjectRequest(ayudaencasa, oldNewFileName.get(fileName), file);
             amazonS3.putObject(putObjectRequest);
             Files.delete(file.toPath()); // Remove the file locally created in the project folder
-            filePath = amazonS3.getUrl(ayudaencasa, fileName).toString();
+            filePath = amazonS3.getUrl(ayudaencasa, oldNewFileName.get(fileName)).toString();
+            oldNewFileName.remove(fileName);
         } catch (AmazonServiceException e) {
             LOG.error("Error {} occurred while uploading file", e.getLocalizedMessage());
         } catch (IOException ex) {

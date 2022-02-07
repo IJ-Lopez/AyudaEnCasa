@@ -107,6 +107,9 @@ public class CaregiverServiceImpl extends QueryService<Caregiver> implements Car
         if(caregiver.getQuantity() == null){
             throw new CaregiverNotFoundException("La cantidad de personas a cuidar no puede ser nulo");
         }
+        if(caregiver.getQuantity() < 1){
+            throw new CaregiverNotFoundException("La cantidad de personas a cuidar no puede ser inferior a 1");
+        }
         if(caregiver.getSalary() == null){
             throw new CaregiverNotFoundException("El salario no puede ser nulo");
         }
