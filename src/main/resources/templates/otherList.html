@@ -134,12 +134,12 @@
                         placeholder="Hora de finalización" onfocus="(this.type='time')">
                 </div>
                 <div class="data">
-                    <label for="jobType"></label>
-                    <input class="input" type="text" th:value="${jobType}" id="hora" name="jobType"
+                    <label for="type"></label>
+                    <input class="input" type="text" th:value="${type}" id="hora" name="type"
                         placeholder="Tipo de trabajo">
 
                     <!-- Esto es el CSRF Token para su seguridad-->
-                    <!--<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">-->
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
                 </div>
 
                 <div class="btn">
@@ -150,47 +150,48 @@
             </form>
         </div>
         <th:block th:each="other : ${others}">
-            <div class="card">
-                <div class="blog-card">
-                    <div class="photo">
-                        <!-- <img th:src="@{other.user.photo}" alt=""> -->
-                        <img th:src="${other.user.photo != null && other.user.photo != ''} ? ${other.user.photo} : '/img/Jardìn/j13.jpg'"
-                            alt="User photo">
-                        <!-- MODIFICA EL LINK DEL FINAL POR LO QUE QUIERAS, FIJATE DE INCLUIR LAS COMILLAS SIMPLES COMO SI FUESE UNA STRING DE JS-->
-                    </div>
-                    <div class="description">
-                        <h1 th:text="${other.user.firstName}+' '+${other.user.lastName} "></h1>
-                        <div class="mail-contact">
-                            <h1 th:text="${other.user.email}"></h1>
+            <th:block th:if="${other != null}">
+                <div class="card">
+                    <div class="blog-card">
+                        <div class="photo">
+                            <!-- <img th:src="@{other.user.photo}" alt=""> -->
+                            <img th:src="${other.user.photo != null && other.user.photo != ''} ? ${other.user.photo} : '/img/Jardìn/j13.jpg'" alt="User photo">
+                            <!-- MODIFICA EL LINK DEL FINAL POR LO QUE QUIERAS, FIJATE DE INCLUIR LAS COMILLAS SIMPLES COMO SI FUESE UNA STRING DE JS-->
                         </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="bloque-izq">
-                            <p class="thyme" th:text="'Precio: '+${other.salary}"></p>
-                            <p class="thyme" th:text="'Zona: '+${other.workingZone}"></p>
+                        <div class="description">
+                            <h1 th:text="${other.user.firstName}+' '+${other.user.lastName} "></h1>
+                            <div class="mail-contact">
+                                <h1 th:text="${other.user.email}"></h1>
+                            </div>
                         </div>
-                        <div class="bloque-cen">
-                            <p class="thyme"
-                                th:text="'Hora desde: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(other.hoursFrom), 'HH:mm')}">
-                            </p>
-                            <p class="thyme"
-                                th:text="'Hora hasta: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(other.hoursTo), 'HH:mm')}">
-                            </p>
+                        <div class="card-body">
+                            <div class="bloque-izq">
+                                <p class="thyme" th:text="'Precio: '+${other.salary}"></p>
+                                <p class="thyme" th:text="'Zona: '+${other.workingZone}"></p>
+                            </div>
+                            <div class="bloque-cen">
+                                <p class="thyme"
+                                    th:text="'Hora desde: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(other.hoursFrom), 'HH:mm')}">
+                                </p>
+                                <p class="thyme"
+                                    th:text="'Hora hasta: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(other.hoursTo), 'HH:mm')}">
+                                </p>
+                            </div>
+                            <div class="bloque-der">
+                                <p class="thyme" th:text="${other.type}"></p>
+                                <th:block th:each="day : ${other.days}">
+                                    <label th:text="${day} + ' '"></label>
+                                </th:block>
+                            </div>
                         </div>
-                        <div class="bloque-der">
-                            <p class="thyme" th:text="${other.type}"></p>
-                            <th:block th:each="day : ${other.days}">
-                                <label th:text="${day} + ' '"></label>
-                            </th:block>
-                        </div>
-                    </div>
-                    <div class="boton-contact">
-                        <div class="read-more">
-                            <a href="https://wa.me/"> Contactar</a>
+                        <div class="boton-contact">
+                            <div class="read-more">
+                                <a href="https://wa.me/"> Contactar</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </th:block>
         </th:block>
     </main>
 </body>

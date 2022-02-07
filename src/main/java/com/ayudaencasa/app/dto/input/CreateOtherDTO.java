@@ -19,7 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Setter
 public class CreateOtherDTO {
     
-    private String jobType;
+    private String type;
     private Integer salary;
     private String workingZone;
     private String description;

@@ -51,7 +51,6 @@ public abstract class Job implements Serializable {
     protected String workingZone;  
     protected String description;
     
-    @Setter(AccessLevel.NONE)
     protected String type;
     
     @ManyToOne(cascade = CascadeType.PERSIST)

@@ -64,7 +64,7 @@ public class OtherController {
             otherService.validated(inputOther);
             modelmap.map(inputOther, other);
             other.setCurriculum(s3service.save(inputOther.getCv()));
-            other.setType(inputOther.getJobType());
+            other.setType(inputOther.getType());
             if(inputOther.getWorkingHoursTo() != null){
                 other.setHoursTo(inputOther.getWorkingHoursTo());    
             }
@@ -78,7 +78,7 @@ public class OtherController {
         }catch (OtherNotFoundException ex) {
             redirectat.addFlashAttribute("error", ex.getMessage());
             redirectat.addFlashAttribute("salary", inputOther.getSalary());
-            redirectat.addFlashAttribute("jobType", inputOther.getJobType());
+            redirectat.addFlashAttribute("type", inputOther.getType());
             redirectat.addFlashAttribute("workingHoursFrom", inputOther.getWorkingHoursFrom());
             redirectat.addFlashAttribute("workingHoursTo", inputOther.getWorkingHoursTo());
             return "redirect:/other/create";
@@ -86,12 +86,17 @@ public class OtherController {
     }
     
     @GetMapping("/list")
-    public String findAll(Model model, @RequestParam(required = false) List<Other> others, String type) {
+    public String findAll(Model model, @RequestParam(required = false, name = "others") List<String> others, String type) {
         if(type == null){
             type = "";
         }
-        if(others != null){
-             model.addAttribute("others", others);
+        if(others != null && !others.isEmpty()){
+            System.out.println(others.toString());
+            List<Other> jobs = new ArrayList();
+            for(String id : others){
+                jobs.add(otherService.findById(id));
+            }
+            model.addAttribute("others", jobs);
         } else {
             model.addAttribute("others", otherService.findByType(type));
         }
@@ -119,17 +124,18 @@ public class OtherController {
                 } 
             }
             others = ot;
-        }  
-         rt.addAttribute("others", others);
+        }
+        rt.addAttribute("others", others);
         return "redirect:/other/list";
     }
     
     private OtherCriteria createCriteria(SearchOtherDTO searchOther){
         OtherCriteria otherCriteria = new OtherCriteria();
         if(searchOther != null){
-            if(!StringUtils.isBlank(searchOther.getJobType())){
+            if(!StringUtils.isBlank(searchOther.getType())){
                 StringFilter filter = new StringFilter();
-                otherCriteria.setJobType(filter);
+                filter.setContains(searchOther.getType());
+                otherCriteria.setType(filter);
             }         
             if(searchOther.getSalaryFrom()!= null || searchOther.getSalaryTo()!= null){
                 IntegerFilter filter = new IntegerFilter();

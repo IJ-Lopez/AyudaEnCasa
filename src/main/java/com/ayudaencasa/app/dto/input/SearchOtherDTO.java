@@ -10,14 +10,16 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
+@ToString
 public class SearchOtherDTO {
     
-    private String jobType;
+    private String type;
     private Integer salaryFrom;
     private Integer salaryTo;
     private String workingZone;

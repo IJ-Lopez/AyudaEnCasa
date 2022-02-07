@@ -20,7 +20,7 @@ public class PetWalker extends Job implements Serializable{
     
     public static final String JOB_TYPE = "Paseador de Perros || Petwalker";
     
-    private String type = JOB_TYPE;
+    private final String type = JOB_TYPE;
     
     private Integer petQuantity;
     

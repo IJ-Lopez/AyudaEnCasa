@@ -2,6 +2,7 @@
 package com.ayudaencasa.app.controllers;
 
 import com.ayudaencasa.app.dto.input.RegisterUserDTO;
+import com.ayudaencasa.app.entities.Job;
 import com.ayudaencasa.app.entities.User;
 import com.ayudaencasa.app.exceptions.UserNotFoundException;
 import com.ayudaencasa.app.services.S3Service;
@@ -12,6 +13,10 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
@@ -71,19 +76,13 @@ public class UserController {
     }
     
     @GetMapping("/editarUser")
-    public String editarUser(@RequestParam(required= false) String id, Model model){
-        if(id != null){
-            User user= userService.findById(id);
-            if(user!=null){
-                model.addAttribute("user", user);
-            }
-            
-        } else {
-            model.addAttribute("user", new User());
-        }
-            
-        
-        return "/editarMisPublicaciones";
+    public String editarUser(Model model){
+        UserDetails userDetails;
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        userDetails = (UserDetails)auth.getPrincipal();
+        User user = userService.findByEmail(userDetails.getUsername());
+        model.addAttribute("user", user);
+        return "editarMisPublicaciones";
     }
     
     @PostMapping("/editUser")

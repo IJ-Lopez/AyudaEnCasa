@@ -34,14 +34,14 @@ public class OtherServiceImpl extends QueryService<Other> implements OtherServic
     
     @Override
     public List<Other> findByType(String type) {
-        return otherRepository.findByTypeContaining(type);
+        return otherRepository.findByTypeContainingIgnoreCase(type);
     }
     
     private Specification<Other> createSpecification(OtherCriteria otherCriteria) {
         Specification<Other> specification = Specification.where(null);
         if (otherCriteria != null) {
-            if (otherCriteria.getJobType() != null) {
-                specification = specification.and(buildStringSpecification(otherCriteria.getJobType(), Other_.type));
+            if (otherCriteria.getType() != null) {
+                specification = specification.and(buildStringSpecification(otherCriteria.getType(), Other_.type));
             }
             if (otherCriteria.getSalary() != null) {
                 specification = specification.and(buildRangeSpecification(otherCriteria.getSalary(), Other_.salary));
@@ -87,7 +87,7 @@ public class OtherServiceImpl extends QueryService<Other> implements OtherServic
         if(other.getWorkingZone()== null || other.getWorkingZone().isEmpty()){
             throw new OtherNotFoundException("La zona laboral no puede estar vacía");
         }
-        if(other.getJobType() == null || other.getJobType().isEmpty()){
+        if(other.getType() == null || other.getType().isEmpty()){
             throw new OtherNotFoundException("El tipo de trabajo no puede estar vacío");
         }
         if(other.getDays() == null || other.getDays().isEmpty()){
