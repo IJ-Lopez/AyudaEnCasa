@@ -65,6 +65,10 @@ public class UserController {
     @PostMapping("/registry")
     public String create(RedirectAttributes redirectat, RegisterUserDTO inputUser) {
         try{
+            System.out.println(inputUser.toString());
+            if(!inputUser.getPassword().equals(inputUser.getPassword2())){
+                throw new UserNotFoundException("Las contraseñas deben ser iguales");
+            }
             User user = new User();
             userService.validated(inputUser);
             modelmap.map(inputUser, user);
@@ -72,7 +76,7 @@ public class UserController {
             if(inputUser.getPic() != null && !inputUser.getPic().isEmpty()){
                 user.setPhoto(s3service.save(inputUser.getPic()));
             }
-            if(inputUser.getId() != null) {
+            if(inputUser.getId() != null && !inputUser.getId().isEmpty()) {
                 update(inputUser.getId(), user);
                 redirectat.addFlashAttribute("success", "Se ha modificado con éxito su perfil");
             } else {
@@ -81,6 +85,7 @@ public class UserController {
             }
             return "redirect:/home";
         } catch (UserNotFoundException ex) {
+            ex.printStackTrace();
             redirectat.addFlashAttribute("error", ex.getMessage());
             redirectat.addFlashAttribute("id", inputUser.getId());
             redirectat.addFlashAttribute("firstName", inputUser.getFirstName());
