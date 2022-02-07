@@ -76,6 +76,7 @@ public class DataSeederApp implements CommandLineRunner {
         care.setStatus(true);
         care.setTranfering(random.nextBoolean());
         care.setWorkingZone("Guaymallen");
+        care.setDays(randomDays());
         care.setUser(user);
         return care;
     }
@@ -93,6 +94,7 @@ public class DataSeederApp implements CommandLineRunner {
         pw.setPetQuantity(random.nextInt(7));
         pw.setPetType(petType);
         pw.setPetRace(petRace);
+        pw.setDays(randomDays());
         return pw;
     }
 
@@ -111,6 +113,8 @@ public class DataSeederApp implements CommandLineRunner {
         cl.setCooking(random.nextBoolean());
         cl.setLaundry(random.nextBoolean());
         cl.setIroning(random.nextBoolean());
+        cl.setDays(randomDays());
+        
         return cl;
     }
 
@@ -129,6 +133,7 @@ public class DataSeederApp implements CommandLineRunner {
         g.setPoolCleaning(random.nextBoolean());
         g.setGardenFence(random.nextBoolean());
         g.setPlantDisinfection(random.nextBoolean());
+        g.setDays(randomDays());
         return g;
     }
 
@@ -139,6 +144,7 @@ public class DataSeederApp implements CommandLineRunner {
         other.setHoursFrom(LocalTime.NOON);
         other.setHoursTo(LocalTime.MIDNIGHT);
         other.setWorkingZone("Godoy Cruz");
+        other.setDays(randomDays());
         other.setUser(user);
         return other;
     }
@@ -176,5 +182,31 @@ public class DataSeederApp implements CommandLineRunner {
                 }
             }
         }
+    }
+    
+    private List<String> randomDays(){
+        List<String> list = new ArrayList();
+        if(random.nextBoolean()){
+            list.add("Lunes");
+        }
+        if(random.nextBoolean()){
+            list.add("Martes");
+        }
+        if(random.nextBoolean()){
+            list.add("Miercoles");
+        }
+        if(random.nextBoolean()){
+            list.add("Jueves");
+        }
+        if(random.nextBoolean()){
+            list.add("Viernes");
+        }
+        if(random.nextBoolean()){
+            list.add("Sabado");
+        }
+        if(random.nextBoolean()){
+            list.add("Domingo");
+        }
+        return list;
     }
 }
