@@ -33,7 +33,7 @@
                 </li>
                 <div class="work-menu">
                     <li>
-                        <a href="#form">Quiero trabajar <i class="fas fa-briefcase"></i></a>
+                        <a href="#form">Quiero Trabajar <i class="fas fa-briefcase"></i></a>
                         <ul class="work-menu">
                             <li><a href="/gardener/create">Servicio de Jardinería</a></li>
                             <li><a href="/cleaning/create">Servicio Doméstico</a></li>
@@ -45,7 +45,7 @@
                 </div>
                 <div th:if="${#authentication.getName()} == anonymousUser" class="work-menu">
                     <li>
-                        <a href="#form">Sección usuarios <i class="far fa-user"></i></a>
+                        <a href="#form">Sección Usuarios <i class="far fa-user"></i></a>
                         <ul class="work-menu">
                             <li><a th:href="@{/unauthorized}">Iniciar Sesion <i class="fas fa-sign-in-alt"></i></a></li>
                             <li><a th:href="@{/user/registry}">Regístrate <i class="fas fa-bars"></i></a></li>
