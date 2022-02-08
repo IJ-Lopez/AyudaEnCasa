@@ -63,8 +63,9 @@ public class UserController {
 
     @PostMapping("/registry")
     public String create(RedirectAttributes redirectat, RegisterUserDTO inputUser) {
-        try {
-            if (!inputUser.getPassword().equals(inputUser.getPassword2())) {
+        try{
+            System.out.println(inputUser.toString());
+            if(!inputUser.getPassword().equals(inputUser.getPassword2())){
                 throw new UserNotFoundException("Las contraseñas deben ser iguales");
             }
             User user = new User();
@@ -83,6 +84,7 @@ public class UserController {
             }
             return "redirect:/home";
         } catch (UserNotFoundException ex) {
+            ex.printStackTrace();
             redirectat.addFlashAttribute("error", ex.getMessage());
             redirectat.addFlashAttribute("id", inputUser.getId());
             redirectat.addFlashAttribute("firstName", inputUser.getFirstName());
