@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paseador de Perros</title>
     <link rel="stylesheet" href="/css/cardPrueba.css">
-    <!--<link rel="stylesheet" href="/src/main/resources/static/css/cardPrueba.css">-->
+    <!--Icono-->
+    <link rel="icon" type="image/jpg" href="/img/favicon.ico" />
     <!-- Google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -172,7 +173,7 @@
                         <!-- <h1 th:text="${petwalker.user.firstName}+' '+${petwalker.user.lastName}"></h1> -->
                         <!-- <h1 th:text="${petwalker.firstName}"></h1> -->
                         <div class="mail-contact">
-                            <h1 th:text="${petwalker.user.email}"></h1>
+                            <p th:text="${petwalker.user.email}"></p>
                         </div>
                     </div>
                     <div class="card-body">
@@ -192,17 +193,18 @@
                         </div>
                         <div class="bloque-der">
                             <p class="thyme" th:text="'Cantidad de mascotas: '+${petwalker.petQuantity}"></p>
+                            <p class="line-days">Días: </p>
                             <th:block th:each="day : ${petwalker.days}">
-                                <label th:text="${day} + ' '"></label>
+                                <label th:text="${day}"></label>
                             </th:block>
                         </div>
                     </div>
                 </div>
-                <div class="boton-contact">
+                <!-- <div class="boton-contact">
                     <div class="read-more">
                         <a href="https://wa.me/"> Contactar</a>
                     </div>
-                </div>
+                </div> -->
             </div>
         </th:block>
 

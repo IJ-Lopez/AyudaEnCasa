@@ -7,15 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enviar Mail</title>
     <link rel="stylesheet" href="/css/newLogin.css">
-    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" -->
-    <!--         href="https://fonts.googleapis.com/css2?family=Licorice&family=Pushster&family=Quicksand:wght@300&family=Spline+Sans:wght@300&display=swap" /> -->
+    <!--Icono-->
+    <link rel="icon" type="image/jpg" href="/img/favicon.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link rel="stylesheet"
-              href="https://fonts.googleapis.com/css2?family=Licorice&family=Pushster&family=Quicksand:wght@300&family=Spline+Sans:wght@300&display=swap" />
-       <script src="https://kit.fontawesome.com/83a37f8406.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Licorice&family=Pushster&family=Quicksand:wght@300&family=Spline+Sans:wght@300&display=swap" />
+    <script src="https://kit.fontawesome.com/83a37f8406.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -23,10 +21,11 @@
         <label for="" class="show-btn"></label>
         <div class="container">
             <div class="text">Contacto</div>
-            <form class="formClass" th:action="@{/send}" method="POST">
+            <form class="formClass" th:action="@{/mail/send}" method="POST">
+                <input hidden th:value="${id}" name="id" />
                 <div class="data">
-                    <label for="addressee"></label>
-                    <input type="text" th:value="${addressee}" name="addressee" placeholder="Destinatario">
+                    <label for="email"></label>
+                    <input type="text" th:value="${email}" name="email" placeholder="Destinatario">
                 </div>
                 <div class="data">
                     <label for="subject"></label>
@@ -34,7 +33,7 @@
                 </div>
                 <div class="data">
                     <label for="message"></label>
-                    <input type="text" th:value="${message}" name="message" placeholder="Mensaje">
+                    <input type="textarea" th:value="${message}" name="message" placeholder="Mensaje">
 
                     <!-- Esto es el CSRF Token para su seguridad-->
                     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">

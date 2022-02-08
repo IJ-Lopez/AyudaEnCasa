@@ -33,8 +33,6 @@ ul {
   margin-top: 100px;
 }
 
-
-
 /*NAVIGATION*/
 .nav-main {
   top: 0px;
@@ -74,10 +72,9 @@ ul {
   border-radius: 0px 0px 20px 20px;
 }
 
-.work-menu li button{
+.work-menu li button {
   background: none;
 }
-
 
 h1 {
   font-family: "Licorice", cursive;
@@ -125,7 +122,7 @@ h1 {
   color: #fafafa;
 }
 
-.work-menu button{
+.work-menu button {
   border: none;
   color: #fafafa;
   text-decoration: none;
@@ -146,7 +143,8 @@ a {
   color: #fefefe;
 }
 
-.fa-sign-in-alt, .fa-times{
+.fa-sign-in-alt,
+.fa-times {
   padding-left: 5px;
 }
 
@@ -184,15 +182,6 @@ a {
   padding: 30px;
   margin: 20px;
 }
-
-/* .cuadrobusqueda:hover {
-  border: 2px solid #b0e7da;
-  border-radius: 10%;
-  opacity: 1;
-  text-align: center;
-  padding: 20px;
-  cursor: cell;
-} */
 
 .form :hover {
   border: 2px solid #b0e7da;
@@ -247,7 +236,6 @@ a {
 .h3-sug {
   font-family: "Licorice", cursive;
   font-size: 40px;
-  /* margin: 20px 40px; */
   text-shadow: 1px 2px 3px white;
   font-weight: 500;
   text-align: left;
@@ -302,7 +290,7 @@ a {
 /*Populares*/
 
 .box {
-text-emphasis-color: black;
+  text-emphasis-color: black;
   color: black;
   margin-top: 30px;
   width: 100%;
@@ -418,33 +406,28 @@ text-emphasis-color: black;
   justify-content: center;
 }
 
-.card p{
+.card p {
   color: black;
 }
 
 .h3bis {
   font-family: "Quicksand", sans-serif;
+  font-size: 30px;
+  color: #ffe8d6;
+  margin-bottom: 25px;
 }
 
 .bloque-inf {
   margin-top: 20px;
   font-family: "Quicksand", sans-serif !important;
   width: 100%;
-  height: max-content;
-  display: block;
-  border: 2px solid red;
-}
-
-.subbloque-inf {
-  width: 50%;
-  position: relative;
+  background-color: #cb997e;
 }
 
 .redes {
   display: flex;
-  border: 2px solid yellow;
-  float: left;
-  width: 50%;
+  float: center;
+  width: 100%;
   padding: 20px;
   display: grid;
   text-align: center;
@@ -457,14 +440,19 @@ text-emphasis-color: black;
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  margin: 0px 20px;
-  padding: 20px;
+  /* margin: 0px 20px; */
+  /* padding: 20px; */
 }
 
 .social a {
   width: 100%;
-  padding-right: 20px;
-  color: #cb997e;
+  padding-right: 30px;
+  color: #ffe8d6;
+}
+
+.social{
+  padding-bottom: 40px;
+  border-bottom: 2px solid #044e64;;
 }
 
 .contact-form {
@@ -484,57 +472,22 @@ text-emphasis-color: black;
 
 .contactanos {
   border: 1px solid green;
-  /* width: 100%; */
 }
-
-/* 
-
-/*SOCIAL*/
-
-/* .fot2 {
-  display: flex;
-  align-items: center;
-  float: left;
-  width: 50%;
-  padding: 10px;
-} */
-
-/* .fot2 img {
-  float: left;
-} */
-
-/* .fot2 input {
-  width: 200px;
-  height: 30px;
-  font-size: 20px;
-  text-emphasis-color: #dadada;
-} */
-
-/* .form textarea {
-  width: 200px;
-  resize: none;
-  height: 100px;
-} */
-
-/* .contact-img {
-  justify-content:end;
-  width: 40px;
-  float: left;
-} */
 
 .footer {
   padding: 10px;
   width: 100%;
   display: flow-end;
-  background-color: #ddbea9;
-  /* background-color: #cb997e; */
+  background-color: #cb997e;
   justify-content: center;
   align-items: center;
   text-align: center;
   bottom: 0;
-  /* position: ; */
 }
 
+.footer p{
+  color: #ffe8d6; ;
+}
 
 .tarjetas {
   border: 1px solid red;
@@ -613,10 +566,6 @@ table tr:nth-child(even):hover {
   background-color: #cb997e;
 }
 
-/* footer{
-  position: ;
-} */
-
 .nav-main .button-back {
   float: left;
   text-align: center;
@@ -648,13 +597,8 @@ table tr:nth-child(even):hover {
   box-shadow: 0px 13px 40px #4e4d4d;
   border-radius: 20px 20px 20px 20px;
   padding-bottom: 30px;
-  /*  color: #ffffff;
-       font: 50px Quicksand,sans-serif;
-       background: #F0A33130; 
-       padding: 10 px;
-       border: 2px solid #00000088;
-       border-radius: 10px; */
 }
+
 .card h1 {
   border: 2px black solid;
   font-family: "Licorice", cursive;
@@ -730,7 +674,6 @@ select {
   text-decoration: underline;
 }
 
-
 .error {
   font-weight: bold;
   background-color: #fefefe48;
@@ -744,20 +687,3 @@ select {
   color: #4e4d4d;
   text-shadow: none;
 }
-
-/* .formato .input {
-  width: 150px;
-  font-size: 25px;
-  padding: 15px;
-} */
-/* 
- .formato .inputZona {
-   width: 250px;
-   font-size: 25px;
-   padding: 15px;
- }
- .formato .inputHora {
-   width: 200px;
-   font-size: 25px;
-   padding: 15px;
- } */

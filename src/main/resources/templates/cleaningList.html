@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Limpieza Doméstica</title>
     <!-- <link rel="stylesheet" href="/css/cardPrueba.css" /> -->
+    <!--Icono-->
+    <link rel="icon" type="image/jpg" href="/img/favicon.ico" />
     <link rel="stylesheet" href="/css/cardPrueba.css">
     <!--Google fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -60,7 +62,8 @@
                             <i class="far fa-smile-wink"></i></a>
 
                         <ul class="work-menu">
-                            <li><a th:href="@{/jobs/myjobs}">Mis postulaciones<i class="fas fa-sign-in-alt"></a></li></i>
+                            <li><a th:href="@{/jobs/myjobs}">Mis postulaciones<i class="fas fa-sign-in-alt"></a></li>
+                            </i>
                             <li><a th:href="@{/jobs/myjobs}">Modificar<i class="fas fa-sign-in-alt"></a></li></i>
                             <li>
                                 <form th:action="@{/logout}" method="POST">
@@ -171,7 +174,9 @@
             <div class="card">
                 <div class="blog-card">
                     <div class="photo">
-                        <img th:src="${cleaning.user.photo != null && cleaning.user.photo != ''} ? @{cleaning.user.photo} : 'https://t4.ftcdn.net/jpg/02/29/75/83/240_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg'" alt="User photo">  <!-- MODIFICA EL LINK DEL FINAL POR LO QUE QUIERAS, FIJATE DE INCLUIR LAS COMILLAS SIMPLES COMO SI FUESE UNA STRING DE JS-->
+                        <img th:src="${cleaning.user.photo != null && cleaning.user.photo != ''} ? @{cleaning.user.photo} : 'https://t4.ftcdn.net/jpg/02/29/75/83/240_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg'"
+                            alt="User photo">
+                        <!-- MODIFICA EL LINK DEL FINAL POR LO QUE QUIERAS, FIJATE DE INCLUIR LAS COMILLAS SIMPLES COMO SI FUESE UNA STRING DE JS-->
                     </div>
                     <div class="description">
                         <h1 th:text="${cleaning.user.firstName} +' '+ ${cleaning.user.lastName} "></h1>
@@ -188,24 +193,25 @@
                     <div class="bloque-cen">
                         <p class="thyme"
                             th:text="'Hora desde: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(cleaning.hoursFrom), 'HH:mm')}">
-                            </p>
+                        </p>
                         <p class="thyme"
                             th:text="'Hora hasta: '+${#temporals.format(T(java.time.LocalTime).ofSecondOfDay(cleaning.hoursTo), 'HH:mm')}">
-                            </p>
+                        </p>
                     </div>
                     <div class="bloque-der">
                         <p class="thyme" th:text="'Ambientes: ' + ${cleaning.rooms}">
                         </p>
+                        <p class="line-days">Días: </p>
                         <th:block th:each="day : ${cleaning.days}">
-                            <label th:text="${day} + ' '"></label>
+                            <label th:text="${day}"></label>
                         </th:block>
                     </div>
                 </div>
-                <div class="boton-contact">
+                <!-- <div class="boton-contact">
                     <div class="read-more">
                         <a href="https://wa.me/"> Contactar</a>
                     </div>
-                </div>
+                </div> -->
             </div>
         </th:block>
     </main>

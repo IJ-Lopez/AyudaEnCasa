@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jardinería</title>
+    <!--Icono-->
+    <link rel="icon" type="image/jpg" href="/img/favicon.ico" />
     <link rel="stylesheet" href="/css/cardPrueba.css" />
     <!--<link rel="stylesheet" href="/src/main/resources/static/css/cardPrueba.css">-->
     <!--Google fonts-->
@@ -169,18 +171,17 @@
             <div class="card">
                 <div class="blog-card">
                     <div class="photo">
-                       <img th:src="${gardener.user.photo != null && gardener.user.photo !=''} ? ${gardener.user.photo} : 'https://t4.ftcdn.net/jpg/02/29/75/83/240_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg'"
+                        <img th:src="${gardener.user.photo != null && gardener.user.photo !=''} ? ${gardener.user.photo} : 'https://t4.ftcdn.net/jpg/02/29/75/83/240_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg'"
                             alt="User photo">
-                        <!-- MODIFICA EL LINK DEL FINAL POR LO QUE QUIERAS, FIJATE DE INCLUIR LAS COMILLAS SIMPLES COMO SI FUESE UNA STRING DE JS-->
-                        <!--<img src="/src/main/resources/static/img/Jardìn/j13.jpg" alt="">-->
                     </div>
                     <div class="description">
                         <h1 th:text="${gardener.user.firstName}+' '+${gardener.user.lastName} "></h1>
-                        <!-- <h1 th:text="${gardener.user.firstName}+' '+${gardener.user.lastName}"></h1> -->
-                        <!-- <h1 th:text="${gardener.firstName}"></h1> -->
                         <div class="mail-contact">
-                            <h1 th:text="${gardener.user.email}"></h1>
+
+                            <!-- <a th:text="${gardener.user.email}" th:href="@{/mail/send}+'?id='+${gardener.user.id}"></a> -->
+                            <!-- <p th:text="${gardener.user.email}"></p> -->
                         </div>
+                        <a th:text="${gardener.user.email}" th:href="@{/mail/send}+'?id='+${gardener.user.id}"></a>
                     </div>
                 </div>
                 <div class="card-body">
@@ -198,16 +199,17 @@
                     </div>
                     <div class="bloque-der">
                         <p class="thyme" th:text="'Superficie del terreno: ' + ${gardener.surface}"> </p>
+                        <p class="line-days">Días: </p>
                         <th:block th:each="day : ${gardener.days}">
-                            <label th:text="${day} + ' '"></label>
+                            <label th:text="${day}"></label>
                         </th:block>
                     </div>
                 </div>
-                <div class="boton-contact">
+                <!-- <div class="boton-contact">
                     <div class="read-more">
                         <a href="https://wa.me/"> Contactar</a>
                     </div>
-                </div>
+                </div> -->
             </div>
         </th:block>
     </main>

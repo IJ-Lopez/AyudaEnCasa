@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Regístrate</title>
+    <!--Icono-->
+    <link rel="icon" type="image/jpg" href="/img/favicon.ico" />
     <!-- Style -->
     <link rel="stylesheet" href="/css/newRegistry.css" />
     <!--Google fonts-->
@@ -30,19 +32,21 @@
             </div>
             <div class="text">Regístrate</div>
             <form th:action="@{'/user/registry'}" method="POST" enctype="multipart/form-data">
-                <input hidden th:value="${id}"  name="id"/>
+                <input hidden th:value="${id}" name="id" />
                 <div class="data">
                     <label for="email"></label>
                     <input type=email th:value="${email}" name="email" placeholder="Email" id="" required />
                 </div>
                 <div class="data">
                     <label for="password"></label>
-                    <input type="password" th:value="${password}" name="password" placeholder="Contraseña" id="clave" required />
+                    <input type="password" th:value="${password}" name="password" placeholder="Contraseña" id="clave"
+                        required />
                     <span id="verclave" class="verclave"><i id="icono" class="fas fa-eye"></i></span>
                 </div>
                 <div class="data">
                     <label for="password2"></label>
-                    <input type="password" th:value="${password2}" name="password2" placeholder="Repetir contraseña" id="clave2" required />
+                    <input type="password" th:value="${password2}" name="password2" placeholder="Repetir contraseña"
+                        id="clave2" required />
                     <span id="verclave" class="verclave"><i id="icono" class="fas fa-eye"></i></span>
                 </div>
                 <div class="data">
@@ -117,7 +121,7 @@
                     <div class="terms">
                         Estoy de acuerdo con los<a class="terms-link" href="#">Terminos y Condiciones</a>
                         <input type="checkbox" name="terms" id="" required />
-                         
+
                         <!-- Esto es el CSRF Token para su seguridad-->
                         <!--input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"-->
                     </div>

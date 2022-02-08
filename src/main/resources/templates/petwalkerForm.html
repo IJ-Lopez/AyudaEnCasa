@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paseador de perros</title>
     <link rel="stylesheet" href="/css/workForms.css">
+    <!--Icono-->
+    <link rel="icon" type="image/jpg" href="/img/favicon.ico" />
     <!--Google fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -78,7 +80,7 @@
             </div>
             <div class="text">Paseador de perros</div>
             <form enctype="multipart/form-data" th:action="@{/petwalker/create}" method="POST">
-                <input hidden th:value="${id}"  name="id"/>
+                <input hidden th:value="${id}" name="id" />
                 <div class="data">
                     <label for="salary"></label>
                     <input type="text" th:value="${salary}" name="salary" id="salario"

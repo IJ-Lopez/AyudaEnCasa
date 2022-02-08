@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mis publicaciones</title>
     <link rel="stylesheet" href="/css/cardPrueba.css" />
+    <!--Icono-->
+    <link rel="icon" type="image/jpg" href="/img/favicon.ico" />
     <!--Google fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -94,6 +96,7 @@
                             <p class="thyme" th:text="'Precio: $ '+${caregiver.salary}"></p>
                             <p class="thyme" th:text="'Zona: '+${caregiver.workingZone}"></p>
                             <p class="thyme" th:text="'Cantidad de personas: '+${caregiver.quantity}"></p>
+                            <p class="thyme" th:text="'Servicio de cocina: '+(${caregiver.cooking}?'Si':'No')"></p>
                         </div>
                         <div class="bloque-cen">
                             <p class="thyme"
@@ -109,7 +112,6 @@
                         </div>
                         <div class="bloque-der">
                             <p class="thyme" th:text="'Edad de las personas desde: '+${caregiver.ageFrom}+' años'"></p>
-                            <p class="thyme" th:text="'Servicio de cocina: '+(${caregiver.cooking}?'Si':'No')"></p>
                             <p class="thyme"
                                 th:text="'Higiene de las personas: '+(${caregiver.cleaningPeople}?'Si':'No')"></p>
                             <p class="thyme" th:text="'Servicio de traslado: '+(${caregiver.tranfering}?'Si':'No')"></p>
@@ -119,7 +121,6 @@
                         <div class="btn-edit">
                             <button><a th:href="@{/caregiver/create}+'?id='+${caregiver.id}">Modificar</a></button>
                         </div>
-                        <br>
                         <div class="btn-delete">
                             <form th:action="'/jobs/delete/' + ${caregiver.id}" method="post">
                                 <button type="submit">Eliminar</button>
@@ -174,7 +175,6 @@
                         <div class="btn-edit">
                             <button><a th:href="@{/cleaning/create}+'?id='+${cleaning.id}">Modificar</a></button>
                         </div>
-                        <br>
                         <div class="btn-delete">
                             <form th:action="'/jobs/delete/' + ${cleaning.id}" method="post">
                                 <button type="submit">Eliminar</button>
@@ -211,8 +211,8 @@
                         </div>
                         <div class="bloque-cen">
                             <p class="line-days">Días: </p>
-                            <th:block th:each="day : ${caregiver.days}">
-                                <label th:text="${day}">|</label>
+                            <th:block th:each="day : ${gardener.days}">
+                                <label th:text="${day}"></label>
                             </th:block>
                             <p class="thyme" th:text="'Superficie: ' + ${gardener.surface}">
                             </p>
@@ -230,7 +230,6 @@
                         <div class="btn-edit">
                             <button><a th:href="@{/gardener/create}+'?id='+${gardener.id}">Modificar</a></button>
                         </div>
-                        <br>
                         <div class="btn-delete">
                             <form th:action="'/jobs/delete/' + ${gardener.id}" method="post">
                                 <button type="submit">Eliminar</button>
@@ -248,7 +247,10 @@
                                 alt="User photo">
                         </div>
                         <div class="description">
-                            <h1>Otros empleos</h1>
+                            <h1
+                                th:text="${T(net.logstash.logback.encoder.org.apache.commons.lang3.StringUtils).capitalize(other.type)}">
+                            </h1>
+
                             <div class="mail-contact">
                                 <p th:text="${#authentication.getName()}"> </p>
                             </div>
@@ -270,7 +272,7 @@
                         <div class="bloque-der">
                             <p class="line-days"> Días: </p>
                             <th:block th:each="day : ${caregiver.days}">
-                                <label th:text="${day}">|</label>
+                                <label th:text="${day}"></label>
                             </th:block>
                         </div>
                     </div>
@@ -278,7 +280,6 @@
                         <div class="btn-edit">
                             <button><a th:href="@{/other/create}+'?id='+${other.id}">Modificar</a></button>
                         </div>
-                        <br>
                         <div class="btn-delete">
                             <form th:action="'/jobs/delete/' + ${other.id}" method="post">
                                 <button type="submit">Eliminar</button>
@@ -320,7 +321,7 @@
                             </p>
                             <p class="line-days">Días: </p>
                             <th:block th:each="day : ${petwalker.days}">
-                                <label th:text="${day} + ' '"></label>
+                                <label th:text="${day}"></label>
                             </th:block>
                         </div>
                     </div>
@@ -328,7 +329,6 @@
                         <div class="btn-edit">
                             <button><a th:href="@{/petwalker/create}+'?id='+${petwalker.id}">Modificar</a></button>
                         </div>
-                        <br>
                         <div class="btn-delete">
                             <form th:action="'/jobs/delete/' + ${petwalker.id}" method="post">
                                 <button type="submit">Eliminar</button>

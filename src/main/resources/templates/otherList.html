@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Otros empleos</title>
+    <!--Icono-->
+    <link rel="icon" type="image/jpg" href="/img/favicon.ico" />
     <link rel="stylesheet" href="/css/cardPrueba.css" />
     <!--<link rel="stylesheet" href="/src/main/resources/static/css/cardPrueba.css" />-->
     <!--Google fonts-->
@@ -154,14 +156,13 @@
                 <div class="card">
                     <div class="blog-card">
                         <div class="photo">
-                            <!-- <img th:src="@{other.user.photo}" alt=""> -->
-                            <img th:src="${other.user.photo != null && other.user.photo != ''} ? ${other.user.photo} : '/img/Jardìn/j13.jpg'" alt="User photo">
-                            <!-- MODIFICA EL LINK DEL FINAL POR LO QUE QUIERAS, FIJATE DE INCLUIR LAS COMILLAS SIMPLES COMO SI FUESE UNA STRING DE JS-->
+                            <img th:src="${other.user.photo != null && other.user.photo != ''} ? ${other.user.photo} : 'https://t4.ftcdn.net/jpg/02/29/75/83/240_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg'"
+                                alt="User photo">
                         </div>
                         <div class="description">
                             <h1 th:text="${other.user.firstName}+' '+${other.user.lastName} "></h1>
                             <div class="mail-contact">
-                                <h1 th:text="${other.user.email}"></h1>
+                                <p th:text="${other.user.email}"></p>
                             </div>
                         </div>
                         <div class="card-body">
@@ -179,16 +180,17 @@
                             </div>
                             <div class="bloque-der">
                                 <p class="thyme" th:text="${other.type}"></p>
+                                <p class="line-days">Días: </p>
                                 <th:block th:each="day : ${other.days}">
-                                    <label th:text="${day} + ' '"></label>
+                                    <label th:text="${day}"></label>
                                 </th:block>
                             </div>
                         </div>
-                        <div class="boton-contact">
+                        <!-- <div class="boton-contact">
                             <div class="read-more">
                                 <a href="https://wa.me/"> Contactar</a>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </th:block>

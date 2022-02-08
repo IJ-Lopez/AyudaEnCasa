@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jardinero</title>
+    <!--Icono-->
+    <link rel="icon" type="image/jpg" href="/img/favicon.ico" />
     <link rel="stylesheet" href="/css/workForms.css">
     <!--<link rel="stylesheet" href="../static/css/workForms.css">-->
     <!--Google fonts-->
@@ -79,7 +81,7 @@
             </div>
             <div class="text">Jardinero</div>
             <form enctype="multipart/form-data" th:action="@{/gardener/create}" method="POST">
-                <input hidden th:value="${id}"  name="id"/>
+                <input hidden th:value="${id}" name="id" />
                 <div class="data">
                     <label for="salary"></label>
                     <input type="text" size="50px" th:value="${salary}" name="salary" id="salario"

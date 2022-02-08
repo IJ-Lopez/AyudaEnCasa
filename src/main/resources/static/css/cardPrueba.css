@@ -156,13 +156,10 @@ h1 {
   color: #fafafa;
 }
 
-.fa-sign-in-alt:before {
-  /* border:20px solid red; */
+/* .fa-sign-in-alt:before {
   width: auto;
-  content: "\f2bb";
-  /* content: "\f0b1"; */
   padding: 3px;
-}
+} */
 .work menu .form {
   border: 20px solid red;
 }
@@ -346,7 +343,7 @@ form .btn button:hover {
 }
 
 .postCard {
-  width: 900px;
+  width: 1000px;
   height: 250px;
   padding: 15px 15px 10px;
   top: 100px;
@@ -438,6 +435,7 @@ hr {
   width: 300px;
   height: 300px;
   z-index: 100;
+  margin-top: -21px;
 }
 
 .details,
@@ -585,9 +583,11 @@ h2 {
 /* CARD BODY */
 
 .card-body {
-  margin-top: 70px;
+  
+  border-top: 2px solid #cb997e;
+  margin-top: 75px;
   margin-left: 331px;
-  width: 75%;
+  width: 100%;
   display: flex;
 }
 
@@ -603,12 +603,12 @@ h2 {
 
 .postCard .card-body .bloque-izq,
 .bloque-cen {
-  margin-top: 25px;
+  /* margin-top: 25px; */
 }
 
-.postCard .card-body .bloque-der {
+/* .postCard .card-body .bloque-der {
   margin-top: 25px;
-}
+} */
 
 .bloque-izq .thyme,
 .bloque-cen .thyme,

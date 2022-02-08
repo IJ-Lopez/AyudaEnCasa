@@ -20,6 +20,13 @@ body {
   background-attachment: fixed;
 }
 
+.alert-danger .alert-dismissible 
+
+.alert, .alert-danger, .alert-dismissible {
+  color: #fefefe;
+}
+
+
 .container {
   position: absolute;
   top: 50%;

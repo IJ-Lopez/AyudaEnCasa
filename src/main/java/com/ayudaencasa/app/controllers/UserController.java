@@ -1,4 +1,3 @@
-
 package com.ayudaencasa.app.controllers;
 
 import com.ayudaencasa.app.dto.input.RegisterUserDTO;
@@ -34,18 +33,18 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Validated
 @RequestMapping("/user")
 public class UserController {
-    
+
     @Autowired
     private UserService userService;
-    
+
     @Autowired
     private S3Service s3service;
-    
+
     @Autowired
     private ModelMapper modelmap;
-            
+
     @GetMapping("/registry")
-    public String registry(Model model, @RequestParam(required = false) String id){
+    public String registry(Model model, @RequestParam(required = false) String id) {
         if (id != null) {
             User user = userService.findById(id);
             if (user != null) {
@@ -61,18 +60,21 @@ public class UserController {
         }
         return "registryForm";
     }
-    
+
     @PostMapping("/registry")
     public String create(RedirectAttributes redirectat, RegisterUserDTO inputUser) {
-        try{
+        try {
+            if (!inputUser.getPassword().equals(inputUser.getPassword2())) {
+                throw new UserNotFoundException("Las contraseñas deben ser iguales");
+            }
             User user = new User();
             userService.validated(inputUser);
             modelmap.map(inputUser, user);
             user.setAddress(inputUser.getAddress() + " - " + inputUser.getDepartament());
-            if(inputUser.getPic() != null && !inputUser.getPic().isEmpty()){
+            if (inputUser.getPic() != null && !inputUser.getPic().isEmpty()) {
                 user.setPhoto(s3service.save(inputUser.getPic()));
             }
-            if(inputUser.getId() != null) {
+            if (inputUser.getId() != null && !inputUser.getId().isEmpty()) {
                 update(inputUser.getId(), user);
                 redirectat.addFlashAttribute("success", "Se ha modificado con éxito su perfil");
             } else {
@@ -92,43 +94,36 @@ public class UserController {
             return "redirect:/user/registry";
         }
     }
-    
+
     @GetMapping("/editarUser")
-    public String editarUser(Model model){
+    public String editarUser(Model model) {
         UserDetails userDetails;
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        userDetails = (UserDetails)auth.getPrincipal();
+        userDetails = (UserDetails) auth.getPrincipal();
         User user = userService.findByEmail(userDetails.getUsername());
         model.addAttribute("user", user);
         return "editarMisPublicaciones";
     }
-    
+
     @PostMapping("")
     public void update(@RequestParam String id, User user) {
         userService.update(id, user);
-        
+
     }
-    
+
     @PostMapping("/delete/{id}")
     public void delete(String id) throws UserNotFoundException {
-       userService.delete(id);
+        userService.delete(id);
     }
-    
+
     @GetMapping("/list")
     public List<User> findAll() {
         return userService.findAll();
     }
-    
+
     @GetMapping("/{id}")
     public User findById(String id) throws UserNotFoundException {
         return userService.findById(id);
     }
-    
-    
-    
+
 }
-
-
-
-
-
